@@ -1,0 +1,7 @@
+MainPackage=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_ARM.appx
+SymbolPackage=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\AppPackages\nanovaTest_1.0.10.0_Test\nanovaTest_1.0.10.0_ARM.appxsym
+ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_language-zh-hans.appx
+ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-100.appx
+ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-125.appx
+ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-150.appx
+ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-400.appx

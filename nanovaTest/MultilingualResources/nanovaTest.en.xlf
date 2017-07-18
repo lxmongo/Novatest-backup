@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en" original="NANOVATEST/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1795.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="NANOVATEST/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="Temp.Text" translate="yes" xml:space="preserve">
+          <source>Temperature</source>
+          <target state="new">Temperature</target>
+        </trans-unit>
+        <trans-unit id="MainMenuGreetingString.Text" translate="yes" xml:space="preserve">
+          <source>What would you like to do?</source>
+          <target state="new">What would you like to do?</target>
+        </trans-unit>
+        <trans-unit id="MainMenuSelectMethod" translate="yes" xml:space="preserve">
+          <source>Run Test</source>
+          <target state="new">Run Test</target>
+        </trans-unit>
+        <trans-unit id="MainMenuCustomMethod" translate="yes" xml:space="preserve">
+          <source>Advanced Test</source>
+          <target state="new">Advanced Test</target>
+        </trans-unit>
+        <trans-unit id="MainMenuCalibrate" translate="yes" xml:space="preserve">
+          <source>Calibrate</source>
+          <target state="new">Calibrate</target>
+        </trans-unit>
+        <trans-unit id="MainMenuMethodHistory" translate="yes" xml:space="preserve">
+          <source>Test History</source>
+          <target state="new">Test History</target>
+        </trans-unit>
+        <trans-unit id="MainMenuVOCLibrary" translate="yes" xml:space="preserve">
+          <source>VOC Library</source>
+          <target state="new">VOC Library</target>
+        </trans-unit>
+        <trans-unit id="ComeSoon.Text" translate="yes" xml:space="preserve">
+          <source>Come Soon</source>
+          <target state="new">Come Soon</target>
+        </trans-unit>
+        <trans-unit id="CalibrateSelect.Text" translate="yes" xml:space="preserve">
+          <source>please select a method to calibrate</source>
+          <target state="new">please select a method to calibrate</target>
+        </trans-unit>
+        <trans-unit id="Config.Text" translate="yes" xml:space="preserve">
+          <source>CONFIG</source>
+          <target state="new">CONFIG</target>
+        </trans-unit>
+        <trans-unit id="Status.Text" translate="yes" xml:space="preserve">
+          <source>STATUS</source>
+          <target state="new">STATUS</target>
+        </trans-unit>
+        <trans-unit id="Calibrate.Text" translate="yes" xml:space="preserve">
+          <source>Calibrate</source>
+          <target state="new">Calibrate</target>
+        </trans-unit>
+        <trans-unit id="SamplingProfile.Text" translate="yes" xml:space="preserve">
+          <source>SAMPLING PROFILE</source>
+          <target state="new">SAMPLING PROFILE</target>
+        </trans-unit>
+        <trans-unit id="SamplingTime.Text" translate="yes" xml:space="preserve">
+          <source>Sampling Time (min)</source>
+          <target state="new">Sampling Time (min)</target>
+        </trans-unit>
+        <trans-unit id="WaitTime.Text" translate="yes" xml:space="preserve">
+          <source>Wait Time (sec)</source>
+          <target state="new">Wait Time (sec)</target>
+        </trans-unit>
+        <trans-unit id="SelectGas.Text" translate="yes" xml:space="preserve">
+          <source>select gas</source>
+          <target state="new">select gas</target>
+        </trans-unit>
+        <trans-unit id="Concentration.Text" translate="yes" xml:space="preserve">
+          <source>concentration (ppb)</source>
+          <target state="new">concentration (ppb)</target>
+        </trans-unit>
+        <trans-unit id="Start.Text" translate="yes" xml:space="preserve">
+          <source>START</source>
+          <target state="new">START</target>
+        </trans-unit>
+        <trans-unit id="Stop.Text" translate="yes" xml:space="preserve">
+          <source>STOP</source>
+          <target state="new">STOP</target>
+        </trans-unit>
+        <trans-unit id="SystemClean.Text" translate="yes" xml:space="preserve">
+          <source>system cleaning</source>
+          <target state="new">system cleaning</target>
+        </trans-unit>
+        <trans-unit id="MainScreen.Text" translate="yes" xml:space="preserve">
+          <source>MainScreen</source>
+          <target state="new">MainScreen</target>
+        </trans-unit>
+        <trans-unit id="ExperienceName.Text" translate="yes" xml:space="preserve">
+          <source>EXPERIMENT NAME</source>
+          <target state="new">EXPERIMENT NAME</target>
+        </trans-unit>
+        <trans-unit id="OperatorName.Text" translate="yes" xml:space="preserve">
+          <source>OPERATOR NAME</source>
+          <target state="new">OPERATOR NAME</target>
+        </trans-unit>
+        <trans-unit id="TempProfile.Text" translate="yes" xml:space="preserve">
+          <source>TEMPERATURE PROFILE</source>
+          <target state="new">TEMPERATURE PROFILE</target>
+        </trans-unit>
+        <trans-unit id="HighestTemp.Text" translate="yes" xml:space="preserve">
+          <source>Highest Temp (℃)</source>
+          <target state="new">Highest Temp (℃)</target>
+        </trans-unit>
+        <trans-unit id="HighHoldingTime.Text" translate="yes" xml:space="preserve">
+          <source>High Holding Time (min)</source>
+          <target state="new">High Holding Time (min)</target>
+        </trans-unit>
+        <trans-unit id="LowestTemp.Text" translate="yes" xml:space="preserve">
+          <source>Lowest Temp (℃)</source>
+          <target state="new">Lowest Temp (℃)</target>
+        </trans-unit>
+        <trans-unit id="LowHoldingTime.Text" translate="yes" xml:space="preserve">
+          <source>Low Holding Time (min)</source>
+          <target state="new">Low Holding Time (min)</target>
+        </trans-unit>
+        <trans-unit id="RampSpeed.Text" translate="yes" xml:space="preserve">
+          <source>Ramp Speed (℃/min)</source>
+          <target state="new">Ramp Speed (℃/min)</target>
+        </trans-unit>
+        <trans-unit id="HeartCuttingPeriods.Text" translate="yes" xml:space="preserve">
+          <source>HEART CUTTING PERIODS</source>
+          <target state="new">HEART CUTTING PERIODS</target>
+        </trans-unit>
+        <trans-unit id="BeginTime.Text" translate="yes" xml:space="preserve">
+          <source>Begin Time</source>
+          <target state="new">Begin Time</target>
+        </trans-unit>
+        <trans-unit id="EndTime.Text" translate="yes" xml:space="preserve">
+          <source>End Time</source>
+          <target state="new">End Time</target>
+        </trans-unit>
+        <trans-unit id="TotalTimeRemaining.Text" translate="yes" xml:space="preserve">
+          <source>TOTAL TIME REMAINING</source>
+          <target state="new">TOTAL TIME REMAINING</target>
+        </trans-unit>
+        <trans-unit id="CurrentStep.Text" translate="yes" xml:space="preserve">
+          <source>CURRENT STEP</source>
+          <target state="new">CURRENT STEP</target>
+        </trans-unit>
+        <trans-unit id="Remaining.Text" translate="yes" xml:space="preserve">
+          <source>REMAINING</source>
+          <target state="new">REMAINING</target>
+        </trans-unit>
+        <trans-unit id="CurrentTemp.Text" translate="yes" xml:space="preserve">
+          <source>CURRENT TEMPERATURE (℃)</source>
+          <target state="new">CURRENT TEMPERATURE (℃)</target>
+        </trans-unit>
+        <trans-unit id="SetpointTemp.Text" translate="yes" xml:space="preserve">
+          <source>SETPOINT TEMPERATURE (℃)</source>
+          <target state="new">SETPOINT TEMPERATURE (℃)</target>
+        </trans-unit>
+        <trans-unit id="RunTest.Text" translate="yes" xml:space="preserve">
+          <source>Run Test</source>
+          <target state="new">Run Test</target>
+        </trans-unit>
+        <trans-unit id="Search.Text" translate="yes" xml:space="preserve">
+          <source>SEARCH</source>
+          <target state="new">SEARCH</target>
+        </trans-unit>
+        <trans-unit id="RunTestSelect.Text" translate="yes" xml:space="preserve">
+          <source>Please select a method to test</source>
+          <target state="new">Please select a method to test</target>
+        </trans-unit>
+        <trans-unit id="CalibrateAlert.Text" translate="yes" xml:space="preserve">
+          <source>Alert: Calibrate needed</source>
+          <target state="new">Alert: Calibrate needed</target>
+        </trans-unit>
+        <trans-unit id="GotoCalibrate.Text" translate="yes" xml:space="preserve">
+          <source>Go to calibrate</source>
+          <target state="new">Go to calibrate</target>
+        </trans-unit>
+        <trans-unit id="TestAnyWay.Text" translate="yes" xml:space="preserve">
+          <source>Test any way (Not recommended)</source>
+          <target state="new">Test any way (Not recommended)</target>
+        </trans-unit>
+        <trans-unit id="VOCLibrary.Text" translate="yes" xml:space="preserve">
+          <source>VOC library</source>
+          <target state="new">VOC library</target>
+        </trans-unit>
+        <trans-unit id="SystemAbout.Text" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="new">About</target>
+        </trans-unit>
+        <trans-unit id="SystemSetting.Text" translate="yes" xml:space="preserve">
+          <source>Setting</source>
+          <target state="new">Setting</target>
+        </trans-unit>
+        <trans-unit id="Time.Text" translate="yes" xml:space="preserve">
+          <source>Time</source>
+          <target state="new">Time</target>
+        </trans-unit>
+        <trans-unit id="ConcentrationFactor.Text" translate="yes" xml:space="preserve">
+          <source>Concentration Factor</source>
+          <target state="new">Concentration Factor</target>
+        </trans-unit>
+        <trans-unit id="CalibrateDate.Text" translate="yes" xml:space="preserve">
+          <source>Calibrate Date</source>
+          <target state="new">Calibrate Date</target>
+        </trans-unit>
+        <trans-unit id="Gases.Text" translate="yes" xml:space="preserve">
+          <source>gases</source>
+          <target state="new">gases</target>
+        </trans-unit>
+        <trans-unit id="MalodorousGas.Text" translate="yes" xml:space="preserve">
+          <source>Malodorous Gas</source>
+          <target state="new">Malodorous Gas</target>
+        </trans-unit>
+        <trans-unit id="Vehicle.Text" translate="yes" xml:space="preserve">
+          <source>Vehicle</source>
+          <target state="new">Vehicle</target>
+        </trans-unit>
+        <trans-unit id="AirQuality.Text" translate="yes" xml:space="preserve">
+          <source>Air Quality</source>
+          <target state="new">Air Quality</target>
+        </trans-unit>
+        <trans-unit id="PollutionSource.Text" translate="yes" xml:space="preserve">
+          <source>Pollution Source</source>
+          <target state="new">Pollution Source</target>
+        </trans-unit>
+        <trans-unit id="WaterQuality.Text" translate="yes" xml:space="preserve">
+          <source>Water Quality</source>
+          <target state="new">Water Quality</target>
+        </trans-unit>
+        <trans-unit id="AirQuality1" translate="yes" xml:space="preserve">
+          <source>Air Quality</source>
+          <target state="new">Air Quality</target>
+        </trans-unit>
+        <trans-unit id="MalodorousGas1" translate="yes" xml:space="preserve">
+          <source>Malodorous Gas</source>
+          <target state="new">Malodorous Gas</target>
+        </trans-unit>
+        <trans-unit id="PollutionSource1" translate="yes" xml:space="preserve">
+          <source>Pollution Source</source>
+          <target state="new">Pollution Source</target>
+        </trans-unit>
+        <trans-unit id="Vehicle1" translate="yes" xml:space="preserve">
+          <source>Vehicle</source>
+          <target state="new">Vehicle</target>
+        </trans-unit>
+        <trans-unit id="WaterQuality1" translate="yes" xml:space="preserve">
+          <source>Water Quality</source>
+          <target state="new">Water Quality</target>
+        </trans-unit>
+        <trans-unit id="Stop1" translate="yes" xml:space="preserve">
+          <source>STOP</source>
+          <target state="new">STOP</target>
+        </trans-unit>
+        <trans-unit id="SelectGasInfo" translate="yes" xml:space="preserve">
+          <source>Select gas cannot be empty.</source>
+          <target state="new">Select gas cannot be empty.</target>
+        </trans-unit>
+        <trans-unit id="Start1" translate="yes" xml:space="preserve">
+          <source>START</source>
+          <target state="new">START</target>
+        </trans-unit>
+        <trans-unit id="Second" translate="yes" xml:space="preserve">
+          <source> Second</source>
+          <target state="new"> Second</target>
+        </trans-unit>
+        <trans-unit id="ConcentrationPPB" translate="yes" xml:space="preserve">
+          <source>Concentration (ppb)</source>
+          <target state="new">Concentration (ppb)</target>
+        </trans-unit>
+        <trans-unit id="Method" translate="yes" xml:space="preserve">
+          <source>Method</source>
+          <target state="new">Method</target>
+        </trans-unit>
+        <trans-unit id="Report" translate="yes" xml:space="preserve">
+          <source>Report</source>
+          <target state="new">Report</target>
+        </trans-unit>
+        <trans-unit id="SamplingPumpingTime" translate="yes" xml:space="preserve">
+          <source>Sampling/Pumping time</source>
+          <target state="new">Sampling/Pumping time</target>
+        </trans-unit>
+        <trans-unit id="SaveSuccess" translate="yes" xml:space="preserve">
+          <source>Report saved successfully.</source>
+          <target state="new">Report saved successfully.</target>
+        </trans-unit>
+        <trans-unit id="SelectGas1" translate="yes" xml:space="preserve">
+          <source>Select gas</source>
+          <target state="new">Select gas</target>
+        </trans-unit>
+        <trans-unit id="StartTime" translate="yes" xml:space="preserve">
+          <source>Start time</source>
+          <target state="new">Start time</target>
+        </trans-unit>
+        <trans-unit id="WaitingTime" translate="yes" xml:space="preserve">
+          <source>Waiting time</source>
+          <target state="new">Waiting time</target>
+        </trans-unit>
+        <trans-unit id="ExperienceName1" translate="yes" xml:space="preserve">
+          <source>Experiment name</source>
+          <target state="new">Experiment name</target>
+        </trans-unit>
+        <trans-unit id="HighestTemp1" translate="yes" xml:space="preserve">
+          <source>Highest Temperature</source>
+          <target state="new">Highest Temperature</target>
+        </trans-unit>
+        <trans-unit id="HighHoldingTime1" translate="yes" xml:space="preserve">
+          <source>High holding time</source>
+          <target state="new">High holding time</target>
+        </trans-unit>
+        <trans-unit id="LowestTemp1" translate="yes" xml:space="preserve">
+          <source>Lowest Temperature</source>
+          <target state="new">Lowest Temperature</target>
+        </trans-unit>
+        <trans-unit id="LowHoldingTime1" translate="yes" xml:space="preserve">
+          <source>Low holding time</source>
+          <target state="new">Low holding time</target>
+        </trans-unit>
+        <trans-unit id="OperatorName1" translate="yes" xml:space="preserve">
+          <source>Operator Name</source>
+          <target state="new">Operator Name</target>
+        </trans-unit>
+        <trans-unit id="RampSpeed1" translate="yes" xml:space="preserve">
+          <source>Ramping speed</source>
+          <target state="new">Ramping speed</target>
+        </trans-unit>
+        <trans-unit id="BeginTimeValidate" translate="yes" xml:space="preserve">
+          <source>Begin Time is invalid.</source>
+          <target state="new">Begin Time is invalid.</target>
+        </trans-unit>
+        <trans-unit id="EndTimeValidate" translate="yes" xml:space="preserve">
+          <source>End Time is invalid.</source>
+          <target state="new">End Time is invalid.</target>
+        </trans-unit>
+        <trans-unit id="ExperienceValidate" translate="yes" xml:space="preserve">
+          <source>Experiment Name cannot be empty.</source>
+          <target state="new">Experiment Name cannot be empty.</target>
+        </trans-unit>
+        <trans-unit id="HighestTempValidate" translate="yes" xml:space="preserve">
+          <source>Highest Temp is invalid.</source>
+          <target state="new">Highest Temp is invalid.</target>
+        </trans-unit>
+        <trans-unit id="HighHoldingValidate" translate="yes" xml:space="preserve">
+          <source>High Holding Time is invalid.</source>
+          <target state="new">High Holding Time is invalid.</target>
+        </trans-unit>
+        <trans-unit id="LowestTempValidate" translate="yes" xml:space="preserve">
+          <source>Lowest Temp is invalid.</source>
+          <target state="new">Lowest Temp is invalid.</target>
+        </trans-unit>
+        <trans-unit id="LowHoldingTimeValidate" translate="yes" xml:space="preserve">
+          <source>Low Holding Time is invalid.</source>
+          <target state="new">Low Holding Time is invalid.</target>
+        </trans-unit>
+        <trans-unit id="OperatorNameValidate" translate="yes" xml:space="preserve">
+          <source>Operator Name cannot be empty.</source>
+          <target state="new">Operator Name cannot be empty.</target>
+        </trans-unit>
+        <trans-unit id="RampSpeedValidate" translate="yes" xml:space="preserve">
+          <source>Ramp Speed is invalid.</source>
+          <target state="new">Ramp Speed is invalid.</target>
+        </trans-unit>
+        <trans-unit id="SamplingTimeValidate" translate="yes" xml:space="preserve">
+          <source>Sampling Time is invalid.</source>
+          <target state="new">Sampling Time is invalid.</target>
+        </trans-unit>
+        <trans-unit id="WaitTimeValidate" translate="yes" xml:space="preserve">
+          <source>Wait Time is invalid.</source>
+          <target state="new">Wait Time is invalid.</target>
+        </trans-unit>
+        <trans-unit id="PDFPreview.Text" translate="yes" xml:space="preserve">
+          <source>PDF Preview Area</source>
+          <target state="new">PDF Preview Area</target>
+        </trans-unit>
+        <trans-unit id="Ammonia" translate="yes" xml:space="preserve">
+          <source>Ammonia</source>
+          <target state="new">Ammonia</target>
+        </trans-unit>
+        <trans-unit id="Benzene" translate="yes" xml:space="preserve">
+          <source>Benzene</source>
+          <target state="new">Benzene</target>
+        </trans-unit>
+        <trans-unit id="Carbon disulfide" translate="yes" xml:space="preserve">
+          <source>Carbon disulfide</source>
+          <target state="new">Carbon disulfide</target>
+        </trans-unit>
+        <trans-unit id="Dimethyl disulfide" translate="yes" xml:space="preserve">
+          <source>Dimethyl disulfide</source>
+          <target state="new">Dimethyl disulfide</target>
+        </trans-unit>
+        <trans-unit id="Dimethyl sulfide" translate="yes" xml:space="preserve">
+          <source>Dimethyl sulfide</source>
+          <target state="new">Dimethyl sulfide</target>
+        </trans-unit>
+        <trans-unit id="Ethylbenzene" translate="yes" xml:space="preserve">
+          <source>Ethylbenzene</source>
+          <target state="new">Ethylbenzene</target>
+        </trans-unit>
+        <trans-unit id="Hydrogen sulfide" translate="yes" xml:space="preserve">
+          <source>Hydrogen sulfide</source>
+          <target state="new">Hydrogen sulfide</target>
+        </trans-unit>
+        <trans-unit id="Isobutylene" translate="yes" xml:space="preserve">
+          <source>Isobutylene</source>
+          <target state="new">Isobutylene</target>
+        </trans-unit>
+        <trans-unit id="M-xylene" translate="yes" xml:space="preserve">
+          <source>M-xylene</source>
+          <target state="new">M-xylene</target>
+        </trans-unit>
+        <trans-unit id="Methanthiol" translate="yes" xml:space="preserve">
+          <source>Methanthiol</source>
+          <target state="new">Methanthiol</target>
+        </trans-unit>
+        <trans-unit id="Methyl tert-butyl ether" translate="yes" xml:space="preserve">
+          <source>Methyl tert-butyl ether</source>
+          <target state="new">Methyl tert-butyl ether</target>
+        </trans-unit>
+        <trans-unit id="O-xylene" translate="yes" xml:space="preserve">
+          <source>O-xylene</source>
+          <target state="new">O-xylene</target>
+        </trans-unit>
+        <trans-unit id="P-xylene" translate="yes" xml:space="preserve">
+          <source>P-xylene</source>
+          <target state="new">P-xylene</target>
+        </trans-unit>
+        <trans-unit id="Styrene" translate="yes" xml:space="preserve">
+          <source>Styrene</source>
+          <target state="new">Styrene</target>
+        </trans-unit>
+        <trans-unit id="Tetrachloroethylene" translate="yes" xml:space="preserve">
+          <source>Tetrachloroethylene</source>
+          <target state="new">Tetrachloroethylene</target>
+        </trans-unit>
+        <trans-unit id="Toluene" translate="yes" xml:space="preserve">
+          <source>Toluene</source>
+          <target state="new">Toluene</target>
+        </trans-unit>
+        <trans-unit id="Trichloroethylene" translate="yes" xml:space="preserve">
+          <source>Trichloroethylene</source>
+          <target state="new">Trichloroethylene</target>
+        </trans-unit>
+        <trans-unit id="Trimethylamine" translate="yes" xml:space="preserve">
+          <source>Trimethylamine</source>
+          <target state="new">Trimethylamine</target>
+        </trans-unit>
+        <trans-unit id="1,1-Dichloroethene" translate="yes" xml:space="preserve">
+          <source>1,1-Dichloroethene</source>
+          <target state="new">1,1-Dichloroethene</target>
+        </trans-unit>
+        <trans-unit id="Acetaldehyde" translate="yes" xml:space="preserve">
+          <source>Acetaldehyde</source>
+          <target state="new">Acetaldehyde</target>
+        </trans-unit>
+        <trans-unit id="Acrolein" translate="yes" xml:space="preserve">
+          <source>Acrolein</source>
+          <target state="new">Acrolein</target>
+        </trans-unit>
+        <trans-unit id="1,2,4-Trichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,2,4-Trichlorobenzene</source>
+          <target state="new">1,2,4-Trichlorobenzene</target>
+        </trans-unit>
+        <trans-unit id="1,2,4-Trimethylbenzene" translate="yes" xml:space="preserve">
+          <source>1,2,4-Trimethylbenzene</source>
+          <target state="new">1,2,4-Trimethylbenzene</target>
+        </trans-unit>
+        <trans-unit id="1,2-Dibromoethane" translate="yes" xml:space="preserve">
+          <source>1,2-Dibromoethane</source>
+          <target state="new">1,2-Dibromoethane</target>
+        </trans-unit>
+        <trans-unit id="1,2-Dichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,2-Dichlorobenzene</source>
+          <target state="new">1,2-Dichlorobenzene</target>
+        </trans-unit>
+        <trans-unit id="1,3,5-Trimethylbenzene" translate="yes" xml:space="preserve">
+          <source>1,3,5-Trimethylbenzene</source>
+          <target state="new">1,3,5-Trimethylbenzene</target>
+        </trans-unit>
+        <trans-unit id="1,3-Dichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,3-Dichlorobenzene</source>
+          <target state="new">1,3-Dichlorobenzene</target>
+        </trans-unit>
+        <trans-unit id="1,4-Dichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,4-Dichlorobenzene</source>
+          <target state="new">1,4-Dichlorobenzene</target>
+        </trans-unit>
+        <trans-unit id="1-Decene" translate="yes" xml:space="preserve">
+          <source>1-Decene</source>
+          <target state="new">1-Decene</target>
+        </trans-unit>
+        <trans-unit id="2-Heptanone" translate="yes" xml:space="preserve">
+          <source>2-Heptanone</source>
+          <target state="new">2-Heptanone</target>
+        </trans-unit>
+        <trans-unit id="2-Nonanone" translate="yes" xml:space="preserve">
+          <source>2-Nonanone</source>
+          <target state="new">2-Nonanone</target>
+        </trans-unit>
+        <trans-unit id="3-Pentanone" translate="yes" xml:space="preserve">
+          <source>3-Pentanone</source>
+          <target state="new">3-Pentanone</target>
+        </trans-unit>
+        <trans-unit id="4-Ethyltoluene" translate="yes" xml:space="preserve">
+          <source>4-Ethyltoluene</source>
+          <target state="new">4-Ethyltoluene</target>
+        </trans-unit>
+        <trans-unit id="Acetone" translate="yes" xml:space="preserve">
+          <source>Acetone</source>
+          <target state="new">Acetone</target>
+        </trans-unit>
+        <trans-unit id="Allyl chloride" translate="yes" xml:space="preserve">
+          <source>Allyl chloride</source>
+          <target state="new">Allyl chloride</target>
+        </trans-unit>
+        <trans-unit id="Anisole" translate="yes" xml:space="preserve">
+          <source>Anisole</source>
+          <target state="new">Anisole</target>
+        </trans-unit>
+        <trans-unit id="Benzaldehyde" translate="yes" xml:space="preserve">
+          <source>Benzaldehyde</source>
+          <target state="new">Benzaldehyde</target>
+        </trans-unit>
+        <trans-unit id="Benzyl chloride" translate="yes" xml:space="preserve">
+          <source>Benzyl chloride</source>
+          <target state="new">Benzyl chloride</target>
+        </trans-unit>
+        <trans-unit id="Butyl acetate" translate="yes" xml:space="preserve">
+          <source>Butyl acetate</source>
+          <target state="new">Butyl acetate</target>
+        </trans-unit>
+        <trans-unit id="Chlorobenzene" translate="yes" xml:space="preserve">
+          <source>Chlorobenzene</source>
+          <target state="new">Chlorobenzene</target>
+        </trans-unit>
+        <trans-unit id="Cis-1,2-Dichloroethene" translate="yes" xml:space="preserve">
+          <source>Cis-1,2-Dichloroethene</source>
+          <target state="new">Cis-1,2-Dichloroethene</target>
+        </trans-unit>
+        <trans-unit id="Cyclopentanone" translate="yes" xml:space="preserve">
+          <source>Cyclopentanone</source>
+          <target state="new">Cyclopentanone</target>
+        </trans-unit>
+        <trans-unit id="Heptane" translate="yes" xml:space="preserve">
+          <source>Heptane</source>
+          <target state="new">Heptane</target>
+        </trans-unit>
+        <trans-unit id="Hexamethyldisiloxane" translate="yes" xml:space="preserve">
+          <source>Hexamethyldisiloxane</source>
+          <target state="new">Hexamethyldisiloxane</target>
+        </trans-unit>
+        <trans-unit id="Hexane" translate="yes" xml:space="preserve">
+          <source>Hexane</source>
+          <target state="new">Hexane</target>
+        </trans-unit>
+        <trans-unit id="Isopropanol" translate="yes" xml:space="preserve">
+          <source>Isopropanol</source>
+          <target state="new">Isopropanol</target>
+        </trans-unit>
+        <trans-unit id="Isopropylbenzene" translate="yes" xml:space="preserve">
+          <source>Isopropylbenzene</source>
+          <target state="new">Isopropylbenzene</target>
+        </trans-unit>
+        <trans-unit id="UserSaveSuccess" translate="yes" xml:space="preserve">
+          <source>Save Operator Success.</source>
+          <target state="new">Save Operator Success.</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

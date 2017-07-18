@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="zh-Hans" original="NANOVATEST/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1795.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="NANOVATEST/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="Temp.Text" translate="yes" xml:space="preserve">
+          <source>Temperature</source>
+          <target state="translated">温度</target>
+        </trans-unit>
+        <trans-unit id="MainMenuGreetingString.Text" translate="yes" xml:space="preserve">
+          <source>What would you like to do?</source>
+          <target state="translated">请选择功能</target>
+        </trans-unit>
+        <trans-unit id="MainMenuSelectMethod" translate="yes" xml:space="preserve">
+          <source>Run Test</source>
+          <target state="translated">一键测试</target>
+        </trans-unit>
+        <trans-unit id="MainMenuCustomMethod" translate="yes" xml:space="preserve">
+          <source>Advanced Test</source>
+          <target state="translated">自定义测试</target>
+        </trans-unit>
+        <trans-unit id="MainMenuCalibrate" translate="yes" xml:space="preserve">
+          <source>Calibrate</source>
+          <target state="translated">校准</target>
+        </trans-unit>
+        <trans-unit id="MainMenuMethodHistory" translate="yes" xml:space="preserve">
+          <source>Test History</source>
+          <target state="translated">历史记录</target>
+        </trans-unit>
+        <trans-unit id="MainMenuVOCLibrary" translate="yes" xml:space="preserve">
+          <source>VOC Library</source>
+          <target state="translated">VOC库</target>
+        </trans-unit>
+        <trans-unit id="ComeSoon.Text" translate="yes" xml:space="preserve">
+          <source>Come Soon</source>
+          <target state="translated">正在开发中</target>
+        </trans-unit>
+        <trans-unit id="CalibrateSelect.Text" translate="yes" xml:space="preserve">
+          <source>please select a method to calibrate</source>
+          <target state="translated">请选择一个需要校准的方法</target>
+        </trans-unit>
+        <trans-unit id="Config.Text" translate="yes" xml:space="preserve">
+          <source>CONFIG</source>
+          <target state="translated">设定</target>
+        </trans-unit>
+        <trans-unit id="Status.Text" translate="yes" xml:space="preserve">
+          <source>STATUS</source>
+          <target state="translated">状态</target>
+        </trans-unit>
+        <trans-unit id="Calibrate.Text" translate="yes" xml:space="preserve">
+          <source>Calibrate</source>
+          <target state="translated">校准</target>
+        </trans-unit>
+        <trans-unit id="SamplingProfile.Text" translate="yes" xml:space="preserve">
+          <source>SAMPLING PROFILE</source>
+          <target state="translated">采样设定</target>
+        </trans-unit>
+        <trans-unit id="SamplingTime.Text" translate="yes" xml:space="preserve">
+          <source>Sampling Time (min)</source>
+          <target state="translated">取样时间(min)</target>
+        </trans-unit>
+        <trans-unit id="WaitTime.Text" translate="yes" xml:space="preserve">
+          <source>Wait Time (sec)</source>
+          <target state="translated">等待时间(s)</target>
+        </trans-unit>
+        <trans-unit id="SelectGas.Text" translate="yes" xml:space="preserve">
+          <source>select gas</source>
+          <target state="translated">选择气体</target>
+        </trans-unit>
+        <trans-unit id="Concentration.Text" translate="yes" xml:space="preserve">
+          <source>concentration (ppb)</source>
+          <target state="translated">浓度（ppb）</target>
+        </trans-unit>
+        <trans-unit id="Start.Text" translate="yes" xml:space="preserve">
+          <source>START</source>
+          <target state="translated">开始</target>
+        </trans-unit>
+        <trans-unit id="Stop.Text" translate="yes" xml:space="preserve">
+          <source>STOP</source>
+          <target state="translated">停止</target>
+        </trans-unit>
+        <trans-unit id="SystemClean.Text" translate="yes" xml:space="preserve">
+          <source>system cleaning</source>
+          <target state="translated">系统清洗</target>
+        </trans-unit>
+        <trans-unit id="MainScreen.Text" translate="yes" xml:space="preserve">
+          <source>MainScreen</source>
+          <target state="translated">首页</target>
+        </trans-unit>
+        <trans-unit id="ExperienceName.Text" translate="yes" xml:space="preserve">
+          <source>EXPERIMENT NAME</source>
+          <target state="translated">实验名称</target>
+        </trans-unit>
+        <trans-unit id="OperatorName.Text" translate="yes" xml:space="preserve">
+          <source>OPERATOR NAME</source>
+          <target state="translated">操作者</target>
+        </trans-unit>
+        <trans-unit id="TempProfile.Text" translate="yes" xml:space="preserve">
+          <source>TEMPERATURE PROFILE</source>
+          <target state="translated">温度设定</target>
+        </trans-unit>
+        <trans-unit id="HighestTemp.Text" translate="yes" xml:space="preserve">
+          <source>Highest Temp (℃)</source>
+          <target state="translated">最高温度(℃)</target>
+        </trans-unit>
+        <trans-unit id="HighHoldingTime.Text" translate="yes" xml:space="preserve">
+          <source>High Holding Time (min)</source>
+          <target state="translated">高温维持时间(min)</target>
+        </trans-unit>
+        <trans-unit id="LowestTemp.Text" translate="yes" xml:space="preserve">
+          <source>Lowest Temp (℃)</source>
+          <target state="translated">最低温度(℃)</target>
+        </trans-unit>
+        <trans-unit id="LowHoldingTime.Text" translate="yes" xml:space="preserve">
+          <source>Low Holding Time (min)</source>
+          <target state="translated">低温维持时间(min)</target>
+        </trans-unit>
+        <trans-unit id="RampSpeed.Text" translate="yes" xml:space="preserve">
+          <source>Ramp Speed (℃/min)</source>
+          <target state="translated">升温速率(℃/min)</target>
+        </trans-unit>
+        <trans-unit id="HeartCuttingPeriods.Text" translate="yes" xml:space="preserve">
+          <source>HEART CUTTING PERIODS</source>
+          <target state="translated">二维取样</target>
+        </trans-unit>
+        <trans-unit id="BeginTime.Text" translate="yes" xml:space="preserve">
+          <source>Begin Time</source>
+          <target state="translated">开始时间</target>
+        </trans-unit>
+        <trans-unit id="EndTime.Text" translate="yes" xml:space="preserve">
+          <source>End Time</source>
+          <target state="translated">结束时间</target>
+        </trans-unit>
+        <trans-unit id="TotalTimeRemaining.Text" translate="yes" xml:space="preserve">
+          <source>TOTAL TIME REMAINING</source>
+          <target state="translated">总剩余时间</target>
+        </trans-unit>
+        <trans-unit id="CurrentStep.Text" translate="yes" xml:space="preserve">
+          <source>CURRENT STEP</source>
+          <target state="translated">当前步骤</target>
+        </trans-unit>
+        <trans-unit id="Remaining.Text" translate="yes" xml:space="preserve">
+          <source>REMAINING</source>
+          <target state="translated">剩余时间</target>
+        </trans-unit>
+        <trans-unit id="CurrentTemp.Text" translate="yes" xml:space="preserve">
+          <source>CURRENT TEMPERATURE (℃)</source>
+          <target state="translated">当前温度(℃)</target>
+        </trans-unit>
+        <trans-unit id="SetpointTemp.Text" translate="yes" xml:space="preserve">
+          <source>SETPOINT TEMPERATURE (℃)</source>
+          <target state="translated">设定温度(℃)</target>
+        </trans-unit>
+        <trans-unit id="RunTest.Text" translate="yes" xml:space="preserve">
+          <source>Run Test</source>
+          <target state="translated">测试运行</target>
+        </trans-unit>
+        <trans-unit id="Search.Text" translate="yes" xml:space="preserve">
+          <source>SEARCH</source>
+          <target state="translated">查询</target>
+        </trans-unit>
+        <trans-unit id="RunTestSelect.Text" translate="yes" xml:space="preserve">
+          <source>Please select a method to test</source>
+          <target state="translated">请选择一个测试方法</target>
+        </trans-unit>
+        <trans-unit id="CalibrateAlert.Text" translate="yes" xml:space="preserve">
+          <source>Alert: Calibrate needed</source>
+          <target state="translated">提示：需要校验</target>
+        </trans-unit>
+        <trans-unit id="GotoCalibrate.Text" translate="yes" xml:space="preserve">
+          <source>Go to calibrate</source>
+          <target state="translated">去校验</target>
+        </trans-unit>
+        <trans-unit id="TestAnyWay.Text" translate="yes" xml:space="preserve">
+          <source>Test any way (Not recommended)</source>
+          <target state="translated">仍然进行测试（不推荐）</target>
+        </trans-unit>
+        <trans-unit id="VOCLibrary.Text" translate="yes" xml:space="preserve">
+          <source>VOC library</source>
+          <target state="translated">VOC 库</target>
+        </trans-unit>
+        <trans-unit id="SystemAbout.Text" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="translated">关于</target>
+        </trans-unit>
+        <trans-unit id="SystemSetting.Text" translate="yes" xml:space="preserve">
+          <source>Setting</source>
+          <target state="translated">设置</target>
+        </trans-unit>
+        <trans-unit id="Time.Text" translate="yes" xml:space="preserve">
+          <source>Time</source>
+          <target state="translated">时间</target>
+        </trans-unit>
+        <trans-unit id="ConcentrationFactor.Text" translate="yes" xml:space="preserve">
+          <source>Concentration Factor</source>
+          <target state="needs-review-translation">浓度因子</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="CalibrateDate.Text" translate="yes" xml:space="preserve">
+          <source>Calibrate Date</source>
+          <target state="needs-review-translation">校验日期</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="Gases.Text" translate="yes" xml:space="preserve">
+          <source>gases</source>
+          <target state="translated">种气体</target>
+        </trans-unit>
+        <trans-unit id="MalodorousGas.Text" translate="yes" xml:space="preserve">
+          <source>Malodorous Gas</source>
+          <target state="translated">臭气</target>
+        </trans-unit>
+        <trans-unit id="Vehicle.Text" translate="yes" xml:space="preserve">
+          <source>Vehicle</source>
+          <target state="translated">车内空气质量</target>
+        </trans-unit>
+        <trans-unit id="AirQuality.Text" translate="yes" xml:space="preserve">
+          <source>Air Quality</source>
+          <target state="translated">空气质量</target>
+        </trans-unit>
+        <trans-unit id="PollutionSource.Text" translate="yes" xml:space="preserve">
+          <source>Pollution Source</source>
+          <target state="translated">污染源</target>
+        </trans-unit>
+        <trans-unit id="WaterQuality.Text" translate="yes" xml:space="preserve">
+          <source>Water Quality</source>
+          <target state="translated">水质</target>
+        </trans-unit>
+        <trans-unit id="AirQuality1" translate="yes" xml:space="preserve">
+          <source>Air Quality</source>
+          <target state="translated">空气质量</target>
+        </trans-unit>
+        <trans-unit id="MalodorousGas1" translate="yes" xml:space="preserve">
+          <source>Malodorous Gas</source>
+          <target state="translated">臭气</target>
+        </trans-unit>
+        <trans-unit id="PollutionSource1" translate="yes" xml:space="preserve">
+          <source>Pollution Source</source>
+          <target state="translated">污染源</target>
+        </trans-unit>
+        <trans-unit id="Vehicle1" translate="yes" xml:space="preserve">
+          <source>Vehicle</source>
+          <target state="translated">车内空气质量</target>
+        </trans-unit>
+        <trans-unit id="WaterQuality1" translate="yes" xml:space="preserve">
+          <source>Water Quality</source>
+          <target state="translated">水质</target>
+        </trans-unit>
+        <trans-unit id="Stop1" translate="yes" xml:space="preserve">
+          <source>STOP</source>
+          <target state="translated">停止</target>
+        </trans-unit>
+        <trans-unit id="SelectGasInfo" translate="yes" xml:space="preserve">
+          <source>Select gas cannot be empty.</source>
+          <target state="translated">请选择一种气体</target>
+        </trans-unit>
+        <trans-unit id="Start1" translate="yes" xml:space="preserve">
+          <source>START</source>
+          <target state="translated">开始</target>
+        </trans-unit>
+        <trans-unit id="Second" translate="yes" xml:space="preserve">
+          <source> Second</source>
+          <target state="translated"> 秒</target>
+        </trans-unit>
+        <trans-unit id="ConcentrationPPB" translate="yes" xml:space="preserve">
+          <source>Concentration (ppb)</source>
+          <target state="translated">浓度（ppb）</target>
+        </trans-unit>
+        <trans-unit id="Method" translate="yes" xml:space="preserve">
+          <source>Method</source>
+          <target state="translated">方法</target>
+        </trans-unit>
+        <trans-unit id="Report" translate="yes" xml:space="preserve">
+          <source>Report</source>
+          <target state="translated">测试报告</target>
+        </trans-unit>
+        <trans-unit id="SamplingPumpingTime" translate="yes" xml:space="preserve">
+          <source>Sampling/Pumping time</source>
+          <target state="translated">取样/抽取时间</target>
+        </trans-unit>
+        <trans-unit id="SaveSuccess" translate="yes" xml:space="preserve">
+          <source>Report saved successfully.</source>
+          <target state="translated">报告保存成功</target>
+        </trans-unit>
+        <trans-unit id="SelectGas1" translate="yes" xml:space="preserve">
+          <source>Select gas</source>
+          <target state="translated">所选气体</target>
+        </trans-unit>
+        <trans-unit id="StartTime" translate="yes" xml:space="preserve">
+          <source>Start time</source>
+          <target state="translated">开始时间</target>
+        </trans-unit>
+        <trans-unit id="WaitingTime" translate="yes" xml:space="preserve">
+          <source>Waiting time</source>
+          <target state="translated">等待时间</target>
+        </trans-unit>
+        <trans-unit id="ExperienceName1" translate="yes" xml:space="preserve">
+          <source>Experiment name</source>
+          <target state="translated">实验名称</target>
+        </trans-unit>
+        <trans-unit id="HighestTemp1" translate="yes" xml:space="preserve">
+          <source>Highest Temperature</source>
+          <target state="translated">最高温度</target>
+        </trans-unit>
+        <trans-unit id="HighHoldingTime1" translate="yes" xml:space="preserve">
+          <source>High holding time</source>
+          <target state="translated">高温维持时间</target>
+        </trans-unit>
+        <trans-unit id="LowestTemp1" translate="yes" xml:space="preserve">
+          <source>Lowest Temperature</source>
+          <target state="translated">最低温度</target>
+        </trans-unit>
+        <trans-unit id="LowHoldingTime1" translate="yes" xml:space="preserve">
+          <source>Low holding time</source>
+          <target state="translated">低温维持时间</target>
+        </trans-unit>
+        <trans-unit id="OperatorName1" translate="yes" xml:space="preserve">
+          <source>Operator Name</source>
+          <target state="translated">操作者</target>
+        </trans-unit>
+        <trans-unit id="RampSpeed1" translate="yes" xml:space="preserve">
+          <source>Ramping speed</source>
+          <target state="translated">升温速率</target>
+        </trans-unit>
+        <trans-unit id="BeginTimeValidate" translate="yes" xml:space="preserve">
+          <source>Begin Time is invalid.</source>
+          <target state="translated">请填写开始时间</target>
+        </trans-unit>
+        <trans-unit id="EndTimeValidate" translate="yes" xml:space="preserve">
+          <source>End Time is invalid.</source>
+          <target state="translated">请填写结束时间</target>
+        </trans-unit>
+        <trans-unit id="ExperienceValidate" translate="yes" xml:space="preserve">
+          <source>Experiment Name cannot be empty.</source>
+          <target state="translated">请填写实验名称</target>
+        </trans-unit>
+        <trans-unit id="HighestTempValidate" translate="yes" xml:space="preserve">
+          <source>Highest Temp is invalid.</source>
+          <target state="translated">请填写最高温度</target>
+        </trans-unit>
+        <trans-unit id="HighHoldingValidate" translate="yes" xml:space="preserve">
+          <source>High Holding Time is invalid.</source>
+          <target state="translated">请填写高温维持时间</target>
+        </trans-unit>
+        <trans-unit id="LowestTempValidate" translate="yes" xml:space="preserve">
+          <source>Lowest Temp is invalid.</source>
+          <target state="translated">请填写最低温度</target>
+        </trans-unit>
+        <trans-unit id="LowHoldingTimeValidate" translate="yes" xml:space="preserve">
+          <source>Low Holding Time is invalid.</source>
+          <target state="translated">请填写低温维持时间</target>
+        </trans-unit>
+        <trans-unit id="OperatorNameValidate" translate="yes" xml:space="preserve">
+          <source>Operator Name cannot be empty.</source>
+          <target state="translated">请填写操作者</target>
+        </trans-unit>
+        <trans-unit id="RampSpeedValidate" translate="yes" xml:space="preserve">
+          <source>Ramp Speed is invalid.</source>
+          <target state="translated">请填写升温速率</target>
+        </trans-unit>
+        <trans-unit id="SamplingTimeValidate" translate="yes" xml:space="preserve">
+          <source>Sampling Time is invalid.</source>
+          <target state="translated">请填写取样时间</target>
+        </trans-unit>
+        <trans-unit id="WaitTimeValidate" translate="yes" xml:space="preserve">
+          <source>Wait Time is invalid.</source>
+          <target state="translated">请填写等待时间</target>
+        </trans-unit>
+        <trans-unit id="PDFPreview.Text" translate="yes" xml:space="preserve">
+          <source>PDF Preview Area</source>
+          <target state="translated">PDF预览区域</target>
+        </trans-unit>
+        <trans-unit id="Ammonia" translate="yes" xml:space="preserve">
+          <source>Ammonia</source>
+          <target state="translated">氨气</target>
+        </trans-unit>
+        <trans-unit id="Benzene" translate="yes" xml:space="preserve">
+          <source>Benzene</source>
+          <target state="translated">苯</target>
+        </trans-unit>
+        <trans-unit id="Carbon disulfide" translate="yes" xml:space="preserve">
+          <source>Carbon disulfide</source>
+          <target state="translated">二硫化碳</target>
+        </trans-unit>
+        <trans-unit id="Dimethyl disulfide" translate="yes" xml:space="preserve">
+          <source>Dimethyl disulfide</source>
+          <target state="translated">二甲二硫</target>
+        </trans-unit>
+        <trans-unit id="Dimethyl sulfide" translate="yes" xml:space="preserve">
+          <source>Dimethyl sulfide</source>
+          <target state="translated">甲硫醚</target>
+        </trans-unit>
+        <trans-unit id="Ethylbenzene" translate="yes" xml:space="preserve">
+          <source>Ethylbenzene</source>
+          <target state="translated">乙苯</target>
+        </trans-unit>
+        <trans-unit id="Hydrogen sulfide" translate="yes" xml:space="preserve">
+          <source>Hydrogen sulfide</source>
+          <target state="translated">硫化氢</target>
+        </trans-unit>
+        <trans-unit id="Isobutylene" translate="yes" xml:space="preserve">
+          <source>Isobutylene</source>
+          <target state="translated">异丁烯</target>
+        </trans-unit>
+        <trans-unit id="M-xylene" translate="yes" xml:space="preserve">
+          <source>M-xylene</source>
+          <target state="translated">间二甲苯</target>
+        </trans-unit>
+        <trans-unit id="Methanthiol" translate="yes" xml:space="preserve">
+          <source>Methanthiol</source>
+          <target state="translated">甲硫醇</target>
+        </trans-unit>
+        <trans-unit id="Methyl tert-butyl ether" translate="yes" xml:space="preserve">
+          <source>Methyl tert-butyl ether</source>
+          <target state="translated">甲基叔丁基醚</target>
+        </trans-unit>
+        <trans-unit id="O-xylene" translate="yes" xml:space="preserve">
+          <source>O-xylene</source>
+          <target state="translated">邻二甲苯</target>
+        </trans-unit>
+        <trans-unit id="P-xylene" translate="yes" xml:space="preserve">
+          <source>P-xylene</source>
+          <target state="translated">对二甲苯</target>
+        </trans-unit>
+        <trans-unit id="Styrene" translate="yes" xml:space="preserve">
+          <source>Styrene</source>
+          <target state="translated">苯乙烯</target>
+        </trans-unit>
+        <trans-unit id="Tetrachloroethylene" translate="yes" xml:space="preserve">
+          <source>Tetrachloroethylene</source>
+          <target state="translated">四氯乙烯</target>
+        </trans-unit>
+        <trans-unit id="Toluene" translate="yes" xml:space="preserve">
+          <source>Toluene</source>
+          <target state="translated">甲苯</target>
+        </trans-unit>
+        <trans-unit id="Trichloroethylene" translate="yes" xml:space="preserve">
+          <source>Trichloroethylene</source>
+          <target state="translated">三氯乙烯</target>
+        </trans-unit>
+        <trans-unit id="Trimethylamine" translate="yes" xml:space="preserve">
+          <source>Trimethylamine</source>
+          <target state="translated">三甲胺</target>
+        </trans-unit>
+        <trans-unit id="1,1-Dichloroethene" translate="yes" xml:space="preserve">
+          <source>1,1-Dichloroethene</source>
+          <target state="translated">1,1-二氯乙烯</target>
+        </trans-unit>
+        <trans-unit id="Acetaldehyde" translate="yes" xml:space="preserve">
+          <source>Acetaldehyde</source>
+          <target state="translated">乙醛</target>
+        </trans-unit>
+        <trans-unit id="Acrolein" translate="yes" xml:space="preserve">
+          <source>Acrolein</source>
+          <target state="translated">丙烯醛</target>
+        </trans-unit>
+        <trans-unit id="1,2,4-Trichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,2,4-Trichlorobenzene</source>
+          <target state="translated">1,2,4-三氯苯</target>
+        </trans-unit>
+        <trans-unit id="1,2,4-Trimethylbenzene" translate="yes" xml:space="preserve">
+          <source>1,2,4-Trimethylbenzene</source>
+          <target state="translated">1,2,4-三甲基苯</target>
+        </trans-unit>
+        <trans-unit id="1,2-Dibromoethane" translate="yes" xml:space="preserve">
+          <source>1,2-Dibromoethane</source>
+          <target state="translated">1,2-二溴乙烷</target>
+        </trans-unit>
+        <trans-unit id="1,2-Dichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,2-Dichlorobenzene</source>
+          <target state="translated">1,2-二氯苯</target>
+        </trans-unit>
+        <trans-unit id="1,3,5-Trimethylbenzene" translate="yes" xml:space="preserve">
+          <source>1,3,5-Trimethylbenzene</source>
+          <target state="translated">1,3,5-三甲基苯</target>
+        </trans-unit>
+        <trans-unit id="1,3-Dichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,3-Dichlorobenzene</source>
+          <target state="translated">1,3-二氯苯</target>
+        </trans-unit>
+        <trans-unit id="1,4-Dichlorobenzene" translate="yes" xml:space="preserve">
+          <source>1,4-Dichlorobenzene</source>
+          <target state="translated">1,4-二氯苯</target>
+        </trans-unit>
+        <trans-unit id="1-Decene" translate="yes" xml:space="preserve">
+          <source>1-Decene</source>
+          <target state="translated">1-癸烯</target>
+        </trans-unit>
+        <trans-unit id="2-Heptanone" translate="yes" xml:space="preserve">
+          <source>2-Heptanone</source>
+          <target state="translated">2-庚酮</target>
+        </trans-unit>
+        <trans-unit id="2-Nonanone" translate="yes" xml:space="preserve">
+          <source>2-Nonanone</source>
+          <target state="translated">2-壬酮</target>
+        </trans-unit>
+        <trans-unit id="3-Pentanone" translate="yes" xml:space="preserve">
+          <source>3-Pentanone</source>
+          <target state="translated">3-戊酮</target>
+        </trans-unit>
+        <trans-unit id="4-Ethyltoluene" translate="yes" xml:space="preserve">
+          <source>4-Ethyltoluene</source>
+          <target state="translated">4-乙基甲苯</target>
+        </trans-unit>
+        <trans-unit id="Acetone" translate="yes" xml:space="preserve">
+          <source>Acetone</source>
+          <target state="translated">丙酮</target>
+        </trans-unit>
+        <trans-unit id="Allyl chloride" translate="yes" xml:space="preserve">
+          <source>Allyl chloride</source>
+          <target state="translated">氯丙烯</target>
+        </trans-unit>
+        <trans-unit id="Anisole" translate="yes" xml:space="preserve">
+          <source>Anisole</source>
+          <target state="translated">苯甲醚</target>
+        </trans-unit>
+        <trans-unit id="Benzaldehyde" translate="yes" xml:space="preserve">
+          <source>Benzaldehyde</source>
+          <target state="translated">苯甲醛</target>
+        </trans-unit>
+        <trans-unit id="Benzyl chloride" translate="yes" xml:space="preserve">
+          <source>Benzyl chloride</source>
+          <target state="translated">苄基氯</target>
+        </trans-unit>
+        <trans-unit id="Butyl acetate" translate="yes" xml:space="preserve">
+          <source>Butyl acetate</source>
+          <target state="translated">环戊酮</target>
+        </trans-unit>
+        <trans-unit id="Chlorobenzene" translate="yes" xml:space="preserve">
+          <source>Chlorobenzene</source>
+          <target state="translated">氯苯</target>
+        </trans-unit>
+        <trans-unit id="Cis-1,2-Dichloroethene" translate="yes" xml:space="preserve">
+          <source>Cis-1,2-Dichloroethene</source>
+          <target state="translated">顺式-1,2-二氯乙烯</target>
+        </trans-unit>
+        <trans-unit id="Cyclopentanone" translate="yes" xml:space="preserve">
+          <source>Cyclopentanone</source>
+          <target state="translated">甲苯</target>
+        </trans-unit>
+        <trans-unit id="Heptane" translate="yes" xml:space="preserve">
+          <source>Heptane</source>
+          <target state="translated">正庚烷</target>
+        </trans-unit>
+        <trans-unit id="Hexamethyldisiloxane" translate="yes" xml:space="preserve">
+          <source>Hexamethyldisiloxane</source>
+          <target state="translated">六甲基二硅氧烷</target>
+        </trans-unit>
+        <trans-unit id="Hexane" translate="yes" xml:space="preserve">
+          <source>Hexane</source>
+          <target state="translated">正己烷</target>
+        </trans-unit>
+        <trans-unit id="Isopropanol" translate="yes" xml:space="preserve">
+          <source>Isopropanol</source>
+          <target state="translated">异丙醇</target>
+        </trans-unit>
+        <trans-unit id="Isopropylbenzene" translate="yes" xml:space="preserve">
+          <source>Isopropylbenzene</source>
+          <target state="translated">异丙苯</target>
+        </trans-unit>
+        <trans-unit id="UserSaveSuccess" translate="yes" xml:space="preserve">
+          <source>Save Operator Success.</source>
+          <target state="translated">操作者保存成功.</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

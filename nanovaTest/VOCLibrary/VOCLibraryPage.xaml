@@ -1,0 +1,207 @@
+﻿<Page
+    x:Class="nanovaTest.VOCLibrary.VOCLibraryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nanovaTest.VOCLibrary"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Background="#007DC4" Grid.Row="0" Height="35">
+            <Grid x:Name="GridTitleBar" Background="Transparent">
+                <StackPanel VerticalAlignment="Center" Margin="50 0 0 0">
+                    <TextBlock x:Uid="MainScreen" Text="Main Screen" Foreground="White"/>
+                </StackPanel>
+                <Image VerticalAlignment="Center" Source="ms-appx:///Assets/NovaTest.png" Height="38" Width="100"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Background="#F9F9FB" Grid.Column="0" Width="300" Margin="0,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Height="40" Margin="0 0 0 20">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock x:Uid="VOCLibrary" Text="VOC Library" FontSize="20"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                        <Button x:Name="TVOCButton" Click="Button_TVOC_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="TVOC"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="BTEXButton" Click="Button_BTEX_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="BTEX"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="MTBEButton" Click="Button_MTBE_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="MTBE"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="TCEButton" Click="Button_TCE_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="TCE/PCE"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="MalodorousButton" Click="Button_MG_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock x:Uid="MalodorousGas" Text="Malodorous Gas"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="VehicleButton" Click="Button_VI_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock x:Uid="Vehicle" Text="Vehicle Indoor"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="EnvironmentButton" Click="Button_EA_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock x:Uid="AirQuality" Text="Environment Air"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="PollutionButton" Click="Button_PS_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock x:Uid="PollutionSource" Text="Pollution Source"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="WaterButton" Click="Button_Water_Click" Style="{StaticResource TransparentStyle}" Margin="5">
+                            <StackPanel>
+                                <TextBlock x:Uid="WaterQuality" Text="Water Sample-Online"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ScrollViewer>
+                    <ListView Margin="0,30,10,0" ItemsSource="{x:Bind VOCLibraryList}" IsHitTestVisible="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:TestInfo">
+                                <Grid Height="40" Margin="-11 0 -11 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="2,0" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="BorderThickness" Value="0.5" />
+                                            <Setter Property="BorderBrush" Value="Black" />
+                                            <Setter Property="Background" Value="White" />
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Border Grid.Column="0" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind ID}" />
+                                    </Border>
+                                    <Border Grid.Column="1" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind VOC}" />
+                                    </Border>
+                                    <Border Grid.Column="2" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind CAS}" />
+                                    </Border>
+                                    <Border Grid.Column="3" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Mw}" />
+                                    </Border>
+                                    <Border Grid.Column="4" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Time}" />
+                                    </Border>
+                                    <Border Grid.Column="5" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind ConcentrationFactor}" />
+                                    </Border>
+                                    <Border Grid.Column="6" >
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind CalibrateDate}" />
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Height="40" HorizontalAlignment="Stretch"  VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="5*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Margin" Value="2,0" />
+                                                <Setter Property="Foreground" Value="White" />
+                                                <Setter Property="FontWeight" Value="Bold" />
+                                            </Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="BorderThickness" Value="0.5" />
+                                                <Setter Property="BorderBrush" Value="Black" />
+                                                <Setter Property="Background" Value="#C0C0C0" />
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Border Grid.Column="0">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">#</TextBlock>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">VOC</TextBlock>
+                                        </Border>
+                                        <Border Grid.Column="2">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">CAS</TextBlock>
+                                        </Border>
+                                        <Border Grid.Column="3">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Mw</TextBlock>
+                                        </Border>
+                                        <Border Grid.Column="4">
+                                            <TextBlock x:Uid="Time" HorizontalAlignment="Center" VerticalAlignment="Center">Time</TextBlock>
+                                        </Border>
+                                        <Border Grid.Column="5">
+                                            <TextBlock x:Uid="ConcentrationFactor" Text="Concentration&#x0a;Factor" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Grid.Column="6">
+                                            <TextBlock x:Uid="CalibrateDate" Text="Calibrate&#x0a;Date" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
+                                    <ItemsPresenter Grid.Row="1" HorizontalAlignment="Stretch"></ItemsPresenter>
+                                </Grid>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

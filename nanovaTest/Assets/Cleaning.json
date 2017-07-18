@@ -1,0 +1,38 @@
+{
+  "VOCList": [
+    "Pure Air"
+  ],
+  "VOCRetentionTime": [
+	0.00
+  ],  
+  "CalibrationDateTime": "0001-01-01T00:00:00",
+  "CalibrationFactor": 1.0,
+  "CalibrationVOCList": [
+    "Pure Air"
+  ],
+  "lowestTempvalue": 40.0,
+  "lowestTvalue": 0,
+  "Temp1value": 80.0,
+  "HoldT1value": 0.0,
+  "RampSpeed1value": 40,
+  "Temp2value": 80.0,
+  "HoldT2value": 0.0,
+  "RampSpeed2value": 30.0,
+  "heartcuttingStartList": [
+    0.0,
+    50.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "heartcuttingEndList": [
+    0.0,
+    60.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "heartcuttingNumber": 1,
+  "cleaningNumber": 1,
+  "SetPressure": 5.0
+}

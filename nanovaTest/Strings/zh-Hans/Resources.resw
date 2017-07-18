@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Temp.Text" xml:space="preserve">
+    <value>温度</value>
+  </data>
+  <data name="MainMenuGreetingString.Text" xml:space="preserve">
+    <value>请选择功能</value>
+  </data>
+  <data name="MainMenuSelectMethod" xml:space="preserve">
+    <value>一键测试</value>
+  </data>
+  <data name="MainMenuCustomMethod" xml:space="preserve">
+    <value>自定义测试</value>
+  </data>
+  <data name="MainMenuCalibrate" xml:space="preserve">
+    <value>校准</value>
+  </data>
+  <data name="MainMenuMethodHistory" xml:space="preserve">
+    <value>历史记录</value>
+  </data>
+  <data name="MainMenuVOCLibrary" xml:space="preserve">
+    <value>VOC库</value>
+  </data>
+  <data name="ComeSoon.Text" xml:space="preserve">
+    <value>正在开发中</value>
+  </data>
+  <data name="CalibrateSelect.Text" xml:space="preserve">
+    <value>请选择一个需要校准的方法</value>
+  </data>
+  <data name="Config.Text" xml:space="preserve">
+    <value>设定</value>
+  </data>
+  <data name="Status.Text" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Calibrate.Text" xml:space="preserve">
+    <value>校准</value>
+  </data>
+  <data name="SamplingProfile.Text" xml:space="preserve">
+    <value>采样设定</value>
+  </data>
+  <data name="SamplingTime.Text" xml:space="preserve">
+    <value>取样时间(min)</value>
+  </data>
+  <data name="WaitTime.Text" xml:space="preserve">
+    <value>等待时间(s)</value>
+  </data>
+  <data name="SelectGas.Text" xml:space="preserve">
+    <value>选择气体</value>
+  </data>
+  <data name="Concentration.Text" xml:space="preserve">
+    <value>浓度（ppb）</value>
+  </data>
+  <data name="Start.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="Stop.Text" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="SystemClean.Text" xml:space="preserve">
+    <value>系统清洗</value>
+  </data>
+  <data name="MainScreen.Text" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="ExperienceName.Text" xml:space="preserve">
+    <value>实验名称</value>
+  </data>
+  <data name="OperatorName.Text" xml:space="preserve">
+    <value>操作者</value>
+  </data>
+  <data name="TempProfile.Text" xml:space="preserve">
+    <value>温度设定</value>
+  </data>
+  <data name="HighestTemp.Text" xml:space="preserve">
+    <value>最高温度(℃)</value>
+  </data>
+  <data name="HighHoldingTime.Text" xml:space="preserve">
+    <value>高温维持时间(min)</value>
+  </data>
+  <data name="LowestTemp.Text" xml:space="preserve">
+    <value>最低温度(℃)</value>
+  </data>
+  <data name="LowHoldingTime.Text" xml:space="preserve">
+    <value>低温维持时间(min)</value>
+  </data>
+  <data name="TempRampSpeed1.Text" xml:space="preserve">
+    <value>一阶升温速率(℃/min)</value>
+  </data>
+  <data name="HeartCuttingPeriods.Text" xml:space="preserve">
+    <value>二维取样</value>
+  </data>
+  <data name="BeginTime.Text" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="EndTime.Text" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="TotalTimeRemaining.Text" xml:space="preserve">
+    <value>总剩余时间</value>
+  </data>
+  <data name="CurrentStep.Text" xml:space="preserve">
+    <value>当前步骤</value>
+  </data>
+  <data name="Remaining.Text" xml:space="preserve">
+    <value>剩余时间</value>
+  </data>
+  <data name="CurrentTemp.Text" xml:space="preserve">
+    <value>当前温度(℃)</value>
+  </data>
+  <data name="SetpointTemp.Text" xml:space="preserve">
+    <value>设定温度(℃)</value>
+  </data>
+  <data name="RunTest.Text" xml:space="preserve">
+    <value>测试运行</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="RunTestSelect.Text" xml:space="preserve">
+    <value>请选择一个测试方法</value>
+  </data>
+  <data name="CalibrateAlert.Text" xml:space="preserve">
+    <value>提示：需要校验</value>
+  </data>
+  <data name="GotoCalibrate.Text" xml:space="preserve">
+    <value>去校验</value>
+  </data>
+  <data name="TestAnyWay.Text" xml:space="preserve">
+    <value>仍然进行测试（不推荐）</value>
+  </data>
+  <data name="VOCLibrary.Text" xml:space="preserve">
+    <value>VOC 库</value>
+  </data>
+  <data name="SystemAbout.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="SystemSetting.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Time.Text" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="ConcentrationFactor.Text" xml:space="preserve">
+    <value>浓度因子</value>
+  </data>
+  <data name="CalibrateDate.Text" xml:space="preserve">
+    <value>校验日期</value>
+  </data>
+  <data name="Gases.Text" xml:space="preserve">
+    <value>种气体</value>
+  </data>
+  <data name="MalodorousGas.Text" xml:space="preserve">
+    <value>臭气</value>
+  </data>
+  <data name="Vehicle.Text" xml:space="preserve">
+    <value>车内空气质量</value>
+  </data>
+  <data name="AirQuality.Text" xml:space="preserve">
+    <value>空气质量</value>
+  </data>
+  <data name="PollutionSource.Text" xml:space="preserve">
+    <value>污染源</value>
+  </data>
+  <data name="WaterQuality.Text" xml:space="preserve">
+    <value>水质</value>
+  </data>
+  <data name="AirQuality1" xml:space="preserve">
+    <value>空气质量</value>
+  </data>
+  <data name="MalodorousGas1" xml:space="preserve">
+    <value>臭气</value>
+  </data>
+  <data name="PollutionSource1" xml:space="preserve">
+    <value>污染源</value>
+  </data>
+  <data name="Vehicle1" xml:space="preserve">
+    <value>车内空气质量</value>
+  </data>
+  <data name="WaterQuality1" xml:space="preserve">
+    <value>水质</value>
+  </data>
+  <data name="Stop1" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="SelectGasInfo" xml:space="preserve">
+    <value>请选择一种气体</value>
+  </data>
+  <data name="Start1" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value> 秒</value>
+  </data>
+  <data name="ConcentrationPPB" xml:space="preserve">
+    <value>浓度（ppb）</value>
+  </data>
+  <data name="Method" xml:space="preserve">
+    <value>方法</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>测试报告</value>
+  </data>
+  <data name="SamplingPumpingTime" xml:space="preserve">
+    <value>取样/抽取时间</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>报告保存成功</value>
+  </data>
+  <data name="SelectGas1" xml:space="preserve">
+    <value>所选气体</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="WaitingTime" xml:space="preserve">
+    <value>等待时间</value>
+  </data>
+  <data name="ExperienceName1" xml:space="preserve">
+    <value>实验名称</value>
+  </data>
+  <data name="HighestTemp1" xml:space="preserve">
+    <value>最高温度</value>
+  </data>
+  <data name="HighHoldingTime1" xml:space="preserve">
+    <value>高温维持时间</value>
+  </data>
+  <data name="LowestTemp1" xml:space="preserve">
+    <value>最低温度</value>
+  </data>
+  <data name="LowHoldingTime1" xml:space="preserve">
+    <value>低温维持时间</value>
+  </data>
+  <data name="OperatorName1" xml:space="preserve">
+    <value>操作者</value>
+  </data>
+  <data name="RampSpeed1" xml:space="preserve">
+    <value>升温速率</value>
+  </data>
+  <data name="BeginTimeValidate" xml:space="preserve">
+    <value>请填写开始时间</value>
+  </data>
+  <data name="EndTimeValidate" xml:space="preserve">
+    <value>请填写结束时间</value>
+  </data>
+  <data name="ExperienceValidate" xml:space="preserve">
+    <value>请填写实验名称</value>
+  </data>
+  <data name="HighestTempValidate" xml:space="preserve">
+    <value>请填写最高温度</value>
+  </data>
+  <data name="HighHoldingValidate" xml:space="preserve">
+    <value>请填写高温维持时间</value>
+  </data>
+  <data name="LowestTempValidate" xml:space="preserve">
+    <value>请填写最低温度</value>
+  </data>
+  <data name="LowHoldingTimeValidate" xml:space="preserve">
+    <value>请填写低温维持时间</value>
+  </data>
+  <data name="OperatorNameValidate" xml:space="preserve">
+    <value>请填写操作者</value>
+  </data>
+  <data name="RampSpeedValidate" xml:space="preserve">
+    <value>请填写升温速率</value>
+  </data>
+  <data name="SamplingTimeValidate" xml:space="preserve">
+    <value>请填写取样时间</value>
+  </data>
+  <data name="WaitTimeValidate" xml:space="preserve">
+    <value>请填写等待时间</value>
+  </data>
+  <data name="PDFPreview.Text" xml:space="preserve">
+    <value>PDF预览区域</value>
+  </data>
+  <data name="Ammonia" xml:space="preserve">
+    <value>氨气</value>
+  </data>
+  <data name="Benzene" xml:space="preserve">
+    <value>苯</value>
+  </data>
+  <data name="Carbon disulfide" xml:space="preserve">
+    <value>二硫化碳</value>
+  </data>
+  <data name="Dimethyl disulfide" xml:space="preserve">
+    <value>二甲二硫</value>
+  </data>
+  <data name="Dimethyl sulfide" xml:space="preserve">
+    <value>甲硫醚</value>
+  </data>
+  <data name="Ethylbenzene" xml:space="preserve">
+    <value>乙苯</value>
+  </data>
+  <data name="Hydrogen sulfide" xml:space="preserve">
+    <value>硫化氢</value>
+  </data>
+  <data name="Isobutylene" xml:space="preserve">
+    <value>异丁烯</value>
+  </data>
+  <data name="M-xylene" xml:space="preserve">
+    <value>间二甲苯</value>
+  </data>
+  <data name="Methanthiol" xml:space="preserve">
+    <value>甲硫醇</value>
+  </data>
+  <data name="Methyl tert-butyl ether" xml:space="preserve">
+    <value>甲基叔丁基醚</value>
+  </data>
+  <data name="O-xylene" xml:space="preserve">
+    <value>邻二甲苯</value>
+  </data>
+  <data name="P-xylene" xml:space="preserve">
+    <value>对二甲苯</value>
+  </data>
+  <data name="Styrene" xml:space="preserve">
+    <value>苯乙烯</value>
+  </data>
+  <data name="Tetrachloroethylene" xml:space="preserve">
+    <value>四氯乙烯</value>
+  </data>
+  <data name="Toluene" xml:space="preserve">
+    <value>甲苯</value>
+  </data>
+  <data name="Trichloroethylene" xml:space="preserve">
+    <value>三氯乙烯</value>
+  </data>
+  <data name="Trimethylamine" xml:space="preserve">
+    <value>三甲胺</value>
+  </data>
+  <data name="1,1-Dichloroethene" xml:space="preserve">
+    <value>1,1-二氯乙烯</value>
+  </data>
+  <data name="Acetaldehyde" xml:space="preserve">
+    <value>乙醛</value>
+  </data>
+  <data name="Acrolein" xml:space="preserve">
+    <value>丙烯醛</value>
+  </data>
+  <data name="1,2,4-Trichlorobenzene" xml:space="preserve">
+    <value>1,2,4-三氯苯</value>
+  </data>
+  <data name="1,2,4-Trimethylbenzene" xml:space="preserve">
+    <value>1,2,4-三甲基苯</value>
+  </data>
+  <data name="1,2-Dibromoethane" xml:space="preserve">
+    <value>1,2-二溴乙烷</value>
+  </data>
+  <data name="1,2-Dichlorobenzene" xml:space="preserve">
+    <value>1,2-二氯苯</value>
+  </data>
+  <data name="1,3,5-Trimethylbenzene" xml:space="preserve">
+    <value>1,3,5-三甲基苯</value>
+  </data>
+  <data name="1,3-Dichlorobenzene" xml:space="preserve">
+    <value>1,3-二氯苯</value>
+  </data>
+  <data name="1,4-Dichlorobenzene" xml:space="preserve">
+    <value>1,4-二氯苯</value>
+  </data>
+  <data name="1-Decene" xml:space="preserve">
+    <value>1-癸烯</value>
+  </data>
+  <data name="2-Heptanone" xml:space="preserve">
+    <value>2-庚酮</value>
+  </data>
+  <data name="2-Nonanone" xml:space="preserve">
+    <value>2-壬酮</value>
+  </data>
+  <data name="3-Pentanone" xml:space="preserve">
+    <value>3-戊酮</value>
+  </data>
+  <data name="4-Ethyltoluene" xml:space="preserve">
+    <value>4-乙基甲苯</value>
+  </data>
+  <data name="Acetone" xml:space="preserve">
+    <value>丙酮</value>
+  </data>
+  <data name="Allyl chloride" xml:space="preserve">
+    <value>氯丙烯</value>
+  </data>
+  <data name="Anisole" xml:space="preserve">
+    <value>苯甲醚</value>
+  </data>
+  <data name="Benzaldehyde" xml:space="preserve">
+    <value>苯甲醛</value>
+  </data>
+  <data name="Benzyl chloride" xml:space="preserve">
+    <value>苄基氯</value>
+  </data>
+  <data name="Butyl acetate" xml:space="preserve">
+    <value>环戊酮</value>
+  </data>
+  <data name="Chlorobenzene" xml:space="preserve">
+    <value>氯苯</value>
+  </data>
+  <data name="Cis-1,2-Dichloroethene" xml:space="preserve">
+    <value>顺式-1,2-二氯乙烯</value>
+  </data>
+  <data name="Cyclopentanone" xml:space="preserve">
+    <value>甲苯</value>
+  </data>
+  <data name="Heptane" xml:space="preserve">
+    <value>正庚烷</value>
+  </data>
+  <data name="Hexamethyldisiloxane" xml:space="preserve">
+    <value>六甲基二硅氧烷</value>
+  </data>
+  <data name="Hexane" xml:space="preserve">
+    <value>正己烷</value>
+  </data>
+  <data name="Isopropanol" xml:space="preserve">
+    <value>异丙醇</value>
+  </data>
+  <data name="Isopropylbenzene" xml:space="preserve">
+    <value>异丙苯</value>
+  </data>
+  <data name="UserSaveSuccess" xml:space="preserve">
+    <value>操作者保存成功.</value>
+  </data>
+  <data name="AdvanceReportTitle" xml:space="preserve">
+    <value>Novatest测试报告（自定义测试）</value>
+  </data>
+  <data name="AnalysingStep" xml:space="preserve">
+    <value>分析中</value>
+  </data>
+  <data name="AreaTable.Text" xml:space="preserve">
+    <value>峰面积</value>
+  </data>
+  <data name="CleaningStep" xml:space="preserve">
+    <value>系统清洗中</value>
+  </data>
+  <data name="CoolingNotice" xml:space="preserve">
+    <value>请等待系统降至室温</value>
+  </data>
+  <data name="CoolingStep" xml:space="preserve">
+    <value>降温</value>
+  </data>
+  <data name="CurrentPressure.Text" xml:space="preserve">
+    <value>当前压力(psi)</value>
+  </data>
+  <data name="EndTime1" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="FWHMTable.Text" xml:space="preserve">
+    <value>半峰宽</value>
+  </data>
+  <data name="HeartCuttingPeriodspdf" xml:space="preserve">
+    <value>二维取样</value>
+  </data>
+  <data name="HeightTable.Text" xml:space="preserve">
+    <value>峰高</value>
+  </data>
+  <data name="HoldingTime1.Text" xml:space="preserve">
+    <value>一阶温度维持时间(min)</value>
+  </data>
+  <data name="HoldingTime2.Text" xml:space="preserve">
+    <value>二阶温度维持时间(min)</value>
+  </data>
+  <data name="PeakNumTable.Text" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="PressurePDF1" xml:space="preserve">
+    <value>设定压力(psi)</value>
+  </data>
+  <data name="PressurePsi.Text" xml:space="preserve">
+    <value>设定压力(psi)</value>
+  </data>
+  <data name="RampSpeed11" xml:space="preserve">
+    <value>一阶升温速率(℃/min)</value>
+  </data>
+  <data name="RampSpeed2" xml:space="preserve">
+    <value>二阶升温速率(℃/min)</value>
+  </data>
+  <data name="RetentionTimeTable.Text" xml:space="preserve">
+    <value>时间(s)</value>
+  </data>
+  <data name="SamplingStep" xml:space="preserve">
+    <value>取样中</value>
+  </data>
+  <data name="Temp1HoldigTime" xml:space="preserve">
+    <value>一阶温度维持时间(min)</value>
+  </data>
+  <data name="Temp2HoldigTime" xml:space="preserve">
+    <value>二阶温度维持时间(min)</value>
+  </data>
+  <data name="Temperature1.Text" xml:space="preserve">
+    <value>一阶温度(℃)</value>
+  </data>
+  <data name="Temperature11" xml:space="preserve">
+    <value>一阶温度(℃)</value>
+  </data>
+  <data name="Temperature2.Text" xml:space="preserve">
+    <value>二阶温度(℃)</value>
+  </data>
+  <data name="Temperatures2" xml:space="preserve">
+    <value>二阶温度(℃)</value>
+  </data>
+  <data name="TempRampSpeed2.Text" xml:space="preserve">
+    <value>二阶升温速率(℃/min)</value>
+  </data>
+  <data name="WaitingStep" xml:space="preserve">
+    <value>等待中</value>
+  </data>
+  <data name="CleaningNumText.Text" xml:space="preserve">
+    <value>清洗次数</value>
+  </data>
+  <data name="ConcentrationTable.Text" xml:space="preserve">
+    <value>浓度(ppb)</value>
+  </data>
+  <data name="ConnectingStep" xml:space="preserve">
+    <value>连接中</value>
+  </data>
+  <data name="NoDeviceNotice" xml:space="preserve">
+    <value>请连接NovaTest主机</value>
+  </data>
+  <data name="DeepCleanButton.Text" xml:space="preserve">
+    <value>深度清洗</value>
+  </data>
+  <data name="LowPressureNotice" xml:space="preserve">
+    <value>请检查载气瓶</value>
+  </data>
+  <data name="SaturationNotice" xml:space="preserve">
+    <value>样品体积过大，请缩短取样时间重新测试。</value>
+  </data>
+  <data name="VOCNameTable" xml:space="preserve">
+    <value>VOC名称</value>
+  </data>
+  <data name="DeepClean1" xml:space="preserve">
+    <value>深度清洗</value>
+  </data>
+</root>

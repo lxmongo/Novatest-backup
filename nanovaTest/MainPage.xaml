@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="nanovaTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nanovaTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#007DC4" Grid.Row="0" Height="35">
+            <Grid x:Name="GridTitleBar" Background="Transparent">
+                <!--<TextBlock Text="" VerticalAlignment="Center" FontSize="12" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0" Foreground="White"/>-->
+                <Image VerticalAlignment="Center" Source="Assets/NovaTest.png" Height="38" Width="100"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Height="60">
+            <Button x:Name="MoreMenuButton" Style="{StaticResource SplitViewTogglePaneButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Height="260">
+            <TextBlock x:Uid="MainMenuGreetingString" TextAlignment="Center" Text="MainMenuText" VerticalAlignment="Center" 
+                       FontSize="36" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,0" Foreground="#4F4F4F"/>
+        </Grid>
+
+        <Grid Grid.Row="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <GridView ItemsSource="{x:Bind menus}" IsItemClickEnabled="True" HorizontalAlignment="Center" ItemClick="GridView_ItemClick">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:MainMenu">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Height="160" Width="160">
+                            <Image Width="110" Height="100" Source="{x:Bind Image }" HorizontalAlignment="Center" Margin="10"></Image>
+                            <StackPanel Margin="10">
+                                <TextBlock FontSize="16" Text="{x:Bind MenuName}" HorizontalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
+        <local:SamplesPane x:Name="MySamplesPane" VerticalAlignment="Top" Width="160" Height="200"   HorizontalAlignment="Left" Grid.RowSpan="3" Margin="0,40,0,0"/>
+    </Grid>
+</Page>

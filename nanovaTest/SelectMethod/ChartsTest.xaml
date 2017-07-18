@@ -1,0 +1,48 @@
+﻿<Page xmlns:my="using:Syncfusion.UI.Xaml.Charts" 
+    x:Class="nanovaTest.SelectMethod.ChartsTest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nanovaTest.SelectMethod"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chart="using:Syncfusion.UI.Xaml.Charts"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#007DC4" Grid.Row="0" Height="35">
+            <Grid x:Name="GridTitleBar" Background="Transparent">
+                <StackPanel VerticalAlignment="Center" Margin="50 0 0 0">
+                    <TextBlock x:Uid="RunTest" Text="Run Test" Foreground="White"/>
+                </StackPanel>
+                <Image VerticalAlignment="Center" Source="ms-appx:///Assets/NovaTest.png" Height="38" Width="100"/>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <chart:SfChart AreaBorderThickness="1" 
+                       HorizontalAlignment="Center" Margin="10" 
+                       AreaBorderBrush="DarkGray" x:Name="updateChart" >
+
+                <chart:SfChart.PrimaryAxis>
+                    <chart:NumericalAxis />
+                </chart:SfChart.PrimaryAxis>
+
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis />
+                </chart:SfChart.SecondaryAxis>
+
+                <!--ListenPropertyChange is made true.-->
+                <chart:FastLineSeries x:Name="FastColumnSeries" 
+                                  XBindingPath="X" YBindingPath="Y" 
+                                  ListenPropertyChange="True"
+                                  />
+            </chart:SfChart>
+        </Grid>
+    </Grid>
+</Page>

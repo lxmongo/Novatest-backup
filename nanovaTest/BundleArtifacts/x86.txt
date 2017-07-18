@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x86\Debug\nanovaTest_1.0.31.0_x86_Debug.appx
+SymbolPackage=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\AppPackages\nanovaTest_1.0.31.0_Debug_Test\nanovaTest_1.0.31.0_x86_Debug.appxsym

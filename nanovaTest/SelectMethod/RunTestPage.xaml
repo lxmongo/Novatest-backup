@@ -1,0 +1,692 @@
+﻿<Page
+    x:Class="nanovaTest.SelectMethod.RunTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nanovaTest.SelectMethod"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:datavis="using:WinRTXamlToolkit.Controls.DataVisualization"
+    xmlns:Charts="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:ViewModels="using:nanovaTest.Models"
+    xmlns:Utils="using:nanovaTest.Utils"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+            <ItemsStackPanel />
+        </ItemsPanelTemplate>
+        <Utils:StringFormatConverter x:Key="StringFormatConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--<Grid.DataContext>
+            <local:ViewModel />
+        </Grid.DataContext>-->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Background="#007DC4" Grid.Row="0" Height="35">
+            <Grid x:Name="GridTitleBar" Background="Transparent">
+                <StackPanel VerticalAlignment="Center" Margin="50 0 0 0">
+                    <TextBlock x:Uid="RunTest" Text="Run Test" Foreground="White"/>
+                </StackPanel>
+                <Image VerticalAlignment="Center" Source="ms-appx:///Assets/NovaTest.png" Height="38" Width="100"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="RunTestGrid"  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Background="#F9F9FB" Grid.Column="0" Width="300" Margin="0,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button Height="40"  Style="{StaticResource TransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="Config_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="ConfigImage" Width="150" Source="ms-appx:///Assets/config-tab-t.png" Stretch="UniformToFill"/>
+                                <TextBlock x:Uid="Config" x:Name="ConfigText" Foreground="#007DC4" Text="CONFIG" Margin="-100,5,0,0" TextAlignment="Center" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button x:Name="Status_Button" Height="40" Style="{StaticResource TransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="Status_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="StatusImage" Width="150" Source="ms-appx:///Assets/status-tab-f.png" Stretch="UniformToFill"/>
+                                <TextBlock x:Uid="Status" x:Name="StatusText" Foreground="#808080" Text="STATUS" Margin="-100,5,0,0" TextAlignment="Center" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Height="80">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock x:Name="MethodName" Text="TVOC" FontSize="25" Foreground="#FF4F4F4F"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid x:Name="ConfigGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Uid="ExperienceName" Text="EXPERIENCE NAME" FontSize="14" Margin="10,10,10,0" Foreground="#FF4F4F4F"/>
+                                        <Border BorderBrush="{x:Null}" MinHeight="10" Height="45">
+                                            <TextBox x:Name="ExperienceName" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                 MinHeight="10"  FontSize="12" BorderThickness="0.5"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Uid="OperatorName" Text="OPERATOR NAME" FontSize="14" Margin="10,10,10,0" Foreground="#FF4F4F4F"/>
+                                        <!--<TextBox x:Name="OperatorName" Margin="10,10,10,0" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>-->
+                                        <ComboBox x:Name="OperatorName" Margin="10,10,10,0" Width="275" MinHeight="10" Height="30" FontSize="12" BorderThickness="0.5">
+                                            <ComboBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Vertical"/>
+                                                </ItemsPanelTemplate>
+                                            </ComboBox.ItemsPanel>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock x:Uid="SamplingProfile" Text="SAMPLING PROFILE" FontSize="14" Margin="10" Foreground="#FF4F4F4F"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Margin="10,0,10,0">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Uid="SamplingTime" Text="Sampling Time(min)" FontSize="12" Foreground="#FF4F4F4F"/>
+                                        <Border BorderBrush="{x:Null}" MinHeight="10" Height="45">
+                                            <TextBox x:Name="SamplingTimeText" InputScope="Number" TextAlignment="Center" VerticalAlignment="Center"
+                                                 Text="5" MinHeight="10" FontSize="12" BorderThickness="0.5"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1" Margin="10,0,10,0">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Uid="WaitTime" Text="Wait Time(sec)" FontSize="12" Foreground="#FF4F4F4F"/>
+                                        <Border BorderBrush="{x:Null}" MinHeight="10" Height="45">
+                                            <TextBox x:Name="WaitTimeText" InputScope="Number" TextAlignment="Center" VerticalAlignment="Center" 
+                                                 Text="20" MinHeight="10"  FontSize="12" BorderThickness="0.5"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="3" Height="100"></Grid>
+                            <Grid Grid.Row="4">
+                                <Button x:Name="StartCalculation" Click="Calculation_Click"  Height="40" Width="160"
+                                            Style="{StaticResource TransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image x:Name="CalcButtonImage" Source="ms-appx:///Assets/start-button.png" />
+                                        <TextBlock x:Uid="Start" x:Name="CalcTestText" Text="START" Margin="-100 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                        <Grid x:Name="StatusGrid" Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*" />
+                                    <ColumnDefinition Width="5*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Uid="CurrentStep" Text="Current step " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="12"/>
+                                        <TextBlock x:Name="CurrentStepText" Text="---" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="20"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Uid="Remaining" Text=" Remaining"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="12"/>
+                                        <TextBlock x:Name="CurrentStepRemainTimeText" Text="0:00"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="20"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1" Height="200" VerticalAlignment="Top">
+                                <Ellipse Stroke="#007DC4" StrokeThickness="15" Height="140" Width="140"/>
+
+                                <Ellipse x:Name="Rount" Stroke="Gray" Height="140" Width="140"
+                                StrokeThickness="15" StrokeDashArray="{Binding ElementName=c,Mode=OneWay, UpdateSourceTrigger=PropertyChanged,Path=data}" 
+                                RenderTransformOrigin="0.5,0.5">
+                                    <Ellipse.RenderTransform>
+                                        <RotateTransform Angle="-90"/>
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                                <TextBlock Text="{x:Bind Value,Mode=OneWay,Converter={StaticResource StringFormatConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                </TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="2" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock x:Uid="CurrentTemp" Text="Current Temperature(C)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBox x:Name="CurrentTempText"  IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                         TextAlignment="Center" Text="25" Width="220" MinHeight="10" Height="35" BorderThickness="0.5"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="3" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock x:Uid="PressurePsi" Text="Default pressure(psi)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBox x:Name="SetPressureText" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                         TextAlignment="Center" Text="25" Width="220" MinHeight="10" Height="35" BorderThickness="0.5"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="4" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock x:Uid="CurrentPressure" Text="Current pressure(psi)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBox x:Name="CurrentPressureText" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                         TextAlignment="Center" Text="25" Width="220" MinHeight="10" Height="35" BorderThickness="0.5"/>
+                                </StackPanel>
+                            </Grid>
+                            <!--<Grid Grid.Row="4">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 60 20 0">
+
+                                    <Button Click="StartNewCalculation_Click" x:Name="StartNewButton" Height="40" Width="160" 
+                                        Style="{StaticResource TransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Image x:Name="CalcNewButtonImage" Source="ms-appx:///Assets/start-button.png" />
+                                            <TextBlock x:Name="CalcNewTestText" Text="Start New" Margin="-90 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>-->
+                            <Grid Grid.Row="5" Margin="0 15 0 0">
+                                <Button x:Name="StopCalculation" Visibility="Collapsed" Click="StopCalculation_Click" 
+                                        Height="40" Width="160" Style="{StaticResource TransparentStyle}" 
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image x:Name="StopButtonImage" Source="ms-appx:///Assets/stop-button.png" />
+                                        <TextBlock x:Uid="Stop" x:Name="StopTestText" Text="STOP" Margin="-100 0 0 0" 
+                                                   VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" x:Name="CustomGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="TopGrid" Grid.Row="0" Height="700">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="62*"/>
+                                    <ColumnDefinition Width="57*"/>
+                                </Grid.ColumnDefinitions>
+                                <Charts:SfChart 
+                                x:Name="Basic_Chart"
+                                Margin="0,0,40,0"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2">
+                                    <!--  SelectionChanged="{x:Bind ViewModels.SeriesSelectionChanged}"  -->
+
+                                    <Charts:SfChart.PrimaryAxis>
+                                        <Charts:NumericalAxis 
+                                        x:Name="PrimaryAxis"
+                                        Maximum="{x:Bind XaxisMax,Mode=OneWay}" Minimum="0"
+                                        DeferredScrolling="True"
+                                          EnableScrollBar="True"
+                                          EnableTouchMode="True"
+                                          Header="Time(s)"
+                                          Interval="10"
+                                          ThumbLabelVisibility="Visible" />
+                                    </Charts:SfChart.PrimaryAxis>
+
+                                    <Charts:SfChart.SecondaryAxis>
+                                        <Charts:NumericalAxis 
+                                        x:Name="SecondAxis"
+                                        Maximum="{x:Bind YaxisMax,Mode=OneWay}" Minimum="0"
+                                        DeferredScrolling="True"
+                                          EnableScrollBar="True"
+                                          EnableTouchMode="True"
+                                          FontSize="14"
+                                          Interval="2"
+                                          Header="Intensity"
+                                          ThumbLabelVisibility="Visible">
+
+                                        </Charts:NumericalAxis>
+                                    </Charts:SfChart.SecondaryAxis>
+                                    <Charts:FastLineSeries x:Name="RunTestSeries"
+                                                     XBindingPath="X" 
+                                                     ShowTooltip="True" 
+                                                     YBindingPath="Y" >
+                                        <!--<Charts:FastLineBitmapSeries.AdornmentsInfo>
+
+                                        <Charts:ChartAdornmentInfo 
+                                            x:Name="splineAdornmentInfo"
+                                            SymbolStroke="#1E90FF"
+                                            SymbolInterior="#1E90FF"
+                                            ShowLabel="False"
+                                            SymbolWidth="4"                                                   
+                                            SymbolHeight="4" 
+                                            Symbol="Ellipse"></Charts:ChartAdornmentInfo>
+
+                                    </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
+                                    </Charts:FastLineSeries>
+
+                                    <Charts:FastLineSeries x:Name="StandardSeries"
+                                                     XBindingPath="X" 
+                                                     ShowTooltip="True" 
+                                                     YBindingPath="Y" >
+                                        <!--<Charts:FastLineBitmapSeries.AdornmentsInfo>
+
+                                        <Charts:ChartAdornmentInfo 
+                                            x:Name="splineAdornmentInfo"
+                                            SymbolStroke="#1E90FF"
+                                            SymbolInterior="#1E90FF"
+                                            ShowLabel="False"
+                                            SymbolWidth="4"                                                   
+                                            SymbolHeight="4" 
+                                            Symbol="Ellipse"></Charts:ChartAdornmentInfo>
+
+                                    </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
+                                    </Charts:FastLineSeries>
+
+                                    <Charts:SfChart.Legend>
+                                        <Charts:ChartLegend IconVisibility="Collapsed"/>
+                                    </Charts:SfChart.Legend>
+                                    <Charts:SfChart.Behaviors>
+                                        <Charts:ChartCrossHairBehavior></Charts:ChartCrossHairBehavior>
+                                        <Charts:ChartTrackBallBehavior />
+                                        <Charts:ChartZoomPanBehavior EnableSelectionZooming="True" />
+
+                                        <Charts:ChartZoomPanBehavior EnableZoomingToolBar="True" ToolBarItems="All"
+                                                                 ToolBarOrientation="Horizontal" HorizontalPosition="Left" 
+                                                                 VerticalPosition="Top" ToolBarBackground="#E6E6E6" EnableSelectionZooming="True"/>
+
+
+                                        <Charts:ChartSelectionBehavior EnableSeriesSelection="True" SelectionMode="MouseMove" SelectionStyle="Single"  />
+                                    </Charts:SfChart.Behaviors>
+                                </Charts:SfChart>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0 0 0 20">
+                                <ListView x:Name="InfoListView" Visibility="Collapsed" IsHitTestVisible="False" HorizontalContentAlignment="Stretch" Margin="0,30,10,0" 
+                              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{x:Bind testInfoList}">
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="local:SelectTestInfo">
+                                            <Grid Margin="-11 0 -11 0" Height="40" HorizontalAlignment="Stretch" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.Resources>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Margin" Value="2,0" />
+                                                        <Setter Property="Foreground" Value="Black" />
+                                                    </Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="BorderThickness" Value="0.5" />
+                                                        <Setter Property="BorderBrush" Value="White" />
+                                                        <Setter Property="Background" Value="#E8ECF5" />
+                                                    </Style>
+                                                </Grid.Resources>
+                                                <Border Grid.Column="0" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind ID}" />
+                                                </Border>
+                                                <Border Grid.Column="1" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind VOCName}" />
+                                                </Border>
+                                                <Border Grid.Column="2" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Time}" />
+                                                </Border>
+                                                <Border Grid.Column="3" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind FWHM}" />
+                                                </Border>
+                                                <Border Grid.Column="4" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Height}" />
+                                                </Border>
+                                                <Border Grid.Column="5" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Area}" />
+                                                </Border>
+                                                <Border Grid.Column="6" >
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Concentration}" />
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.Template>
+                                        <ControlTemplate>
+                                            <Grid HorizontalAlignment="Stretch">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0" Height="40" VerticalAlignment="Center">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Margin" Value="2,0" />
+                                                            <Setter Property="Foreground" Value="Black" />
+                                                            <Setter Property="FontWeight" Value="Bold" />
+                                                        </Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="BorderThickness" Value="0.5" />
+                                                            <Setter Property="BorderBrush" Value="White" />
+                                                            <Setter Property="Background" Value="#E8ECF5" />
+                                                        </Style>
+                                                    </Grid.Resources>
+                                                    <Border Grid.Column="0">
+                                                        <TextBlock x:Uid="PeakNumTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                    <Border Grid.Column="1">
+                                                        <TextBlock x:Uid="VOCNameTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                    <Border Grid.Column="2">
+                                                        <TextBlock x:Uid="RetentionTimeTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                    <Border Grid.Column="3">
+                                                        <TextBlock x:Uid="FWHMTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                    <Border Grid.Column="4">
+                                                        <TextBlock x:Uid="HeightTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                    <Border Grid.Column="5">
+                                                        <TextBlock x:Uid="AreaTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                    <Border Grid.Column="6">
+                                                        <TextBlock x:Uid="ConcentrationTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                    </Border>
+                                                </Grid>
+                                                <ItemsPresenter Grid.Row="1"></ItemsPresenter>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ListView.Template>
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1" x:Name="CustomBottomGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Name="BottomChartGrid" Visibility="Collapsed" Height="250">
+                                <Charts:SfChart 
+                                x:Name="Basic_Chart1"
+                                Margin="0,0,40,0"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2">
+                                    <!--  SelectionChanged="{x:Bind ViewModels.SeriesSelectionChanged}"  -->
+
+                                    <Charts:SfChart.PrimaryAxis>
+                                        <Charts:NumericalAxis 
+                                        x:Name="PrimaryAxis1"
+                                        Maximum="{x:Bind XaxisMax1,Mode=OneWay}" Minimum="0"
+                                        DeferredScrolling="True"
+                                          EnableScrollBar="True"
+                                          EnableTouchMode="True"
+                                          Header="Time(s)"
+                                          Interval="10"
+                                          ThumbLabelVisibility="Visible" />
+                                    </Charts:SfChart.PrimaryAxis>
+
+                                    <Charts:SfChart.SecondaryAxis>
+                                        <Charts:NumericalAxis 
+                                        x:Name="SecondAxis1"
+                                        Maximum="{x:Bind YaxisMax1,Mode=OneWay}" Minimum="0"
+                                        DeferredScrolling="True"
+                                          EnableScrollBar="True"
+                                          EnableTouchMode="True"
+                                          FontSize="14"
+                                          Interval="2"
+                                          Header="Intensity"
+                                          ThumbLabelVisibility="Visible">
+
+                                        </Charts:NumericalAxis>
+                                    </Charts:SfChart.SecondaryAxis>
+                                    <Charts:FastLineSeries x:Name="RunTestSeries1"
+                                                     XBindingPath="X" 
+                                                     ShowTooltip="True" 
+                                                     YBindingPath="Y" >
+                                        <!--<Charts:FastLineBitmapSeries.AdornmentsInfo>
+
+                                        <Charts:ChartAdornmentInfo 
+                                            x:Name="splineAdornmentInfo"
+                                            SymbolStroke="#1E90FF"
+                                            SymbolInterior="#1E90FF"
+                                            ShowLabel="False"
+                                            SymbolWidth="4"                                                   
+                                            SymbolHeight="4" 
+                                            Symbol="Ellipse"></Charts:ChartAdornmentInfo>
+
+                                    </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
+                                    </Charts:FastLineSeries>
+
+                                    <Charts:FastLineSeries x:Name="StandardSeries1"
+                                                     XBindingPath="X" 
+                                                     ShowTooltip="True" 
+                                                     YBindingPath="Y" >
+                                        <!--<Charts:FastLineBitmapSeries.AdornmentsInfo>
+
+                                        <Charts:ChartAdornmentInfo 
+                                            x:Name="splineAdornmentInfo"
+                                            SymbolStroke="#1E90FF"
+                                            SymbolInterior="#1E90FF"
+                                            ShowLabel="False"
+                                            SymbolWidth="4"                                                   
+                                            SymbolHeight="4" 
+                                            Symbol="Ellipse"></Charts:ChartAdornmentInfo>
+
+                                    </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
+                                    </Charts:FastLineSeries>
+
+                                    <Charts:SfChart.Legend>
+                                        <Charts:ChartLegend IconVisibility="Collapsed"/>
+                                    </Charts:SfChart.Legend>
+                                    <Charts:SfChart.Behaviors>
+                                        <Charts:ChartCrossHairBehavior></Charts:ChartCrossHairBehavior>
+                                        <Charts:ChartTrackBallBehavior />
+                                        <Charts:ChartZoomPanBehavior EnableSelectionZooming="True" />
+
+                                        <Charts:ChartZoomPanBehavior EnableZoomingToolBar="True" ToolBarItems="All"
+                                                                 ToolBarOrientation="Horizontal" HorizontalPosition="Left" 
+                                                                 VerticalPosition="Top" ToolBarBackground="#E6E6E6" EnableSelectionZooming="True"/>
+
+
+                                        <Charts:ChartSelectionBehavior EnableSeriesSelection="True" SelectionMode="MouseMove" SelectionStyle="Single"  />
+                                    </Charts:SfChart.Behaviors>
+                                </Charts:SfChart>
+                            </Grid>
+                            <Grid Grid.Row="1" x:Name="SecondaryGrid" Visibility="Collapsed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Height="20">
+                                    <TextBlock Text="Secondary Column" Foreground="#FF4F4F4F"/>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <ListView x:Name="SecondaryListView" Visibility="Visible" IsHitTestVisible="False" HorizontalContentAlignment="Stretch" Margin="0,10,10,0" 
+                              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{x:Bind secondaryInfoList}">
+
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="local:SelectTestInfo">
+                                                <Grid Margin="-11 0 -11 0" Height="40" HorizontalAlignment="Stretch">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Margin" Value="2,0" />
+                                                            <Setter Property="Foreground" Value="Black" />
+                                                        </Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="BorderThickness" Value="0.5" />
+                                                            <Setter Property="BorderBrush" Value="White" />
+                                                            <Setter Property="Background" Value="#E8ECF5" />
+                                                        </Style>
+                                                    </Grid.Resources>
+                                                    <Border Grid.Column="0" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind ID}" />
+                                                    </Border>
+                                                    <Border Grid.Column="1" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind VOCName}" />
+                                                    </Border>
+                                                    <Border Grid.Column="2" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Time}" />
+                                                    </Border>
+                                                    <Border Grid.Column="3" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind FWHM}" />
+                                                    </Border>
+                                                    <Border Grid.Column="4" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Height}" />
+                                                    </Border>
+                                                    <Border Grid.Column="5" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Area}" />
+                                                    </Border>
+                                                    <Border Grid.Column="6" >
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Concentration}" />
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <ListView.Template>
+                                            <ControlTemplate>
+                                                <Grid HorizontalAlignment="Stretch">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Grid.Row="0" Height="40" VerticalAlignment="Center">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.Resources>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Margin" Value="2,0" />
+                                                                <Setter Property="Foreground" Value="Black" />
+                                                                <Setter Property="FontWeight" Value="Bold" />
+                                                            </Style>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="BorderThickness" Value="0.5" />
+                                                                <Setter Property="BorderBrush" Value="White" />
+                                                                <Setter Property="Background" Value="#E8ECF5" />
+                                                            </Style>
+                                                        </Grid.Resources>
+                                                        <Border Grid.Column="0">
+                                                            <TextBlock x:Uid="PeakNumTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                        <Border Grid.Column="1">
+                                                            <TextBlock x:Uid="VOCNameTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                        <Border Grid.Column="2">
+                                                            <TextBlock x:Uid="RetentionTimeTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                        <Border Grid.Column="3">
+                                                            <TextBlock x:Uid="FWHMTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                        <Border Grid.Column="4">
+                                                            <TextBlock x:Uid="HeightTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                        <Border Grid.Column="5">
+                                                            <TextBlock x:Uid="AreaTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                        <Border Grid.Column="6">
+                                                            <TextBlock x:Uid="ConcentrationTable" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                                        </Border>
+                                                    </Grid>
+                                                    <ItemsPresenter Grid.Row="1"></ItemsPresenter>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </ListView.Template>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                    </ListView>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="LoadingGrid" Visibility="Visible" Grid.Row="1">
+            <ProgressRing x:Name="LoadingIndicator" Height="100" Width="100" 
+                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>

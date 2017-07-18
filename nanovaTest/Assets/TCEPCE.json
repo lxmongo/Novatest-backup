@@ -1,0 +1,41 @@
+{
+  "VOCList": [
+    "Trichloroethylene",
+    "Tetrachloroethylene"
+  ],
+  "VOCRetentionTime": [
+    96.16,
+    134.98
+  ],
+  "CalibrationDateTime": "0001-01-01T00:00:00",
+  "CalibrationFactor": 1.0,
+  "CalibrationVOCList": [
+    "Trichloroethylene",
+    "Tetrachloroethylene"
+  ],
+  "lowestTempvalue": 40.0,
+  "lowestTvalue": 1.0,
+  "Temp1value": 120.0,
+  "HoldT1value": 1.0,
+  "RampSpeed1value": 50,
+  "Temp2value": 120.0,
+  "HoldT2value": 0.0,
+  "RampSpeed2value": 30.0,
+  "heartcuttingStartList": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "heartcuttingEndList": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "heartcuttingNumber": 0,
+  "cleaningNumber": 1,
+  "SetPressure": 5.0
+}

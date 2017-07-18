@@ -1,0 +1,62 @@
+{
+  "VOCList": [
+    "Benzene",
+	"Toluene",
+	"O-xylene",
+	"M-xylene",
+	"P-xylene",
+	"Ethylbenzene",
+	"Styrene",
+	"Acetaldehyde",
+	"Acrolein"
+  ],
+  "VOCRetentionTime": [
+	72.77,
+	143.53,
+	275.29,
+	245.75,
+	245.75,
+	233.02,
+	278.65,
+	23.78,
+	154.65
+  ],  
+  "CalibrationDateTime": "0001-01-01T00:00:00",
+  "CalibrationFactor": 1.0,
+  "CalibrationVOCList": [
+    "Benzene",
+	"Toluene",
+	"O-xylene",
+	"M-xylene",
+	"P-xylene",
+	"Ethylbenzene",
+	"Styrene",
+	"Acetaldehyde",
+	"Acrolein"
+  ],
+  "lowestTempvalue": 40.0,
+  "lowestTvalue": 1.0,
+  "Temp1value": 120.0,
+  "HoldT1value": 1.0,
+  "RampSpeed1value": 10,
+  "Temp2value": 120.0,
+  "HoldT2value": 0.0,
+  "RampSpeed2value": 30.0,
+  "heartcuttingStartList": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "heartcuttingEndList": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "heartcuttingNumber": 0,
+  "cleaningNumber": 1,
+  "SetPressure": 5.0
+}
