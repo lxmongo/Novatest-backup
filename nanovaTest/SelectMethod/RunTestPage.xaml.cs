@@ -1227,6 +1227,16 @@ namespace nanovaTest.SelectMethod
             ushort pid = 0x7523;
             //ushort pid = 0x0042;
             string selector = SerialDevice.GetDeviceSelectorFromUsbVidPid(vid, pid);
+
+            //add other possible port
+            if (selector.Length < 260)
+            {
+                vid = 0x2341;
+                pid = 0x0010;
+                selector = SerialDevice.GetDeviceSelectorFromUsbVidPid(vid, pid);
+            }
+            //end add other port
+
             services = await DeviceInformation.FindAllAsync(selector);
             if (services.Count > 0)
             {
