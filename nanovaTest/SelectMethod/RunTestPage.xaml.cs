@@ -1525,99 +1525,142 @@ namespace nanovaTest.SelectMethod
             SNIPBaseline(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv, MinY);
             CalculateIntegration(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv);
         }
+
         //SNIP Baseline algorithm
         private void SNIPBaseline(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
         {
-            int indexX = 0;
-            double valueY = 100;
-            int size = 0;
+            int count = BaseLineY.Count;
             List<double> temp = new List<double>();
-            List<double> temp_x_b = new List<double>();
-            List<double> temp_y_b = new List<double>();
-
-            detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
-            size = bottoms.Count;
-            for (int i = 0; i < size; i++)
+            //LLS
+            for (int i = 0; i < count; i++)
             {
-                indexX = bottoms[i];
-                temp_x_b.Add(OriginalX[indexX]);
-                valueY = OriginalY[indexX];
-                temp_y_b.Add(valueY);
+                BaseLineY[i] = Math.Log(Math.Log(Math.Sqrt(OriginalY[i] + 1) + 1) + 1);
+            }
+            ////iteration for 10 times
+            //for (int z = 0; z < 25; z++)
+            // {
+            //     for (int m = constant_m; m < count - constant_m; m++)
+            //     {
+            //         temp.Add(Math.Min(BaseLineY[m], (BaseLineY[m - constant_m] + BaseLineY[m + constant_m]) / 2));
+            //     }
+            //     for (int n = constant_m; n < count - constant_m; n++)
+            //     {
+            //         BaseLineY[n] = temp[n - constant_m];
+            //     }
+            // }
+
+            //Yuhan
+            for (int p = 1; p < constant_m; p++)
+            {
+                for (int i = p + 1; i < count - p; i++)
+                {
+                    BaseLineY[i] = Math.Min(BaseLineY[i], (BaseLineY[i + p] + BaseLineY[i - p]) / 2);
+                }
             }
 
-
-            //smmooth baseline
-            //iteration for 16 times from index 20
-            for (int z = 0; z < 16; z++)
+            //LLS inverse
+            for (int i = 0; i < count; i++)
             {
-                for (int m = constant_m; m < size - constant_m; m++)
-                {
-                    temp.Add(Math.Min(temp_y_b[m], (temp_y_b[m - constant_m] + temp_y_b[m + constant_m]) / 2));
-
-                }
-                for (int n = constant_m; n < size - constant_m; n++)
-                {
-                    temp_y_b[n] = temp[n - constant_m];
-
-                }
-
+                BaseLineY[i] = Math.Pow((Math.Exp(Math.Exp(BaseLineY[i]) - 1) - 1), 2) - 1;
             }
-
-            //iteration for 8 times from index 20
-            temp.Clear();
-
-            for (int t = 0; t < 8; t++)
-            {
-                for (int p = constant_m; p < size - constant_m; p++)
-                {
-                    temp.Add(Math.Min(temp_y_b[p], (temp_y_b[p - constant_m_end] + temp_y_b[p + constant_m_end]) / 2));
-
-                }
-                for (int q = constant_m; q < size - constant_m; q++)
-                {
-                    temp_y_b[q] = temp[q - constant_m];
-
-                }
-
-            }
-            /*
-            //make baseline consecutive, get all the coordination of point in between
-            int bottomCount = bottoms.Count;
-            double k = 0; //slope
-            double b = 0; //intersection
-
-            //calculate the points before first bottom
-            int start;
-            double value;
-            int index;
-            if (temp_x_b.Count > 0)
-            {
-                for (start = 0; OriginalX[start] <= temp_x_b[0]; start++)
-                    BaseLineY[start] = temp_y_b[0];
-                    ;
-                //calculate the points before last bottom
-                for (int a = 0; a < bottomCount - 1; a++)
-                {
-                    k = (temp_y_b[a + 1] - temp_y_b[a]) / (temp_x_b[a + 1] - temp_x_b[a]);
-                    b = temp_y_b[a] - k * temp_x_b[a];
-
-                    index = 0;
-                    while (OriginalX[start + index] <= temp_x_b[a + 1])
-                    {
-                        value = k * OriginalX[start + index] + b;
-                        BaseLineY[start + index] = value;
-                        index++;
-                    }
-                    start = start + index;
-
-                }
-                //calculate the points after last bottom
-                for (int p = OriginalX.Count - 1; OriginalX[p] >= temp_x_b[(bottomCount - 1)]; p--)
-                {
-                    BaseLineY[p] = temp_y_b[bottomCount - 1];
-                }
-            }*/
         }
+
+        ////******************************************************************************************************************************************************************************************
+        ////SNIP Baseline algorithm
+        //private void SNIPBaseline(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
+        //{
+        //    int indexX = 0;
+        //    double valueY = 100;
+        //    int size = 0;
+        //    List<double> temp = new List<double>();
+        //    List<double> temp_x_b = new List<double>();
+        //    List<double> temp_y_b = new List<double>();
+
+        //    detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
+        //    size = bottoms.Count;
+        //    for (int i = 0; i < size; i++)
+        //    {
+        //        indexX = bottoms[i];
+        //        temp_x_b.Add(OriginalX[indexX]);
+        //        valueY = OriginalY[indexX];
+        //        temp_y_b.Add(valueY);
+        //    }
+
+
+        //    //smmooth baseline
+        //    //iteration for 16 times from index 20
+        //    for (int z = 0; z < 16; z++)
+        //    {
+        //        for (int m = constant_m; m < size - constant_m; m++)
+        //        {
+        //            temp.Add(Math.Min(temp_y_b[m], (temp_y_b[m - constant_m] + temp_y_b[m + constant_m]) / 2));
+
+        //        }
+        //        for (int n = constant_m; n < size - constant_m; n++)
+        //        {
+        //            temp_y_b[n] = temp[n - constant_m];
+
+        //        }
+
+        //    }
+
+        //    //iteration for 8 times from index 20
+        //    temp.Clear();
+
+        //    for (int t = 0; t < 8; t++)
+        //    {
+        //        for (int p = constant_m; p < size - constant_m; p++)
+        //        {
+        //            temp.Add(Math.Min(temp_y_b[p], (temp_y_b[p - constant_m_end] + temp_y_b[p + constant_m_end]) / 2));
+
+        //        }
+        //        for (int q = constant_m; q < size - constant_m; q++)
+        //        {
+        //            temp_y_b[q] = temp[q - constant_m];
+
+        //        }
+
+        //    }
+        //    //************************************************************************************************************************************************************************
+
+        /*
+        //make baseline consecutive, get all the coordination of point in between
+        int bottomCount = bottoms.Count;
+        double k = 0; //slope
+        double b = 0; //intersection
+
+        //calculate the points before first bottom
+        int start;
+        double value;
+        int index;
+        if (temp_x_b.Count > 0)
+        {
+            for (start = 0; OriginalX[start] <= temp_x_b[0]; start++)
+                BaseLineY[start] = temp_y_b[0];
+                ;
+            //calculate the points before last bottom
+            for (int a = 0; a < bottomCount - 1; a++)
+            {
+                k = (temp_y_b[a + 1] - temp_y_b[a]) / (temp_x_b[a + 1] - temp_x_b[a]);
+                b = temp_y_b[a] - k * temp_x_b[a];
+
+                index = 0;
+                while (OriginalX[start + index] <= temp_x_b[a + 1])
+                {
+                    value = k * OriginalX[start + index] + b;
+                    BaseLineY[start + index] = value;
+                    index++;
+                }
+                start = start + index;
+
+            }
+            //calculate the points after last bottom
+            for (int p = OriginalX.Count - 1; OriginalX[p] >= temp_x_b[(bottomCount - 1)]; p--)
+            {
+                BaseLineY[p] = temp_y_b[bottomCount - 1];
+            }
+        }*/
+        //}
 
         // peak and bottom detection
         private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)

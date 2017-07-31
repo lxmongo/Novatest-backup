@@ -217,16 +217,16 @@
     <value>Alert: Calibrate needed</value>
   </data>
   <data name="CurrentStep.Text" xml:space="preserve">
-    <value>CURRENT STEP</value>
+    <value>CURRENT STEP </value>
   </data>
   <data name="CurrentTemp.Text" xml:space="preserve">
-    <value>CURRENT TEMPERATURE (℃)</value>
+    <value>Current Tempreature (℃)</value>
   </data>
   <data name="GotoCalibrate.Text" xml:space="preserve">
     <value>Go to calibrate</value>
   </data>
   <data name="Remaining.Text" xml:space="preserve">
-    <value>REMAINING</value>
+    <value> REMAINING</value>
   </data>
   <data name="RunTest.Text" xml:space="preserve">
     <value>Run Test</value>
@@ -238,7 +238,7 @@
     <value>SEARCH</value>
   </data>
   <data name="SetpointTemp.Text" xml:space="preserve">
-    <value>SETPOINT TEMPERATURE (℃)</value>
+    <value>Setpoint Temperature (℃)</value>
   </data>
   <data name="TestAnyWay.Text" xml:space="preserve">
     <value>Test any way (Not recommended)</value>
