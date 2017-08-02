@@ -39,8 +39,8 @@
           <target state="new">Come Soon</target>
         </trans-unit>
         <trans-unit id="CalibrateSelect.Text" translate="yes" xml:space="preserve">
-          <source>please select a method to calibrate</source>
-          <target state="new">please select a method to calibrate</target>
+          <source>Please select a method to calibrate</source>
+          <target state="new">Please select a method to calibrate</target>
         </trans-unit>
         <trans-unit id="Config.Text" translate="yes" xml:space="preserve">
           <source>CONFIG</source>

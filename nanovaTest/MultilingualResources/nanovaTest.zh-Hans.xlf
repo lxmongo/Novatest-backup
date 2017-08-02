@@ -39,7 +39,7 @@
           <target state="translated">正在开发中</target>
         </trans-unit>
         <trans-unit id="CalibrateSelect.Text" translate="yes" xml:space="preserve">
-          <source>please select a method to calibrate</source>
+          <source>Please select a method to calibrate</source>
           <target state="translated">请选择一个需要校准的方法</target>
         </trans-unit>
         <trans-unit id="Config.Text" translate="yes" xml:space="preserve">

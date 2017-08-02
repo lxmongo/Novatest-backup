@@ -75,7 +75,7 @@
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="BTEX"/>
                                     <LineBreak />
-                                    <Run Text="(6 "/>
+                                    <Run Text="( 6 "/>
                                     <Run Text="gases" x:Uid="Gases"/>
                                     <Run Text=")"/>
                             </TextBlock>
@@ -99,7 +99,7 @@
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="TCE/PCE"/>
                                     <LineBreak />
-                                    <Run Text="(2 "/>
+                                    <Run Text="( 2 "/>
                                     <Run Text="gases" x:Uid="Gases"/>
                                     <Run Text=")"/>
                             </TextBlock>
@@ -115,7 +115,7 @@
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="Malodorous Gas" x:Uid="MalodorousGas"/>
                                     <LineBreak />
-                                    <Run Text="(8 "/>
+                                    <Run Text="( 8 "/>
                                     <Run Text="gases" x:Uid="Gases"/>
                                     <Run Text=")"/>
                             </TextBlock>
@@ -131,7 +131,7 @@
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="Vehicle" x:Uid="Vehicle"/>
                                     <LineBreak />
-                                    <Run Text="(9 "/>
+                                    <Run Text="( 9 "/>
                                     <Run Text="gases" x:Uid="Gases"/>
                                     <Run Text=")"/>
                             </TextBlock>
@@ -155,7 +155,7 @@
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
                                 <Run Text="Air Quality" x:Uid="AirQuality"/>
                                 <LineBreak />
-                                <Run Text="(22 "/>
+                                <Run Text="( 22 "/>
                                 <Run Text="gases" x:Uid="Gases"/>
                                 <Run Text=")"/>
                             </TextBlock>
@@ -171,7 +171,7 @@
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
                                 <Run Text="Pollution Source" x:Uid="PollutionSource"/>
                                 <LineBreak />
-                                <Run Text="(20 "/>
+                                <Run Text="( 20 "/>
                                 <Run Text="gases" x:Uid="Gases"/>
                                 <Run Text=")"/>
                             </TextBlock>
@@ -187,7 +187,7 @@
                             <TextBlock TextAlignment="Center" Margin="-190,5,0,0" Foreground="#FFFFFF">
                                 <Run Text="Water Quality" x:Uid="WaterQuality"/>
                                 <LineBreak />
-                                <Run Text="(14 "/>
+                                <Run Text="( 14 "/>
                                 <Run Text="gases" x:Uid="Gases"/>
                                 <Run Text=")"/>
                             </TextBlock>

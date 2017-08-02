@@ -225,7 +225,7 @@ namespace nanovaTest.CustomMethod
                                 var value = JsonObject.Parse(jsonValue.Stringify());
                                 string LastName = value.GetNamedString("LastName");
                                 string FamilyName = value.GetNamedString("FamilyName");
-                                operatorList.Add(string.Format("{0}{1}", FamilyName, LastName));
+                                operatorList.Add(string.Format("{0}{1}{2}", FamilyName, " ", LastName));
                             }
                             if (null != operatorList && operatorList.Count > 0)
                             {
@@ -1527,7 +1527,7 @@ namespace nanovaTest.CustomMethod
                 if (RawNumbersStr.Length > 5)
                 {
                     UsedTime = float.Parse(RawNumbersStr[0]);
-                    PIDPrimary = Movingaverage(float.Parse(RawNumbersStr[1]) / 25 , 1); //unit:V * 40
+                    PIDPrimary = float.Parse(RawNumbersStr[1]) / 25; //unit:V * 40
                     PID2D = float.Parse(RawNumbersStr[2]) / 25;  //unit:V * 40
                     ActualTemp = float.Parse(RawNumbersStr[3]);
                     SetpointTemp = float.Parse(RawNumbersStr[4]);
@@ -1545,7 +1545,6 @@ namespace nanovaTest.CustomMethod
                         y1.Add(PIDPrimary);
                         if (heartcuttingNumber > 0)
                         {
-                            PID2D = Movingaverage(PID2D, 2);
                             x2.Add(UsedTime);
                             y2.Add(PID2D);
                         }

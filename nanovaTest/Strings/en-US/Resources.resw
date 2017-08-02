@@ -124,7 +124,7 @@
     <value>Calibrate</value>
   </data>
   <data name="CalibrateSelect.Text" xml:space="preserve">
-    <value>please select a method to calibrate</value>
+    <value>Please select a method to calibrate</value>
   </data>
   <data name="ComeSoon.Text" xml:space="preserve">
     <value>Come Soon</value>

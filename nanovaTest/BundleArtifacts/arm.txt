@@ -1,7 +1,7 @@
-MainPackage=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_ARM.appx
-SymbolPackage=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\AppPackages\nanovaTest_1.0.10.0_Test\nanovaTest_1.0.10.0_ARM.appxsym
-ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_language-zh-hans.appx
-ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-100.appx
-ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-125.appx
-ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-150.appx
-ResourcePack=C:\workspace\nanovaTest\Code\nanovaTest-code-2017-03-03Yiran\nanovaTest-code-2017-03-03Yiran\nanovaTest\nanovaTest\bin\ARM\Release\nanovaTest_1.0.10.0_scale-400.appx
+MainPackage=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.39.0_ARM_Debug.appx
+SymbolPackage=C:\Users\ytm2d\Desktop\deploy\nanovaTest_1.0.39.0_Debug_Test\nanovaTest_1.0.39.0_ARM_Debug.appxsym
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.39.0_language-zh-hans.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.39.0_scale-100.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.39.0_scale-125.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.39.0_scale-150.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.39.0_scale-400.appx

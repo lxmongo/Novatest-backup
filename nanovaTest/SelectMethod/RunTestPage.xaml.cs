@@ -274,7 +274,7 @@ namespace nanovaTest.SelectMethod
                                 var value = JsonObject.Parse(jsonValue.Stringify());
                                 string LastName = value.GetNamedString("LastName");
                                 string FamilyName = value.GetNamedString("FamilyName");
-                                operatorList.Add(string.Format("{0}{1}", FamilyName, LastName));
+                                operatorList.Add(string.Format("{0}{1}{2}", FamilyName, " ", LastName));
                             }
                             if (null != operatorList && operatorList.Count > 0)
                             {
@@ -1504,7 +1504,7 @@ namespace nanovaTest.SelectMethod
             UsedTime = -5;
     }
         //******************************Data analysis process*******************************//
-        private int constant_m = 2; // for SNIP baseline formula
+        private int constant_m = 25; // for SNIP baseline formula
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope

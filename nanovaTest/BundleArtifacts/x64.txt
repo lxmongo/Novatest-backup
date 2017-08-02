@@ -1,7 +1,2 @@
-MainPackage=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.31.0_x64_Debug.appx
-SymbolPackage=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\AppPackages\nanovaTest_1.0.31.0_Debug_Test\nanovaTest_1.0.31.0_x64_Debug.appxsym
-ResourcePack=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.31.0_language-zh-hans.appx
-ResourcePack=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.31.0_scale-100.appx
-ResourcePack=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.31.0_scale-125.appx
-ResourcePack=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.31.0_scale-150.appx
-ResourcePack=C:\Users\Nanova\Documents\GitHub\NovaTest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.31.0_scale-400.appx
+MainPackage=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\x64\Debug\nanovaTest_1.0.39.0_x64_Debug.appx
+SymbolPackage=C:\Users\ytm2d\Desktop\deploy\nanovaTest_1.0.39.0_Debug_Test\nanovaTest_1.0.39.0_x64_Debug.appxsym
