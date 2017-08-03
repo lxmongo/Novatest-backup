@@ -413,12 +413,19 @@ namespace nanovaTest.SelectMethod
                     CalibrationFactor = json.GetNamedNumber("CalibrationFactor");
                     if (heartcuttingNumber > 0)
                     {
-                        for (var index = 0; index < json.GetNamedArray("VOCRetentionTime2D").Count; index++)
+                        try
                         {
-                            var cutsecond = json.GetNamedArray("VOCRetentionTime2D")[index];
-                            RetentionTime2DList.Add(cutsecond.GetNumber());
+                            for (var index = 0; index < json.GetNamedArray("VOCRetentionTime2D").Count; index++)
+                            {
+                                var cutsecond = json.GetNamedArray("VOCRetentionTime2D")[index];
+                                RetentionTime2DList.Add(cutsecond.GetNumber());
+                            }
+                            CalibrationFactor2D = json.GetNamedNumber("CalibrationFactor2D");
                         }
-                        CalibrationFactor2D = json.GetNamedNumber("CalibrationFactor2D");
+                        catch(System.Exception)
+                        {
+
+                        }
                     }
                 }
             }
