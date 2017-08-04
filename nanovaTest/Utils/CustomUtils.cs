@@ -62,7 +62,7 @@ namespace nanovaTest.Utils
             view.TitleBar.ButtonHoverBackgroundColor = CustomUtils.GetColorFromHex("#007DC4");
             view.TitleBar.ButtonHoverForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonPressedBackgroundColor = CustomUtils.GetColorFromHex("#007DC4");
+            view.TitleBar.ButtonPressedBackgroundColor = CustomUtils.GetColorFromHex("#4682B4");
             view.TitleBar.ButtonPressedForegroundColor = Colors.White;
 
             view.TitleBar.ButtonInactiveBackgroundColor = CustomUtils.GetColorFromHex("#007DC4");

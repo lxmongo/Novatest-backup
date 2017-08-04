@@ -408,7 +408,10 @@ namespace nanovaTest.SelectMethod
                     for (var index = 0; index < json.GetNamedArray("VOCRetentionTime").Count; index++)
                     {
                         var cutsecond = json.GetNamedArray("VOCRetentionTime")[index];
-                        RetentionTimeList.Add(cutsecond.GetNumber());
+                        if(cutsecond.ValueType == JsonValueType.Number)
+                        {
+                            RetentionTimeList.Add(cutsecond.GetNumber());
+                        }
                     }
                     CalibrationFactor = json.GetNamedNumber("CalibrationFactor");
                     if (heartcuttingNumber > 0)
@@ -445,8 +448,12 @@ namespace nanovaTest.SelectMethod
                             string currentvocname = vocjsonvalue.GetNamedString("VOCName").ToUpper();
                             if (VOCNameList[vocjsoni].ToUpper() == currentvocname)
                             {
-                                ResposeFactorList.Add(vocjsonvalue.GetNamedNumber("RF"));
-                                break;
+                                IJsonValue rfValue = vocjsonvalue.GetNamedValue("RF");
+                                if(rfValue.ValueType == JsonValueType.Number)
+                                {
+                                    ResposeFactorList.Add(vocjsonvalue.GetNamedNumber("RF"));
+                                    break;
+                                }
                             }
                         }
                     }

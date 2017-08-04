@@ -329,17 +329,10 @@
     <XliffResource Include="MultilingualResources\nanovaTest.en.xlf" />
     <XliffResource Include="MultilingualResources\nanovaTest.zh-Hans.xlf" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=15.1.0.33">
+    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=15.2.0.40">
       <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Syncfusion.Pdf.UWP, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\x86\Debug\Syncfusion.Pdf.UWP.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
