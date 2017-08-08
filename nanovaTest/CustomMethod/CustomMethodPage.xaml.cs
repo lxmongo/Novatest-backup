@@ -784,6 +784,8 @@ namespace nanovaTest.CustomMethod
                         SecondaryGrid.Visibility = Visibility;
                     }
                     savePdf();
+                    //hide button for a while
+                    CalcButtonImage.Visibility = Visibility.Collapsed;
                 }
                 /**********Send profile to arduino************/
                 try
@@ -816,6 +818,10 @@ namespace nanovaTest.CustomMethod
                     }
                 }
                 /************************************************/
+                //show button after 5 secondes
+                await Task.Delay(TimeSpan.FromMilliseconds(5000));
+                CalcButtonImage.Visibility = Visibility.Visible;
+
             }
 
         }
@@ -983,6 +989,7 @@ namespace nanovaTest.CustomMethod
                             SecondaryGrid.Visibility = Visibility;
                         }
                         savePdf();
+                   
                     }
                 }
                 else
@@ -1952,6 +1959,9 @@ namespace nanovaTest.CustomMethod
         private static int MovingWindowWidth = 5;
         private double[] MovingWindow = new double[MovingWindowWidth - 1];
         private double[] MovingWindow2 = new double[MovingWindowWidth - 1];
+        private DateTime time0;
+        private DateTime time1;
+
         private double Movingaverage(double current, int OneOrTwoD)
         {
             if (OneOrTwoD == 1)
