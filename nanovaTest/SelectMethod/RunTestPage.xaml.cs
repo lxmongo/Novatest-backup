@@ -34,6 +34,8 @@ using nanovaTest.Models;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.UI.Xaml.Charts;
+using Windows.System.Profile;
+using Windows.UI;
 
 namespace nanovaTest.SelectMethod
 {
@@ -176,6 +178,42 @@ namespace nanovaTest.SelectMethod
                     series.ClearValue(ChartSeriesBase.ItemsSourceProperty);
                 this.Basic_Chart = null;
             }
+        }
+
+        private void zoomPan_Loaded(object sender, global::Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ChartZoomPanBehavior zoomBehavior = new ChartZoomPanBehavior();
+            zoomBehavior.EnablePanning = true;
+            zoomBehavior.ZoomMode = Syncfusion.UI.Xaml.Charts.ZoomMode.XY;
+            zoomBehavior.HorizontalPosition = HorizontalAlignment.Left;
+            zoomBehavior.EnableZoomingToolBar = true;
+            zoomBehavior.ToolBarBackground = new SolidColorBrush(Colors.LightGray);
+            Basic_Chart.Behaviors.Add(zoomBehavior);
+
+            if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile")
+            {
+                zoomBehavior.EnableSelectionZooming = true;
+            }
+            else
+                zoomBehavior.EnableSelectionZooming = false;
+        }
+
+        private void zoomPan_Loaded1(object sender, global::Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ChartZoomPanBehavior zoomBehavior = new ChartZoomPanBehavior();
+            zoomBehavior.EnablePanning = true;
+            zoomBehavior.ZoomMode = Syncfusion.UI.Xaml.Charts.ZoomMode.XY;
+            zoomBehavior.HorizontalPosition = HorizontalAlignment.Left;
+            zoomBehavior.EnableZoomingToolBar = true;
+            zoomBehavior.ToolBarBackground = new SolidColorBrush(Colors.LightGray);
+            Basic_Chart1.Behaviors.Add(zoomBehavior);
+
+            if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile")
+            {
+                zoomBehavior.EnableSelectionZooming = true;
+            }
+            else
+                zoomBehavior.EnableSelectionZooming = false;
         }
 
         private async void initPage()

@@ -262,6 +262,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Charts:SfChart 
                                 x:Name="Basic_Chart"
+                                    Loaded="zoomPan_Loaded"
                                 Margin="0,0,40,0"
                                 RelativePanel.AlignLeftWithPanel="True"
                                 RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2">
@@ -332,18 +333,7 @@
                                     <Charts:SfChart.Legend>
                                         <Charts:ChartLegend IconVisibility="Collapsed"/>
                                     </Charts:SfChart.Legend>
-                                    <Charts:SfChart.Behaviors>
-                                        <Charts:ChartCrossHairBehavior></Charts:ChartCrossHairBehavior>
-                                        <Charts:ChartTrackBallBehavior />
-                                        <Charts:ChartZoomPanBehavior EnableSelectionZooming="True" />
-
-                                        <Charts:ChartZoomPanBehavior EnableZoomingToolBar="True" ToolBarItems="All"
-                                                                 ToolBarOrientation="Horizontal" HorizontalPosition="Left" 
-                                                                 VerticalPosition="Top" ToolBarBackground="#E6E6E6" EnableSelectionZooming="True"/>
-
-
-                                        <Charts:ChartSelectionBehavior EnableSeriesSelection="True" SelectionMode="MouseMove" SelectionStyle="Single"  />
-                                    </Charts:SfChart.Behaviors>
+                   
                                 </Charts:SfChart>
                             </Grid>
 
@@ -470,6 +460,7 @@
                             <Grid Grid.Row="0" Name="BottomChartGrid" Visibility="Collapsed" Height="250">
                                 <Charts:SfChart 
                                 x:Name="Basic_Chart1"
+                                    Loaded="zoomPan_Loaded1"
                                 Margin="0,0,40,0"
                                 RelativePanel.AlignLeftWithPanel="True"
                                 RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2">
@@ -540,18 +531,6 @@
                                     <Charts:SfChart.Legend>
                                         <Charts:ChartLegend IconVisibility="Collapsed"/>
                                     </Charts:SfChart.Legend>
-                                    <Charts:SfChart.Behaviors>
-                                        <Charts:ChartCrossHairBehavior></Charts:ChartCrossHairBehavior>
-                                        <Charts:ChartTrackBallBehavior />
-                                        <Charts:ChartZoomPanBehavior EnableSelectionZooming="True" />
-
-                                        <Charts:ChartZoomPanBehavior EnableZoomingToolBar="True" ToolBarItems="All"
-                                                                 ToolBarOrientation="Horizontal" HorizontalPosition="Left" 
-                                                                 VerticalPosition="Top" ToolBarBackground="#E6E6E6" EnableSelectionZooming="True"/>
-
-
-                                        <Charts:ChartSelectionBehavior EnableSeriesSelection="True" SelectionMode="MouseMove" SelectionStyle="Single"  />
-                                    </Charts:SfChart.Behaviors>
                                 </Charts:SfChart>
                             </Grid>
                             <Grid Grid.Row="1" x:Name="SecondaryGrid" Visibility="Collapsed">
