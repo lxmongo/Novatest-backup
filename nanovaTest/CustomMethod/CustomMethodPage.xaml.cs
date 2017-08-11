@@ -38,6 +38,9 @@ using Windows.UI.Xaml.Navigation;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Data.Json;
+using Syncfusion.UI.Xaml.Charts;
+using Windows.System.Profile;
+using Windows.UI;
 
 namespace nanovaTest.CustomMethod
 {
@@ -160,6 +163,43 @@ namespace nanovaTest.CustomMethod
                 LoadingGrid.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void zoomPan_Loaded(object sender, global::Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ChartZoomPanBehavior zoomBehavior = new ChartZoomPanBehavior();
+            zoomBehavior.EnablePanning = true;
+            zoomBehavior.ZoomMode = Syncfusion.UI.Xaml.Charts.ZoomMode.XY;
+            zoomBehavior.HorizontalPosition = HorizontalAlignment.Left;
+            zoomBehavior.EnableZoomingToolBar = true;
+            zoomBehavior.ToolBarBackground = new SolidColorBrush(Colors.LightGray);
+            Basic_Chart.Behaviors.Add(zoomBehavior);
+
+            if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile")
+            {
+                zoomBehavior.EnableSelectionZooming = true;
+            }
+            else
+                zoomBehavior.EnableSelectionZooming = false;
+        }
+
+        private void zoomPan_Loaded1(object sender, global::Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ChartZoomPanBehavior zoomBehavior = new ChartZoomPanBehavior();
+            zoomBehavior.EnablePanning = true;
+            zoomBehavior.ZoomMode = Syncfusion.UI.Xaml.Charts.ZoomMode.XY;
+            zoomBehavior.HorizontalPosition = HorizontalAlignment.Left;
+            zoomBehavior.EnableZoomingToolBar = true;
+            zoomBehavior.ToolBarBackground = new SolidColorBrush(Colors.LightGray);
+            Basic_Chart1.Behaviors.Add(zoomBehavior);
+
+            if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile")
+            {
+                zoomBehavior.EnableSelectionZooming = true;
+            }
+            else
+                zoomBehavior.EnableSelectionZooming = false;
+        }
+
         private void initialAllArray()
         {
             CurrentStepRemainTimeText.FontSize = 20;
