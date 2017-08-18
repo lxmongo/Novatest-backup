@@ -1574,6 +1574,7 @@ namespace nanovaTest.SelectMethod
                 x_b.Add(OriginalXv[v]);
                 BaseLineYv.Add(MinY);
             }
+            FindpeakRun(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv, MinY);
             SNIPBaseline(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv, MinY);
             CalculateIntegration(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv);
         }
@@ -1605,6 +1606,27 @@ namespace nanovaTest.SelectMethod
             }
         }
 
+        private void FindpeakRun(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
+        {
+            int indexX = 0;
+            double valueY = 100;
+            int size = 0;
+            List<double> temp = new List<double>();
+            List<double> temp_x_b = new List<double>();
+            List<double> temp_y_b = new List<double>();
+
+            detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
+            size = bottoms.Count;
+            for (int i = 0; i < size; i++)
+            {
+                indexX = bottoms[i];
+                temp_x_b.Add(OriginalX[indexX]);
+                valueY = OriginalY[indexX];
+                temp_y_b.Add(valueY);
+            }
+        }
+
+
         // peak and bottom detection
         private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
         {
@@ -1615,7 +1637,7 @@ namespace nanovaTest.SelectMethod
             int peakStart = 0;
             int peakStop = 0;
             double slope = 0; //current slope
-            List<double> values = new List<double>(); //save three consecutive slopes
+            List<double> values = new List<double>(); //save thre  e consecutive slopes
 
             //calculate the slopes of all scans
             for (int b = 0; b < signalAmount - 1; b++)
@@ -1717,15 +1739,20 @@ namespace nanovaTest.SelectMethod
             //integration
             if (peaks != null)
             {
-                for (int index = 0; index < peaks.Count; index++)
+                try
                 {
-                    Area.Add(0);  //initialize
-                    for (int p2 = bottoms[index]; p2 < bottoms[index + 1]; p2++)
+                    for (int index = 0; index < peaks.Count; index++)
                     {
-                        Area[index] = (Area[index] + CorrectedY[p2] * 0.1);
+                        Area.Add(0);  //initialize
+                        for (int p2 = bottoms[index]; p2 < bottoms[index + 1]; p2++)
+                        {
+                            Area[index] = (Area[index] + CorrectedY[p2] * 0.1);
+                        }
+                        Heights.Add(CorrectedY[peaks[index]]);
+                        //data.Add(new Item(index + 1, OriginalX[bottoms[index]], OriginalX[peaks[index]], OriginalX[bottoms[index + 1]], Heights[index], Area[index], FWHMvalue));
                     }
-                    Heights.Add(CorrectedY[peaks[index]]);
-                    //data.Add(new Item(index + 1, OriginalX[bottoms[index]], OriginalX[peaks[index]], OriginalX[bottoms[index + 1]], Heights[index], Area[index], FWHMvalue));
+                }
+                catch (Exception ex) {
                 }
             }
             else //no peak is found 
@@ -1832,6 +1859,19 @@ namespace nanovaTest.SelectMethod
                     MovingWindow2[MovingWindowWidth - 2] = current;
                     return (sum + current) / (double)MovingWindowWidth;
                 }
+            }
+        }
+
+        private void ThresholdReset_Click(object sender, RoutedEventArgs e)
+        {
+
+            THRESHOLD_peak = Convert.ToDouble(ThresholdInput.Text);
+            Debug.WriteLine(THRESHOLD_peak);
+            detectPeakAndBottom(x1, y1, peaks1, bottoms1, Area1, Heights1, MinY1);
+            Debug.WriteLine("new peaks");
+            for (int i = 0; i < peaks1.Count; i++)
+            {
+                Debug.WriteLine(peaks1[i]);
             }
         }
         //**********************************************************************************//

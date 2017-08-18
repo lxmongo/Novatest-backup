@@ -1758,6 +1758,7 @@ namespace nanovaTest.CustomMethod
                 x_b.Add(OriginalXv[v]);
                 BaseLineYv.Add(MinY);
             }
+            FindpeakRun(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv, MinY);
             SNIPBaseline(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv, MinY);
             CalculateIntegration(OriginalXv, OriginalYv, BaseLineYv, peaksv, bottomsv, Areav, Heightsv);
         }
@@ -1786,6 +1787,26 @@ namespace nanovaTest.CustomMethod
             for (int i = 0; i < count; i++)
             {
                 BaseLineY[i] = Math.Pow((Math.Exp(Math.Exp(BaseLineY[i]) - 1) - 1), 2) - 1;
+            }
+        }
+
+        private void FindpeakRun(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
+        {
+            int indexX = 0;
+            double valueY = 100;
+            int size = 0;
+            List<double> temp = new List<double>();
+            List<double> temp_x_b = new List<double>();
+            List<double> temp_y_b = new List<double>();
+
+            detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
+            size = bottoms.Count;
+            for (int i = 0; i < size; i++)
+            {
+                indexX = bottoms[i];
+                temp_x_b.Add(OriginalX[indexX]);
+                valueY = OriginalY[indexX];
+                temp_y_b.Add(valueY);
             }
         }
 

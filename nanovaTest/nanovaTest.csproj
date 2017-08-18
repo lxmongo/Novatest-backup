@@ -330,7 +330,7 @@
     <XliffResource Include="MultilingualResources\nanovaTest.zh-Hans.xlf" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=15.2.0.40">
+    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=15.3.0.26">
       <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>
   </ItemGroup>
