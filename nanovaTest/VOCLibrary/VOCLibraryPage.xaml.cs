@@ -149,12 +149,12 @@ namespace nanovaTest.VOCLibrary
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
                 return;
-
-            if (rootFrame.CanGoBack && e.Handled == false)
-            {
-                e.Handled = true;
-                rootFrame.GoBack();
-            }
+            rootFrame.Navigate(typeof(MainPage), null);
+            //if (rootFrame.CanGoBack && e.Handled == false)
+            //{
+            //    e.Handled = true;
+            //    rootFrame.GoBack();
+            //}
         }
 
         //TVOC
