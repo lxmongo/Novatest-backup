@@ -1,0 +1,14 @@
+Experience Name: 20180822 1ppmv TO14 1min3
+Operator Name: 
+Start time: 8/22/2017 2:53:33 PM 8/22/2017 2:53:33 PM
+Sampling/Pumping time: 60
+Waiting time: 20
+Lowest Temperature: 40
+Low holding time: 1
+Temperature 1: 120
+Temp1 holding time: 1
+Ramping speed 1: 10.0
+Temperature2: 150
+Temp2 holding time: 1
+Ramping speed 2: 30.0
+Time,PID1,PID2,Temp,Setpoint,pressure,pwm%

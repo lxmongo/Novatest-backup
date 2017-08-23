@@ -1,0 +1,14 @@
+Experience Name: 20170817 air after filter
+Operator Name: 
+Start time: 8/17/2017 8:18:27 AM 8/17/2017 8:18:27 AM
+Sampling/Pumping time: 120
+Waiting time: 20
+Lowest Temperature: 50
+Low holding time: 0.5
+Temperature 1: 80
+Temp1 holding time: 0.5
+Ramping speed 1: 15
+Temperature2: 80
+Temp2 holding time: 0
+Ramping speed 2: 30.0
+Time,PID1,PID2,Temp,Setpoint,pressure,pwm%

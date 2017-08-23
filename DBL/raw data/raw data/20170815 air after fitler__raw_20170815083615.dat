@@ -1,0 +1,16 @@
+Experience Name: 20170815 air after fitler
+Operator Name: 
+Start time: 8/15/2017 8:36:16 AM 8/15/2017 8:36:16 AM
+Sampling/Pumping time: 120
+Waiting time: 20
+Lowest Temperature: 50
+Low holding time: 0.5
+Temperature 1: 80
+Temp1 holding time: 0.5
+Ramping speed 1: 15
+Temperature2: 80
+Temp2 holding time: 0
+Ramping speed 2: 30.0
+Time,PID1,PID2,Temp,Setpoint,pressure,pwm%
+
+233123,0.00000000,80.00183105,80.00000000,9.75097751,0.00000000

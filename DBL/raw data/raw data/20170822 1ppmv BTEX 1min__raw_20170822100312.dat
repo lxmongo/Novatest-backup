@@ -1,0 +1,14 @@
+Experience Name: 20170822 1ppmv BTEX 1min
+Operator Name: 
+Start time: 8/22/2017 10:03:12 AM 8/22/2017 10:03:12 AM
+Sampling/Pumping time: 60
+Waiting time: 20
+Lowest Temperature: 40
+Low holding time: 1
+Temperature 1: 120
+Temp1 holding time: 1
+Ramping speed 1: 10.0
+Temperature2: 150
+Temp2 holding time: 1
+Ramping speed 2: 30.0
+Time,PID1,PID2,Temp,Setpoint,pressure,pwm%
