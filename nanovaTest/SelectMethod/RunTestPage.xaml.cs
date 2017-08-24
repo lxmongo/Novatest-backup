@@ -1861,6 +1861,185 @@ namespace nanovaTest.SelectMethod
                 }
             }
         }
+        
+        //update info for the default methods
+        private async void UpdateInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".txt");
+
+            StorageFile UpdateInfoFile = await picker.PickSingleFileAsync();
+            IBuffer buffer = await FileIO.ReadBufferAsync(UpdateInfoFile);
+            DataReader reader = DataReader.FromBuffer(buffer);
+            byte[] fileContent = new byte[reader.UnconsumedBufferLength];
+            reader.ReadBytes(fileContent);
+            string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
+            String[] result = text.Split(new[] {'\n'});
+
+            for (int i = 0; i < RetentionTimeList.Count; i++)
+            {
+                Debug.WriteLine(RetentionTimeList[i]);
+            }
+
+            switch (MethodNameText)
+            {
+                case "Cleaning":
+                    break;
+                case "TVOC":
+                    break;
+                case "BTEX":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch(System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+                    }
+                    break;
+                case "TCE/PCE":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch (System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+
+                    }
+                    break;
+                case "Malodorous":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch (System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+
+                    }
+                    break;
+                case "VehicleIndoor":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch (System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+
+                    }
+                    break;
+                case "EnvironmentalAir":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch (System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+
+                    }
+                    break;
+                case "PollutionSource":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch (System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+
+                    }
+                    break;
+                case "WaterSample-Online":
+                    for (int i = 0; i < RetentionTimeList.Count; i++)
+                    {
+                        try
+                        {
+                            double num;
+                            if (double.TryParse(result[i], out num))
+                            {
+                                RetentionTimeList[i] = num;
+                            }
+                        }
+                        catch(System.IndexOutOfRangeException ex)
+                        {
+                            MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
+                            await popup.ShowAsync();
+                        }
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+            for (int i = 0; i < RetentionTimeList.Count; i++)
+            {
+                Debug.WriteLine(RetentionTimeList[i]);
+            }
+        }
+
+        public static System.Text.Encoding GetEncoding(byte[] bom)
+        {
+            // Analyze the BOM
+            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return System.Text.Encoding.UTF7;
+            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return System.Text.Encoding.UTF8;
+            if (bom[0] == 0xff && bom[1] == 0xfe) return System.Text.Encoding.Unicode; //UTF-16LE
+            if (bom[0] == 0xfe && bom[1] == 0xff) return System.Text.Encoding.BigEndianUnicode; //UTF-16BE
+            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return System.Text.Encoding.UTF32;
+            return System.Text.Encoding.ASCII;
+        }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
         //{
