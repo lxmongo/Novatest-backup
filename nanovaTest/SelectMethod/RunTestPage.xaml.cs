@@ -1862,18 +1862,18 @@ namespace nanovaTest.SelectMethod
             }
         }
 
-        private void ThresholdReset_Click(object sender, RoutedEventArgs e)
-        {
+        //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
+        //{
 
-            THRESHOLD_peak = Convert.ToDouble(ThresholdInput.Text);
-            Debug.WriteLine(THRESHOLD_peak);
-            detectPeakAndBottom(x1, y1, peaks1, bottoms1, Area1, Heights1, MinY1);
-            Debug.WriteLine("new peaks");
-            for (int i = 0; i < peaks1.Count; i++)
-            {
-                Debug.WriteLine(peaks1[i]);
-            }
-        }
+        //    THRESHOLD_peak = Convert.ToDouble(ThresholdInput.Text);
+        //    Debug.WriteLine(THRESHOLD_peak);
+        //    detectPeakAndBottom(x1, y1, peaks1, bottoms1, Area1, Heights1, MinY1);
+        //    Debug.WriteLine("new peaks");
+        //    for (int i = 0; i < peaks1.Count; i++)
+        //    {
+        //        Debug.WriteLine(peaks1[i]);
+        //    }
+        //}
         //**********************************************************************************//
     }
     public class Data
