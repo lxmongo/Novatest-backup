@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -36,6 +37,7 @@ using Syncfusion.Pdf.Graphics;
 using Syncfusion.UI.Xaml.Charts;
 using Windows.System.Profile;
 using Windows.UI;
+using Newtonsoft.Json.Linq;
 
 namespace nanovaTest.SelectMethod
 {
@@ -400,6 +402,7 @@ namespace nanovaTest.SelectMethod
                             break;
                     }
                     ReadFromJson(fileName);
+                    //UpdateRentention(FromSelect);
                 }
             }
         }
@@ -503,6 +506,44 @@ namespace nanovaTest.SelectMethod
                 await popup.ShowAsync();
             }
         }
+
+
+        //update rentention time if there is a update txt file in specific location
+
+        /*
+        private async void UpdateRentention(string fileName)
+        {
+            //var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            //picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            //picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            //picker.FileTypeFilter.Add(".txt");
+
+            //StorageFile updatefile = await picker.PickSingleFileAsync();
+            //StorageFile updatefile = await DownloadsFolder.CreateFileAsync("Nanova\\TestNum.txt");
+
+            StorageFile updatefile = await StorageFile.GetFileFromPathAsync(@"c:\123.txt");
+            if (updatefile != null)
+            {
+                Debug.WriteLine("it worls");
+            }
+
+            IBuffer buffer = await FileIO.ReadBufferAsync(updatefile);
+            DataReader reader = DataReader.FromBuffer(buffer);
+            byte[] fileContent = new byte[reader.UnconsumedBufferLength];
+            reader.ReadBytes(fileContent);
+            string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
+            String[] result = text.Split(new[] { '\n' });
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                Debug.WriteLine(result[i]);
+            }
+        }
+        */
+
+
+
+
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
             popup.Hide();
@@ -1882,7 +1923,7 @@ namespace nanovaTest.SelectMethod
             {
                 Debug.WriteLine(RetentionTimeList[i]);
             }
-
+            var fileName = "";
             switch (MethodNameText)
             {
                 case "Cleaning":
@@ -1906,6 +1947,7 @@ namespace nanovaTest.SelectMethod
                             await popup.ShowAsync();
                         }
                     }
+                    fileName = "BTEX.json";
                     break;
                 case "TCE/PCE":
                     for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -1923,8 +1965,8 @@ namespace nanovaTest.SelectMethod
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
                         }
-
                     }
+                    fileName = "TCEPCE.json";
                     break;
                 case "Malodorous":
                     for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -1942,8 +1984,8 @@ namespace nanovaTest.SelectMethod
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
                         }
-
                     }
+                    fileName = "Malodorous.json";
                     break;
                 case "VehicleIndoor":
                     for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -1961,8 +2003,8 @@ namespace nanovaTest.SelectMethod
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
                         }
-
                     }
+                    fileName = "Vehicle.json";
                     break;
                 case "EnvironmentalAir":
                     for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -1980,8 +2022,8 @@ namespace nanovaTest.SelectMethod
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
                         }
-
                     }
+                    fileName = "AirQuality.json";
                     break;
                 case "PollutionSource":
                     for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -1999,8 +2041,8 @@ namespace nanovaTest.SelectMethod
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
                         }
-
                     }
+                    fileName = "PollutionSource.json";
                     break;
                 case "WaterSample-Online":
                     for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -2018,15 +2060,28 @@ namespace nanovaTest.SelectMethod
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
                         }
-
                     }
+                    fileName = "WaterQuality.json";
                     break;
                 default:
                     break;
             }
-            for (int i = 0; i < RetentionTimeList.Count; i++)
+
+            //write the data back to the Json file
+            var folder = await Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            var methodfile = await folder.GetFileAsync(fileName);
+            using (var stream = await methodfile.OpenStreamForReadAsync())
             {
-                Debug.WriteLine(RetentionTimeList[i]);
+                using (var jsonreader = new StreamReader(stream))
+                {
+                    var content = jsonreader.ReadToEnd();
+                    JsonObject json = JsonObject.Parse(content);
+                    for (var index = 0; index < json.GetNamedArray("VOCRetentionTime").Count; index++)
+                    {
+                        json.GetNamedArray("VOCRetentionTime")[index] = JsonValue.CreateNumberValue(RetentionTimeList[index]);
+                        Debug.WriteLine(json.GetNamedArray("VOCRetentionTime")[index]);
+                    }
+                }
             }
         }
 
