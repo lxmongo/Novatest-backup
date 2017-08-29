@@ -41,6 +41,7 @@ namespace nanovaTest.Calibrate
 {
     public sealed partial class RunCalibratePage : Page
     {
+        public double FlowRate = 5; //ml/min
         private string FromSelect = null;
         //control CONFIG and STATUS button
         private int ClickStatus = 0;
@@ -49,7 +50,10 @@ namespace nanovaTest.Calibrate
         private DispatcherTimer timer;
         private ObservableCollection<string> GasComboList;
         private ObservableCollection<CalibrateTestInfo> testInfoList;
-        
+        private ObservableCollection<CalibrateTestInfo> secondaryInfoList;
+
+        private string MethodNameText;
+
         private int count;
         private ResourceLoader loader;
         private string methodFileName;
@@ -74,6 +78,11 @@ namespace nanovaTest.Calibrate
         private double Cleaningtimeuwp = 60;
         private DateTime StartDateTime = DateTime.Now;
         private DateTime CurrentDateTime = DateTime.Now;
+
+        //VOC concentrate data
+        private double StandardConcentration;
+        private double VOCconcentration;
+        private string CalibrateSelected;
 
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
@@ -123,6 +132,8 @@ namespace nanovaTest.Calibrate
         private List<int> bottoms2 = new List<int>();   //save all the bottoms
         private List<double> Area2 = new List<double>();
         private List<double> Heights2 = new List<double>();
+        private double MinY1 = 100;
+        private double MinY2 = 100;
 
         //write into files
         private string FileNameTime = "";
@@ -237,6 +248,8 @@ namespace nanovaTest.Calibrate
             bottoms2.Clear();    //save all the bottoms
             Area2.Clear();
             Heights2.Clear();
+            MinY1 = 100;
+            MinY2 = 100;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -253,51 +266,55 @@ namespace nanovaTest.Calibrate
                     {
                         case "Cleaning":
                             MethodName.Text = loader.GetString("DeepClean1");
+                            MethodNameText = "Cleaning";
                             fileName = "Cleaning.json";
                             methodFileName = "Cleaning";
                             break;
                         case "TVOC":
                             MethodName.Text = "TVOC";
+                            MethodNameText = "TVOC";
                             fileName = "TVOC.json";
                             methodFileName = "TVOC";
                             break;
                         case "BTEX":
                             MethodName.Text = "BTEX";
+                            MethodNameText = "BTEX";
                             fileName = "BTEX.json";
                             methodFileName = "BTEX";
                             break;
-                        case "MTBE":
-                            MethodName.Text = "MTBE";
-                            fileName = "MTBE.json";
-                            methodFileName = "MTBE";
-                            break;
                         case "TCE/PCE":
                             MethodName.Text = "TCE/PCE";
+                            MethodNameText = "TCE/PCE";
                             fileName = "TCEPCE.json";
                             methodFileName = "TCE&PCE";
                             break;
                         case "Malodorous":
                             MethodName.Text = loader.GetString("MalodorousGas1");
+                            MethodNameText = "Malodorous";
                             fileName = "Malodorous.json";
                             methodFileName = "Malodorous Gas";
                             break;
                         case "VehicleIndoor":
                             MethodName.Text = loader.GetString("Vehicle1");
+                            MethodNameText = "VehicleIndoor";
                             fileName = "Vehicle.json";
                             methodFileName = "Vehicle";
                             break;
                         case "EnvironmentalAir":
                             MethodName.Text = loader.GetString("AirQuality1");
+                            MethodNameText = "EnvironmentalAir";
                             fileName = "AirQuality.json";
                             methodFileName = "Air Quality";
                             break;
                         case "PollutionSource":
                             MethodName.Text = loader.GetString("PollutionSource1");
+                            MethodNameText = "PollutionSource";
                             fileName = "PollutionSource.json";
                             methodFileName = "Pollution Source";
                             break;
                         case "WaterSample-Online":
                             MethodName.Text = loader.GetString("WaterQuality1");
+                            MethodNameText = "WaterSample-Online";
                             fileName = "WaterQuality.json";
                             methodFileName = "Water Quality";
                             break;
@@ -305,6 +322,7 @@ namespace nanovaTest.Calibrate
                             break;
                     }
                     initGas(fileName);
+                    ReadFromJson(fileName);
                     GasComboBox.ItemsSource = GasComboList;
                 }
             }
@@ -412,7 +430,7 @@ namespace nanovaTest.Calibrate
                     }
                 }
             }
-        }                    
+        }
 
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
@@ -528,12 +546,10 @@ namespace nanovaTest.Calibrate
             {
                 ReportSavedFlag = true;
                 //data analysis
-                if (UsedTime > 0)
-                {
-                    //WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1);
-                    //if (heartcuttingNumber > 0)
-                        //WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2);
-                }
+                WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
+                if (heartcuttingNumber > 0)
+                    WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
+
                 //Add baseline
                 this.Basic_Chart.Series[1].ItemsSource = null;
                 for (int i = 0; i < x_b.Count && i < y_b1.Count; i++)
@@ -608,55 +624,234 @@ namespace nanovaTest.Calibrate
 
         private void Timer_Tick(object sender, object e)
         {
-            if (count == 10)
+            CurrentDateTime = DateTime.Now;
+            if ((!RunningTestFlag) && Math.Abs(UsedTime - (-5)) > 0.1)
             {
-                c.i--;
+                StartDateTime = DateTime.Now;
+                RunningTestFlag = true;
+            }
+            if (total - CurrentDateTime.Subtract(StartDateTime).TotalSeconds > 0 && Math.Abs(UsedTime - (-5)) > 0.1)
+            {
+                c.i = total - (int)CurrentDateTime.Subtract(StartDateTime).TotalSeconds - 1;
                 Value = c.i;
                 c.Update((total - c.i) / (double)total * 125 / 15 * Math.PI, 1000);
-                count = 0;
             }
-
-            //更新折线图
-            this.Basic_Chart.Series[0].ItemsSource = null;
-            double x = UsedTime;
-            double y = PIDPrimary;
-            var primaryAxisMax = PrimaryAxis.Maximum;  //x
-            var secondAxisMax = SecondAxis.Maximum;    //y
-
-            if (y > Convert.ToDouble(secondAxisMax))
+            if (!RunningTestFlag)
             {
-                YaxisMax = y + 10;
+                CurrentStepText.Text = loader.GetString("ConnectingStep");
+                CurrentStepRemainTimeText.Text = "00:00";
             }
-            if (x > Convert.ToDouble(primaryAxisMax))
+            //更新当前步骤
+            if (RunningTestFlag)
             {
-                XaxisMax = x + 10;
-            }
-            Data data = new Data(x, y);
-            source.Add(data);
-            this.Basic_Chart.Series[0].ItemsSource = source;
-
-
-            //topDatas.Add(new ChartData() { label = total - c.i, text = 0 });
-
-            count++;
-            if (c.i == 0)
-            {
-                (sender as DispatcherTimer).Stop();
-                StartCalculation.Visibility = Visibility.Visible;
-                StopCalculation.Visibility = Visibility.Collapsed;
-                this.Basic_Chart.Series[1].ItemsSource = null;
-                for (int i = 0; i < 200; i++)
+                if (CurrentDateTime.Subtract(StartDateTime).TotalSeconds < Sampletimeuwp)
                 {
-                    standardSource.Add(new Data(random.Next(3, 120), random.Next(2, 6)));
+                    CurrentStepText.Text = loader.GetString("SamplingStep");
+                    int secondsFordisplay = (int)(Sampletimeuwp - CurrentDateTime.Subtract(StartDateTime).TotalSeconds);
+                    var timespan = TimeSpan.FromSeconds(secondsFordisplay);
+                    CurrentStepRemainTimeText.Text = timespan.ToString(@"mm\:ss");
                 }
-                this.Basic_Chart.Series[1].ItemsSource = standardSource;
+                else if (CurrentDateTime.Subtract(StartDateTime).TotalSeconds < Sampletimeuwp + Waitingtimeuwp)
+                {
+                    CurrentStepText.Text = loader.GetString("WaitingStep");
+                    int secondsFordisplay = (int)(Sampletimeuwp + Waitingtimeuwp - CurrentDateTime.Subtract(StartDateTime).TotalSeconds);
+                    var timespan = TimeSpan.FromSeconds(secondsFordisplay);
+                    CurrentStepRemainTimeText.Text = timespan.ToString(@"mm\:ss");
+                }
+                else if (CurrentDateTime.Subtract(StartDateTime).TotalSeconds < Sampletimeuwp + Waitingtimeuwp + Analysistimeuwp)
+                {
+                    CurrentStepText.Text = loader.GetString("AnalysingStep");
+                    int secondsFordisplay = (int)(Sampletimeuwp + Waitingtimeuwp + Analysistimeuwp - CurrentDateTime.Subtract(StartDateTime).TotalSeconds);
+                    var timespan = TimeSpan.FromSeconds(secondsFordisplay);
+                    CurrentStepRemainTimeText.Text = timespan.ToString(@"mm\:ss");
+                }
+                else if (CurrentDateTime.Subtract(StartDateTime).TotalSeconds < Sampletimeuwp + Waitingtimeuwp + Analysistimeuwp + Cleaningtimeuwp)
+                {
+                    CurrentStepText.Text = loader.GetString("CleaningStep");
+                    int secondsFordisplay = (int)(Sampletimeuwp + Waitingtimeuwp + Analysistimeuwp + Cleaningtimeuwp - CurrentDateTime.Subtract(StartDateTime).TotalSeconds);
+                    var timespan = TimeSpan.FromSeconds(secondsFordisplay);
+                    CurrentStepRemainTimeText.Text = timespan.ToString(@"mm\:ss");
+                    if (!ReportSavedFlag && MethodNameText != "Cleaning")
+                    {
+                        ReportSavedFlag = true;
+                        //data analysis
+                        WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
+                        if (heartcuttingNumber > 0)
+                            WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
 
-                testInfoList.Clear();
-                testInfoList.Add(new CalibrateTestInfo { ID = "1", VOCName = "Run Test", Time = "2017-02-22 17:30", Area = "aaa", Height = "eee", ConcentrationFactor = "qqqq" });
-                testInfoList.Add(new CalibrateTestInfo { ID = "1", VOCName = "Run Test", Time = "2017-02-22 17:30", Area = "aaa", Height = "eee", ConcentrationFactor = "qqqq" });
-                //显示表格控件
-                InfoListView.Visibility = Visibility;
-                savePdf();
+                        //Add baseline
+                        this.Basic_Chart.Series[1].ItemsSource = null;
+                        for (int i = 0; i < x_b.Count && i < y_b1.Count; i++)
+                        {
+                            standardSource.Add(new Data(x_b[i], y_b1[i]));
+                        }
+                        this.Basic_Chart.Series[1].ItemsSource = standardSource;
+                        //显示表格控件
+                        testInfoList.Clear();
+                        double currentvoctime = 0;
+                        double currentvocheight = 0;
+                        double currentvocarea = 0;
+                        double FWHMvalue = 0;
+                        double currentconcen = 0;
+                        int Peak1DCount = 0;
+                        if (MethodNameText == "BTEX")
+                        {
+                            int p = 0;
+                            for (int j = 0; j < VOCNameList.Count; j++)
+                            {
+                                for (; p < peaks1.Count && p < bottoms1.Count - 1; p++)
+                                {
+                                    if (Math.Abs(x1[peaks1[p]] - RetentionTimeList[j]) < retentionTimeThreshold)
+                                    {
+                                        currentvoctime = x1[peaks1[p]];
+                                        currentvocheight = Heights1[p];
+                                        currentvocarea = Area1[p];
+                                        FWHMvalue = CalculateFWHM(bottoms1[p], peaks1[p], bottoms1[p + 1], x1, y1, y_b1);
+                                        break;
+                                    }
+                                }
+                                currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                string currentvocname = VOCNameList[j];
+                                if (j == 3)
+                                    currentvocname = currentvocname + " & " + VOCNameList[j + 1];
+                                if (j != 4)
+                                {
+                                    Peak1DCount++;
+                                    testInfoList.Add(new CalibrateTestInfo
+                                    {
+                                        ID = (Peak1DCount).ToString(),
+                                        VOCName = currentvocname,
+                                        Time = currentvoctime.ToString("0.00"),
+                                        //FWHM = FWHMvalue.ToString("0.00"),
+                                        Height = currentvocheight.ToString("0.00"),
+                                        Area = currentvocarea.ToString("0.00"),
+                                        //Concentration = currentconcen.ToString("0.00")
+                                    });
+                                }
+
+                            }
+                            InfoListView.Visibility = Visibility;
+                        }
+                        else
+                        {
+                            for (int j = 0; j < VOCNameList.Count; j++)
+                            {
+                                for (int p = 0; p < peaks1.Count && p < bottoms1.Count - 1; p++)
+                                {
+                                    if (Math.Abs(x1[peaks1[p]] - RetentionTimeList[j]) < retentionTimeThreshold)
+                                    {
+                                        currentvoctime = x1[peaks1[p]];
+                                        currentvocheight = Heights1[p];
+                                        currentvocarea = Area1[p];
+                                        FWHMvalue = CalculateFWHM(bottoms1[p], peaks1[p], bottoms1[p + 1], x1, y1, y_b1);
+                                        break;
+                                    }
+                                }
+                                currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
+                                {
+                                    Peak1DCount++;
+                                    testInfoList.Add(new CalibrateTestInfo
+                                    {
+                                        ID = (Peak1DCount).ToString(),
+                                        VOCName = VOCNameList[j],
+                                        Time = currentvoctime.ToString("0.00"),
+                                        //FWHM = FWHMvalue.ToString("0.00"),
+                                        Height = currentvocheight.ToString("0.00"),
+                                        Area = currentvocarea.ToString("0.00"),
+                                        //Concentration = currentconcen.ToString("0.00")
+                                    });
+                                }
+                            }
+                            InfoListView.Visibility = Visibility;
+                            if (heartcuttingNumber > 0)
+                            {
+                                int Peak2DCount = 0;
+                                secondaryInfoList.Clear();
+                                for (int j = 0; j < VOCNameList.Count; j++)
+                                {
+                                    if (Math.Abs(RetentionTimeList[j] - 0) < 0.01)
+                                    {
+                                        Peak2DCount++;
+                                        for (int p = 0; p < peaks2.Count && p < bottoms2.Count - 1; p++)
+                                        {
+                                            if (Math.Abs(x2[peaks2[p]] - RetentionTime2DList[j]) < retentionTimeThreshold)
+                                            {
+                                                currentvoctime = x2[peaks2[p]];
+                                                currentvocheight = Heights2[p];
+                                                currentvocarea = Area2[p];
+                                                FWHMvalue = CalculateFWHM(bottoms2[p], peaks2[p], bottoms2[p + 1], x2, y2, y_b2);
+                                                break;
+                                            }
+                                        }
+                                        currentconcen = currentvocarea * CalibrationFactor2D / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                        secondaryInfoList.Add(new CalibrateTestInfo
+                                        {
+                                            ID = Peak2DCount.ToString(),
+                                            VOCName = VOCNameList[j],
+                                            Time = currentvoctime.ToString("0.00"),
+                                            //FWHM = FWHMvalue.ToString("0.00"),
+                                            Height = currentvocheight.ToString("0.00"),
+                                            Area = currentvocarea.ToString("0.00"),
+                                            //Concentration = ResposeFactorList[0].ToString("0.00")
+                                        });
+                                    }
+                                }
+                                //SecondaryGrid.Visibility = Visibility;
+                            }
+                        }
+                        savePdf();
+                    }
+                }
+                else
+                {
+                    CurrentStepText.Text = loader.GetString("CoolingStep");
+                    CurrentStepRemainTimeText.Text = loader.GetString("CoolingNotice");
+                    CurrentStepRemainTimeText.FontSize = 14;
+                    if (Math.Abs(UsedTime - (-5)) < 0.1) //cooling is finished
+                    {
+                        FinishTestFunction();
+                    }
+                }
+            }
+            CurrentTempText.Text = ActualTemp.ToString("0.00");
+            CurrentPressureText.Text = ActualPressure.ToString("0.00");
+            //更新折线图
+            if (UsedTime > 0)
+            {
+                this.Basic_Chart.Series[0].ItemsSource = null;
+                double x = UsedTime;
+                double y = PIDPrimary;
+                var primaryAxisMax = PrimaryAxis.Maximum;  //x
+                var secondAxisMax = SecondAxis.Maximum;    //y
+
+                if (y > Convert.ToDouble(secondAxisMax))
+                {
+                    YaxisMax = y + 10;
+                }
+                if (x > Convert.ToDouble(primaryAxisMax))
+                {
+                    XaxisMax = x + 10;
+                }
+                Data data = new Data(x, y);
+                source.Add(data);
+                this.Basic_Chart.Series[0].ItemsSource = source;
+                //2D signal
+                if (heartcuttingNumber > 0)
+                {
+                    this.Basic_Chart1.Series[0].ItemsSource = null;
+                    double x2 = UsedTime;
+                    double y2 = PID2D;
+                    var primaryAxisMax1 = PrimaryAxis1.Maximum;  //x
+                    var secondAxisMax1 = SecondAxis1.Maximum;    //y
+                    if (y2 > Convert.ToDouble(secondAxisMax1))
+                    {
+                        YaxisMax1 = y2 + 10;
+                    }
+                    Data data2 = new Data(x2, y2);
+                    bottomSource.Add(data2);
+                    this.Basic_Chart1.Series[0].ItemsSource = bottomSource;
+                }
             }
         }
 
@@ -808,31 +1003,31 @@ namespace nanovaTest.Calibrate
                 PdfGraphics graphics = page.Graphics;
                 //Create the PDF font instance.
                 //PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12, PdfFontStyle.Bold);
-                PdfFont font = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 12 , PdfFontStyle.Bold);
+                PdfFont font = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 12, PdfFontStyle.Bold);
                 PdfStringFormat sf = new PdfStringFormat();
                 sf.Alignment = PdfTextAlignment.Center;
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
-                
+
                 RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
-                graphics.DrawString(string.Format("NovaTest {0}({1})",loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
+                graphics.DrawString(string.Format("NovaTest {0}({1})", loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
 
                 RectangleF rf1 = new RectangleF(0, 35, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf1);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf1);
 
                 RectangleF rf2 = new RectangleF(220, 35, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf2);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf2);
 
                 RectangleF rf3 = new RectangleF(0, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf3);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf3);
 
                 RectangleF rf4 = new RectangleF(220, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf4);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf4);
 
                 RectangleF rf5 = new RectangleF(0, 75, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("SelectGas1"), GasComboBox.SelectedValue.ToString()), font, PdfBrushes.Black, rf5);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SelectGas1"), GasComboBox.SelectedValue.ToString()), font, PdfBrushes.Black, rf5);
 
                 RectangleF rf6 = new RectangleF(220, 75, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("ConcentrationPPB"), ConcentrationName.Text), font, PdfBrushes.Black, rf6);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ConcentrationPPB"), ConcentrationName.Text), font, PdfBrushes.Black, rf6);
 
 
                 //Initializing to render to Bitmap
@@ -875,7 +1070,7 @@ namespace nanovaTest.Calibrate
                 document.Close(true);
                 //fileFloder dir calibrate -->methodFileName -->dateTimeFileName
                 StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
-                StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate", 
+                StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate",
                     CreationCollisionOption.OpenIfExists);
                 StorageFolder pdfFolder = await calibrateFolder.CreateFolderAsync(methodFileName,
                     CreationCollisionOption.OpenIfExists);
@@ -891,7 +1086,28 @@ namespace nanovaTest.Calibrate
                 NotifyPopup notifyPopup = new NotifyPopup(loader.GetString("SaveSuccess"));
                 notifyPopup.Show();
             }
+            updateVOC();
         }
+
+        //update VOC library
+        private void updateVOC()
+        {
+            StandardConcentration = float.Parse(ConcentrationName.Text);
+            CalibrateSelected = GasComboBox.SelectedValue.ToString();
+            //VOCconcentration = float.Parse(ConcentrationName.Text);
+            Debug.WriteLine(CalibrateSelected);
+            for (int i = 0; i < VOCNameList.Count; i++)
+            {
+                if (CalibrateSelected.Equals(VOCNameList[i]))
+                {
+                    Debug.WriteLine(RetentionTimeList[i]);
+                }
+            }
+            //testInfoList[0].Area;
+        }
+
+
+
         //Connect to arduino
         public async void devices_list()
         {
@@ -900,7 +1116,6 @@ namespace nanovaTest.Calibrate
             ushort pid = 0x7523;
             //ushort pid = 0x0042;
             string selector = SerialDevice.GetDeviceSelectorFromUsbVidPid(vid, pid);
-            services = await DeviceInformation.FindAllAsync(selector);
 
             //add other possible port
             if (selector.Length < 260)
@@ -909,8 +1124,10 @@ namespace nanovaTest.Calibrate
                 pid = 0x0010;
                 selector = SerialDevice.GetDeviceSelectorFromUsbVidPid(vid, pid);
             }
+
             //end add other port
 
+            services = await DeviceInformation.FindAllAsync(selector);
             if (services.Count > 0)
             {
                 DeviceInformation deviceInfo = services[0];
@@ -1201,11 +1418,13 @@ namespace nanovaTest.Calibrate
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope
-        private double THRESHOLD_peak = 3.0;       //for peak detection: slope
+        private double THRESHOLD_peak = 2f;       //for peak detection: slope
+        private double retentionTimeThreshold = 2;
 
         public void WholeDataAnalysis(List<double> OriginalXv, List<double> OriginalYv, List<double> BaseLineYv, List<int> peaksv, List<int> bottomsv, List<double> Areav, List<double> Heightsv, double MinY)
         {
             // initialize y_b
+            x_b.Clear();
             for (int v = 0; v < OriginalXv.Count; v++)
             {
                 if (OriginalYv[v] < MinY)
@@ -1276,7 +1495,7 @@ namespace nanovaTest.Calibrate
             int peakStart = 0;
             int peakStop = 0;
             double slope = 0; //current slope
-            List<double> values = new List<double>(); //save three consecutive slopes
+            List<double> values = new List<double>(); //save thre  e consecutive slopes
 
             //calculate the slopes of all scans
             for (int b = 0; b < signalAmount - 1; b++)
@@ -1313,12 +1532,14 @@ namespace nanovaTest.Calibrate
                         //find peak
                         peakStart = scan;
                         peakMax = peakStart;
-                        while (slopes[peakMax] > 0 && peakMax < size - 1 && (OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        while (slopes[peakMax] > 0 && peakMax < size - 1)
                         {
                             peakMax++;
                         }
-                        peaks.Add(peakMax);
-
+                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        {
+                            peaks.Add(peakMax);
+                        }
                         //find peakStop
                         peakStop = peakMax;
                         if (peakStop == size - 1) break; //the last scan is a peak
@@ -1326,7 +1547,10 @@ namespace nanovaTest.Calibrate
                         {
                             peakStop++;
                         }
-                        bottoms.Add(peakStop);
+                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        {
+                            bottoms.Add(peakStop);
+                        }
                         scan = peakStop;
                     }
                     else
@@ -1373,15 +1597,21 @@ namespace nanovaTest.Calibrate
             //integration
             if (peaks != null)
             {
-                for (int index = 0; index < peaks.Count; index++)
+                try
                 {
-                    Area.Add(0);  //initialize
-                    for (int p2 = bottoms[index]; p2 < bottoms[index + 1]; p2++)
+                    for (int index = 0; index < peaks.Count; index++)
                     {
-                        Area[index] = (Area[index] + CorrectedY[p2] * 0.1);
+                        Area.Add(0);  //initialize
+                        for (int p2 = bottoms[index]; p2 < bottoms[index + 1]; p2++)
+                        {
+                            Area[index] = (Area[index] + CorrectedY[p2] * 0.1);
+                        }
+                        Heights.Add(CorrectedY[peaks[index]]);
+                        //data.Add(new Item(index + 1, OriginalX[bottoms[index]], OriginalX[peaks[index]], OriginalX[bottoms[index + 1]], Heights[index], Area[index], FWHMvalue));
                     }
-                    Heights.Add(CorrectedY[peaks[index]]);
-                    //data.Add(new Item(index + 1, OriginalX[bottoms[index]], OriginalX[peaks[index]], OriginalX[bottoms[index + 1]], Heights[index], Area[index], FWHMvalue));
+                }
+                catch (Exception ex)
+                {
                 }
             }
             else //no peak is found 
@@ -1410,7 +1640,7 @@ namespace nanovaTest.Calibrate
             double EndX = 0;
             for (int i = startposition; i < peakposition; i++)
             {
-                if (Math.Abs(OriginalY[i] - HalfHeight) < mindistance)
+                if (Math.Abs(CorrectedY[i] - HalfHeight) < mindistance)
                 {
                     mindistance = Math.Abs(CorrectedY[i] - HalfHeight);
                     StartX = OriginalX[i];

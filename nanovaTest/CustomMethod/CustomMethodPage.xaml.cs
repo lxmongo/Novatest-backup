@@ -367,8 +367,8 @@ namespace nanovaTest.CustomMethod
 
                         var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
                         encoder.SetPixelData(
-                            BitmapPixelFormat.Bgra8,
-                            BitmapAlphaMode.Ignore,
+                            BitmapPixelFormat.Yuy2,
+                            BitmapAlphaMode.Premultiplied,
                             (uint)renderTargetBitmap.PixelWidth,
                             (uint)renderTargetBitmap.PixelHeight,
                             logicalDpi,
