@@ -82,6 +82,8 @@ namespace nanovaTest.Calibrate
         //VOC concentrate data
         private double StandardConcentration;
         private double VOCconcentration;
+        private double VOCresponseFactor;
+        private List<double> VOCconcentrationList;
         private string CalibrateSelected;
 
         //temp profile from json file, length =18
@@ -1090,20 +1092,65 @@ namespace nanovaTest.Calibrate
         }
 
         //update VOC library
-        private void updateVOC()
+        private async void updateVOC()
         {
             StandardConcentration = float.Parse(ConcentrationName.Text);
             CalibrateSelected = GasComboBox.SelectedValue.ToString();
             //VOCconcentration = float.Parse(ConcentrationName.Text);
             Debug.WriteLine(CalibrateSelected);
-            for (int i = 0; i < VOCNameList.Count; i++)
+            for (int i = 0; i < testInfoList.Count; i++)
             {
-                if (CalibrateSelected.Equals(VOCNameList[i]))
+                //if there is same peak detected
+                if (CalibrateSelected.Equals(testInfoList[i].VOCName))
                 {
-                    Debug.WriteLine(RetentionTimeList[i]);
+                    //Calculate the Concetration Factor
+                    Debug.WriteLine(testInfoList[i].Area);
+                    double GasVolume = FlowRate * Sampletimeuwp;
+                    VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
+                    if (VOCconcentration > 0)
+                    {
+                        int index = 0;
+                        //Calcilate other factor based on the Single gas, initial the list with one value and record the index of test gas
+                        for (int j = 0; j < VOCNameList.Count; j++)
+                        {
+                            //if selected method == Name in the VOClist
+                            if (VOCNameList[j] == CalibrateSelected)
+                            {
+                                index = j;
+                                VOCresponseFactor = ResposeFactorList[j];
+                                VOCconcentrationList.Add(VOCconcentration);
+                            }
+                            else
+                            {
+                                VOCconcentrationList.Add(VOCconcentration);
+                            }
+                        }
+                        //Calculate other concentrations
+                        for (int k = 0; k < VOCconcentrationList.Count; k++)
+                        {
+                            if (k != index)
+                            {
+                                VOCconcentrationList[k] *= ResposeFactorList[k] / VOCresponseFactor;
+                            }
+                        }
+                    }
+                    if (VOCconcentrationList.Count != VOCNameList.Count)
+                    {
+                        MessageDialog popup = new MessageDialog("Update hasn't completed properly!");
+                        await popup.ShowAsync();
+                    }
+                }
+                else
+                {
+                    MessageDialog popup = new MessageDialog("No Peak has been found to update!");
+                    await popup.ShowAsync();
                 }
             }
-            //testInfoList[0].Area;
+            if (testInfoList.Count == 0)
+            {
+                MessageDialog popup = new MessageDialog("No Peak has been found to update!");
+                await popup.ShowAsync();
+            }
         }
 
 
@@ -1414,7 +1461,7 @@ namespace nanovaTest.Calibrate
             }
         }
         //******************************Data analysis process*******************************//
-        private int constant_m = 25; // for SNIP baseline formula
+        private int constant_m = 45; // for SNIP baseline formula
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope
