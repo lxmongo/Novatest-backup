@@ -83,7 +83,7 @@ namespace nanovaTest.Calibrate
         private double StandardConcentration;
         private double VOCconcentration;
         private double VOCresponseFactor;
-        private List<double> VOCconcentrationList;
+        private List<double> VOCconcentrationList = new List<double>();
         private string CalibrateSelected;
 
         //temp profile from json file, length =18
@@ -250,6 +250,7 @@ namespace nanovaTest.Calibrate
             bottoms2.Clear();    //save all the bottoms
             Area2.Clear();
             Heights2.Clear();
+            VOCconcentrationList.Clear();
             MinY1 = 100;
             MinY2 = 100;
         }
@@ -1094,6 +1095,7 @@ namespace nanovaTest.Calibrate
         //update VOC library
         private async void updateVOC()
         {
+            //Debug.WriteLine(float.Parse(ConcentrationName.Text));
             StandardConcentration = float.Parse(ConcentrationName.Text);
             CalibrateSelected = GasComboBox.SelectedValue.ToString();
             //VOCconcentration = float.Parse(ConcentrationName.Text);
@@ -1150,6 +1152,27 @@ namespace nanovaTest.Calibrate
             {
                 MessageDialog popup = new MessageDialog("No Peak has been found to update!");
                 await popup.ShowAsync();
+            }
+
+            //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+            StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
+                CreationCollisionOption.OpenIfExists);
+            StorageFolder pdfFolder = await calibrateFolder.CreateFolderAsync(methodFileName,
+                CreationCollisionOption.OpenIfExists);
+            //write a raw data file
+            FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+            Rawfile = await pdfFolder.CreateFileAsync("Cali_" + methodFileName + "_raw_" + FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+            await Windows.Storage.FileIO.AppendTextAsync(Rawfile, "Method: " + methodFileName + "\n"
+                + "calculated CF list" + "\n");
+            if (VOCconcentrationList.Count > 0)
+            {
+                for (int i = 0; i < VOCconcentrationList.Count; i++)
+                {
+                    await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                        VOCNameList[i] + " " + VOCconcentrationList[i]);
+                }
             }
         }
 
