@@ -509,8 +509,6 @@ namespace nanovaTest.SelectMethod
 
 
         //update rentention time if there is a update txt file in specific location
-
-        
         private async void UpdateRentention(string fileName)
         {
             try
@@ -567,7 +565,6 @@ namespace nanovaTest.SelectMethod
             {
                 Debug.WriteLine("Update file not found");
             }
-
         }
 
 

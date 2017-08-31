@@ -327,6 +327,7 @@ namespace nanovaTest.Calibrate
                     initGas(fileName);
                     ReadFromJson(fileName);
                     GasComboBox.ItemsSource = GasComboList;
+                    UpdateRentention(FromSelect);
                 }
             }
         }
@@ -416,6 +417,77 @@ namespace nanovaTest.Calibrate
                 await popup.ShowAsync();
             }
         }
+
+        //update rentention time if there is a update txt file in specific location
+        private async void UpdateRentention(string fileName)
+        {
+            try
+            {
+                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder retentionFolder = await applicationFolder.CreateFolderAsync("Retention_update",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(methodFileName,
+                    CreationCollisionOption.OpenIfExists);
+                //Query the file
+                List<string> fileTypeFilter = new List<string>();
+                fileTypeFilter.Add(".dat");
+                var queryOptions = new Windows.Storage.Search.QueryOptions(Windows.Storage.Search.CommonFileQuery.OrderByName, fileTypeFilter);
+
+                // Create query and retrieve files
+                var query = pdfFolder.CreateFileQueryWithOptions(queryOptions);
+                IReadOnlyList<StorageFile> fileList = await query.GetFilesAsync();
+                // Process results
+                long maxvalue = 0;
+                foreach (StorageFile file in fileList)
+                {
+                    // Process file
+                    Debug.WriteLine(file.Name);
+                    if (long.Parse(file.Name.Split('.')[0]) > maxvalue)
+                    {
+                        maxvalue = long.Parse(file.Name.Split('.')[0]);
+                    }
+                }
+                Debug.WriteLine(maxvalue);
+
+                //Get the latest file 
+                string latestFilename = maxvalue.ToString() + ".dat";
+                StorageFile latestFile = await pdfFolder.GetFileAsync(latestFilename);
+
+                if (latestFile != null)
+                {
+                    Debug.WriteLine("Update file found");
+                }
+
+                IBuffer buffer = await FileIO.ReadBufferAsync(latestFile);
+                DataReader reader = DataReader.FromBuffer(buffer);
+                byte[] fileContent = new byte[reader.UnconsumedBufferLength];
+                reader.ReadBytes(fileContent);
+                string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
+                String[] result = text.Split(new[] { ',' });
+                for (int i = 0; i < result.Length; i++)
+                {
+                    RetentionTimeList[i] = Math.Round(float.Parse(result[i]), 2);
+                    Debug.WriteLine(RetentionTimeList[i]);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine("Update file not found");
+            }
+        }
+
+        public static System.Text.Encoding GetEncoding(byte[] bom)
+        {
+            // Analyze the BOM
+            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return System.Text.Encoding.UTF7;
+            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return System.Text.Encoding.UTF8;
+            if (bom[0] == 0xff && bom[1] == 0xfe) return System.Text.Encoding.Unicode; //UTF-16LE
+            if (bom[0] == 0xfe && bom[1] == 0xff) return System.Text.Encoding.BigEndianUnicode; //UTF-16BE
+            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return System.Text.Encoding.UTF32;
+            return System.Text.Encoding.ASCII;
+        }
+
         private async void initGas(string fileName)
         {
             var folder = await Package.Current.InstalledLocation.GetFolderAsync("Assets");
