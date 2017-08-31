@@ -1484,7 +1484,7 @@ namespace nanovaTest.Calibrate
             }
         }
         //******************************Data analysis process*******************************//
-        private int constant_m = 45; // for SNIP baseline formula
+        private int constant_m = 35; // for SNIP baseline formula
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope
