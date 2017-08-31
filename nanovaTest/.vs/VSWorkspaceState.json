@@ -1,0 +1,19 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\bin\\x86",
+    "\\bin\\x86\\Debug",
+    "\\CustomMethod",
+    "\\MethodHistory",
+    "\\obj",
+    "\\obj\\x86",
+    "\\obj\\x86\\Release",
+    "\\obj\\x86\\Release\\MethodHistory",
+    "\\obj\\x86\\Release\\SelectMethod",
+    "\\obj\\x86\\Release\\SelectMethod\\Setting",
+    "\\SelectMethod"
+  ],
+  "SelectedNode": "\\Assets",
+  "PreviewInSolutionExplorer": false
+}
