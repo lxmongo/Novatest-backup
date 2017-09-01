@@ -787,6 +787,7 @@ namespace nanovaTest.Calibrate
                                 }
                                 currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
                                 string currentvocname = VOCNameList[j];
+                                string currentCF = VOCconcentrationList[j].ToString("0.00");
                                 if (j == 3)
                                     currentvocname = currentvocname + " & " + VOCNameList[j + 1];
                                 if (j != 4)
@@ -800,7 +801,7 @@ namespace nanovaTest.Calibrate
                                         //FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        //Concentration = currentconcen.ToString("0.00")
+                                        ConcentrationFactor = currentCF
                                     });
                                 }
 
@@ -834,8 +835,8 @@ namespace nanovaTest.Calibrate
                                         //FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        //Concentration = currentconcen.ToString("0.00")
-                                    });
+                                        ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
+                                });
                                 }
                             }
                             InfoListView.Visibility = Visibility;
@@ -868,8 +869,8 @@ namespace nanovaTest.Calibrate
                                             //FWHM = FWHMvalue.ToString("0.00"),
                                             Height = currentvocheight.ToString("0.00"),
                                             Area = currentvocarea.ToString("0.00"),
-                                            //Concentration = ResposeFactorList[0].ToString("0.00")
-                                        });
+                                            ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
+                                    });
                                     }
                                 }
                                 //SecondaryGrid.Visibility = Visibility;
@@ -1174,6 +1175,11 @@ namespace nanovaTest.Calibrate
             Debug.WriteLine(CalibrateSelected);
             for (int i = 0; i < testInfoList.Count; i++)
             {
+                //update every point CF based on their concentration
+                double GasVolume = FlowRate * Sampletimeuwp;
+                VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
+                VOCconcentrationList.Add(VOCconcentration);
+                /*
                 //if there is same peak detected
                 if (CalibrateSelected.Equals(testInfoList[i].VOCName))
                 {
@@ -1183,6 +1189,7 @@ namespace nanovaTest.Calibrate
                     VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
                     if (VOCconcentration > 0)
                     {
+
                         int index = 0;
                         //Calcilate other factor based on the Single gas, initial the list with one value and record the index of test gas
                         for (int j = 0; j < VOCNameList.Count; j++)
@@ -1214,11 +1221,14 @@ namespace nanovaTest.Calibrate
                         await popup.ShowAsync();
                     }
                 }
+                */
+                /*
                 else
                 {
                     MessageDialog popup = new MessageDialog("No Peak has been found to update!");
                     await popup.ShowAsync();
                 }
+                */
             }
             if (testInfoList.Count == 0)
             {
@@ -1234,17 +1244,18 @@ namespace nanovaTest.Calibrate
                 CreationCollisionOption.OpenIfExists);
             //write a raw data file
             FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
-            Rawfile = await pdfFolder.CreateFileAsync("Cali_" + methodFileName + "_raw_" + FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
-            await Windows.Storage.FileIO.AppendTextAsync(Rawfile, "Method: " + methodFileName + "\n"
-                + "calculated CF list" + "\n");
+            //append text to the file
             if (VOCconcentrationList.Count > 0)
             {
-                for (int i = 0; i < VOCconcentrationList.Count; i++)
+                for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
                 {
                     await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                        VOCNameList[i] + " " + VOCconcentrationList[i]);
+                        VOCNameList[i] + ":" + VOCconcentrationList[i] + ",");
                 }
+                await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                    VOCNameList[VOCconcentrationList.Count - 1] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
             }
         }
 
