@@ -402,7 +402,7 @@ namespace nanovaTest.SelectMethod
                             break;
                     }
                     ReadFromJson(fileName);
-                    //UpdateRentention(FromSelect);
+                    UpdateRentention(FromSelect);
                 }
             }
         }
@@ -509,37 +509,64 @@ namespace nanovaTest.SelectMethod
 
 
         //update rentention time if there is a update txt file in specific location
-
-        /*
         private async void UpdateRentention(string fileName)
         {
-            //var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            //picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-            //picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-            //picker.FileTypeFilter.Add(".txt");
-
-            //StorageFile updatefile = await picker.PickSingleFileAsync();
-            //StorageFile updatefile = await DownloadsFolder.CreateFileAsync("Nanova\\TestNum.txt");
-
-            StorageFile updatefile = await StorageFile.GetFileFromPathAsync(@"c:\123.txt");
-            if (updatefile != null)
+            try
             {
-                Debug.WriteLine("it worls");
+                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder retentionFolder = await applicationFolder.CreateFolderAsync("Retention_update",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(methodFileName,
+                    CreationCollisionOption.OpenIfExists);
+                //Query the file
+                List<string> fileTypeFilter = new List<string>();
+                fileTypeFilter.Add(".dat");
+                var queryOptions = new Windows.Storage.Search.QueryOptions(Windows.Storage.Search.CommonFileQuery.OrderByName, fileTypeFilter);
+
+                // Create query and retrieve files
+                var query = pdfFolder.CreateFileQueryWithOptions(queryOptions);
+                IReadOnlyList<StorageFile> fileList = await query.GetFilesAsync();
+                // Process results
+                long maxvalue = 0;
+                foreach (StorageFile file in fileList)
+                {
+                    // Process file
+                    Debug.WriteLine(file.Name);
+                    if (long.Parse(file.Name.Split('.')[0]) > maxvalue)
+                    {
+                        maxvalue = long.Parse(file.Name.Split('.')[0]);
+                    }
+                }
+                Debug.WriteLine(maxvalue);
+
+                //Get the latest file 
+                string latestFilename = maxvalue.ToString() + ".dat";
+                StorageFile latestFile = await pdfFolder.GetFileAsync(latestFilename);
+
+                if (latestFile != null)
+                {
+                    Debug.WriteLine("Update file found");
+                }
+
+                IBuffer buffer = await FileIO.ReadBufferAsync(latestFile);
+                DataReader reader = DataReader.FromBuffer(buffer);
+                byte[] fileContent = new byte[reader.UnconsumedBufferLength];
+                reader.ReadBytes(fileContent);
+                string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
+                String[] result = text.Split(new[] { ',' });
+                for (int i = 0; i < result.Length; i++)
+                {
+                    RetentionTimeList[i] = Math.Round(float.Parse(result[i]), 2);
+                    Debug.WriteLine(RetentionTimeList[i]);
+                }
             }
-
-            IBuffer buffer = await FileIO.ReadBufferAsync(updatefile);
-            DataReader reader = DataReader.FromBuffer(buffer);
-            byte[] fileContent = new byte[reader.UnconsumedBufferLength];
-            reader.ReadBytes(fileContent);
-            string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
-            String[] result = text.Split(new[] { '\n' });
-
-            for (int i = 0; i < result.Length; i++)
+            catch(FileNotFoundException)
             {
-                Debug.WriteLine(result[i]);
+                Debug.WriteLine("Update file not found");
             }
         }
-        */
+
 
 
 
@@ -1597,7 +1624,7 @@ namespace nanovaTest.SelectMethod
             UsedTime = -5;
     }
         //******************************Data analysis process*******************************//
-        private int constant_m = 45; // for SNIP baseline formula
+        private int constant_m = 35; // for SNIP baseline formula
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope
@@ -2068,19 +2095,22 @@ namespace nanovaTest.SelectMethod
             }
 
             //write the data back to the Json file
-            var folder = await Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            var methodfile = await folder.GetFileAsync(fileName);
-            using (var stream = await methodfile.OpenStreamForReadAsync())
+            //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+            StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder retentionFolder = await applicationFolder.CreateFolderAsync("Retention_update",
+                CreationCollisionOption.OpenIfExists);
+            StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(methodFileName,
+                CreationCollisionOption.OpenIfExists);
+            //write a raw data file
+            FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+            Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+            if (RetentionTimeList.Count > 0)
             {
-                using (var jsonreader = new StreamReader(stream))
+                for (int i = 0; i < RetentionTimeList.Count; i++)
                 {
-                    var content = jsonreader.ReadToEnd();
-                    JsonObject json = JsonObject.Parse(content);
-                    for (var index = 0; index < json.GetNamedArray("VOCRetentionTime").Count; index++)
-                    {
-                        json.GetNamedArray("VOCRetentionTime")[index] = JsonValue.CreateNumberValue(RetentionTimeList[index]);
-                        Debug.WriteLine(json.GetNamedArray("VOCRetentionTime")[index]);
-                    }
+                    await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                        RetentionTimeList[i] + ",");
                 }
             }
         }
