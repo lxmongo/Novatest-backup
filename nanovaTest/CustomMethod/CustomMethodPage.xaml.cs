@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
+using Syncfusion.Pdf.Graphics.Images;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using System.Globalization;
 using Windows.ApplicationModel.Resources;
@@ -236,15 +237,15 @@ namespace nanovaTest.CustomMethod
             y_b1.Clear();
             peaks1.Clear();//save all the peaks
             bottoms1.Clear(); //save all the bottoms
-            Area1.Clear(); 
-            Heights1.Clear(); 
+            Area1.Clear();
+            Heights1.Clear();
             x2.Clear();     //2D signal
             y2.Clear();
             y_b2.Clear();  //2D baseline
             peaks2.Clear();     //save all the peaks
             bottoms2.Clear();    //save all the bottoms
-            Area2.Clear(); 
-            Heights2.Clear(); 
+            Area2.Clear();
+            Heights2.Clear();
         }
         private async void initOperator()
         {
@@ -276,7 +277,7 @@ namespace nanovaTest.CustomMethod
                 }
             }
         }
-
+      
         private async void savePdf()
         {
             //Create a new PDF document.
@@ -418,6 +419,7 @@ namespace nanovaTest.CustomMethod
                         //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
 
                         PdfImage img = PdfImage.FromStream(stream1.AsStream());
+                        //pdfMetafile pdfMetafile = PdfImage.FromStream(stream1.AsStream());
                         //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
                         document.Pages[1].Graphics.DrawImage(img, new RectangleF(0, 0, 510, 450));
                     }
@@ -1781,7 +1783,7 @@ namespace nanovaTest.CustomMethod
         }
 
         //******************************Data analysis process*******************************//
-        private int constant_m = 45; // for SNIP baseline formula
+        private int constant_m = 35; // for SNIP baseline formula
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope

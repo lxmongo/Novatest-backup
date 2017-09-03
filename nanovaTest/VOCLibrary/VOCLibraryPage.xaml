@@ -89,7 +89,7 @@
             </Grid>
             <Grid Grid.Column="1">
                 <ScrollViewer>
-                    <ListView Margin="0,30,10,0" ItemsSource="{x:Bind VOCLibraryList}" IsHitTestVisible="False">
+                    <ListView x:Name="VOCViewList" Margin="0,30,10,0" ItemsSource="{x:Bind VOCLibraryList}" IsHitTestVisible="False">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="local:TestInfo">
                                 <Grid Height="40" Margin="-11 0 -11 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
