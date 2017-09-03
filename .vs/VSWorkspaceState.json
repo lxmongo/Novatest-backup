@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\nanovaTest",
+    "\\nanovaTest\\CustomMethod"
   ],
+  "SelectedNode": "\\nanovaTest\\CustomMethod\\CustomMethodPage.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
