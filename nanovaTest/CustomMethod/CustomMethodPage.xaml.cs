@@ -300,16 +300,16 @@ namespace nanovaTest.CustomMethod
                 RectangleF rf1 = new RectangleF(0, 35, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
 
-                RectangleF rf2 = new RectangleF(220, 35, 400, 40);
+                RectangleF rf2 = new RectangleF(0, 55, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
 
-                RectangleF rf3 = new RectangleF(0, 55, 400, 40);
+                RectangleF rf3 = new RectangleF(0, 75, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf3);
 
-                RectangleF rf4 = new RectangleF(0, 75, 400, 40);
+                RectangleF rf4 = new RectangleF(0, 95, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf4);
 
-                RectangleF rf5 = new RectangleF(220, 75, 400, 40);
+                RectangleF rf5 = new RectangleF(0, 105, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf5);
 
                 RectangleF rf6 = new RectangleF(0, 95, 400, 40);

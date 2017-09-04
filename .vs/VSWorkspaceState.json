@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\nanovaTest",
-    "\\nanovaTest\\CustomMethod"
+    "\\nanovaTest\\CustomMethod",
+    "\\nanovaTest\\SelectMethod"
   ],
-  "SelectedNode": "\\nanovaTest\\CustomMethod\\CustomMethodPage.xaml.cs",
+  "SelectedNode": "\\nanovaTest.sln",
   "PreviewInSolutionExplorer": false
 }

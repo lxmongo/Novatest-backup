@@ -1253,7 +1253,7 @@ namespace nanovaTest.SelectMethod
                 //Access the PDF graphics instance of the page.
                 PdfGraphics graphics = page.Graphics;
                 //Create the PDF font instance.
-                PdfFont font = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 12, PdfFontStyle.Bold);
+                PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 12, PdfFontStyle.Bold);
                 PdfStringFormat sf = new PdfStringFormat();
                 sf.Alignment = PdfTextAlignment.Center;
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
@@ -1261,59 +1261,109 @@ namespace nanovaTest.SelectMethod
                 RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
                 graphics.DrawString(string.Format("NovaTest {0}({1})", loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
 
-                RectangleF rf1 = new RectangleF(0, 35, 400, 40);
+                RectangleF rf1 = new RectangleF(0, 35, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
 
-                RectangleF rf2 = new RectangleF(220, 35, 400, 40);
+                //RectangleF rf2 = new RectangleF(220, 35, 400, 40);
+                RectangleF rf2 = new RectangleF(0, 55, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
 
-                RectangleF rf3 = new RectangleF(0, 55, 400, 40);
+                RectangleF rf3 = new RectangleF(250, 35, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}",loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf3);
 
+                RectangleF rf4 = new RectangleF(0, 75, 400, 30);
+                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("M/d/yyyy", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf4);
 
-                RectangleF rf4 = new RectangleF(220, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf4);
-
-                RectangleF rf5 = new RectangleF(0, 75, 400, 40);
+                RectangleF rf5 = new RectangleF(250, 55, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf5);
                 
-                RectangleF rf6 = new RectangleF(220, 75, 400, 40);
+                RectangleF rf6 = new RectangleF(250, 75, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf6);
 
+                //RectangleF rf7 = new RectangleF(220, 95, 400, 40);
+                //graphics.DrawString("Gc Spectrum", font, PdfBrushes.Black, new PointF(210, 95));
 
                 //Initializing to render to Bitmap
-                var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-                var renderTargetBitmap = new RenderTargetBitmap();
+                //var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                //var renderTargetBitmap = new RenderTargetBitmap();
 
-                //Create the Bitmpa from xaml page
-                await renderTargetBitmap.RenderAsync(CustomGrid,510,1600);
-                //CustomImage.Source = renderTargetBitmap;
-                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+                ////Create the Bitmpa from xaml page
+                //await renderTargetBitmap.RenderAsync(CustomGrid,510,1600);
+                ////CustomImage.Source = renderTargetBitmap;
+                //var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
-                //Save the XAML in Bitmap image
-                using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
-                {
+                ////Save the XAML in Bitmap image
+                //using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                //{
 
-                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                    encoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Ignore,
-                        (uint)renderTargetBitmap.PixelWidth,
-                        (uint)renderTargetBitmap.PixelHeight,
-                        logicalDpi,
-                        logicalDpi,
-                        pixelBuffer.ToArray());
+                //    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                //    encoder.SetPixelData(
+                //        BitmapPixelFormat.Bgra8,
+                //        BitmapAlphaMode.Ignore,
+                //        (uint)renderTargetBitmap.PixelWidth,
+                //        (uint)renderTargetBitmap.PixelHeight,
+                //        logicalDpi,
+                //        logicalDpi,
+                //        pixelBuffer.ToArray());
 
-                    await encoder.FlushAsync();
+                //    await encoder.FlushAsync();
 
-                    //Load and draw the Bitmap image in PDF
-                    //PdfImage img = PdfImage.FromStream(stream.AsStream());
-                    //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
+                //    //Load and draw the Bitmap image in PDF
+                //    //PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //    //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
 
-                    PdfImage img = PdfImage.FromStream(stream.AsStream());
-                    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
-                }
+                //    PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
+                //    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
+                //}
+
+
+                //footer
+
+                RectangleF bounds = new RectangleF(0, 0, document.Pages[0].GetClientSize().Width, 100);
+                PdfPageTemplateElement header = new PdfPageTemplateElement(bounds);
+
+                // information about novatest
+
+                SizeF pageSize = document.Pages[0].Size;
+
+                //Create a PdfPageTemplateElement object that will be  
+                //used as footer space  
+                // PdfPageTemplateElement footerSpace = new PdfPageTemplateElement(pageSize.Width, margin.Bottom);
+                PdfPageTemplateElement footerSpace = new PdfPageTemplateElement(bounds);
+                PdfFont footerfont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12);
+                footerSpace.Foreground = true;
+                document.Template.Bottom = footerSpace;
+
+                //Draw text at the center of footer space  
+                // PdfTrueTypeFont fontfooter = new PdfTrueTypeFont(new Font("Arial", 9f, FontStyle.Bold), true);
+                PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Center);
+                String headerText = "Copyright © 2017 Nanova Environmental, Inc. www.nanovaenv.com";
+                String headerText1 = "All Rights Reserved";
+                //String address = "3338 Brown Station Rd, Columbia, MO, 65202";
+                //String website = " ";
+                float x = pageSize.Width / 2;
+                float y = 0f;
+                float y1 = 15f;
+                float y2 = 30f;
+                float y3 = 45f;
+                footerSpace.Graphics.DrawString(headerText, font, PdfBrushes.Black, x, y, format);
+                footerSpace.Graphics.DrawString(headerText1, font, PdfBrushes.Black, x, y1, format);
+                //footerSpace.Graphics.DrawString(address, font, PdfBrushes.Black, x, y2, format);
+                //footerSpace.Graphics.DrawString(website, font, PdfBrushes.Black, x, y3, format);
+                //Create page number automatic field  
+                PdfPageNumberField number = new PdfPageNumberField();
+                //Create page count automatic field  
+                PdfPageCountField count = new PdfPageCountField();
+                //Add the fields in composite field  
+                PdfCompositeField compositeField = new PdfCompositeField(font, PdfBrushes.Black, "Page {0} of {1}", number, count);
+                //Align string of "Page {0} of {1}" to center   
+                compositeField.StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Bottom);
+                compositeField.Bounds = footerSpace.Bounds;
+                //Draw composite field at footer space  
+                compositeField.Draw(footerSpace.Graphics);
+
+
 
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();

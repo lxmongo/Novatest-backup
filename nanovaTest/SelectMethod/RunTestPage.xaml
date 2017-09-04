@@ -316,7 +316,7 @@
                                     </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
                                     </Charts:FastLineSeries>
 
-                                    <Charts:FastLineSeries x:Name="StandardSeries"
+                                    <Charts:FastLineSeries
                                                      XBindingPath="X" 
                                                      ShowTooltip="True" 
                                                      YBindingPath="Y" >
