@@ -1218,14 +1218,17 @@ namespace nanovaTest.SelectMethod
                 var renderTargetBitmap = new RenderTargetBitmap();
 
                 //Create the Bitmpa from xaml page
-                await renderTargetBitmap.RenderAsync(CustomGrid,510,1600);
+                double gridWidth = CustomGrid.ActualWidth;
+                double gridHeight = CustomGrid.ActualHeight;
+                await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
+                Debug.WriteLine(gridWidth);
+                Debug.WriteLine(gridHeight);
                 //CustomImage.Source = renderTargetBitmap;
                 var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
                 //Save the XAML in Bitmap image
                 using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
                 {
-
                     var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
                     encoder.SetPixelData(
                         BitmapPixelFormat.Bgra8,
@@ -1237,16 +1240,14 @@ namespace nanovaTest.SelectMethod
                         pixelBuffer.ToArray());
 
                     await encoder.FlushAsync();
-
                     //Load and draw the Bitmap image in PDF
                     //PdfImage img = PdfImage.FromStream(stream.AsStream());
                     //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
-
+                    
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
+                    graphics.DrawImage(img, new RectangleF(0, 105, (float)gridWidth / 1.3f, (float)gridHeight / 1.1f));
                 }
-
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();
                 document.Save(docStream);
