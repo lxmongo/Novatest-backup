@@ -57,18 +57,6 @@
                 <Grid Grid.Column="1" HorizontalAlignment="Center">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_TVOC_Click" >
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
-                                    <Run Text="TVOC" />
-                            </TextBlock>
-                        </StackPanel>
-                    </Button>
-                </Grid>
-                <Grid Grid.Column="2" HorizontalAlignment="Left">
-                    <Button 
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
                         BorderThickness="0" Height="55" Width="200" Click="Button_BTEX_Click" >
                         <StackPanel Orientation="Horizontal">
                             <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
@@ -78,6 +66,22 @@
                                     <Run Text="( 6 "/>
                                     <Run Text="gases" x:Uid="Gases"/>
                                     <Run Text=")"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2" HorizontalAlignment="Left">
+                    <Button 
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
+                        BorderThickness="0" Height="55" Width="200" Click="Button_EA_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
+                                <Run Text="Air Quality" x:Uid="AirQuality"/>
+                                <LineBreak />
+                                <Run Text="( 22 "/>
+                                <Run Text="gases" x:Uid="Gases"/>
+                                <Run Text=")"/>
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -93,10 +97,10 @@
                 <Grid Grid.Column="0" HorizontalAlignment="Right">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_TCE_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="delete_Button_TCE_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
+                            <Image  Source="ms-appx:///Assets/methodgray.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="TCE/PCE"/>
                                     <LineBreak />
                                     <Run Text="( 2 "/>
@@ -109,10 +113,10 @@
                 <Grid Grid.Column="1" HorizontalAlignment="Center">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_MG_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="delete_Button_MG_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
+                            <Image  Source="ms-appx:///Assets/methodgray.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="Malodorous Gas" x:Uid="MalodorousGas"/>
                                     <LineBreak />
                                     <Run Text="( 8 "/>
@@ -125,10 +129,10 @@
                 <Grid Grid.Column="2" HorizontalAlignment="Left">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_VI_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="delete_Button_VI_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
+                            <Image  Source="ms-appx:///Assets/methodgray.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FFFFFF">
                                     <Run Text="Vehicle" x:Uid="Vehicle"/>
                                     <LineBreak />
                                     <Run Text="( 9 "/>
@@ -149,15 +153,11 @@
                 <Grid Grid.Column="0" HorizontalAlignment="Right">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_EA_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="delete_Button_TVOC_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
-                                <Run Text="Air Quality" x:Uid="AirQuality"/>
-                                <LineBreak />
-                                <Run Text="( 22 "/>
-                                <Run Text="gases" x:Uid="Gases"/>
-                                <Run Text=")"/>
+                            <Image  Source="ms-appx:///Assets/methodgray.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FFFFFF">
+                                    <Run Text="TVOC" />
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -165,10 +165,10 @@
                 <Grid Grid.Column="1" HorizontalAlignment="Center">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_PS_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="delete_Button_PS_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
+                            <Image  Source="ms-appx:///Assets/methodgray.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FFFFFF">
                                 <Run Text="Pollution Source" x:Uid="PollutionSource"/>
                                 <LineBreak />
                                 <Run Text="( 20 "/>
@@ -181,10 +181,10 @@
                 <Grid Grid.Column="2" HorizontalAlignment="Left">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_Water_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="delete_Button_Water_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image x:Name="ConfigImage" Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
-                            <TextBlock TextAlignment="Center" Margin="-190,5,0,0" Foreground="#FFFFFF">
+                            <Image x:Name="ConfigImage" Source="ms-appx:///Assets/methodgray.png" Stretch="UniformToFill"/>
+                            <TextBlock TextAlignment="Center" Margin="0,5,0,0" Foreground="#FFFFFF">
                                 <Run Text="Water Quality" x:Uid="WaterQuality"/>
                                 <LineBreak />
                                 <Run Text="( 14 "/>
