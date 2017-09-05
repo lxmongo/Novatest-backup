@@ -162,8 +162,8 @@ namespace nanovaTest.SelectMethod
             initPage();
         }
 
-      
-        
+
+
         public void Dispose()
         {
             if(null != testInfoList)
@@ -1241,7 +1241,6 @@ namespace nanovaTest.SelectMethod
             XaxisMax1 = 100;
             YaxisMax1 = 20;
         }
-        
 
         private async void savePdf()
         {
@@ -1259,63 +1258,78 @@ namespace nanovaTest.SelectMethod
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
                 
                 RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
-                graphics.DrawString(string.Format("NovaTest {0}({1})", loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
+                graphics.DrawString(string.Format("NovaTest {0}", loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
 
-                RectangleF rf1 = new RectangleF(0, 35, 400, 30);
+                RectangleF rf1 = new RectangleF(0, 30, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
 
                 //RectangleF rf2 = new RectangleF(220, 35, 400, 40);
-                RectangleF rf2 = new RectangleF(0, 55, 400, 30);
+                RectangleF rf2 = new RectangleF(0, 50, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
 
-                RectangleF rf3 = new RectangleF(250, 35, 400, 30);
+                RectangleF rf3 = new RectangleF(350, 30, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}",loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf3);
 
-                RectangleF rf4 = new RectangleF(0, 75, 400, 30);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("M/d/yyyy", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf4);
+                RectangleF rf4 = new RectangleF(0, 70, 400, 30);
+                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf4);
 
-                RectangleF rf5 = new RectangleF(250, 55, 400, 30);
+                RectangleF rf7 = new RectangleF(0, 90, 400, 30);
+                String instrumentString = "Instrument:  NovaTest P100";
+                document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf7);
+
+                RectangleF rf5 = new RectangleF(350, 50, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf5);
                 
-                RectangleF rf6 = new RectangleF(250, 75, 400, 30);
+                RectangleF rf6 = new RectangleF(350, 70, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf6);
+
+                RectangleF rf8 = new RectangleF(350, 90, 400, 30);
+                String calibrationfileString = "Calibration file: N/A";
+                document.Pages[0].Graphics.DrawString(calibrationfileString, font, PdfBrushes.Black, rf8);
+
+
+                PdfPen bluePen = new PdfPen(PdfColor.Empty);
+                PointF pf1 = new PointF(0, 29);
+                PointF pf2 = new PointF(508, 29);
+                graphics.DrawLine(bluePen, pf1, pf2);
+
 
                 //RectangleF rf7 = new RectangleF(220, 95, 400, 40);
                 //graphics.DrawString("Gc Spectrum", font, PdfBrushes.Black, new PointF(210, 95));
 
                 //Initializing to render to Bitmap
-                //var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-                //var renderTargetBitmap = new RenderTargetBitmap();
+                var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                var renderTargetBitmap = new RenderTargetBitmap();
 
-                ////Create the Bitmpa from xaml page
-                //await renderTargetBitmap.RenderAsync(CustomGrid,510,1600);
-                ////CustomImage.Source = renderTargetBitmap;
-                //var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+                //Create the Bitmpa from xaml page
+                await renderTargetBitmap.RenderAsync(CustomGrid, 510, 1600);
+                //CustomImage.Source = renderTargetBitmap;
+                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
-                ////Save the XAML in Bitmap image
-                //using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
-                //{
+                //Save the XAML in Bitmap image
+                using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                {
 
-                //    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                //    encoder.SetPixelData(
-                //        BitmapPixelFormat.Bgra8,
-                //        BitmapAlphaMode.Ignore,
-                //        (uint)renderTargetBitmap.PixelWidth,
-                //        (uint)renderTargetBitmap.PixelHeight,
-                //        logicalDpi,
-                //        logicalDpi,
-                //        pixelBuffer.ToArray());
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                    encoder.SetPixelData(
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Ignore,
+                        (uint)renderTargetBitmap.PixelWidth,
+                        (uint)renderTargetBitmap.PixelHeight,
+                        logicalDpi,
+                        logicalDpi,
+                        pixelBuffer.ToArray());
 
-                //    await encoder.FlushAsync();
+                    await encoder.FlushAsync();
 
-                //    //Load and draw the Bitmap image in PDF
-                //    //PdfImage img = PdfImage.FromStream(stream.AsStream());
-                //    //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
+                    //Load and draw the Bitmap image in PDF
+                    //PdfImage img = PdfImage.FromStream(stream.AsStream());
+                    //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
 
-                //    PdfImage img = PdfImage.FromStream(stream.AsStream());
-                //    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                //    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
-                //}
+                    PdfImage img = PdfImage.FromStream(stream.AsStream());
+                    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
+                    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
+                }
 
 
                 //footer
@@ -1342,7 +1356,7 @@ namespace nanovaTest.SelectMethod
                 String headerText1 = "All Rights Reserved";
                 //String address = "3338 Brown Station Rd, Columbia, MO, 65202";
                 //String website = " ";
-                float x = pageSize.Width / 2;
+                float x = 255f;
                 float y = 0f;
                 float y1 = 15f;
                 float y2 = 30f;
@@ -1363,6 +1377,17 @@ namespace nanovaTest.SelectMethod
                 //Draw composite field at footer space  
                 compositeField.Draw(footerSpace.Graphics);
 
+                //watermark
+                PdfFont fontmarkwater = new PdfStandardFont(PdfFontFamily.TimesRoman, 20);
+                PdfTilingBrush brush = new PdfTilingBrush(new SizeF(page.Graphics.ClientSize.Width / 2, page.Graphics.ClientSize.Height / 3));
+                brush.Graphics.SetTransparency(0.3f);
+                brush.Graphics.Save();
+                brush.Graphics.TranslateTransform(brush.Size.Width / 2, brush.Size.Height / 2);
+                brush.Graphics.RotateTransform(-45);
+                brush.Graphics.DrawString("NovaTest", fontmarkwater, PdfBrushes.Red, 10, 10, new PdfStringFormat(PdfTextAlignment.Left));
+                brush.Graphics.Restore();
+                brush.Graphics.SetTransparency(1);
+                page.Graphics.DrawRectangle(brush, new RectangleF(new PointF(0, 0), page.Graphics.ClientSize));
 
 
                 //Save the Pdf document
@@ -1920,6 +1945,8 @@ namespace nanovaTest.SelectMethod
         private static int MovingWindowWidth = 5;
         private double[] MovingWindow = new double[MovingWindowWidth - 1];
         private double[] MovingWindow2 = new double[MovingWindowWidth - 1];
+        
+
         private double Movingaverage(double current, int OneOrTwoD)
         {
             if (OneOrTwoD == 1)

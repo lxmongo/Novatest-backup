@@ -645,4 +645,7 @@
   <data name="DeepClean1" xml:space="preserve">
     <value>Deep Clean</value>
   </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
 </root>

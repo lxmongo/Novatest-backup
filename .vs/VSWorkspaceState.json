@@ -2,9 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\nanovaTest",
+    "\\nanovaTest\\Calibrate",
     "\\nanovaTest\\CustomMethod",
-    "\\nanovaTest\\SelectMethod"
+    "\\nanovaTest\\SelectMethod",
+    "\\nanovaTest\\Strings",
+    "\\nanovaTest\\Strings\\en",
+    "\\nanovaTest\\Strings\\en-US",
+    "\\nanovaTest\\Strings\\zh-Hans"
   ],
-  "SelectedNode": "\\nanovaTest.sln",
+  "SelectedNode": "\\nanovaTest\\CustomMethod\\CustomMethodPage.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
