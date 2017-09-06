@@ -87,6 +87,10 @@ namespace nanovaTest.SelectMethod
         private DateTime StartDateTime = DateTime.Now;
         private DateTime CurrentDateTime = DateTime.Now;
 
+        //VOC concentration data
+        private List<double> VOCconcentrationList = new List<double>();
+        private string[,] newinfo;
+
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
         private int heartcuttingNumber = 0;
@@ -403,6 +407,7 @@ namespace nanovaTest.SelectMethod
                     }
                     ReadFromJson(fileName);
                     UpdateRentention(FromSelect);
+                    GetConcentrationFactor(FromSelect);
                 }
             }
         }
@@ -696,7 +701,7 @@ namespace nanovaTest.SelectMethod
                 this.Basic_Chart.Series[1].ItemsSource = standardSource;
 
                 //显示表格控件
-                testInfoList.Clear();
+                testInfoList.Clear();     
                 double currentvoctime = 0;
                 double currentvocheight = 0;
                 double currentvocarea = 0;
@@ -719,7 +724,8 @@ namespace nanovaTest.SelectMethod
                                 break;
                             }
                         }
-                        currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                        CalibrationFactor = VOCconcentrationList[j];
+                        currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         string currentvocname = VOCNameList[j];
                         if (j == 3)
                             currentvocname = currentvocname + " & "+ VOCNameList[j + 1];
@@ -756,7 +762,8 @@ namespace nanovaTest.SelectMethod
                                 break;
                             }
                         }
-                        currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                        CalibrationFactor = VOCconcentrationList[j];
+                        currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                         {
                             Peak1DCount++;
@@ -793,7 +800,7 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                currentconcen = currentvocarea * CalibrationFactor2D / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                currentconcen = currentvocarea * CalibrationFactor2D / (FlowRate * Sampletimeuwp);
                                 secondaryInfoList.Add(new SelectTestInfo
                                 {
                                     ID = Peak2DCount.ToString(),
@@ -960,7 +967,8 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                CalibrationFactor = VOCconcentrationList[j];
+                                currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                                 string currentvocname = VOCNameList[j];
                                 if (j == 3)
                                     currentvocname = currentvocname + " & " + VOCNameList[j + 1];
@@ -997,7 +1005,8 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                CalibrationFactor = VOCconcentrationList[j];
+                                currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                                 if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                                 {
                                     Peak1DCount++;
@@ -1034,7 +1043,7 @@ namespace nanovaTest.SelectMethod
                                                 break;
                                             }
                                         }
-                                        currentconcen = currentvocarea * CalibrationFactor2D / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                        currentconcen = currentvocarea * CalibrationFactor2D / (FlowRate * Sampletimeuwp);
                                         secondaryInfoList.Add(new SelectTestInfo
                                         {
                                             ID = Peak2DCount.ToString(),
@@ -2125,6 +2134,83 @@ namespace nanovaTest.SelectMethod
             if (bom[0] == 0xfe && bom[1] == 0xff) return System.Text.Encoding.BigEndianUnicode; //UTF-16BE
             if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return System.Text.Encoding.UTF32;
             return System.Text.Encoding.ASCII;
+        }
+
+        //Get VOC Concentration Factor List
+        private async void GetConcentrationFactor(string FileName)
+        {
+            try
+            {
+                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder retentionFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(FileName,
+                    CreationCollisionOption.OpenIfExists);
+                //Query the file
+                List<string> fileTypeFilter = new List<string>();
+                fileTypeFilter.Add(".dat");
+                var queryOptions = new Windows.Storage.Search.QueryOptions(Windows.Storage.Search.CommonFileQuery.OrderByName, fileTypeFilter);
+
+                // Create query and retrieve files
+                var query = pdfFolder.CreateFileQueryWithOptions(queryOptions);
+                IReadOnlyList<StorageFile> fileList = await query.GetFilesAsync();
+                // Process results
+                long maxvalue = 0;
+                foreach (StorageFile file in fileList)
+                {
+                    // Process file
+                    Debug.WriteLine(file.Name);
+                    if (long.Parse(file.Name.Split('.')[0]) > maxvalue)
+                    {
+                        maxvalue = long.Parse(file.Name.Split('.')[0]);
+                    }
+                }
+                Debug.WriteLine(maxvalue);
+
+                //Get the latest file 
+                string latestFilename = maxvalue.ToString() + ".dat";
+                StorageFile latestFile = await pdfFolder.GetFileAsync(latestFilename);
+
+                if (latestFile != null)
+                {
+                    Debug.WriteLine("VOC file found");
+                }
+
+                IBuffer buffer = await FileIO.ReadBufferAsync(latestFile);
+                DataReader reader = DataReader.FromBuffer(buffer);
+                byte[] fileContent = new byte[reader.UnconsumedBufferLength];
+                reader.ReadBytes(fileContent);
+                string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
+                String[] result = text.Split(new[] { ',' });
+                //get CF and method name to newinfo
+                if (result.Length == VOCNameList.Count)
+                {
+                    newinfo = new string[result.Length + 1, 2];
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            string[] newline = result[i].Split(new[] { ':' });
+                            newinfo[i, j] = newline[j];
+                        }
+                    }
+                    newinfo[result.Length, 0] = "datetime";
+                    newinfo[result.Length, 1] = maxvalue.ToString();
+                }
+                if (newinfo.Length > 0 && newinfo.Length / 2 - 1 == VOCNameList.Count)
+                {
+                    for (var index = 0; index < VOCNameList.Count; index++)
+                    {
+                        VOCconcentrationList.Add(double.Parse(newinfo[index, 1]));
+                        //Debug.WriteLine(VOCconcentrationList[index]);
+                    }
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine("VOC file not found");
+            }
         }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
