@@ -93,5 +93,35 @@ namespace nanovaTest.SelectMethod
         {
             Frame.Navigate(typeof(RunTestPage), "WaterSample-Online");
         }
+
+        private void delete_Button_TVOC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Button_TCE_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Button_MG_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Button_VI_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Button_PS_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Button_Water_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
