@@ -786,8 +786,13 @@ namespace nanovaTest.Calibrate
                                     }
                                 }
                                 currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                //handle null error
+                                string currentCF = "";
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    currentCF = VOCconcentrationList[j].ToString("0.00");
+                                }
                                 string currentvocname = VOCNameList[j];
-                                string currentCF = VOCconcentrationList[j].ToString("0.00");
                                 if (j == 3)
                                     currentvocname = currentvocname + " & " + VOCNameList[j + 1];
                                 if (j != 4)
@@ -824,6 +829,11 @@ namespace nanovaTest.Calibrate
                                     }
                                 }
                                 currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                string currentCF = "";
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    currentCF = VOCconcentrationList[j].ToString("0.00");
+                                }
                                 if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                                 {
                                     Peak1DCount++;
@@ -835,8 +845,8 @@ namespace nanovaTest.Calibrate
                                         //FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
-                                });
+                                        ConcentrationFactor = currentCF
+                                    });
                                 }
                             }
                             InfoListView.Visibility = Visibility;

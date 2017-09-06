@@ -45,7 +45,7 @@
                 <Grid Grid.Column="0" HorizontalAlignment="Right">
                     <Button 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0"
-                        BorderThickness="0" Height="55" Width="200" Click="Button_Cleaning_Click" >
+                        BorderThickness="0" Height="55" Width="200" Click="Button_Cleaning_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image  Source="ms-appx:///Assets/method.png" Stretch="UniformToFill"/>
                             <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="-190,0,0,0" Foreground="#FFFFFF">
