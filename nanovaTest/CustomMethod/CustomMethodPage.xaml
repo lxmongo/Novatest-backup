@@ -118,7 +118,7 @@
                             <Grid Grid.Column="1" Margin="10,0,10,0">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Uid="WaitTime" Text="Wait Time(sec)" FontSize="12" Foreground="#FF4F4F4F"/>
-                                    <TextBox x:Name="WaitTimeText" InputScope="Number" TextAlignment="Center" Text="20" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
+                                    <TextBox IsReadOnly="True" Background="#4f4f4f" x:Name="WaitTimeText" InputScope="Number" TextAlignment="Center" Text="30" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
                                     <TextBlock x:Uid="CleaningNumText" Text="Cleaning #" FontSize="12" Foreground="#FF4F4F4F"/>
                                     <TextBox x:Name="CleaningNumberText" InputScope="Number" TextAlignment="Center" Text="1" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
                                 </StackPanel>
