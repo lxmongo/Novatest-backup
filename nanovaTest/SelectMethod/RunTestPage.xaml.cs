@@ -1273,16 +1273,16 @@ namespace nanovaTest.SelectMethod
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
 
                 //RectangleF rf2 = new RectangleF(220, 35, 400, 40);
-                RectangleF rf2 = new RectangleF(0, 50, 400, 30);
+                RectangleF rf2 = new RectangleF(0, 40, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
 
                 RectangleF rf3 = new RectangleF(350, 30, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}",loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf3);
 
-                RectangleF rf4 = new RectangleF(0, 70, 400, 30);
+                RectangleF rf4 = new RectangleF(0, 50, 400, 30);
                 graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf4);
 
-                RectangleF rf7 = new RectangleF(0, 90, 400, 30);
+                RectangleF rf7 = new RectangleF(0, 60, 400, 30);
                 String instrumentString = "Instrument:  NovaTest P100";
                 document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf7);
 

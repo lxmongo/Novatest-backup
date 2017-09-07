@@ -319,7 +319,7 @@
     <value>Report</value>
   </data>
   <data name="SamplingPumpingTime" xml:space="preserve">
-    <value>Sampling/Pumping time</value>
+    <value>Sampling/Pumping time (min)</value>
   </data>
   <data name="SaveSuccess" xml:space="preserve">
     <value>Report saved successfully.</value>
@@ -331,7 +331,7 @@
     <value>Start time</value>
   </data>
   <data name="WaitingTime" xml:space="preserve">
-    <value>Waiting time</value>
+    <value>Waiting time (s)</value>
   </data>
   <data name="BeginTimeValidate" xml:space="preserve">
     <value>Begin Time is invalid.</value>
@@ -358,13 +358,13 @@
     <value>High Holding Time is invalid.</value>
   </data>
   <data name="LowestTemp1" xml:space="preserve">
-    <value>Lowest Temperature</value>
+    <value>Lowest Temperature (℃)</value>
   </data>
   <data name="LowestTempValidate" xml:space="preserve">
     <value>Lowest Temp is invalid.</value>
   </data>
   <data name="LowHoldingTime1" xml:space="preserve">
-    <value>Low holding time</value>
+    <value>Low holding time (min)</value>
   </data>
   <data name="LowHoldingTimeValidate" xml:space="preserve">
     <value>Low Holding Time is invalid.</value>
@@ -535,7 +535,7 @@
     <value>Save Operator Success.</value>
   </data>
   <data name="AdvanceReportTitle" xml:space="preserve">
-    <value>NovaTest Report (Advance Test)</value>
+    <value>NovaTest Report</value>
   </data>
   <data name="AnalysingStep" xml:space="preserve">
     <value>Analysing</value>
