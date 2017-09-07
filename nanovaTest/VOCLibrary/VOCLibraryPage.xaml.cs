@@ -140,6 +140,7 @@ namespace nanovaTest.VOCLibrary
                 DataReader reader = DataReader.FromBuffer(buffer);
                 byte[] fileContent = new byte[reader.UnconsumedBufferLength];
                 reader.ReadBytes(fileContent);
+
                 string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
                 String[] result = text.Split(new[] { ',' });
                 if (result.Length == VOCLibraryList.Count)

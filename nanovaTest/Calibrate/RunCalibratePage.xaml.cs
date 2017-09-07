@@ -786,8 +786,13 @@ namespace nanovaTest.Calibrate
                                     }
                                 }
                                 currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                //handle null error
+                                string currentCF = "";
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    currentCF = VOCconcentrationList[j].ToString("0.00");
+                                }
                                 string currentvocname = VOCNameList[j];
-                                string currentCF = VOCconcentrationList[j].ToString("0.00");
                                 if (j == 3)
                                     currentvocname = currentvocname + " & " + VOCNameList[j + 1];
                                 if (j != 4)
@@ -806,6 +811,8 @@ namespace nanovaTest.Calibrate
                                 }
 
                             }
+                            //update VOC
+                            updateVOC();
                             InfoListView.Visibility = Visibility;
                         }
                         else
@@ -824,6 +831,11 @@ namespace nanovaTest.Calibrate
                                     }
                                 }
                                 currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                string currentCF = "";
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    currentCF = VOCconcentrationList[j].ToString("0.00");
+                                }
                                 if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                                 {
                                     Peak1DCount++;
@@ -835,10 +847,12 @@ namespace nanovaTest.Calibrate
                                         //FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
-                                });
+                                        ConcentrationFactor = currentCF
+                                    });
                                 }
                             }
+                            //update VOC
+                            updateVOC();
                             InfoListView.Visibility = Visibility;
                             if (heartcuttingNumber > 0)
                             {
@@ -1162,7 +1176,7 @@ namespace nanovaTest.Calibrate
                 NotifyPopup notifyPopup = new NotifyPopup(loader.GetString("SaveSuccess"));
                 notifyPopup.Show();
             }
-            updateVOC();
+            //updateVOC();
         }
 
         //update VOC library
@@ -1179,6 +1193,8 @@ namespace nanovaTest.Calibrate
                 double GasVolume = FlowRate * Sampletimeuwp;
                 VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
                 VOCconcentrationList.Add(VOCconcentration);
+                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.00");
+                //testInfoList[i].ConcentrationFactor = "test this";
                 /*
                 //if there is same peak detected
                 if (CalibrateSelected.Equals(testInfoList[i].VOCName))
@@ -1235,27 +1251,37 @@ namespace nanovaTest.Calibrate
                 MessageDialog popup = new MessageDialog("No Peak has been found to update!");
                 await popup.ShowAsync();
             }
-
-            //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
-            StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
-                CreationCollisionOption.OpenIfExists);
-            StorageFolder pdfFolder = await calibrateFolder.CreateFolderAsync(methodFileName,
-                CreationCollisionOption.OpenIfExists);
-            //write a raw data file
-            FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
-            Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-
-            //append text to the file
-            if (VOCconcentrationList.Count > 0)
+            if (VOCNameList.Count == VOCconcentrationList.Count)
             {
-                for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
+                //test
+                MessageDialog popup = new MessageDialog("进入循环");
+                await popup.ShowAsync();
+                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder pdfFolder = await calibrateFolder.CreateFolderAsync(methodFileName,
+                    CreationCollisionOption.OpenIfExists);
+                //write a raw data file
+                FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+                Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+                //append text to the file
+                if (VOCconcentrationList.Count > 0)
                 {
+                    for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
+                    {
+                        await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                            VOCNameList[i] + ":" + VOCconcentrationList[i] + ",");
+                    }
                     await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                        VOCNameList[i] + ":" + VOCconcentrationList[i] + ",");
+                        VOCNameList[VOCconcentrationList.Count - 1] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
                 }
-                await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                    VOCNameList[VOCconcentrationList.Count - 1] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
+            }
+            else
+            {
+                MessageDialog popup = new MessageDialog("没有进入循环");
+                await popup.ShowAsync();
             }
         }
 

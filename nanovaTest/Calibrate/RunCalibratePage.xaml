@@ -117,7 +117,7 @@
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock x:Uid="WaitTime" Text="Wait Time(sec)" FontSize="12" Foreground="#FF4F4F4F"/>
                                         <Border BorderBrush="{x:Null}" MinHeight="10" Height="45">
-                                            <TextBox x:Name="WaitTimeText" InputScope="Number" TextWrapping="Wrap" VerticalAlignment="Center"
+                                            <TextBox IsReadOnly="True" Background="#4f4f4f" x:Name="WaitTimeText" InputScope="Number" TextWrapping="Wrap" VerticalAlignment="Center"
                                                  TextAlignment="Center" Text="30" MinHeight="10" FontSize="12" BorderThickness="0.5"/>
                                         </Border>
                                         
