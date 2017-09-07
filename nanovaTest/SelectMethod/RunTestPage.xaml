@@ -136,9 +136,10 @@
                                 <Grid Grid.Column="1" Margin="10,0,10,0">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock x:Uid="WaitTime" Text="Wait Time(sec)" FontSize="12" Foreground="#FF4F4F4F"/>
-                                        <Border BorderBrush="{x:Null}" MinHeight="10" Height="45">
-                                            <TextBox x:Name="WaitTimeText" InputScope="Number" TextAlignment="Center" VerticalAlignment="Center" 
-                                                 Text="20" MinHeight="10"  FontSize="12" BorderThickness="0.5"/>
+                                        <Border BorderBrush="{x:Null}" MinHeight="10" Height="45" HorizontalAlignment="Right" Width="130">
+                                            <TextBox IsReadOnly="True" Background="#4f4f4f" x:Name="WaitTimeText" InputScope="Number" TextAlignment="Center" VerticalAlignment="Center" 
+                                                 Text="30" MinHeight="10"  FontSize="12" BorderThickness="0.5"/>
+
                                         </Border>
                                     </StackPanel>
                                 </Grid>
@@ -337,7 +338,7 @@
                                     <Charts:SfChart.Legend>
                                         <Charts:ChartLegend IconVisibility="Collapsed"/>
                                     </Charts:SfChart.Legend>
-                   
+
                                 </Charts:SfChart>
                             </Grid>
 
