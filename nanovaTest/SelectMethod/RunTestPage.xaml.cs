@@ -1253,32 +1253,90 @@ namespace nanovaTest.SelectMethod
                 //Access the PDF graphics instance of the page.
                 PdfGraphics graphics = page.Graphics;
                 //Create the PDF font instance.
-                PdfFont font = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 12, PdfFontStyle.Bold);
+                PdfFont font = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 12, PdfFontStyle.Regular);
+                PdfFont titleFont = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 16, PdfFontStyle.Regular);
+                PdfFont footerFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12, PdfFontStyle.Regular);
+                PdfFont font2 = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 8, PdfFontStyle.Regular);
                 PdfStringFormat sf = new PdfStringFormat();
                 sf.Alignment = PdfTextAlignment.Center;
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
-                
+
+
+
                 RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
-                graphics.DrawString(string.Format("NovaTest {0}({1})", loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
+                document.Pages[0].Graphics.DrawString(loader.GetString("AdvanceReportTitle"), titleFont, PdfBrushes.Black, rf, sf);
 
                 RectangleF rf1 = new RectangleF(0, 35, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
 
-                RectangleF rf2 = new RectangleF(220, 35, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
+                RectangleF rf2 = new RectangleF(0, 47, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
 
-                RectangleF rf3 = new RectangleF(0, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf3);
+                RectangleF rf3 = new RectangleF(0, 59, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf3);
+
+                RectangleF rf16 = new RectangleF(0, 71, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf16);
+
+                RectangleF rf17 = new RectangleF(0, 83, 400, 40);
+                String instrumentString = "Instrument: NovaTest P100";
+                document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
+
+                RectangleF rf18 = new RectangleF(0, 95, 400, 40);
+                String CalibrationfileString = "Calibration file: N/A";
+                document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
+
+                RectangleF rf15 = new RectangleF(0, 107, 400, 40);
+                String parameterString = "Parameters:";
+                document.Pages[0].Graphics.DrawString(parameterString, font, PdfBrushes.Black, rf15);
+
+                RectangleF rf4 = new RectangleF(0, 120, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
+
+                RectangleF rf5 = new RectangleF(160, 120, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
+
+                RectangleF rf6 = new RectangleF(320, 120, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
+
+                double lowestTempvalue = JsonInputArray[0];
+                double lowestTvalue = JsonInputArray[1];
+                double Temp1value = JsonInputArray[2];
+                double HoldT1value = JsonInputArray[3] * 60;
+                double RampSpeed1value = JsonInputArray[4] / 60.0;
+                double Temp2value = JsonInputArray[5];
+                double HoldT2value = JsonInputArray[6] * 60;
+                double RampSpeed2value = JsonInputArray[7] / 60.0;
+
+                RectangleF rf7 = new RectangleF(0, 130, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1"), lowestTempvalue), font2, PdfBrushes.Black, rf7);
+
+                RectangleF rf8 = new RectangleF(160, 130, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1"), lowestTvalue), font2, PdfBrushes.Black, rf8);
+
+                RectangleF rf9 = new RectangleF(0, 140, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11"), Temp1value), font2, PdfBrushes.Black, rf9);
+
+                RectangleF rf10 = new RectangleF(160, 140, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp1HoldigTime"), HoldT1value), font2, PdfBrushes.Black, rf10);
+
+                RectangleF rf11 = new RectangleF(320, 140, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed11"), RampSpeed1value), font2, PdfBrushes.Black, rf11);
+
+                RectangleF rf12 = new RectangleF(0, 150, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2"), Temp2value), font2, PdfBrushes.Black, rf12);
+
+                RectangleF rf13 = new RectangleF(160, 150, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp2HoldigTime"), HoldT2value), font2, PdfBrushes.Black, rf13);
+
+                RectangleF rf14 = new RectangleF(320, 150, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2"), RampSpeed2value), font2, PdfBrushes.Black, rf14);
 
 
-                RectangleF rf4 = new RectangleF(220, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}",loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf4);
-
-                RectangleF rf5 = new RectangleF(0, 75, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf5);
-                
-                RectangleF rf6 = new RectangleF(220, 75, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf6);
+                PdfPen blackPen = new PdfPen(PdfColor.Empty);
+                PointF pf1 = new PointF(0, 29);
+                PointF pf2 = new PointF(508, 29);
+                graphics.DrawLine(blackPen, pf1, pf2);
 
 
                 //Initializing to render to Bitmap
@@ -1312,8 +1370,53 @@ namespace nanovaTest.SelectMethod
 
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
+                    graphics.DrawImage(img, new RectangleF(0, 175, 510, 450));
                 }
+
+
+                //footer
+
+                RectangleF bounds = new RectangleF(0, 0, document.Pages[0].GetClientSize().Width, 100);
+                PdfPageTemplateElement header = new PdfPageTemplateElement(bounds);
+
+                // information about novatest
+
+                SizeF pageSize = document.Pages[0].Size;
+
+                //Create a PdfPageTemplateElement object that will be  
+                //used as footer space  
+                // PdfPageTemplateElement footerSpace = new PdfPageTemplateElement(pageSize.Width, margin.Bottom);
+                PdfPageTemplateElement footerSpace = new PdfPageTemplateElement(bounds);
+                footerSpace.Foreground = true;
+                document.Template.Bottom = footerSpace;
+
+                //Draw text at the center of footer space  
+                // PdfTrueTypeFont fontfooter = new PdfTrueTypeFont(new Font("Arial", 9f, FontStyle.Bold), true);
+                PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Center);
+                String headerText = "Copyright © 2017 Nanova Environmental, Inc. www.nanovaenv.com";
+                String headerText1 = "All Rights Reserved";
+                //String address = "3338 Brown Station Rd, Columbia, MO, 65202";
+                //String website = " ";
+                float x = 255f;
+                float y = 0f;
+                float y1 = 15f;
+                float y2 = 30f;
+                float y3 = 45f;
+                footerSpace.Graphics.DrawString(headerText, footerFont, PdfBrushes.Black, x, y, format);
+                footerSpace.Graphics.DrawString(headerText1, footerFont, PdfBrushes.Black, x, y1, format);
+                //footerSpace.Graphics.DrawString(address, font, PdfBrushes.Black, x, y2, format);
+                //footerSpace.Graphics.DrawString(website, font, PdfBrushes.Black, x, y3, format);
+                //Create page number automatic field  
+                PdfPageNumberField number = new PdfPageNumberField();
+                //Create page count automatic field  
+                PdfPageCountField count = new PdfPageCountField();
+                //Add the fields in composite field  
+                PdfCompositeField compositeField = new PdfCompositeField(font, PdfBrushes.Black, "Page {0} of {1}", number, count);
+                //Align string of "Page {0} of {1}" to center   
+                compositeField.StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Bottom);
+                compositeField.Bounds = footerSpace.Bounds;
+                //Draw composite field at footer space  
+                compositeField.Draw(footerSpace.Graphics);
 
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();
