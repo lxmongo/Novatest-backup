@@ -1311,15 +1311,15 @@ namespace nanovaTest.SelectMethod
                 var renderTargetBitmap = new RenderTargetBitmap();
 
                 //Create the Bitmpa from xaml page
-<<<<<<< HEAD
+
                 await renderTargetBitmap.RenderAsync(CustomGrid, 510, 1600);
-=======
+
                 double gridWidth = CustomGrid.ActualWidth;
                 double gridHeight = CustomGrid.ActualHeight;
                 await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
                 Debug.WriteLine(gridWidth);
                 Debug.WriteLine(gridHeight);
->>>>>>> d3828165b6be3caf113b687a719807e1be3c1ba8
+
                 //CustomImage.Source = renderTargetBitmap;
                 var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
@@ -1345,7 +1345,6 @@ namespace nanovaTest.SelectMethod
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
                     graphics.DrawImage(img, new RectangleF(0, 105, (float)gridWidth / 1.3f, (float)gridHeight / 1.1f));
                 }
-<<<<<<< HEAD
 
 
                 //footer
@@ -1406,8 +1405,7 @@ namespace nanovaTest.SelectMethod
                 page.Graphics.DrawRectangle(brush, new RectangleF(new PointF(0, 0), page.Graphics.ClientSize));
 
 
-=======
->>>>>>> d3828165b6be3caf113b687a719807e1be3c1ba8
+
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();
                 document.Save(docStream);
