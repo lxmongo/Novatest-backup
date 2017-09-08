@@ -1251,11 +1251,40 @@ namespace nanovaTest.Calibrate
                 MessageDialog popup = new MessageDialog("No Peak has been found to update!");
                 await popup.ShowAsync();
             }
+            if (MethodNameText == "BTEX")
+            {
+                if (VOCNameList.Count - 1 == VOCconcentrationList.Count)
+                {
+                    //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                    StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                    StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
+                        CreationCollisionOption.OpenIfExists);
+                    StorageFolder pdfFolder = await calibrateFolder.CreateFolderAsync(methodFileName,
+                        CreationCollisionOption.OpenIfExists);
+                    //write a raw data file
+                    FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+                    Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+                    //append text to the file
+                    if (VOCconcentrationList.Count > 0)
+                    {
+                        for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
+                        {
+                            await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                                VOCNameList[i] + ":" + VOCconcentrationList[i] + "|");
+                            if (i == 3)
+                            {
+                                await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                                    VOCNameList[i+1] + ":" + VOCconcentrationList[i] + "|");
+                            }
+                        }
+                        await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
+                            VOCNameList[VOCconcentrationList.Count] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
+                    }
+                }
+            }
             if (VOCNameList.Count == VOCconcentrationList.Count)
             {
-                //test
-                MessageDialog popup = new MessageDialog("进入循环");
-                await popup.ShowAsync();
                 //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
                 StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
                 StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
@@ -1272,7 +1301,7 @@ namespace nanovaTest.Calibrate
                     for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
                     {
                         await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                            VOCNameList[i] + ":" + VOCconcentrationList[i] + ",");
+                            VOCNameList[i] + ":" + VOCconcentrationList[i] + "|");
                     }
                     await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
                         VOCNameList[VOCconcentrationList.Count - 1] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
@@ -1280,8 +1309,7 @@ namespace nanovaTest.Calibrate
             }
             else
             {
-                MessageDialog popup = new MessageDialog("没有进入循环");
-                await popup.ShowAsync();
+                Debug.WriteLine("doesn't find the correct value pair");
             }
         }
 

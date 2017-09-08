@@ -724,7 +724,12 @@ namespace nanovaTest.SelectMethod
                                 break;
                             }
                         }
-                        CalibrationFactor = VOCconcentrationList[j];
+                        //handle null error
+                        CalibrationFactor = 1;
+                        if (VOCconcentrationList.Count == VOCNameList.Count)
+                        {
+                            CalibrationFactor = VOCconcentrationList[j];
+                        }
                         currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         string currentvocname = VOCNameList[j];
                         if (j == 3)
@@ -762,7 +767,12 @@ namespace nanovaTest.SelectMethod
                                 break;
                             }
                         }
-                        CalibrationFactor = VOCconcentrationList[j];
+                        //handle null error
+                        CalibrationFactor = 1;
+                        if (VOCconcentrationList.Count == VOCNameList.Count)
+                        {
+                            CalibrationFactor = VOCconcentrationList[j];
+                        }
                         currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                         {
@@ -967,7 +977,12 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                CalibrationFactor = VOCconcentrationList[j];
+                                //handle null error
+                                CalibrationFactor = 1;
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    CalibrationFactor = VOCconcentrationList[j];
+                                }
                                 currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                                 string currentvocname = VOCNameList[j];
                                 if (j == 3)
@@ -1005,7 +1020,12 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                CalibrationFactor = VOCconcentrationList[j];
+                                //handle null error
+                                CalibrationFactor = 1;
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    CalibrationFactor = VOCconcentrationList[j];
+                                }
                                 currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                                 if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                                 {
@@ -2182,7 +2202,7 @@ namespace nanovaTest.SelectMethod
                 byte[] fileContent = new byte[reader.UnconsumedBufferLength];
                 reader.ReadBytes(fileContent);
                 string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
-                String[] result = text.Split(new[] { ',' });
+                String[] result = text.Split(new[] { '|' });
                 //get CF and method name to newinfo
                 if (result.Length == VOCNameList.Count)
                 {
@@ -2193,6 +2213,7 @@ namespace nanovaTest.SelectMethod
                         {
                             string[] newline = result[i].Split(new[] { ':' });
                             newinfo[i, j] = newline[j];
+                            Debug.WriteLine(newinfo[i, j]);
                         }
                     }
                     newinfo[result.Length, 0] = "datetime";
@@ -2210,7 +2231,7 @@ namespace nanovaTest.SelectMethod
             catch (FileNotFoundException)
             {
                 Debug.WriteLine("VOC file not found");
-            }
+            } 
         }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
