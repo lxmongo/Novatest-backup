@@ -90,6 +90,7 @@ namespace nanovaTest.SelectMethod
         //VOC concentration data
         private List<double> VOCconcentrationList = new List<double>();
         private string[,] newinfo;
+        private string calibrationFileName = "";
 
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
@@ -2190,6 +2191,7 @@ namespace nanovaTest.SelectMethod
 
                 //Get the latest file 
                 string latestFilename = maxvalue.ToString() + ".dat";
+                calibrationFileName = latestFilename;
                 StorageFile latestFile = await pdfFolder.GetFileAsync(latestFilename);
 
                 if (latestFile != null)

@@ -85,6 +85,7 @@ namespace nanovaTest.Calibrate
         private double VOCresponseFactor;
         private List<double> VOCconcentrationList = new List<double>();
         private string CalibrateSelected;
+        private string calibrationFileName = "";
 
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
@@ -1264,7 +1265,7 @@ namespace nanovaTest.Calibrate
                     //write a raw data file
                     FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
                     Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-
+                    calibrationFileName = FileNameTime + ".dat";
                     //append text to the file
                     if (VOCconcentrationList.Count > 0)
                     {
@@ -1294,7 +1295,7 @@ namespace nanovaTest.Calibrate
                 //write a raw data file
                 FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
                 Rawfile = await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-
+                calibrationFileName = FileNameTime + ".dat";
                 //append text to the file
                 if (VOCconcentrationList.Count > 0)
                 {
