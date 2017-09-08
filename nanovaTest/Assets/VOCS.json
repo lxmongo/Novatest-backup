@@ -8,6 +8,30 @@
 	  "RF": 0.53
     },
     {
+      "VOCName": "cis-1,3-Dichloropropene",
+      "CASNum": "542-75-6",
+      "IonizationPotiential": 9.66,
+      "BP": 104,
+      "MolecularWeight": 110.97,
+    "RF": 0.96
+    },
+    {
+      "VOCName": "trans-1,3-Dichloropropene",
+      "CASNum": "542-75-6",
+      "IonizationPotiential": 9.66,
+      "BP": 112,
+      "MolecularWeight": 110.97,
+    "RF": 0.96
+    },
+    {
+      "VOCName": "M,P-Xylene",
+      "CASNum": "108-38-3",
+      "IonizationPotiential": 8.56,
+      "BP": 139,
+      "MolecularWeight": 106.16,
+    "RF": 0.53
+    },
+    {
       "VOCName": "Toluene",
       "CASNum": "108-88-3",
       "IonizationPotiential": 8.82,

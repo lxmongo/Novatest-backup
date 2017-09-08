@@ -1,8 +1,6 @@
 {
   "VOCList": [
-  	"Vinyl chloride",
     "1,1-Dichloroethene",
-	"Allyl chloride",
 	"Cis-1,2-Dichloroethene",
 	"Benzene",
 	"Trichloroethylene",
@@ -25,9 +23,7 @@
 	"1,2,4-Trichlorobenzene"
   ],
   "VOCRetentionTime": [
-  	12,
 	15,
-	25,
 	34.00,
 	45.52,
 	56.56,
@@ -50,7 +46,6 @@
 	490.38
   ],  
   "VOCRetentionTime2D": [
-	10.0,
 	20.0,
 	47.25,
 	63.39,
@@ -77,9 +72,7 @@
   "CalibrationFactor": 1.0,
   "CalibrationFactor2D": 2.0,
   "CalibrationVOCList": [
-  	"Vinyl chloride",
     "1,1-Dichloroethene",
-	"Allyl chloride",
 	"Cis-1,2-Dichloroethene",
 	"Benzene",
 	"Trichloroethylene",
@@ -111,14 +104,14 @@
   "RampSpeed2value": 30.0,
   "heartcuttingStartList": [
     0.0,
-    80.0,
+    0.0,
     0.0,
     0.0,
     0.0
   ],
   "heartcuttingEndList": [
     0.0,
-    100.0,
+    0.0,
     0.0,
     0.0,
     0.0
