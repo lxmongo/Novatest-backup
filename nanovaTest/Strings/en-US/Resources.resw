@@ -117,279 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BeginTime.Text" xml:space="preserve">
-    <value>Begin Time</value>
-  </data>
-  <data name="Calibrate.Text" xml:space="preserve">
-    <value>Calibrate</value>
-  </data>
-  <data name="CalibrateSelect.Text" xml:space="preserve">
-    <value>Please select a method to calibrate</value>
-  </data>
-  <data name="ComeSoon.Text" xml:space="preserve">
-    <value>Come Soon</value>
-  </data>
-  <data name="Concentration.Text" xml:space="preserve">
-    <value>concentration (ppb)</value>
-  </data>
-  <data name="Config.Text" xml:space="preserve">
-    <value>CONFIG</value>
-  </data>
-  <data name="EndTime.Text" xml:space="preserve">
-    <value>End Time</value>
-  </data>
-  <data name="ExperienceName.Text" xml:space="preserve">
-    <value>EXPERIMENT NAME</value>
-  </data>
-  <data name="HeartCuttingPeriods.Text" xml:space="preserve">
-    <value>HEART CUTTING PERIODS</value>
-  </data>
-  <data name="HighestTemp.Text" xml:space="preserve">
-    <value>Highest Temp (℃)</value>
-  </data>
-  <data name="HighHoldingTime.Text" xml:space="preserve">
-    <value>High Holding Time (min)</value>
-  </data>
-  <data name="LowestTemp.Text" xml:space="preserve">
-    <value>Lowest Temp (℃)</value>
-  </data>
-  <data name="LowHoldingTime.Text" xml:space="preserve">
-    <value>Low Holding Time (min)</value>
-  </data>
-  <data name="MainMenuCalibrate" xml:space="preserve">
-    <value>Calibrate</value>
-  </data>
-  <data name="MainMenuCustomMethod" xml:space="preserve">
-    <value>Advanced Test</value>
-  </data>
-  <data name="MainMenuGreetingString.Text" xml:space="preserve">
-    <value>What would you like to do?</value>
-  </data>
-  <data name="MainMenuMethodHistory" xml:space="preserve">
-    <value>Test History</value>
-  </data>
-  <data name="MainMenuSelectMethod" xml:space="preserve">
-    <value>Run Test</value>
-  </data>
-  <data name="MainMenuVOCLibrary" xml:space="preserve">
-    <value>VOC Library</value>
-  </data>
-  <data name="MainScreen.Text" xml:space="preserve">
-    <value>MainScreen</value>
-  </data>
-  <data name="OperatorName.Text" xml:space="preserve">
-    <value>OPERATOR NAME</value>
-  </data>
-  <data name="TempRampSpeed1.Text" xml:space="preserve">
-    <value>Ramp Speed (℃/min)</value>
-  </data>
-  <data name="SamplingProfile.Text" xml:space="preserve">
-    <value>SAMPLING PROFILE</value>
-  </data>
-  <data name="SamplingTime.Text" xml:space="preserve">
-    <value>Sampling Time (min)</value>
-  </data>
-  <data name="SelectGas.Text" xml:space="preserve">
-    <value>select gas</value>
-  </data>
-  <data name="Start.Text" xml:space="preserve">
-    <value>START</value>
-  </data>
-  <data name="Status.Text" xml:space="preserve">
-    <value>STATUS</value>
-  </data>
-  <data name="Stop.Text" xml:space="preserve">
-    <value>STOP</value>
-  </data>
-  <data name="SystemClean.Text" xml:space="preserve">
-    <value>system cleaning</value>
-  </data>
-  <data name="Temp.Text" xml:space="preserve">
-    <value>Temperature</value>
-  </data>
-  <data name="TempProfile.Text" xml:space="preserve">
-    <value>TEMPERATURE PROFILE</value>
-  </data>
-  <data name="WaitTime.Text" xml:space="preserve">
-    <value>Wait Time (sec)</value>
-  </data>
-  <data name="CalibrateAlert.Text" xml:space="preserve">
-    <value>Alert: Calibrate needed</value>
-  </data>
-  <data name="CurrentStep.Text" xml:space="preserve">
-    <value>CURRENT STEP </value>
-  </data>
-  <data name="CurrentTemp.Text" xml:space="preserve">
-    <value>Current Tempreature (℃)</value>
-  </data>
-  <data name="GotoCalibrate.Text" xml:space="preserve">
-    <value>Go to calibrate</value>
-  </data>
-  <data name="Remaining.Text" xml:space="preserve">
-    <value> REMAINING</value>
-  </data>
-  <data name="RunTest.Text" xml:space="preserve">
-    <value>Run Test</value>
-  </data>
-  <data name="RunTestSelect.Text" xml:space="preserve">
-    <value>Please select a method to test</value>
-  </data>
-  <data name="Search.Text" xml:space="preserve">
-    <value>SEARCH</value>
-  </data>
-  <data name="SetpointTemp.Text" xml:space="preserve">
-    <value>Setpoint Temperature (℃)</value>
-  </data>
-  <data name="TestAnyWay.Text" xml:space="preserve">
-    <value>Test any way (Not recommended)</value>
-  </data>
-  <data name="TotalTimeRemaining.Text" xml:space="preserve">
-    <value>TOTAL TIME REMAINING</value>
-  </data>
-  <data name="AirQuality.Text" xml:space="preserve">
-    <value>Air Quality</value>
-  </data>
-  <data name="CalibrateDate.Text" xml:space="preserve">
-    <value>Calibrate Date</value>
-  </data>
-  <data name="ConcentrationFactor.Text" xml:space="preserve">
-    <value>Concentration Factor</value>
-  </data>
-  <data name="Gases.Text" xml:space="preserve">
-    <value>gases</value>
-  </data>
-  <data name="MalodorousGas.Text" xml:space="preserve">
-    <value>Malodorous Gas</value>
-  </data>
-  <data name="PollutionSource.Text" xml:space="preserve">
-    <value>Pollution Source</value>
-  </data>
-  <data name="SystemAbout.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="SystemSetting.Text" xml:space="preserve">
-    <value>Setting</value>
-  </data>
-  <data name="Time.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="Vehicle.Text" xml:space="preserve">
-    <value>Vehicle</value>
-  </data>
-  <data name="VOCLibrary.Text" xml:space="preserve">
-    <value>VOC library</value>
-  </data>
-  <data name="WaterQuality.Text" xml:space="preserve">
-    <value>Water Quality</value>
-  </data>
-  <data name="AirQuality1" xml:space="preserve">
-    <value>Air Quality</value>
-  </data>
-  <data name="MalodorousGas1" xml:space="preserve">
-    <value>Malodorous Gas</value>
-  </data>
-  <data name="PollutionSource1" xml:space="preserve">
-    <value>Pollution Source</value>
-  </data>
-  <data name="Vehicle1" xml:space="preserve">
-    <value>Vehicle</value>
-  </data>
-  <data name="WaterQuality1" xml:space="preserve">
-    <value>Water Quality</value>
-  </data>
-  <data name="Stop1" xml:space="preserve">
-    <value>STOP</value>
-  </data>
-  <data name="SelectGasInfo" xml:space="preserve">
-    <value>Select gas cannot be empty.</value>
-  </data>
-  <data name="Start1" xml:space="preserve">
-    <value>START</value>
-  </data>
-  <data name="Second" xml:space="preserve">
-    <value> Second</value>
-  </data>
-  <data name="ConcentrationPPB" xml:space="preserve">
-    <value>Concentration (ppb)</value>
-  </data>
-  <data name="Method" xml:space="preserve">
-    <value>Method</value>
-  </data>
-  <data name="Report" xml:space="preserve">
-    <value>Report</value>
-  </data>
-  <data name="SamplingPumpingTime" xml:space="preserve">
-    <value>Sampling/Pumping time (min)</value>
-  </data>
-  <data name="SaveSuccess" xml:space="preserve">
-    <value>Report saved successfully.</value>
-  </data>
-  <data name="SelectGas1" xml:space="preserve">
-    <value>Select gas</value>
-  </data>
-  <data name="StartTime" xml:space="preserve">
-    <value>Start time</value>
-  </data>
-  <data name="WaitingTime" xml:space="preserve">
-    <value>Waiting time (s)</value>
-  </data>
-  <data name="BeginTimeValidate" xml:space="preserve">
-    <value>Begin Time is invalid.</value>
-  </data>
-  <data name="EndTimeValidate" xml:space="preserve">
-    <value>End Time is invalid.</value>
-  </data>
-  <data name="ExperienceName1" xml:space="preserve">
-    <value>Experiment name</value>
-  </data>
-  <data name="ExperienceValidate" xml:space="preserve">
-    <value>Experiment Name cannot be empty.</value>
-  </data>
-  <data name="HighestTemp1" xml:space="preserve">
-    <value>Highest Temperature</value>
-  </data>
-  <data name="HighestTempValidate" xml:space="preserve">
-    <value>Highest Temp is invalid.</value>
-  </data>
-  <data name="HighHoldingTime1" xml:space="preserve">
-    <value>High holding time</value>
-  </data>
-  <data name="HighHoldingValidate" xml:space="preserve">
-    <value>High Holding Time is invalid.</value>
-  </data>
-  <data name="LowestTemp1" xml:space="preserve">
-    <value>Lowest Temperature (℃)</value>
-  </data>
-  <data name="LowestTempValidate" xml:space="preserve">
-    <value>Lowest Temp is invalid.</value>
-  </data>
-  <data name="LowHoldingTime1" xml:space="preserve">
-    <value>Low holding time (min)</value>
-  </data>
-  <data name="LowHoldingTimeValidate" xml:space="preserve">
-    <value>Low Holding Time is invalid.</value>
-  </data>
-  <data name="OperatorName1" xml:space="preserve">
-    <value>Operator Name</value>
-  </data>
-  <data name="OperatorNameValidate" xml:space="preserve">
-    <value>Operator Name cannot be empty.</value>
-  </data>
-  <data name="RampSpeed1" xml:space="preserve">
-    <value>Ramping speed</value>
-  </data>
-  <data name="RampSpeedValidate" xml:space="preserve">
-    <value>Ramp Speed is invalid.</value>
-  </data>
-  <data name="SamplingTimeValidate" xml:space="preserve">
-    <value>Sampling Time is invalid.</value>
-  </data>
-  <data name="WaitTimeValidate" xml:space="preserve">
-    <value>Wait Time is invalid.</value>
-  </data>
-  <data name="PDFPreview.Text" xml:space="preserve">
-    <value>PDF Preview Area</value>
-  </data>
   <data name="1,1-Dichloroethene" xml:space="preserve">
     <value>1,1-Dichloroethene</value>
   </data>
@@ -438,14 +165,35 @@
   <data name="Acrolein" xml:space="preserve">
     <value>Acrolein</value>
   </data>
+  <data name="AdvanceReportTitle" xml:space="preserve">
+    <value>NovaTest Report</value>
+  </data>
+  <data name="AirQuality.Text" xml:space="preserve">
+    <value>Air Quality</value>
+  </data>
+  <data name="AirQuality1" xml:space="preserve">
+    <value>Air Quality</value>
+  </data>
   <data name="Allyl chloride" xml:space="preserve">
     <value>Allyl chloride</value>
   </data>
   <data name="Ammonia" xml:space="preserve">
     <value>Ammonia</value>
   </data>
+  <data name="AnalysingStep" xml:space="preserve">
+    <value>Analysing</value>
+  </data>
   <data name="Anisole" xml:space="preserve">
     <value>Anisole</value>
+  </data>
+  <data name="AreaTable.Text" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="BeginTime.Text" xml:space="preserve">
+    <value>Begin Time</value>
+  </data>
+  <data name="BeginTimeValidate" xml:space="preserve">
+    <value>Begin Time is invalid.</value>
   </data>
   <data name="Benzaldehyde" xml:space="preserve">
     <value>Benzaldehyde</value>
@@ -459,6 +207,18 @@
   <data name="Butyl acetate" xml:space="preserve">
     <value>Butyl acetate</value>
   </data>
+  <data name="Calibrate.Text" xml:space="preserve">
+    <value>Calibrate</value>
+  </data>
+  <data name="CalibrateAlert.Text" xml:space="preserve">
+    <value>Alert: Calibrate needed</value>
+  </data>
+  <data name="CalibrateDate.Text" xml:space="preserve">
+    <value>Calibrate Date</value>
+  </data>
+  <data name="CalibrateSelect.Text" xml:space="preserve">
+    <value>Please select a method to calibrate</value>
+  </data>
   <data name="Carbon disulfide" xml:space="preserve">
     <value>Carbon disulfide</value>
   </data>
@@ -468,83 +228,32 @@
   <data name="Cis-1,2-Dichloroethene" xml:space="preserve">
     <value>Cis-1,2-Dichloroethene</value>
   </data>
-  <data name="Cyclopentanone" xml:space="preserve">
-    <value>Cyclopentanone</value>
-  </data>
-  <data name="Dimethyl disulfide" xml:space="preserve">
-    <value>Dimethyl disulfide</value>
-  </data>
-  <data name="Dimethyl sulfide" xml:space="preserve">
-    <value>Dimethyl sulfide</value>
-  </data>
-  <data name="Ethylbenzene" xml:space="preserve">
-    <value>Ethylbenzene</value>
-  </data>
-  <data name="Heptane" xml:space="preserve">
-    <value>Heptane</value>
-  </data>
-  <data name="Hexamethyldisiloxane" xml:space="preserve">
-    <value>Hexamethyldisiloxane</value>
-  </data>
-  <data name="Hexane" xml:space="preserve">
-    <value>Hexane</value>
-  </data>
-  <data name="Hydrogen sulfide" xml:space="preserve">
-    <value>Hydrogen sulfide</value>
-  </data>
-  <data name="Isobutylene" xml:space="preserve">
-    <value>Isobutylene</value>
-  </data>
-  <data name="Isopropanol" xml:space="preserve">
-    <value>Isopropanol</value>
-  </data>
-  <data name="M-xylene" xml:space="preserve">
-    <value>M-xylene</value>
-  </data>
-  <data name="Methanthiol" xml:space="preserve">
-    <value>Methanthiol</value>
-  </data>
-  <data name="Methyl tert-butyl ether" xml:space="preserve">
-    <value>Methyl tert-butyl ether</value>
-  </data>
-  <data name="O-xylene" xml:space="preserve">
-    <value>O-xylene</value>
-  </data>
-  <data name="P-xylene" xml:space="preserve">
-    <value>P-xylene</value>
-  </data>
-  <data name="Styrene" xml:space="preserve">
-    <value>Styrene</value>
-  </data>
-  <data name="Tetrachloroethylene" xml:space="preserve">
-    <value>Tetrachloroethylene</value>
-  </data>
-  <data name="Toluene" xml:space="preserve">
-    <value>Toluene</value>
-  </data>
-  <data name="Trichloroethylene" xml:space="preserve">
-    <value>Trichloroethylene</value>
-  </data>
-  <data name="Trimethylamine" xml:space="preserve">
-    <value>Trimethylamine</value>
-  </data>
-  <data name="Isopropylbenzene" xml:space="preserve">
-    <value>Isopropylbenzene</value>
-  </data>
-  <data name="UserSaveSuccess" xml:space="preserve">
-    <value>Save Operator Success.</value>
-  </data>
-  <data name="AdvanceReportTitle" xml:space="preserve">
-    <value>NovaTest Report</value>
-  </data>
-  <data name="AnalysingStep" xml:space="preserve">
-    <value>Analysing</value>
-  </data>
-  <data name="AreaTable.Text" xml:space="preserve">
-    <value>Area</value>
+  <data name="CleaningNumText.Text" xml:space="preserve">
+    <value>Cleaning #</value>
   </data>
   <data name="CleaningStep" xml:space="preserve">
     <value>Cleaning</value>
+  </data>
+  <data name="ComeSoon.Text" xml:space="preserve">
+    <value>Come Soon</value>
+  </data>
+  <data name="Concentration.Text" xml:space="preserve">
+    <value>concentration (ppb)</value>
+  </data>
+  <data name="ConcentrationFactor.Text" xml:space="preserve">
+    <value>Concentration Factor</value>
+  </data>
+  <data name="ConcentrationPPB" xml:space="preserve">
+    <value>Concentration (ppb)</value>
+  </data>
+  <data name="ConcentrationTable.Text" xml:space="preserve">
+    <value>Concentration (ppb)</value>
+  </data>
+  <data name="Config.Text" xml:space="preserve">
+    <value>CONFIG</value>
+  </data>
+  <data name="ConnectingStep" xml:space="preserve">
+    <value>Connecting</value>
   </data>
   <data name="CoolingNotice" xml:space="preserve">
     <value>Please wait for cooling column.</value>
@@ -555,26 +264,239 @@
   <data name="CurrentPressure.Text" xml:space="preserve">
     <value>Current pressure (psi)</value>
   </data>
+  <data name="CurrentStep.Text" xml:space="preserve">
+    <value>CURRENT STEP </value>
+  </data>
+  <data name="CurrentTemp.Text" xml:space="preserve">
+    <value>Current Tempreature (℃)</value>
+  </data>
+  <data name="Cyclopentanone" xml:space="preserve">
+    <value>Cyclopentanone</value>
+  </data>
+  <data name="DeepClean1" xml:space="preserve">
+    <value>Deep Clean</value>
+  </data>
+  <data name="DeepCleanButton.Text" xml:space="preserve">
+    <value>Deep Clean</value>
+  </data>
+  <data name="Dimethyl disulfide" xml:space="preserve">
+    <value>Dimethyl disulfide</value>
+  </data>
+  <data name="Dimethyl sulfide" xml:space="preserve">
+    <value>Dimethyl sulfide</value>
+  </data>
+  <data name="EndTime.Text" xml:space="preserve">
+    <value>End Time</value>
+  </data>
   <data name="EndTime1" xml:space="preserve">
     <value>End Time</value>
   </data>
+  <data name="EndTimeValidate" xml:space="preserve">
+    <value>End Time is invalid.</value>
+  </data>
+  <data name="Ethylbenzene" xml:space="preserve">
+    <value>Ethylbenzene</value>
+  </data>
+  <data name="ExperienceName.Text" xml:space="preserve">
+    <value>EXPERIMENT NAME</value>
+  </data>
+  <data name="ExperienceName1" xml:space="preserve">
+    <value>Experiment name</value>
+  </data>
+  <data name="ExperienceValidate" xml:space="preserve">
+    <value>Experiment Name cannot be empty.</value>
+  </data>
+<<<<<<< HEAD
+  <data name="SamplingPumpingTime" xml:space="preserve">
+    <value>Sampling/Pumping time (min)</value>
+=======
   <data name="FWHMTable.Text" xml:space="preserve">
     <value>FWHM (s)</value>
+>>>>>>> development
   </data>
+  <data name="Gases.Text" xml:space="preserve">
+    <value>gases</value>
+  </data>
+  <data name="GotoCalibrate.Text" xml:space="preserve">
+    <value>Go to calibrate</value>
+  </data>
+  <data name="HeartCuttingPeriods.Text" xml:space="preserve">
+    <value>HEART CUTTING PERIODS</value>
+  </data>
+<<<<<<< HEAD
+  <data name="WaitingTime" xml:space="preserve">
+    <value>Waiting time (s)</value>
+=======
   <data name="HeartCuttingPeriodspdf" xml:space="preserve">
     <value>HEART CUTTING PERIODS</value>
+>>>>>>> development
   </data>
   <data name="HeightTable.Text" xml:space="preserve">
     <value>Height</value>
   </data>
+  <data name="Heptane" xml:space="preserve">
+    <value>Heptane</value>
+  </data>
+  <data name="Hexamethyldisiloxane" xml:space="preserve">
+    <value>Hexamethyldisiloxane</value>
+  </data>
+  <data name="Hexane" xml:space="preserve">
+    <value>Hexane</value>
+  </data>
+  <data name="HighestTemp.Text" xml:space="preserve">
+    <value>Highest Temp (℃)</value>
+  </data>
+  <data name="HighestTemp1" xml:space="preserve">
+    <value>Highest Temperature</value>
+  </data>
+  <data name="HighestTempValidate" xml:space="preserve">
+    <value>Highest Temp is invalid.</value>
+  </data>
+  <data name="HighHoldingTime.Text" xml:space="preserve">
+    <value>High Holding Time (min)</value>
+  </data>
+  <data name="HighHoldingTime1" xml:space="preserve">
+    <value>High holding time</value>
+  </data>
+  <data name="HighHoldingValidate" xml:space="preserve">
+    <value>High Holding Time is invalid.</value>
+  </data>
+<<<<<<< HEAD
+  <data name="LowestTemp1" xml:space="preserve">
+    <value>Lowest Temperature (℃)</value>
+  </data>
+  <data name="LowestTempValidate" xml:space="preserve">
+    <value>Lowest Temp is invalid.</value>
+  </data>
+  <data name="LowHoldingTime1" xml:space="preserve">
+    <value>Low holding time (min)</value>
+  </data>
+  <data name="LowHoldingTimeValidate" xml:space="preserve">
+    <value>Low Holding Time is invalid.</value>
+  </data>
+  <data name="OperatorName1" xml:space="preserve">
+    <value>Operator Name</value>
+  </data>
+  <data name="OperatorNameValidate" xml:space="preserve">
+    <value>Operator Name cannot be empty.</value>
+  </data>
+  <data name="RampSpeed1" xml:space="preserve">
+    <value>Ramping speed</value>
+  </data>
+  <data name="RampSpeedValidate" xml:space="preserve">
+    <value>Ramp Speed is invalid.</value>
+=======
   <data name="HoldingTime1.Text" xml:space="preserve">
-    <value>Temp1 hold time(min)</value>
+    <value>Temp1 hold time (min)</value>
+>>>>>>> development
   </data>
   <data name="HoldingTime2.Text" xml:space="preserve">
-    <value>Temp2 hold time(min)</value>
+    <value>Temp2 hold time (min)</value>
+  </data>
+  <data name="Hydrogen sulfide" xml:space="preserve">
+    <value>Hydrogen sulfide</value>
+  </data>
+  <data name="Isobutylene" xml:space="preserve">
+    <value>Isobutylene</value>
+  </data>
+  <data name="Isopropanol" xml:space="preserve">
+    <value>Isopropanol</value>
+  </data>
+  <data name="Isopropylbenzene" xml:space="preserve">
+    <value>Isopropylbenzene</value>
+  </data>
+  <data name="LowestTemp.Text" xml:space="preserve">
+    <value>Lowest Temp (℃)</value>
+  </data>
+  <data name="LowestTemp1" xml:space="preserve">
+    <value>Lowest Temperature (℃)</value>
+  </data>
+  <data name="LowestTempValidate" xml:space="preserve">
+    <value>Lowest Temp is invalid.</value>
+  </data>
+  <data name="LowHoldingTime.Text" xml:space="preserve">
+    <value>Low Holding Time (min)</value>
+  </data>
+  <data name="LowHoldingTime1" xml:space="preserve">
+    <value>Low holding time (min)</value>
+  </data>
+  <data name="LowHoldingTimeValidate" xml:space="preserve">
+    <value>Low Holding Time is invalid.</value>
+  </data>
+  <data name="LowPressureNotice" xml:space="preserve">
+    <value>Please check the carry gas bottle.</value>
+  </data>
+  <data name="M-xylene" xml:space="preserve">
+    <value>M-xylene</value>
+  </data>
+  <data name="MainMenuCalibrate" xml:space="preserve">
+    <value>Calibrate</value>
+  </data>
+  <data name="MainMenuCustomMethod" xml:space="preserve">
+    <value>Advanced Test</value>
+  </data>
+  <data name="MainMenuGreetingString.Text" xml:space="preserve">
+    <value>What would you like to do?</value>
+  </data>
+  <data name="MainMenuMethodHistory" xml:space="preserve">
+    <value>Test History</value>
+  </data>
+  <data name="MainMenuSelectMethod" xml:space="preserve">
+    <value>Run Test</value>
+  </data>
+  <data name="MainMenuVOCLibrary" xml:space="preserve">
+    <value>VOC Library</value>
+  </data>
+  <data name="MainScreen.Text" xml:space="preserve">
+    <value>MainScreen</value>
+  </data>
+  <data name="MalodorousGas.Text" xml:space="preserve">
+    <value>Malodorous Gas</value>
+  </data>
+  <data name="MalodorousGas1" xml:space="preserve">
+    <value>Malodorous Gas</value>
+  </data>
+  <data name="Methanthiol" xml:space="preserve">
+    <value>Methanthiol</value>
+  </data>
+  <data name="Method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="Methyl tert-butyl ether" xml:space="preserve">
+    <value>Methyl tert-butyl ether</value>
+  </data>
+  <data name="NoDeviceNotice" xml:space="preserve">
+    <value>Sorry, no device found.</value>
+  </data>
+  <data name="O-xylene" xml:space="preserve">
+    <value>O-xylene</value>
+  </data>
+  <data name="OperatorName.Text" xml:space="preserve">
+    <value>OPERATOR NAME</value>
+  </data>
+  <data name="OperatorName1" xml:space="preserve">
+    <value>Operator Name</value>
+  </data>
+  <data name="OperatorNameValidate" xml:space="preserve">
+    <value>Operator Name cannot be empty.</value>
+  </data>
+  <data name="P-xylene" xml:space="preserve">
+    <value>P-xylene</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="PDFPreview.Text" xml:space="preserve">
+    <value>PDF Preview Area</value>
   </data>
   <data name="PeakNumTable.Text" xml:space="preserve">
     <value>Peak #</value>
+  </data>
+  <data name="PollutionSource.Text" xml:space="preserve">
+    <value>Pollution Source</value>
+  </data>
+  <data name="PollutionSource1" xml:space="preserve">
+    <value>Pollution Source</value>
   </data>
   <data name="PressurePDF1" xml:space="preserve">
     <value>Pressure (psi)</value>
@@ -582,23 +504,115 @@
   <data name="PressurePsi.Text" xml:space="preserve">
     <value>Pressure (psi)</value>
   </data>
+  <data name="RampSpeed1" xml:space="preserve">
+    <value>Ramping speed</value>
+  </data>
   <data name="RampSpeed11" xml:space="preserve">
     <value>Ramp Speed 1 (℃/min)</value>
   </data>
   <data name="RampSpeed2" xml:space="preserve">
     <value>Ramp Speed 2 (℃/min)</value>
   </data>
+  <data name="RampSpeedValidate" xml:space="preserve">
+    <value>Ramp Speed is invalid.</value>
+  </data>
+  <data name="Remaining.Text" xml:space="preserve">
+    <value> REMAINING</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
   <data name="RetentionTimeTable.Text" xml:space="preserve">
     <value>Retention Time (s)</value>
+  </data>
+  <data name="RunTest.Text" xml:space="preserve">
+    <value>Run Test</value>
+  </data>
+  <data name="RunTestSelect.Text" xml:space="preserve">
+    <value>Please select a method to test</value>
+  </data>
+  <data name="SamplingProfile.Text" xml:space="preserve">
+    <value>SAMPLING PROFILE</value>
+  </data>
+  <data name="SamplingPumpingTime" xml:space="preserve">
+    <value>Sampling/Pumping time (min)</value>
   </data>
   <data name="SamplingStep" xml:space="preserve">
     <value>Sampling</value>
   </data>
+  <data name="SamplingTime.Text" xml:space="preserve">
+    <value>Sampling Time (min)</value>
+  </data>
+<<<<<<< HEAD
+  <data name="AdvanceReportTitle" xml:space="preserve">
+    <value>NovaTest Report</value>
+=======
+  <data name="SamplingTimeValidate" xml:space="preserve">
+    <value>Sampling Time is invalid.</value>
+>>>>>>> development
+  </data>
+  <data name="SaturationNotice" xml:space="preserve">
+    <value>The volumn of the sample is too large, please shorten the sampling time and test again. </value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>Report saved successfully.</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>SEARCH</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value> Second</value>
+  </data>
+  <data name="SelectGas.Text" xml:space="preserve">
+    <value>select gas</value>
+  </data>
+  <data name="SelectGas1" xml:space="preserve">
+    <value>Select gas</value>
+  </data>
+  <data name="SelectGasInfo" xml:space="preserve">
+    <value>Select gas cannot be empty.</value>
+  </data>
+  <data name="SetpointTemp.Text" xml:space="preserve">
+    <value>Setpoint Temperature (℃)</value>
+  </data>
+  <data name="Start.Text" xml:space="preserve">
+    <value>START</value>
+  </data>
+  <data name="Start1" xml:space="preserve">
+    <value>START</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="Status.Text" xml:space="preserve">
+    <value>STATUS</value>
+  </data>
+  <data name="Stop.Text" xml:space="preserve">
+    <value>STOP</value>
+  </data>
+  <data name="Stop1" xml:space="preserve">
+    <value>STOP</value>
+  </data>
+  <data name="Styrene" xml:space="preserve">
+    <value>Styrene</value>
+  </data>
+  <data name="SystemAbout.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="SystemClean.Text" xml:space="preserve">
+    <value>system cleaning</value>
+  </data>
+  <data name="SystemSetting.Text" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="Temp.Text" xml:space="preserve">
+    <value>Temperature</value>
+  </data>
   <data name="Temp1HoldigTime" xml:space="preserve">
-    <value>Temp1 hold time(min)</value>
+    <value>Temp1 hold time (min)</value>
   </data>
   <data name="Temp2HoldigTime" xml:space="preserve">
-    <value>Temp2 hold time(min)</value>
+    <value>Temp2 hold time (min)</value>
   </data>
   <data name="Temperature1.Text" xml:space="preserve">
     <value>Temperature 1 (℃)</value>
@@ -612,38 +626,68 @@
   <data name="Temperatures2" xml:space="preserve">
     <value>Temperature 2 (℃)</value>
   </data>
+  <data name="TempProfile.Text" xml:space="preserve">
+    <value>TEMPERATURE PROFILE</value>
+  </data>
+  <data name="TempRampSpeed1.Text" xml:space="preserve">
+    <value>Ramp Speed (℃/min)</value>
+  </data>
   <data name="TempRampSpeed2.Text" xml:space="preserve">
     <value>Ramp Speed 2 (℃/min)</value>
   </data>
-  <data name="WaitingStep" xml:space="preserve">
-    <value>Waiting</value>
+  <data name="TestAnyWay.Text" xml:space="preserve">
+    <value>Test any way (Not recommended)</value>
   </data>
-  <data name="CleaningNumText.Text" xml:space="preserve">
-    <value>Cleaning #</value>
+  <data name="Tetrachloroethylene" xml:space="preserve">
+    <value>Tetrachloroethylene</value>
   </data>
-  <data name="ConcentrationTable.Text" xml:space="preserve">
-    <value>Concentration (ppb)</value>
+  <data name="Time.Text" xml:space="preserve">
+    <value>Time</value>
   </data>
-  <data name="ConnectingStep" xml:space="preserve">
-    <value>Connecting</value>
+  <data name="Toluene" xml:space="preserve">
+    <value>Toluene</value>
   </data>
-  <data name="NoDeviceNotice" xml:space="preserve">
-    <value>Sorry, no device found.</value>
+  <data name="TotalTimeRemaining.Text" xml:space="preserve">
+    <value>TOTAL TIME REMAINING</value>
   </data>
-  <data name="DeepCleanButton.Text" xml:space="preserve">
-    <value>Deep Clean</value>
+  <data name="Trichloroethylene" xml:space="preserve">
+    <value>Trichloroethylene</value>
   </data>
-  <data name="LowPressureNotice" xml:space="preserve">
-    <value>Please check the carry gas bottle.</value>
+  <data name="Trimethylamine" xml:space="preserve">
+    <value>Trimethylamine</value>
   </data>
-  <data name="SaturationNotice" xml:space="preserve">
-    <value>The volumn of the sample is too large, please shorten the sampling time and test again. </value>
+  <data name="UserSaveSuccess" xml:space="preserve">
+    <value>Save Operator Success.</value>
+  </data>
+  <data name="Vehicle.Text" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="Vehicle1" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="VOCLibrary.Text" xml:space="preserve">
+    <value>VOC library</value>
   </data>
   <data name="VOCNameTable" xml:space="preserve">
     <value>VOC Name</value>
   </data>
-  <data name="DeepClean1" xml:space="preserve">
-    <value>Deep Clean</value>
+  <data name="WaitingStep" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="WaitingTime" xml:space="preserve">
+    <value>Waiting time (s)</value>
+  </data>
+  <data name="WaitTime.Text" xml:space="preserve">
+    <value>Wait Time (sec)</value>
+  </data>
+  <data name="WaitTimeValidate" xml:space="preserve">
+    <value>Wait Time is invalid.</value>
+  </data>
+  <data name="WaterQuality.Text" xml:space="preserve">
+    <value>Water Quality</value>
+  </data>
+  <data name="WaterQuality1" xml:space="preserve">
+    <value>Water Quality</value>
   </data>
   <data name="Parameter" xml:space="preserve">
     <value>Parameter</value>
