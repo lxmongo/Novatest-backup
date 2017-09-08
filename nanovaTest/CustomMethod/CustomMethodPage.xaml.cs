@@ -292,12 +292,13 @@ namespace nanovaTest.CustomMethod
                 PdfFont titleFont = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 16, PdfFontStyle.Regular);
                 PdfFont footerFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12, PdfFontStyle.Regular);
                 PdfFont font2 = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 8, PdfFontStyle.Regular);
+                PdfFont logoFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 30);
                 //PdfFont font2 = new PdfStandardFont(PdfFontFamily.TimesRoman, 8, PdfFontStyle.Bold);
                 PdfStringFormat sf = new PdfStringFormat();
                 sf.Alignment = PdfTextAlignment.Center;
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
 
-                RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
+                RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 165, 0, 400, 30);
                 document.Pages[0].Graphics.DrawString(loader.GetString("AdvanceReportTitle"), titleFont, PdfBrushes.Black, rf, sf);
 
                 RectangleF rf1 = new RectangleF(0, 35, 400, 40);
@@ -360,7 +361,8 @@ namespace nanovaTest.CustomMethod
                 RectangleF rf14 = new RectangleF(320, 150, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2"), RampSpeed2Text.Text), font2, PdfBrushes.Black, rf14);
 
-
+                RectangleF rf19 = new RectangleF(380, 0, 0, 0);
+                document.Pages[0].Graphics.DrawString("NovaTest", logoFont, PdfBrushes.DodgerBlue, rf19);
 
 
 

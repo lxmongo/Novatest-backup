@@ -1257,13 +1257,14 @@ namespace nanovaTest.SelectMethod
                 PdfFont titleFont = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 16, PdfFontStyle.Regular);
                 PdfFont footerFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12, PdfFontStyle.Regular);
                 PdfFont font2 = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 8, PdfFontStyle.Regular);
+                PdfFont logoFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 30);
                 PdfStringFormat sf = new PdfStringFormat();
                 sf.Alignment = PdfTextAlignment.Center;
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
 
 
 
-                RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
+                RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 165, 0, 400, 30);
                 document.Pages[0].Graphics.DrawString(loader.GetString("AdvanceReportTitle"), titleFont, PdfBrushes.Black, rf, sf);
 
                 RectangleF rf1 = new RectangleF(0, 35, 400, 40);
@@ -1302,11 +1303,15 @@ namespace nanovaTest.SelectMethod
                 double lowestTempvalue = JsonInputArray[0];
                 double lowestTvalue = JsonInputArray[1];
                 double Temp1value = JsonInputArray[2];
-                double HoldT1value = JsonInputArray[3] * 60;
-                double RampSpeed1value = JsonInputArray[4] / 60.0;
+                double HoldT1value = JsonInputArray[3];
+                //double HoldT1value = JsonInputArray[3] * 60;
+                double RampSpeed1value = JsonInputArray[4];
+                //double RampSpeed1value = JsonInputArray[4] / 60.0;
                 double Temp2value = JsonInputArray[5];
-                double HoldT2value = JsonInputArray[6] * 60;
-                double RampSpeed2value = JsonInputArray[7] / 60.0;
+                double HoldT2value = JsonInputArray[6];
+                //double HoldT2value = JsonInputArray[6] * 60;
+                double RampSpeed2value = JsonInputArray[7];
+                //double RampSpeed2value = JsonInputArray[7] / 60.0;
 
                 RectangleF rf7 = new RectangleF(0, 130, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1"), lowestTempvalue), font2, PdfBrushes.Black, rf7);
@@ -1332,6 +1337,8 @@ namespace nanovaTest.SelectMethod
                 RectangleF rf14 = new RectangleF(320, 150, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2"), RampSpeed2value), font2, PdfBrushes.Black, rf14);
 
+                RectangleF rf19 = new RectangleF(380, 0, 0, 0);
+                document.Pages[0].Graphics.DrawString("NovaTest", logoFont, PdfBrushes.DodgerBlue, rf19);
 
                 PdfPen blackPen = new PdfPen(PdfColor.Empty);
                 PointF pf1 = new PointF(0, 29);
