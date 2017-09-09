@@ -1469,7 +1469,7 @@ namespace nanovaTest.SelectMethod
                 graphics2.DrawString("Area", font, PdfBrushes.Black, p26s);
                 graphics2.DrawRectangle(PdfPens.Black, p27);
                 graphics2.DrawString("CONCN", font, PdfBrushes.Black, p27s);
-                for (int i = 0; i < VOCNameList.Count; i++)
+                for (int i = 0; i < testInfoList.Count; i++)
                 {
                     p21 = new RectangleF(0, Length * (i + 1), Width, Length);
                     p22 = new RectangleF(Width, Length * (i + 1), Width, Length);
