@@ -1704,7 +1704,11 @@ namespace nanovaTest.Calibrate
             int peakStop = 0;
             double slope = 0; //current slope
             List<double> values = new List<double>(); //save thre  e consecutive slopes
-
+            //change threshold for BTEX and airquality to 0.2
+            if (methodFileName == "Air Qualuty" || methodFileName == "BTEX")
+            {
+                THRESHOLD_peak = 0.2f;
+            }
             //calculate the slopes of all scans
             for (int b = 0; b < signalAmount - 1; b++)
             {
