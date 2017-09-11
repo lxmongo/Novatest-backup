@@ -810,6 +810,7 @@ namespace nanovaTest.SelectMethod
                     }
                 }
                 savePdf();
+                saveExportFile();
             }
             /**********Send profile to arduino************/
             try
@@ -1051,6 +1052,7 @@ namespace nanovaTest.SelectMethod
                             }
                         }
                         savePdf();
+                        saveExportFile();
                     }
                 }
                 else
@@ -1526,6 +1528,38 @@ namespace nanovaTest.SelectMethod
                 notifyPopup.Show();
             }
         }
+
+
+        //update rentention time if there is a update txt file in specific location
+        private async void saveExportFile()
+        {
+            try
+            {
+                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder ExportFileFolder = await applicationFolder.CreateFolderAsync("export file",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder FileFolder = await ExportFileFolder.CreateFolderAsync(methodFileName,
+                    CreationCollisionOption.OpenIfExists);
+
+                //Create Export file 
+                string FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+                string ExportFileName = ExperienceName.Text + "_" + OperatorName.SelectedValue + "_" + FileNameTime + ".dat";
+                StorageFile ExportFile = await FileFolder.CreateFileAsync(ExportFileName, CreationCollisionOption.OpenIfExists);
+                await Windows.Storage.FileIO.AppendTextAsync(ExportFile, "Experience Name: " + ExperienceName.Text + "\n"
+                    + "Operator Name: " + OperatorName.SelectedValue + "\n"
+                    + "Start time: " + System.DateTime.Now.ToString() + " " + System.DateTime.Now.ToString() + "\n"
+                    + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
+                    + "Waiting time: " + Waitingtimeuwp + "\n"
+                    + "Time,PID1,PID2,Temp,Setpoint,pressure,pwm%" + "\n");
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine("Update file not found");
+            }
+        }
+
+
         //Connect to arduino
         public async void devices_list()
         {
