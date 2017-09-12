@@ -1530,28 +1530,33 @@ namespace nanovaTest.SelectMethod
         }
 
 
-        //update rentention time if there is a update txt file in specific location
+        //save export data to the export file folder 
         private async void saveExportFile()
         {
             try
             {
-                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                //Create a folder: fileFloder dir export file -->methodFileName -->dateTimeFileName
                 StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
                 StorageFolder ExportFileFolder = await applicationFolder.CreateFolderAsync("export file",
                     CreationCollisionOption.OpenIfExists);
                 StorageFolder FileFolder = await ExportFileFolder.CreateFolderAsync(methodFileName,
                     CreationCollisionOption.OpenIfExists);
 
-                //Create Export file 
+                //Create Export file title parameters
                 string FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
                 string ExportFileName = ExperienceName.Text + "_" + OperatorName.SelectedValue + "_" + FileNameTime + ".dat";
                 StorageFile ExportFile = await FileFolder.CreateFileAsync(ExportFileName, CreationCollisionOption.OpenIfExists);
                 await Windows.Storage.FileIO.AppendTextAsync(ExportFile, "Experience Name: " + ExperienceName.Text + "\n"
                     + "Operator Name: " + OperatorName.SelectedValue + "\n"
-                    + "Start time: " + System.DateTime.Now.ToString() + " " + System.DateTime.Now.ToString() + "\n"
+                    + "Start time: " + " " + System.DateTime.Now.ToString() + "\n"
                     + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
                     + "Waiting time: " + Waitingtimeuwp + "\n"
-                    + "Time,PID1,PID2,Temp,Setpoint,pressure,pwm%" + "\n");
+                    + "Time,PID1,Baseline" + "\n");
+                //Add point information
+                for (int i = 0; i < x1.Count; i++)
+                {
+                    await Windows.Storage.FileIO.AppendTextAsync(ExportFile, x1[i] + "," + y1[i] + "," + y_b1[i] + "\n");
+                }
             }
             catch (FileNotFoundException)
             {

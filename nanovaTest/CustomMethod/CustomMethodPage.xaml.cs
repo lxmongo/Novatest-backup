@@ -575,6 +575,48 @@ namespace nanovaTest.CustomMethod
             }
         }
 
+        //save export data to the export file folder 
+        private async void saveExportFile()
+        {
+            try
+            {
+                //Create a folder: fileFloder dir export file -->Advanced Test -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder ExportFileFolder = await applicationFolder.CreateFolderAsync("export file",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder FileFolder = await ExportFileFolder.CreateFolderAsync("Advanced Test",
+                    CreationCollisionOption.OpenIfExists);
+
+                //Create Export file title parameters
+                string FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+                string ExportFileName = ExperienceName.Text + "_" + OperatorName.SelectedValue + "_" + FileNameTime + ".dat";
+                StorageFile ExportFile = await FileFolder.CreateFileAsync(ExportFileName, CreationCollisionOption.OpenIfExists);
+                await Windows.Storage.FileIO.AppendTextAsync(ExportFile,"Experience Name: " + ExperienceName.Text + "\n"
+                + "Operator Name: " + OperatorName.SelectedValue + "\n"
+                + "Start time: " + " " + System.DateTime.Now.ToString() + "\n"
+                + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
+                + "Waiting time: " + Waitingtimeuwp + "\n"
+                + "Lowest Temperature: " + LowestTempText.Text + "\n"
+                + "Low holding time: " + LowHoldingTimeText.Text + "\n"
+                + "Temperature 1: " + Temp1Text.Text + "\n"
+                + "Temp1 holding time: " + Hold1Text.Text + "\n"
+                + "Ramping speed 1: " + RampSpeed1Text.Text + "\n"
+                + "Temperature2: " + Temp2Text.Text + "\n"
+                + "Temp2 holding time: " + Hold2Text.Text + "\n"
+                + "Ramping speed 2: " + RampSpeed2Text.Text + "\n"
+                + "Time,PID1,Baseline" + "\n");
+                //Add point information
+                for (int i = 0; i < x1.Count; i++)
+                {
+                    await Windows.Storage.FileIO.AppendTextAsync(ExportFile, x1[i] + "," + y1[i] + "," + y_b1[i] + "\n");
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine("Update file not found");
+            }
+        }
+
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
             Debug.WriteLine("Back Event!");
@@ -913,6 +955,7 @@ namespace nanovaTest.CustomMethod
                         SecondaryGrid.Visibility = Visibility;
                     }
                     savePdf();
+                    saveExportFile();
                     //hide button for a while
                     CalcButtonImage.Visibility = Visibility.Collapsed;
                 }
@@ -1118,7 +1161,7 @@ namespace nanovaTest.CustomMethod
                             SecondaryGrid.Visibility = Visibility;
                         }
                         savePdf();
-                   
+                        saveExportFile();
                     }
                 }
                 else
