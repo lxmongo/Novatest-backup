@@ -618,7 +618,7 @@ namespace nanovaTest.Calibrate
         {
             StartCalculation.Visibility = Visibility.Visible;
             StopCalculation.Visibility = Visibility.Collapsed;
-            if (!ReportSavedFlag)
+            if (!ReportSavedFlag && MethodNameText != "Cleaning")
             {
                 ReportSavedFlag = true;
                 //data analysis
@@ -636,6 +636,144 @@ namespace nanovaTest.Calibrate
 
                 //显示表格控件
                 testInfoList.Clear();
+                double currentvoctime = 0;
+                double currentvocheight = 0;
+                double currentvocarea = 0;
+                double FWHMvalue = 0;
+                double currentconcen = 0;
+                int Peak1DCount = 0;
+                if (MethodNameText == "BTEX")
+                {
+                    int p = 0;
+                    for (int j = 0; j < VOCNameList.Count; j++)
+                    {
+                        for (; p < peaks1.Count && p < bottoms1.Count - 1; p++)
+                        {
+                            if (Math.Abs(x1[peaks1[p]] - RetentionTimeList[j]) < retentionTimeThreshold)
+                            {
+                                currentvoctime = x1[peaks1[p]];
+                                currentvocheight = Heights1[p];
+                                currentvocarea = Area1[p];
+                                FWHMvalue = CalculateFWHM(bottoms1[p], peaks1[p], bottoms1[p + 1], x1, y1, y_b1);
+                                break;
+                            }
+                        }
+                        currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                        //handle null error
+                        string currentCF = "";
+                        if (VOCconcentrationList.Count == VOCNameList.Count)
+                        {
+                            currentCF = VOCconcentrationList[j].ToString("0.00");
+                        }
+                        string currentvocname = VOCNameList[j];
+                        if (j == 3)
+                            currentvocname = currentvocname + " & " + VOCNameList[j + 1];
+                        if (j != 4)
+                        {
+                            Peak1DCount++;
+                            testInfoList.Add(new CalibrateTestInfo
+                            {
+                                ID = (Peak1DCount).ToString(),
+                                VOCName = currentvocname,
+                                Time = currentvoctime.ToString("0.00"),
+                                //FWHM = FWHMvalue.ToString("0.00"),
+                                Height = currentvocheight.ToString("0.00"),
+                                Area = currentvocarea.ToString("0.00"),
+                                ConcentrationFactor = currentCF
+                            });
+                        }
+                        //Reset other parameters to 0
+                        currentvoctime = 0;
+                        currentvocheight = 0;
+                        currentvocarea = 0;
+                        FWHMvalue = 0;
+                    }
+                    //update VOC
+                    updateVOC();
+                    InfoListView.Visibility = Visibility;
+                }
+                else
+                {
+                    for (int j = 0; j < VOCNameList.Count; j++)
+                    {
+                        for (int p = 0; p < peaks1.Count && p < bottoms1.Count - 1; p++)
+                        {
+                            if (Math.Abs(x1[peaks1[p]] - RetentionTimeList[j]) < retentionTimeThreshold)
+                            {
+                                currentvoctime = x1[peaks1[p]];
+                                currentvocheight = Heights1[p];
+                                currentvocarea = Area1[p];
+                                FWHMvalue = CalculateFWHM(bottoms1[p], peaks1[p], bottoms1[p + 1], x1, y1, y_b1);
+                                break;
+                            }
+                        }
+                        currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                        string currentCF = "";
+                        if (VOCconcentrationList.Count == VOCNameList.Count)
+                        {
+                            currentCF = VOCconcentrationList[j].ToString("0.00");
+                        }
+                        if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
+                        {
+                            Peak1DCount++;
+                            testInfoList.Add(new CalibrateTestInfo
+                            {
+                                ID = (Peak1DCount).ToString(),
+                                VOCName = VOCNameList[j],
+                                Time = currentvoctime.ToString("0.00"),
+                                //FWHM = FWHMvalue.ToString("0.00"),
+                                Height = currentvocheight.ToString("0.00"),
+                                Area = currentvocarea.ToString("0.00"),
+                                ConcentrationFactor = currentCF
+                            });
+                        }
+                        //Reset other parameters to 0
+                        currentvoctime = 0;
+                        currentvocheight = 0;
+                        currentvocarea = 0;
+                        FWHMvalue = 0;
+                    }
+                    //update VOC
+                    updateVOC();
+                    InfoListView.Visibility = Visibility;
+                    if (heartcuttingNumber > 0)
+                    {
+                        int Peak2DCount = 0;
+                        secondaryInfoList.Clear();
+                        for (int j = 0; j < VOCNameList.Count; j++)
+                        {
+                            if (Math.Abs(RetentionTimeList[j] - 0) < 0.01)
+                            {
+                                Peak2DCount++;
+                                for (int p = 0; p < peaks2.Count && p < bottoms2.Count - 1; p++)
+                                {
+                                    if (Math.Abs(x2[peaks2[p]] - RetentionTime2DList[j]) < retentionTimeThreshold)
+                                    {
+                                        currentvoctime = x2[peaks2[p]];
+                                        currentvocheight = Heights2[p];
+                                        currentvocarea = Area2[p];
+                                        FWHMvalue = CalculateFWHM(bottoms2[p], peaks2[p], bottoms2[p + 1], x2, y2, y_b2);
+                                        break;
+                                    }
+                                }
+                                currentconcen = currentvocarea * CalibrationFactor2D / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                secondaryInfoList.Add(new CalibrateTestInfo
+                                {
+                                    ID = Peak2DCount.ToString(),
+                                    VOCName = VOCNameList[j],
+                                    Time = currentvoctime.ToString("0.00"),
+                                    //FWHM = FWHMvalue.ToString("0.00"),
+                                    Height = currentvocheight.ToString("0.00"),
+                                    Area = currentvocarea.ToString("0.00"),
+                                    ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
+                                });
+                            }
+                        }
+                        //SecondaryGrid.Visibility = Visibility;
+                    }
+                }
+                //显示表格控件
+                //testInfoList.Clear();
                 savePdf();
             }
             /**********Send profile to arduino************/
@@ -810,7 +948,11 @@ namespace nanovaTest.Calibrate
                                         ConcentrationFactor = currentCF
                                     });
                                 }
-
+                                //Reset other parameters to 0
+                                currentvoctime = 0;
+                                currentvocheight = 0;
+                                currentvocarea = 0;
+                                FWHMvalue = 0;
                             }
                             //update VOC
                             updateVOC();
@@ -851,6 +993,11 @@ namespace nanovaTest.Calibrate
                                         ConcentrationFactor = currentCF
                                     });
                                 }
+                                //Reset other parameters to 0
+                                currentvoctime = 0;
+                                currentvocheight = 0;
+                                currentvocarea = 0;
+                                FWHMvalue = 0;
                             }
                             //update VOC
                             updateVOC();

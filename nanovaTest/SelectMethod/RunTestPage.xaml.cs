@@ -87,6 +87,11 @@ namespace nanovaTest.SelectMethod
         private DateTime StartDateTime = DateTime.Now;
         private DateTime CurrentDateTime = DateTime.Now;
 
+        //VOC concentration data
+        private List<double> VOCconcentrationList = new List<double>();
+        private string[,] newinfo;
+        private string calibrationFileName = "";
+
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
         private int heartcuttingNumber = 0;
@@ -162,15 +167,15 @@ namespace nanovaTest.SelectMethod
             initPage();
         }
 
-      
-        
+
+
         public void Dispose()
         {
-            if(null != testInfoList)
+            if (null != testInfoList)
             {
                 testInfoList.Clear();
             }
-            if(null != operatorList)
+            if (null != operatorList)
             {
                 operatorList.Clear();
             }
@@ -403,6 +408,7 @@ namespace nanovaTest.SelectMethod
                     }
                     ReadFromJson(fileName);
                     UpdateRentention(FromSelect);
+                    GetConcentrationFactor(FromSelect);
                 }
             }
         }
@@ -416,7 +422,7 @@ namespace nanovaTest.SelectMethod
                 {
                     var content = reader.ReadToEnd();
                     JsonObject json = JsonObject.Parse(content);
-                    heartcuttingNumber = (int) json.GetNamedNumber("heartcuttingNumber");
+                    heartcuttingNumber = (int)json.GetNamedNumber("heartcuttingNumber");
                     SetPressure = json.GetNamedNumber("SetPressure");
                     JsonInputArray.Add(json.GetNamedNumber("lowestTempvalue"));
                     JsonInputArray.Add(json.GetNamedNumber("lowestTvalue"));
@@ -449,7 +455,7 @@ namespace nanovaTest.SelectMethod
                     for (var index = 0; index < json.GetNamedArray("VOCRetentionTime").Count; index++)
                     {
                         var cutsecond = json.GetNamedArray("VOCRetentionTime")[index];
-                        if(cutsecond.ValueType == JsonValueType.Number)
+                        if (cutsecond.ValueType == JsonValueType.Number)
                         {
                             RetentionTimeList.Add(cutsecond.GetNumber());
                         }
@@ -466,7 +472,7 @@ namespace nanovaTest.SelectMethod
                             }
                             CalibrationFactor2D = json.GetNamedNumber("CalibrationFactor2D");
                         }
-                        catch(System.Exception)
+                        catch (System.Exception)
                         {
 
                         }
@@ -490,7 +496,7 @@ namespace nanovaTest.SelectMethod
                             if (VOCNameList[vocjsoni].ToUpper() == currentvocname)
                             {
                                 IJsonValue rfValue = vocjsonvalue.GetNamedValue("RF");
-                                if(rfValue.ValueType == JsonValueType.Number)
+                                if (rfValue.ValueType == JsonValueType.Number)
                                 {
                                     ResposeFactorList.Add(vocjsonvalue.GetNamedNumber("RF"));
                                     break;
@@ -561,7 +567,7 @@ namespace nanovaTest.SelectMethod
                     Debug.WriteLine(RetentionTimeList[i]);
                 }
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 Debug.WriteLine("Update file not found");
             }
@@ -621,7 +627,7 @@ namespace nanovaTest.SelectMethod
                 return;
             }
             //根据json标志显示bottom
-            if(heartcuttingNumber > 0)
+            if (heartcuttingNumber > 0)
             {
                 BottomChartGrid.Visibility = Visibility.Visible;
                 TopGrid.Height = 450;
@@ -634,7 +640,7 @@ namespace nanovaTest.SelectMethod
 
             if (null != timer)
                 timer.Stop();
-            if(null != c)
+            if (null != c)
                 c.Update(0, 1000);
             Value = 0;
             StartCalculation.Visibility = Visibility.Collapsed;
@@ -673,7 +679,7 @@ namespace nanovaTest.SelectMethod
             InfoListView.Visibility = Visibility.Collapsed;
             SecondaryGrid.Visibility = Visibility.Collapsed;
         }
-        
+
         //停止按钮事件
         private async void StopCalculation_Click(object sender, RoutedEventArgs e)
         {
@@ -686,7 +692,7 @@ namespace nanovaTest.SelectMethod
                 WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
                 if (heartcuttingNumber > 0)
                     WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
-          
+
                 //Add baseline
                 this.Basic_Chart.Series[1].ItemsSource = null;
                 for (int i = 0; i < x_b.Count && i < y_b1.Count; i++)
@@ -719,10 +725,16 @@ namespace nanovaTest.SelectMethod
                                 break;
                             }
                         }
-                        currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                        //handle null error
+                        CalibrationFactor = 1;
+                        if (VOCconcentrationList.Count == VOCNameList.Count)
+                        {
+                            CalibrationFactor = VOCconcentrationList[j];
+                        }
+                        currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         string currentvocname = VOCNameList[j];
                         if (j == 3)
-                            currentvocname = currentvocname + " & "+ VOCNameList[j + 1];
+                            currentvocname = currentvocname + " & " + VOCNameList[j + 1];
                         if (j != 4)
                         {
                             Peak1DCount++;
@@ -756,7 +768,13 @@ namespace nanovaTest.SelectMethod
                                 break;
                             }
                         }
-                        currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                        //handle null error
+                        CalibrationFactor = 1;
+                        if (VOCconcentrationList.Count == VOCNameList.Count)
+                        {
+                            CalibrationFactor = VOCconcentrationList[j];
+                        }
+                        currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                         {
                             Peak1DCount++;
@@ -793,7 +811,7 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                currentconcen = currentvocarea * CalibrationFactor2D / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                currentconcen = currentvocarea * CalibrationFactor2D / (FlowRate * Sampletimeuwp);
                                 secondaryInfoList.Add(new SelectTestInfo
                                 {
                                     ID = Peak2DCount.ToString(),
@@ -871,7 +889,7 @@ namespace nanovaTest.SelectMethod
 
             timer.Start();
         }
-        
+
 
         private void Timer_Tick(object sender, object e)
         {
@@ -929,7 +947,7 @@ namespace nanovaTest.SelectMethod
                         WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
                         if (heartcuttingNumber > 0)
                             WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
-                       
+
                         //Add baseline
                         this.Basic_Chart.Series[1].ItemsSource = null;
                         for (int i = 0; i < x_b.Count && i < y_b1.Count; i++)
@@ -961,7 +979,13 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                //handle null error
+                                CalibrationFactor = 1;
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    CalibrationFactor = VOCconcentrationList[j];
+                                }
+                                currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                                 string currentvocname = VOCNameList[j];
                                 if (j == 3)
                                     currentvocname = currentvocname + " & " + VOCNameList[j + 1];
@@ -998,7 +1022,13 @@ namespace nanovaTest.SelectMethod
                                         break;
                                     }
                                 }
-                                currentconcen = currentvocarea * CalibrationFactor / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                //handle null error
+                                CalibrationFactor = 1;
+                                if (VOCconcentrationList.Count == VOCNameList.Count)
+                                {
+                                    CalibrationFactor = VOCconcentrationList[j];
+                                }
+                                currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                                 if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
                                 {
                                     Peak1DCount++;
@@ -1035,7 +1065,7 @@ namespace nanovaTest.SelectMethod
                                                 break;
                                             }
                                         }
-                                        currentconcen = currentvocarea * CalibrationFactor2D / ((FlowRate * Sampletimeuwp / 60.0) * ResposeFactorList[j]);
+                                        currentconcen = currentvocarea * CalibrationFactor2D / (FlowRate * Sampletimeuwp);
                                         secondaryInfoList.Add(new SelectTestInfo
                                         {
                                             ID = Peak2DCount.ToString(),
@@ -1058,7 +1088,7 @@ namespace nanovaTest.SelectMethod
                 else
                 {
                     CurrentStepText.Text = loader.GetString("CoolingStep");
-                    CurrentStepRemainTimeText.Text = loader.GetString("CoolingNotice"); 
+                    CurrentStepRemainTimeText.Text = loader.GetString("CoolingNotice");
                     CurrentStepRemainTimeText.FontSize = 14;
                     if (Math.Abs(UsedTime - (-5)) < 0.1) //cooling is finished
                     {
@@ -1104,9 +1134,9 @@ namespace nanovaTest.SelectMethod
                     bottomSource.Add(data2);
                     this.Basic_Chart1.Series[0].ItemsSource = bottomSource;
                 }
-            }            
+            }
         }
-        
+
         public class CycleData : INotifyPropertyChanged
         {
             public event PropertyChangedEventHandler PropertyChanged;
@@ -1243,7 +1273,7 @@ namespace nanovaTest.SelectMethod
             XaxisMax1 = 100;
             YaxisMax1 = 20;
         }
-        
+
 
         private async void savePdf()
         {
@@ -1416,7 +1446,7 @@ namespace nanovaTest.SelectMethod
                 float x = 255f;
                 float y = 60f;
                 float y1 = 75f;
-                
+
                 footerSpace.Graphics.DrawString(headerText, footerFont, PdfBrushes.Black, x, y, format);
                 footerSpace.Graphics.DrawString(headerText1, footerFont, PdfBrushes.Black, x, y1, format);
                 //footerSpace.Graphics.DrawString(address, font, PdfBrushes.Black, x, y2, format);
@@ -1450,7 +1480,7 @@ namespace nanovaTest.SelectMethod
                 RectangleF p25 = new RectangleF(4 * Width, 0, Width, Length);
                 RectangleF p26 = new RectangleF(5 * Width, 0, Width, Length);
                 RectangleF p27 = new RectangleF(6 * Width, 0, Width, Length);
-                RectangleF p21s = new RectangleF(0 + (0.3f * Width) , 0, Width, Length);
+                RectangleF p21s = new RectangleF(0 + (0.3f * Width), 0, Width, Length);
                 RectangleF p22s = new RectangleF(Width + (0.3f * Width), 0, Width, Length);
                 RectangleF p23s = new RectangleF(2 * Width + (0.4f * Width), 0, Width, Length);
                 RectangleF p24s = new RectangleF(3 * Width + (0.25f * Width), 0, Width, Length);
@@ -1514,7 +1544,7 @@ namespace nanovaTest.SelectMethod
                 StorageFolder pdfFolder = await runTestFolder.CreateFolderAsync(methodFileName,
                     CreationCollisionOption.OpenIfExists);
                 StorageFile savePdfFile = await pdfFolder.CreateFileAsync(string.Format("{0}_{1}.pdf",
-                    OperatorName.SelectedValue, 
+                    OperatorName.SelectedValue,
                     DateTime.Now.ToString("yyyyMMddHHmmss")),
                     CreationCollisionOption.OpenIfExists);
                 using (var stream = await savePdfFile.OpenAsync(FileAccessMode.ReadWrite))
@@ -1528,7 +1558,6 @@ namespace nanovaTest.SelectMethod
                 notifyPopup.Show();
             }
         }
-
 
         //save export data to the export file folder 
         private async void saveExportFile()
@@ -1563,6 +1592,7 @@ namespace nanovaTest.SelectMethod
                 Debug.WriteLine("Update file not found");
             }
         }
+
 
 
         //Connect to arduino
@@ -1784,7 +1814,7 @@ namespace nanovaTest.SelectMethod
             double Temp2value = JsonInputArray[5];
             double HoldT2value = JsonInputArray[6] * 60;
             double RampSpeed2value = JsonInputArray[7] / 60.0;
-            heartcuttingNumber = (int) JsonInputArray[8];
+            heartcuttingNumber = (int)JsonInputArray[8];
             Analysistimeuwp = lowestTvalue + HoldT1value + HoldT2value + (Temp1value - lowestTempvalue) / RampSpeed1value + (Temp2value - Temp1value) / RampSpeed2value; //s
             ProfileString += (float.Parse(SamplingTimeText.Text) * 60).ToString() + ",";
             ProfileString += SetPressure.ToString() + ",";
@@ -1848,7 +1878,7 @@ namespace nanovaTest.SelectMethod
             ExtractingStr = "";
             PartialStr = "";
             UsedTime = -5;
-    }
+        }
         //******************************Data analysis process*******************************//
         private int constant_m = 35; // for SNIP baseline formula
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
@@ -1938,8 +1968,8 @@ namespace nanovaTest.SelectMethod
             {
                 THRESHOLD_peak = 0.2f;
             }
-                //calculate the slopes of all scans
-                for (int b = 0; b < signalAmount - 1; b++)
+            //calculate the slopes of all scans
+            for (int b = 0; b < signalAmount - 1; b++)
             {
                 double slopeTemp = (OriginalY[b + 1] - OriginalY[b]) / (OriginalX[b + 1] - OriginalX[b]);
                 slopes.Add(slopeTemp);
@@ -2051,7 +2081,8 @@ namespace nanovaTest.SelectMethod
                         //data.Add(new Item(index + 1, OriginalX[bottoms[index]], OriginalX[peaks[index]], OriginalX[bottoms[index + 1]], Heights[index], Area[index], FWHMvalue));
                     }
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                 }
             }
             else //no peak is found 
@@ -2160,7 +2191,7 @@ namespace nanovaTest.SelectMethod
                 }
             }
         }
-        
+
         //update info for the default methods
         private async void UpdateInfo_Click(object sender, RoutedEventArgs e)
         {
@@ -2175,7 +2206,7 @@ namespace nanovaTest.SelectMethod
             byte[] fileContent = new byte[reader.UnconsumedBufferLength];
             reader.ReadBytes(fileContent);
             string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
-            String[] result = text.Split(new[] {'\n'});
+            String[] result = text.Split(new[] { '\n' });
 
             for (int i = 0; i < RetentionTimeList.Count; i++)
             {
@@ -2199,7 +2230,7 @@ namespace nanovaTest.SelectMethod
                                 RetentionTimeList[i] = num;
                             }
                         }
-                        catch(System.IndexOutOfRangeException ex)
+                        catch (System.IndexOutOfRangeException ex)
                         {
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
@@ -2313,7 +2344,7 @@ namespace nanovaTest.SelectMethod
                                 RetentionTimeList[i] = num;
                             }
                         }
-                        catch(System.IndexOutOfRangeException ex)
+                        catch (System.IndexOutOfRangeException ex)
                         {
                             MessageDialog popup = new MessageDialog("the number of parameters doesn't match!");
                             await popup.ShowAsync();
@@ -2355,6 +2386,85 @@ namespace nanovaTest.SelectMethod
             if (bom[0] == 0xfe && bom[1] == 0xff) return System.Text.Encoding.BigEndianUnicode; //UTF-16BE
             if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return System.Text.Encoding.UTF32;
             return System.Text.Encoding.ASCII;
+        }
+
+        //Get VOC Concentration Factor List
+        private async void GetConcentrationFactor(string FileName)
+        {
+            try
+            {
+                //Create a folder: fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder retentionFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(FileName,
+                    CreationCollisionOption.OpenIfExists);
+                //Query the file
+                List<string> fileTypeFilter = new List<string>();
+                fileTypeFilter.Add(".dat");
+                var queryOptions = new Windows.Storage.Search.QueryOptions(Windows.Storage.Search.CommonFileQuery.OrderByName, fileTypeFilter);
+
+                // Create query and retrieve files
+                var query = pdfFolder.CreateFileQueryWithOptions(queryOptions);
+                IReadOnlyList<StorageFile> fileList = await query.GetFilesAsync();
+                // Process results
+                long maxvalue = 0;
+                foreach (StorageFile file in fileList)
+                {
+                    // Process file
+                    Debug.WriteLine(file.Name);
+                    if (long.Parse(file.Name.Split('.')[0]) > maxvalue)
+                    {
+                        maxvalue = long.Parse(file.Name.Split('.')[0]);
+                    }
+                }
+                Debug.WriteLine(maxvalue);
+
+                //Get the latest file 
+                string latestFilename = maxvalue.ToString() + ".dat";
+                calibrationFileName = latestFilename;
+                StorageFile latestFile = await pdfFolder.GetFileAsync(latestFilename);
+
+                if (latestFile != null)
+                {
+                    Debug.WriteLine("VOC file found");
+                }
+
+                IBuffer buffer = await FileIO.ReadBufferAsync(latestFile);
+                DataReader reader = DataReader.FromBuffer(buffer);
+                byte[] fileContent = new byte[reader.UnconsumedBufferLength];
+                reader.ReadBytes(fileContent);
+                string text = GetEncoding(new byte[4] { fileContent[0], fileContent[1], fileContent[2], fileContent[3] }).GetString(fileContent);
+                String[] result = text.Split(new[] { '|' });
+                //get CF and method name to newinfo
+                if (result.Length == VOCNameList.Count)
+                {
+                    newinfo = new string[result.Length + 1, 2];
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            string[] newline = result[i].Split(new[] { ':' });
+                            newinfo[i, j] = newline[j];
+                            Debug.WriteLine(newinfo[i, j]);
+                        }
+                    }
+                    newinfo[result.Length, 0] = "datetime";
+                    newinfo[result.Length, 1] = maxvalue.ToString();
+                }
+                if (newinfo.Length > 0 && newinfo.Length / 2 - 1 == VOCNameList.Count)
+                {
+                    for (var index = 0; index < VOCNameList.Count; index++)
+                    {
+                        VOCconcentrationList.Add(double.Parse(newinfo[index, 1]));
+                        //Debug.WriteLine(VOCconcentrationList[index]);
+                    }
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine("VOC file not found");
+            }
         }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
