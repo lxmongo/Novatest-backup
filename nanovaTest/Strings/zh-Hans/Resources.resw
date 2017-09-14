@@ -645,4 +645,13 @@
   <data name="DeepClean1" xml:space="preserve">
     <value>深度清洗</value>
   </data>
+  <data name="Calibration file" xml:space="preserve">
+    <value>较准文件</value>
+  </data>
+  <data name="Instrument" xml:space="preserve">
+    <value>设备</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>参数</value>
+  </data>
 </root>
