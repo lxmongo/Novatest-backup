@@ -334,8 +334,15 @@
                                 </Grid>
 
                                 <Grid Grid.Row="1" Margin="0 0 0 20">
-                                    <ListView x:Name="InfoListView" Visibility="Collapsed" IsHitTestVisible="False" HorizontalContentAlignment="Stretch" Margin="0,30,10,0" 
-                              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{x:Bind testInfoList}">
+                                    <Button x:Name="SaveCalivration" Visibility="Collapsed" Click="SaveCalivration_Click"  Height="40" Width="130" 
+                                        Style="{StaticResource TransparentStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="40" BorderThickness="0" Margin="0,10,0,0">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Image x:Name="SaveCalivrationImage" Source="ms-appx:///Assets/start_new.png" />
+                                            <TextBlock x:Uid="SaveCalivrationText" x:Name="SaveCalText" Text="Save Calibration" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <ListView x:Name="InfoListView" Visibility="Collapsed" IsHitTestVisible="False" HorizontalContentAlignment="Stretch" Margin="0,60,10,0" 
+                              VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ItemsSource="{x:Bind testInfoList}">
 
                                         <ListView.ItemTemplate>
                                             <DataTemplate x:DataType="local:CalibrateTestInfo">

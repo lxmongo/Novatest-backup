@@ -732,6 +732,7 @@ namespace nanovaTest.SelectMethod
                             CalibrationFactor = VOCconcentrationList[j];
                         }
                         currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
+                        Debug.WriteLine(CalibrationFactor);
                         string currentvocname = VOCNameList[j];
                         if (j == 3)
                             currentvocname = currentvocname + " & " + VOCNameList[j + 1];
@@ -749,7 +750,12 @@ namespace nanovaTest.SelectMethod
                                 Concentration = currentconcen.ToString("0.00")
                             });
                         }
-
+                        //Reset other parameters to 0
+                        currentvoctime = 0;
+                        currentvocheight = 0;
+                        currentvocarea = 0;
+                        FWHMvalue = 0;
+                        currentconcen = 0;
                     }
                     InfoListView.Visibility = Visibility;
                 }
@@ -789,6 +795,12 @@ namespace nanovaTest.SelectMethod
                                 Concentration = currentconcen.ToString("0.00")
                             });
                         }
+                        //Reset other parameters to 0
+                        currentvoctime = 0;
+                        currentvocheight = 0;
+                        currentvocarea = 0;
+                        FWHMvalue = 0;
+                        currentconcen = 0;
                     }
                     InfoListView.Visibility = Visibility;
                     if (heartcuttingNumber > 0)
@@ -1003,7 +1015,12 @@ namespace nanovaTest.SelectMethod
                                         Concentration = currentconcen.ToString("0.00")
                                     });
                                 }
-
+                                //Reset other parameters to 0
+                                currentvoctime = 0;
+                                currentvocheight = 0;
+                                currentvocarea = 0;
+                                FWHMvalue = 0;
+                                currentconcen = 0;
                             }
                             InfoListView.Visibility = Visibility;
                         }
@@ -1043,6 +1060,12 @@ namespace nanovaTest.SelectMethod
                                         Concentration = currentconcen.ToString("0.00")
                                     });
                                 }
+                                //Reset other parameters to 0
+                                currentvoctime = 0;
+                                currentvocheight = 0;
+                                currentvocarea = 0;
+                                FWHMvalue = 0;
+                                currentconcen = 0;
                             }
                             InfoListView.Visibility = Visibility;
                             if (heartcuttingNumber > 0)

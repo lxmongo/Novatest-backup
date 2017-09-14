@@ -608,6 +608,8 @@ namespace nanovaTest.Calibrate
             /************************************************/
             StartCountDown();
             Status_Click(new object(), new RoutedEventArgs());
+            //save calibrition button sync with list
+            SaveCalivration.Visibility = Visibility.Collapsed;
             InfoListView.Visibility = Visibility.Collapsed;
             InfoListView1.Visibility = Visibility.Collapsed;
         }
@@ -689,7 +691,9 @@ namespace nanovaTest.Calibrate
                         FWHMvalue = 0;
                     }
                     //update VOC
-                    updateVOC();
+                    //updateVOC();
+                    //save calibrition button sync with list
+                    SaveCalivration.Visibility = Visibility;
                     InfoListView.Visibility = Visibility;
                 }
                 else
@@ -734,7 +738,9 @@ namespace nanovaTest.Calibrate
                         FWHMvalue = 0;
                     }
                     //update VOC
-                    updateVOC();
+                    //updateVOC();
+                    //save calibrition button sync with list
+                    SaveCalivration.Visibility = Visibility;
                     InfoListView.Visibility = Visibility;
                     if (heartcuttingNumber > 0)
                     {
@@ -955,7 +961,9 @@ namespace nanovaTest.Calibrate
                                 FWHMvalue = 0;
                             }
                             //update VOC
-                            updateVOC();
+                            //updateVOC();
+                            //save calibrition button sync with list
+                            SaveCalivration.Visibility = Visibility;
                             InfoListView.Visibility = Visibility;
                         }
                         else
@@ -1000,7 +1008,9 @@ namespace nanovaTest.Calibrate
                                 FWHMvalue = 0;
                             }
                             //update VOC
-                            updateVOC();
+                            //updateVOC();
+                            //save calibrition button sync with list
+                            SaveCalivration.Visibility = Visibility;
                             InfoListView.Visibility = Visibility;
                             if (heartcuttingNumber > 0)
                             {
@@ -2078,6 +2088,12 @@ namespace nanovaTest.Calibrate
                     return (sum + current) / (double)MovingWindowWidth;
                 }
             }
+        }
+
+        private void SaveCalivration_Click(object sender, RoutedEventArgs e)
+        {
+            //update VOC
+            updateVOC();
         }
         //**********************************************************************************//
     }

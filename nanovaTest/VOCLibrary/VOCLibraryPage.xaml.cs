@@ -30,6 +30,7 @@ namespace nanovaTest.VOCLibrary
         private Dictionary<string, string> methodtrans; //name filename
         private string[,] newinfo;
         private List<double> RetentionTimeList;
+        private double DelayTime = 100;
 
         private string vocsFile = "VOCS.json";
 
@@ -353,7 +354,7 @@ namespace nanovaTest.VOCLibrary
             InitListByName("TVOC");
             InitListByName("TVOC");
             UpdateRentention("TVOC");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -367,7 +368,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("BTEX");
             InitListByName("BTEX");
             UpdateRentention("BTEX");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -381,7 +382,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("MTBE");
             InitListByName("MTBE");
             UpdateRentention("MTBE");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -395,7 +396,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("TCEPCE");
             InitListByName("TCEPCE");
             UpdateRentention("TCEPCE");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -409,7 +410,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("Malodorous");
             InitListByName("Malodorous");
             UpdateRentention("Malodorous");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -423,7 +424,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("MG");
             InitListByName("MG");
             UpdateRentention("MG");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -437,7 +438,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("EA");
             InitListByName("EA");
             UpdateRentention("EA");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -451,7 +452,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("PS");
             InitListByName("PS");
             UpdateRentention("PS");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
@@ -465,7 +466,7 @@ namespace nanovaTest.VOCLibrary
             UpdateCF("WA");
             InitListByName("WA");
             UpdateRentention("WA");
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
             VOCViewList.Visibility = Visibility.Visible;
         }
 
