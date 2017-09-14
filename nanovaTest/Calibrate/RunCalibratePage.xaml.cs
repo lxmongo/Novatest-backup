@@ -2094,6 +2094,8 @@ namespace nanovaTest.Calibrate
         {
             //update VOC
             updateVOC();
+            NotifyPopup notifyPopup = new NotifyPopup("Calibration file save successfully");
+            notifyPopup.Show();
         }
         //**********************************************************************************//
     }
