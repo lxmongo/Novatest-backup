@@ -895,7 +895,7 @@ namespace nanovaTest.SelectMethod
             await Windows.Storage.FileIO.AppendTextAsync(Rawfile, "Experience Name: " + ExperienceName.Text + "\n"
                 + "Operator Name: " + OperatorName.SelectedValue + "\n"
                 + "Start time: " + System.DateTime.Now.ToString() + " " + System.DateTime.Now.ToString() + "\n"
-                + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
+                + "Sampling time: " + Sampletimeuwp + "\n"
                 + "Waiting time: " + Waitingtimeuwp + "\n"
                 + "Time,PID1,PID2,Temp,Setpoint,pressure,pwm%" + "\n");
 
@@ -1318,11 +1318,12 @@ namespace nanovaTest.SelectMethod
                 PdfFont footerFont = new PdfTrueTypeFont(fontStream, 9);
                 PdfFont font2 = new PdfTrueTypeFont(textFontStream, 11);
                 PdfFont font = new PdfTrueTypeFont(textFontStream, 11);
+                PdfFont tableFont = new PdfTrueTypeFont(textFontStream, 9);
 
 
-               // PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Regular);
-               // PdfFont titleFont = new PdfStandardFont(PdfFontFamily.Helvetica, 20, PdfFontStyle.Regular);
-               // PdfFont footerFont = new PdfStandardFont(PdfFontFamily.Helvetica, 9, PdfFontStyle.Regular);
+                // PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Regular);
+                // PdfFont titleFont = new PdfStandardFont(PdfFontFamily.Helvetica, 20, PdfFontStyle.Regular);
+                // PdfFont footerFont = new PdfStandardFont(PdfFontFamily.Helvetica, 9, PdfFontStyle.Regular);
                 //PdfFont headerFont = new PdfStandardFont(PdfFontFamily.Helvetica, 9, PdfFontStyle.Regular);
                 //PdfFont font2 = new PdfStandardFont(PdfFontFamily.TimesRoman, 11, PdfFontStyle.Regular);
                 //PdfFont logoFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 30);
@@ -1344,8 +1345,8 @@ namespace nanovaTest.SelectMethod
                 String headerText1 = "www.nanovaenv.com";
                 String headerText2 = "+1 (573)-476-6355";
                 RectangleF rfh = new RectangleF(page.Graphics.ClientSize.Width - 130, 0, 130, 20);
-                RectangleF rfh1 = new RectangleF(page.Graphics.ClientSize.Width - 130, 17, 130, 20);
-                RectangleF rfh2 = new RectangleF(page.Graphics.ClientSize.Width - 130, 34, 130, 20);
+                RectangleF rfh1 = new RectangleF(page.Graphics.ClientSize.Width - 130, 13, 130, 20);
+                RectangleF rfh2 = new RectangleF(page.Graphics.ClientSize.Width - 130, 26, 130, 20);
                 //float x = 100f;
                 //float y = 0f;
                 //float y1 = 75f;
@@ -1387,10 +1388,10 @@ namespace nanovaTest.SelectMethod
                 document.Pages[0].Graphics.DrawString(parameterString, font, PdfBrushes.Black, rf15);
 
                 RectangleF rf4 = new RectangleF(0, 208, 450, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime") + "(min)", SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
 
                 RectangleF rf5 = new RectangleF(180, 208, 450, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime") + "(s)", WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
 
                 RectangleF rf6 = new RectangleF(360, 208, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
@@ -1424,7 +1425,7 @@ namespace nanovaTest.SelectMethod
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed11") + "(°C/min)", RampSpeed1value), font2, PdfBrushes.Black, rf11);
 
                 RectangleF rf12 = new RectangleF(0, 253, 400, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2") + "(°C)", Temp2value), font2, PdfBrushes.Black, rf12);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2")  + "(°C)", Temp2value), font2, PdfBrushes.Black, rf12);
 
                 RectangleF rf13 = new RectangleF(180, 253, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp2HoldigTime"), HoldT2value), font2, PdfBrushes.Black, rf13);
@@ -1523,7 +1524,7 @@ namespace nanovaTest.SelectMethod
                 //Create page count automatic field  
                 PdfPageCountField count = new PdfPageCountField();
                 //Add the fields in composite field  
-                PdfCompositeField compositeField1 = new PdfCompositeField(footerFont, PdfBrushes.Gray, "Copyright © 2017 Nanova Environmental, Inc.All Rights Reserved", number, count);
+                PdfCompositeField compositeField1 = new PdfCompositeField(footerFont, PdfBrushes.Gray, "Copyright © 2017 Nanova Environmental, Inc. All Rights Reserved.", number, count);
                 compositeField1.StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Bottom);
                 compositeField1.Bounds = footerSpace.Bounds;
                 compositeField1.Draw(footerSpace.Graphics);
@@ -1559,20 +1560,22 @@ namespace nanovaTest.SelectMethod
                 RectangleF p25s = new RectangleF(4 * Width + (0.3f * Width), 0, Width, Length);
                 RectangleF p26s = new RectangleF(5 * Width + (0.3f * Width), 0, Width, Length);
                 RectangleF p27s = new RectangleF(6 * Width + (0.3f * Width), 0, Width, Length);
+
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
                 graphics2.DrawRectangle(PdfPens.Black, p21);
-                graphics2.DrawString("Peak#", font, PdfBrushes.Black, p21s);
+                graphics2.DrawString("Peak#", tableFont, PdfBrushes.Black, p21s);
                 graphics2.DrawRectangle(PdfPens.Black, p22);
-                graphics2.DrawString("Name", font, PdfBrushes.Black, p22s);
+                graphics2.DrawString("Compound", tableFont, PdfBrushes.Black, p22s);
                 graphics2.DrawRectangle(PdfPens.Black, p23);
-                graphics2.DrawString("RT", font, PdfBrushes.Black, p23s);
+                graphics2.DrawString("RT(s)", tableFont, PdfBrushes.Black, p23s);
                 graphics2.DrawRectangle(PdfPens.Black, p24);
-                graphics2.DrawString("FWHM(s)", font, PdfBrushes.Black, p24s);
+                graphics2.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p24s);
                 graphics2.DrawRectangle(PdfPens.Black, p25);
-                graphics2.DrawString("Height", font, PdfBrushes.Black, p25s);
+                graphics2.DrawString("Height", tableFont, PdfBrushes.Black, p25s);
                 graphics2.DrawRectangle(PdfPens.Black, p26);
-                graphics2.DrawString("Area", font, PdfBrushes.Black, p26s);
+                graphics2.DrawString("Area", tableFont, PdfBrushes.Black, p26s);
                 graphics2.DrawRectangle(PdfPens.Black, p27);
-                graphics2.DrawString("CONCN", font, PdfBrushes.Black, p27s);
+                graphics2.DrawString("CONCN", tableFont, PdfBrushes.Black, p27s);
                 for (int i = 0; i < testInfoList.Count; i++)
                 {
                     p21 = new RectangleF(0, Length * (i + 1), Width, Length);
@@ -1650,7 +1653,7 @@ namespace nanovaTest.SelectMethod
                 await Windows.Storage.FileIO.AppendTextAsync(ExportFile, "Experience Name: " + ExperienceName.Text + "\n"
                     + "Operator Name: " + OperatorName.SelectedValue + "\n"
                     + "Start time: " + " " + System.DateTime.Now.ToString() + "\n"
-                    + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
+                    + "Sampling time: " + Sampletimeuwp + "\n"
                     + "Waiting time: " + Waitingtimeuwp + "\n"
                     + "Time,PID1,Baseline" + "\n");
                 //Add point information

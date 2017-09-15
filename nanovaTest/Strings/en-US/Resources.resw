@@ -319,7 +319,7 @@
     <value>Report</value>
   </data>
   <data name="SamplingPumpingTime" xml:space="preserve">
-    <value>Sampling/Pumping time</value>
+    <value>Sampling time</value>
   </data>
   <data name="SaveSuccess" xml:space="preserve">
     <value>Report saved successfully.</value>
@@ -331,7 +331,7 @@
     <value>Start time</value>
   </data>
   <data name="WaitingTime" xml:space="preserve">
-    <value>Waiting time</value>
+    <value>Waiting time (s)</value>
   </data>
   <data name="BeginTimeValidate" xml:space="preserve">
     <value>Begin Time is invalid.</value>
@@ -583,10 +583,10 @@
     <value>Pressure (psi)</value>
   </data>
   <data name="RampSpeed11" xml:space="preserve">
-    <value>Ramp Speed 1 (℃/min)</value>
+    <value>Ramp Speed 1 </value>
   </data>
   <data name="RampSpeed2" xml:space="preserve">
-    <value>Ramp Speed 2 (℃/min)</value>
+    <value>Ramp Speed 2 </value>
   </data>
   <data name="RetentionTimeTable.Text" xml:space="preserve">
     <value>Retention Time (s)</value>
@@ -595,22 +595,22 @@
     <value>Sampling</value>
   </data>
   <data name="Temp1HoldigTime" xml:space="preserve">
-    <value>Temp1 hold time(min)</value>
+    <value>Temp. 1 hold time (min)</value>
   </data>
   <data name="Temp2HoldigTime" xml:space="preserve">
-    <value>Temp2 hold time(min)</value>
+    <value>Temp. 2 hold time (min)</value>
   </data>
   <data name="Temperature1.Text" xml:space="preserve">
-    <value>Temperature 1 (℃)</value>
+    <value>Temp. 1 </value>
   </data>
   <data name="Temperature11" xml:space="preserve">
-    <value>Temperature 1 (℃)</value>
+    <value>Temp. 1 </value>
   </data>
   <data name="Temperature2.Text" xml:space="preserve">
-    <value>Temperature 2 (℃)</value>
+    <value>Temp. 2 </value>
   </data>
   <data name="Temperatures2" xml:space="preserve">
-    <value>Temperature 2 (℃)</value>
+    <value>Temp. 2 </value>
   </data>
   <data name="TempRampSpeed2.Text" xml:space="preserve">
     <value>Ramp Speed 2 (℃/min)</value>

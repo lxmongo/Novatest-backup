@@ -324,8 +324,8 @@ namespace nanovaTest.CustomMethod
                 String headerText1 = "www.nanovaenv.com";
                 String headerText2 = "+1 (573)-476-6355";
                 RectangleF rfh = new RectangleF(page.Graphics.ClientSize.Width - 130, 0, 130, 20);
-                RectangleF rfh1 = new RectangleF(page.Graphics.ClientSize.Width - 130, 17, 130, 20);
-                RectangleF rfh2 = new RectangleF(page.Graphics.ClientSize.Width - 130, 34, 130, 20);
+                RectangleF rfh1 = new RectangleF(page.Graphics.ClientSize.Width - 130, 13, 130, 20);
+                RectangleF rfh2 = new RectangleF(page.Graphics.ClientSize.Width - 130, 26, 130, 20);
                 //float x = 100f;
                 //float y = 0f;
                 //float y1 = 75f;
