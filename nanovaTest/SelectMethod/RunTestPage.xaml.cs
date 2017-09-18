@@ -1362,6 +1362,7 @@ namespace nanovaTest.SelectMethod
                 RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 85, 400, 30);
                 document.Pages[0].Graphics.DrawString("NovaTest P100 Report", titleFont, PdfBrushes.Black, rf, sf);
 
+
                 RectangleF rf1 = new RectangleF(0, 130, 500, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
 
@@ -1378,13 +1379,10 @@ namespace nanovaTest.SelectMethod
                 String instrumentString = "Instrument: NovaTest P100";
                 document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
 
-<<<<<<< HEAD
-                RectangleF rf18 = new RectangleF(0, 95, 400, 40);
-                String CalibrationfileString = "Calibration File: " + calibrationFileName;
-=======
+
                 RectangleF rf18 = new RectangleF(260, 159, 450, 40);
                 String CalibrationfileString = "Calibration file: N/A";
->>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
+
                 document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
 
                 RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 190, 400, 40);
@@ -1414,19 +1412,12 @@ namespace nanovaTest.SelectMethod
                 double RampSpeed2value = JsonInputArray[7];
                 //double RampSpeed2value = JsonInputArray[7] / 60.0;
 
-<<<<<<< HEAD
-                RectangleF rf7 = new RectangleF(0, 130, 400, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1"), lowestTempvalue), font2, PdfBrushes.Black, rf7);
 
-                RectangleF rf8 = new RectangleF(160, 130, 400, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1"), lowestTvalue), font2, PdfBrushes.Black, rf8);
-=======
                 RectangleF rf7 = new RectangleF(0, 223, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
 
                 RectangleF rf8 = new RectangleF(180, 223, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1") + "(min)", lowestTvalue), font2, PdfBrushes.Black, rf8);
->>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
 
                 RectangleF rf9 = new RectangleF(0, 238, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11") + "(°C)", Temp1value), font2, PdfBrushes.Black, rf9);

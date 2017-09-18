@@ -331,11 +331,7 @@
     <value>Start Time</value>
   </data>
   <data name="WaitingTime" xml:space="preserve">
-<<<<<<< HEAD
-    <value>Waiting Time</value>
-=======
-    <value>Waiting time (s)</value>
->>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
+    <value>Waiting Time (s)</value>
   </data>
   <data name="BeginTimeValidate" xml:space="preserve">
     <value>Begin Time is invalid.</value>
@@ -599,17 +595,10 @@
     <value>Sampling</value>
   </data>
   <data name="Temp1HoldigTime" xml:space="preserve">
-<<<<<<< HEAD
-    <value>Temp1 Hold Time(min)</value>
+    <value>Temp1 Hold Time (min)</value>
   </data>
   <data name="Temp2HoldigTime" xml:space="preserve">
-    <value>Temp2 Hold Time(min)</value>
-=======
-    <value>Temp. 1 hold time (min)</value>
-  </data>
-  <data name="Temp2HoldigTime" xml:space="preserve">
-    <value>Temp. 2 hold time (min)</value>
->>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
+    <value>Temp2 Hold Time(min) </value>
   </data>
   <data name="Temperature1.Text" xml:space="preserve">
     <value>Temp. 1 </value>

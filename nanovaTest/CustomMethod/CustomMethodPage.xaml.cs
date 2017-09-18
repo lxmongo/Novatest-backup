@@ -357,13 +357,9 @@ namespace nanovaTest.CustomMethod
                 String instrumentString = "Instrument: NovaTest P100";
                 document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
 
-<<<<<<< HEAD
                 RectangleF rf18 = new RectangleF(0, 95, 400, 40);
                 String CalibrationfileString = "Calibration File: N/A";
-=======
-                RectangleF rf18 = new RectangleF(260, 159, 450, 40);
-                String CalibrationfileString = "Calibration file: N/A";
->>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
+
                 document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
 
                 RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 190, 400, 40);
