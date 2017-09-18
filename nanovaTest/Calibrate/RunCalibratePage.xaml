@@ -126,7 +126,7 @@
                             </Grid>
                             <Grid Grid.Row="3">
                                 <StackPanel Orientation="Vertical" Margin="10 10 0 0">
-                                    <TextBlock x:Uid="SelectGas" Text="Select Gas" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBlock x:Uid="SelectGas" x:Name="GasComboBoxText" Text="Select Gas" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
                                     <ComboBox x:Name="GasComboBox" Width="220" MinHeight="10" Height="30" BorderThickness="0.5">
                                         <ComboBox.ItemsPanel>
                                             <ItemsPanelTemplate>

@@ -328,6 +328,15 @@ namespace nanovaTest.Calibrate
                     initGas(fileName);
                     ReadFromJson(fileName);
                     GasComboBox.ItemsSource = GasComboList;
+                    //Hide the Gascombolist
+                    GasComboBox.Visibility = Visibility.Collapsed;
+                    var CalibrateString = MethodName.Text;
+                    if (MethodName.Text == loader.GetString("AirQuality1"))
+                    {
+                        CalibrateString = "TO14";
+                    }
+                    GasComboBoxText.Text = "Calibration Gas: " + CalibrateString;
+                    //end hide
                     UpdateRentention(FromSelect);
                 }
             }
@@ -550,7 +559,8 @@ namespace nanovaTest.Calibrate
         //开始按钮事件
         private async void Calculation_Click(object sender, RoutedEventArgs e)
         {
-            var selectGas = GasComboBox.SelectedValue;
+            //var selectGas = GasComboBox.SelectedValue;
+            var selectGas = " ";
             if (null == selectGas)
             {
                 NotifyPopup notifyPopup = new NotifyPopup(loader.GetString("SelectGasInfo"));
@@ -1276,7 +1286,8 @@ namespace nanovaTest.Calibrate
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf4);
 
                 RectangleF rf5 = new RectangleF(0, 75, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SelectGas1"), GasComboBox.SelectedValue.ToString()), font, PdfBrushes.Black, rf5);
+                //graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SelectGas1"), GasComboBox.SelectedValue.ToString()), font, PdfBrushes.Black, rf5);
+                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SelectGas1"), MethodName.Text), font, PdfBrushes.Black, rf5);
 
                 RectangleF rf6 = new RectangleF(220, 75, 400, 40);
                 graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ConcentrationPPB"), ConcentrationName.Text), font, PdfBrushes.Black, rf6);
@@ -1479,7 +1490,7 @@ namespace nanovaTest.Calibrate
         private async void showVOC()
         {
             StandardConcentration = float.Parse(ConcentrationName.Text);
-            CalibrateSelected = GasComboBox.SelectedValue.ToString();
+            //CalibrateSelected = GasComboBox.SelectedValue.ToString();
             for (int i = 0; i < testInfoList.Count; i++)
             {
                 //update every point CF based on their concentration
