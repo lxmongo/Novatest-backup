@@ -692,6 +692,7 @@ namespace nanovaTest.Calibrate
                     }
                     //update VOC
                     //updateVOC();
+                    showVOC();
                     //save calibrition button sync with list
                     SaveCalivration.Visibility = Visibility;
                     InfoListView.Visibility = Visibility;
@@ -739,6 +740,7 @@ namespace nanovaTest.Calibrate
                     }
                     //update VOC
                     //updateVOC();
+                    showVOC();
                     //save calibrition button sync with list
                     SaveCalivration.Visibility = Visibility;
                     InfoListView.Visibility = Visibility;
@@ -962,6 +964,7 @@ namespace nanovaTest.Calibrate
                             }
                             //update VOC
                             //updateVOC();
+                            showVOC();
                             //save calibrition button sync with list
                             SaveCalivration.Visibility = Visibility;
                             InfoListView.Visibility = Visibility;
@@ -1009,6 +1012,7 @@ namespace nanovaTest.Calibrate
                             }
                             //update VOC
                             //updateVOC();
+                            showVOC();
                             //save calibrition button sync with list
                             SaveCalivration.Visibility = Visibility;
                             InfoListView.Visibility = Visibility;
@@ -1340,18 +1344,18 @@ namespace nanovaTest.Calibrate
         //update VOC library
         private async void updateVOC()
         {
-            //Debug.WriteLine(float.Parse(ConcentrationName.Text));
-            StandardConcentration = float.Parse(ConcentrationName.Text);
-            CalibrateSelected = GasComboBox.SelectedValue.ToString();
-            //VOCconcentration = float.Parse(ConcentrationName.Text);
-            Debug.WriteLine(CalibrateSelected);
-            for (int i = 0; i < testInfoList.Count; i++)
-            {
-                //update every point CF based on their concentration
-                double GasVolume = FlowRate * Sampletimeuwp;
-                VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
-                VOCconcentrationList.Add(VOCconcentration);
-                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.00");
+            ////Debug.WriteLine(float.Parse(ConcentrationName.Text));
+            //StandardConcentration = float.Parse(ConcentrationName.Text);
+            //CalibrateSelected = GasComboBox.SelectedValue.ToString();
+            ////VOCconcentration = float.Parse(ConcentrationName.Text);
+            //Debug.WriteLine(CalibrateSelected);
+            //for (int i = 0; i < testInfoList.Count; i++)
+            //{
+            //    //update every point CF based on their concentration
+            //    double GasVolume = FlowRate * Sampletimeuwp;
+            //    VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
+            //    VOCconcentrationList.Add(VOCconcentration);
+            //    testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.00");
                 //testInfoList[i].ConcentrationFactor = "test this";
                 /*
                 //if there is same peak detected
@@ -1403,12 +1407,12 @@ namespace nanovaTest.Calibrate
                     await popup.ShowAsync();
                 }
                 */
-            }
-            if (testInfoList.Count == 0)
-            {
-                MessageDialog popup = new MessageDialog("No Peak has been found to update!");
-                await popup.ShowAsync();
-            }
+            //}
+            //if (testInfoList.Count == 0)
+            //{
+            //    MessageDialog popup = new MessageDialog("No Peak has been found to update!");
+            //    await popup.ShowAsync();
+            //}
             if (MethodNameText == "BTEX")
             {
                 if (VOCNameList.Count - 1 == VOCconcentrationList.Count)
@@ -1471,7 +1475,31 @@ namespace nanovaTest.Calibrate
             }
         }
 
-
+        //update VOC library
+        private async void showVOC()
+        {
+            StandardConcentration = float.Parse(ConcentrationName.Text);
+            CalibrateSelected = GasComboBox.SelectedValue.ToString();
+            for (int i = 0; i < testInfoList.Count; i++)
+            {
+                //update every point CF based on their concentration
+                double GasVolume = FlowRate * Sampletimeuwp;
+                VOCconcentration = GasVolume * StandardConcentration / float.Parse(testInfoList[i].Area);
+                if (float.Parse(testInfoList[i].Area) == 0)
+                {
+                    VOCconcentration = 0;
+                }
+                Debug.WriteLine(VOCconcentration);
+                VOCconcentrationList.Add(VOCconcentration);
+                Debug.WriteLine(VOCconcentrationList);
+                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.00");
+            }
+            if (testInfoList.Count == 0)
+            {
+                MessageDialog popup = new MessageDialog("No Peak has been found to update!");
+                await popup.ShowAsync();
+            }
+        }
 
         //Connect to arduino
         public async void devices_list()

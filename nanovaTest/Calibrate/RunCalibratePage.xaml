@@ -126,7 +126,7 @@
                             </Grid>
                             <Grid Grid.Row="3">
                                 <StackPanel Orientation="Vertical" Margin="10 10 0 0">
-                                    <TextBlock x:Uid="SelectGas" Text="Select gas" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBlock x:Uid="SelectGas" Text="Select Gas" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
                                     <ComboBox x:Name="GasComboBox" Width="220" MinHeight="10" Height="30" BorderThickness="0.5">
                                         <ComboBox.ItemsPanel>
                                             <ItemsPanelTemplate>
@@ -176,7 +176,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock x:Uid="CurrentStep" Text="Current step " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="12"/>
+                                        <TextBlock x:Uid="CurrentStep" Text="Current Step " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="12"/>
                                         <TextBlock x:Name="CurrentStepText" Text="---" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="20"/>
                                     </StackPanel>
                                 </Grid>
@@ -217,14 +217,14 @@
                             </Grid>
                             <Grid Grid.Row="3" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Uid="PressurePsi" Text="Default pressure(psi)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBlock x:Uid="PressurePsi" Text="Default Pressure(psi)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
                                     <TextBox x:Name="SetPressureText" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                          TextAlignment="Center" Text="25" Width="220" MinHeight="10" Height="35" BorderThickness="0.5"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="4" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Uid="CurrentPressure" Text="Current pressure(psi)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
+                                    <TextBlock x:Uid="CurrentPressure" Text="Current Pressure(psi)" FontSize="12" Foreground="#FF4F4F4F" Margin="0 0 0 5"/>
                                     <TextBox x:Name="CurrentPressureText" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                          TextAlignment="Center" Text="25" Width="220" MinHeight="10" Height="35" BorderThickness="0.5"/>
                                 </StackPanel>

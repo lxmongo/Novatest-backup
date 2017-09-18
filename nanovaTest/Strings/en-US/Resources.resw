@@ -130,7 +130,7 @@
     <value>Come Soon</value>
   </data>
   <data name="Concentration.Text" xml:space="preserve">
-    <value>concentration (ppb)</value>
+    <value>Concentration (ppb)</value>
   </data>
   <data name="Config.Text" xml:space="preserve">
     <value>CONFIG</value>
@@ -139,7 +139,7 @@
     <value>End Time</value>
   </data>
   <data name="ExperienceName.Text" xml:space="preserve">
-    <value>EXPERIMENT NAME</value>
+    <value>SAMPLE NAME</value>
   </data>
   <data name="HeartCuttingPeriods.Text" xml:space="preserve">
     <value>HEART CUTTING PERIODS</value>
@@ -178,7 +178,7 @@
     <value>MainScreen</value>
   </data>
   <data name="OperatorName.Text" xml:space="preserve">
-    <value>OPERATOR NAME</value>
+    <value>OPERATOR</value>
   </data>
   <data name="TempRampSpeed1.Text" xml:space="preserve">
     <value>Ramp Speed (℃/min)</value>
@@ -190,7 +190,7 @@
     <value>Sampling Time (min)</value>
   </data>
   <data name="SelectGas.Text" xml:space="preserve">
-    <value>select gas</value>
+    <value>Select Gas</value>
   </data>
   <data name="Start.Text" xml:space="preserve">
     <value>START</value>
@@ -202,7 +202,7 @@
     <value>STOP</value>
   </data>
   <data name="SystemClean.Text" xml:space="preserve">
-    <value>system cleaning</value>
+    <value>System Cleaning</value>
   </data>
   <data name="Temp.Text" xml:space="preserve">
     <value>Temperature</value>
@@ -301,7 +301,7 @@
     <value>STOP</value>
   </data>
   <data name="SelectGasInfo" xml:space="preserve">
-    <value>Select gas cannot be empty.</value>
+    <value>Select Gas cannot be empty.</value>
   </data>
   <data name="Start1" xml:space="preserve">
     <value>START</value>
@@ -319,19 +319,23 @@
     <value>Report</value>
   </data>
   <data name="SamplingPumpingTime" xml:space="preserve">
-    <value>Sampling/Pumping time</value>
+    <value>Sampling time</value>
   </data>
   <data name="SaveSuccess" xml:space="preserve">
     <value>Report saved successfully.</value>
   </data>
   <data name="SelectGas1" xml:space="preserve">
-    <value>Select gas</value>
+    <value>Select Gas</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>Start time</value>
+    <value>Start Time</value>
   </data>
   <data name="WaitingTime" xml:space="preserve">
-    <value>Waiting time</value>
+<<<<<<< HEAD
+    <value>Waiting Time</value>
+=======
+    <value>Waiting time (s)</value>
+>>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
   </data>
   <data name="BeginTimeValidate" xml:space="preserve">
     <value>Begin Time is invalid.</value>
@@ -340,10 +344,10 @@
     <value>End Time is invalid.</value>
   </data>
   <data name="ExperienceName1" xml:space="preserve">
-    <value>Experiment name</value>
+    <value>Sample Name</value>
   </data>
   <data name="ExperienceValidate" xml:space="preserve">
-    <value>Experiment Name cannot be empty.</value>
+    <value>Sample Name cannot be empty.</value>
   </data>
   <data name="HighestTemp1" xml:space="preserve">
     <value>Highest Temperature</value>
@@ -358,25 +362,25 @@
     <value>High Holding Time is invalid.</value>
   </data>
   <data name="LowestTemp1" xml:space="preserve">
-    <value>Lowest Temperature</value>
+    <value>Lowest Temperature (℃)</value>
   </data>
   <data name="LowestTempValidate" xml:space="preserve">
     <value>Lowest Temp is invalid.</value>
   </data>
   <data name="LowHoldingTime1" xml:space="preserve">
-    <value>Low holding time</value>
+    <value>Low Holding Time (min)</value>
   </data>
   <data name="LowHoldingTimeValidate" xml:space="preserve">
     <value>Low Holding Time is invalid.</value>
   </data>
   <data name="OperatorName1" xml:space="preserve">
-    <value>Operator Name</value>
+    <value>Operator</value>
   </data>
   <data name="OperatorNameValidate" xml:space="preserve">
-    <value>Operator Name cannot be empty.</value>
+    <value>Operator cannot be empty.</value>
   </data>
   <data name="RampSpeed1" xml:space="preserve">
-    <value>Ramping speed</value>
+    <value>Ramping Speed</value>
   </data>
   <data name="RampSpeedValidate" xml:space="preserve">
     <value>Ramp Speed is invalid.</value>
@@ -553,7 +557,7 @@
     <value>Cooling</value>
   </data>
   <data name="CurrentPressure.Text" xml:space="preserve">
-    <value>Current pressure (psi)</value>
+    <value>Current Pressure (psi)</value>
   </data>
   <data name="EndTime1" xml:space="preserve">
     <value>End Time</value>
@@ -568,10 +572,10 @@
     <value>Height</value>
   </data>
   <data name="HoldingTime1.Text" xml:space="preserve">
-    <value>Temp1 hold time(min)</value>
+    <value>Temp1 Hold Time (min)</value>
   </data>
   <data name="HoldingTime2.Text" xml:space="preserve">
-    <value>Temp2 hold time(min)</value>
+    <value>Temp2 Hold Time (min)</value>
   </data>
   <data name="PeakNumTable.Text" xml:space="preserve">
     <value>Peak #</value>
@@ -583,10 +587,10 @@
     <value>Pressure (psi)</value>
   </data>
   <data name="RampSpeed11" xml:space="preserve">
-    <value>Ramp Speed 1 (℃/min)</value>
+    <value>Ramp Speed 1 </value>
   </data>
   <data name="RampSpeed2" xml:space="preserve">
-    <value>Ramp Speed 2 (℃/min)</value>
+    <value>Ramp Speed 2 </value>
   </data>
   <data name="RetentionTimeTable.Text" xml:space="preserve">
     <value>Retention Time (s)</value>
@@ -595,22 +599,29 @@
     <value>Sampling</value>
   </data>
   <data name="Temp1HoldigTime" xml:space="preserve">
-    <value>Temp1 hold time(min)</value>
+<<<<<<< HEAD
+    <value>Temp1 Hold Time(min)</value>
   </data>
   <data name="Temp2HoldigTime" xml:space="preserve">
-    <value>Temp2 hold time(min)</value>
+    <value>Temp2 Hold Time(min)</value>
+=======
+    <value>Temp. 1 hold time (min)</value>
+  </data>
+  <data name="Temp2HoldigTime" xml:space="preserve">
+    <value>Temp. 2 hold time (min)</value>
+>>>>>>> 831cc51651a40dc8bc93434e59cd6b82d3fd026e
   </data>
   <data name="Temperature1.Text" xml:space="preserve">
-    <value>Temperature 1 (℃)</value>
+    <value>Temp. 1 </value>
   </data>
   <data name="Temperature11" xml:space="preserve">
-    <value>Temperature 1 (℃)</value>
+    <value>Temp. 1 </value>
   </data>
   <data name="Temperature2.Text" xml:space="preserve">
-    <value>Temperature 2 (℃)</value>
+    <value>Temp. 2 </value>
   </data>
   <data name="Temperatures2" xml:space="preserve">
-    <value>Temperature 2 (℃)</value>
+    <value>Temp. 2 </value>
   </data>
   <data name="TempRampSpeed2.Text" xml:space="preserve">
     <value>Ramp Speed 2 (℃/min)</value>

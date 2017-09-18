@@ -181,7 +181,7 @@
     <value>首页</value>
   </data>
   <data name="ExperienceName.Text" xml:space="preserve">
-    <value>实验名称</value>
+    <value>样品名称</value>
   </data>
   <data name="OperatorName.Text" xml:space="preserve">
     <value>操作者</value>
@@ -334,7 +334,7 @@
     <value>等待时间</value>
   </data>
   <data name="ExperienceName1" xml:space="preserve">
-    <value>实验名称</value>
+    <value>样品名称</value>
   </data>
   <data name="HighestTemp1" xml:space="preserve">
     <value>最高温度</value>
@@ -343,10 +343,10 @@
     <value>高温维持时间</value>
   </data>
   <data name="LowestTemp1" xml:space="preserve">
-    <value>最低温度</value>
+    <value>最低温度(℃)</value>
   </data>
   <data name="LowHoldingTime1" xml:space="preserve">
-    <value>低温维持时间</value>
+    <value>低温维持时间(min)</value>
   </data>
   <data name="OperatorName1" xml:space="preserve">
     <value>操作者</value>
@@ -361,7 +361,7 @@
     <value>请填写结束时间</value>
   </data>
   <data name="ExperienceValidate" xml:space="preserve">
-    <value>请填写实验名称</value>
+    <value>请填写样品名称</value>
   </data>
   <data name="HighestTempValidate" xml:space="preserve">
     <value>请填写最高温度</value>
@@ -645,7 +645,7 @@
   <data name="DeepClean1" xml:space="preserve">
     <value>深度清洗</value>
   </data>
-  <data name="Calibration file" xml:space="preserve">
+  <data name="Calibration File" xml:space="preserve">
     <value>较准文件</value>
   </data>
   <data name="Instrument" xml:space="preserve">
