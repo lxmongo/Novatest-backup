@@ -103,6 +103,7 @@
     <Content Include="Assets\export.png" />
     <Content Include="Assets\File.png" />
     <Content Include="Assets\Folder.png" />
+    <Content Include="Assets\logo.png" />
     <Content Include="Assets\Malodorous.json" />
     <Content Include="Assets\method.png" />
     <Content Include="Assets\MTBE.json" />
@@ -120,6 +121,8 @@
     <EmbeddedResource Include="Assets\Windows_Store_Apps_Succinctly.pdf" />
     <EmbeddedResource Include="Assets\Test_default.pdf" />
     <Content Include="Assets\Cleaning.json" />
+    <Content Include="Assets\gadugi.ttf" />
+    <Content Include="Assets\Calibri.ttf" />
     <None Include="project.json" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
