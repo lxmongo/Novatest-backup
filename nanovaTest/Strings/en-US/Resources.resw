@@ -319,7 +319,7 @@
     <value>Report</value>
   </data>
   <data name="SamplingPumpingTime" xml:space="preserve">
-    <value>Sampling time</value>
+    <value>Sampling Time (min)</value>
   </data>
   <data name="SaveSuccess" xml:space="preserve">
     <value>Report saved successfully.</value>
@@ -358,7 +358,7 @@
     <value>High Holding Time is invalid.</value>
   </data>
   <data name="LowestTemp1" xml:space="preserve">
-    <value>Lowest Temperature (℃)</value>
+    <value>Lowest Temperature</value>
   </data>
   <data name="LowestTempValidate" xml:space="preserve">
     <value>Lowest Temp is invalid.</value>
@@ -598,7 +598,7 @@
     <value>Temp1 Hold Time (min)</value>
   </data>
   <data name="Temp2HoldigTime" xml:space="preserve">
-    <value>Temp2 Hold Time(min) </value>
+    <value>Temp2 Hold Time (min)</value>
   </data>
   <data name="Temperature1.Text" xml:space="preserve">
     <value>Temp. 1 </value>

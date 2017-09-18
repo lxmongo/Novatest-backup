@@ -1381,7 +1381,7 @@ namespace nanovaTest.SelectMethod
 
 
                 RectangleF rf18 = new RectangleF(260, 159, 450, 40);
-                String CalibrationfileString = "Calibration file: N/A";
+                String CalibrationfileString = "Calibration File: " + calibrationFileName;
 
                 document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
 
@@ -1414,10 +1414,10 @@ namespace nanovaTest.SelectMethod
 
 
                 RectangleF rf7 = new RectangleF(0, 223, 400, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + " (°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
 
                 RectangleF rf8 = new RectangleF(180, 223, 400, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1") + "(min)", lowestTvalue), font2, PdfBrushes.Black, rf8);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1"), lowestTvalue), font2, PdfBrushes.Black, rf8);
 
                 RectangleF rf9 = new RectangleF(0, 238, 400, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11") + "(°C)", Temp1value), font2, PdfBrushes.Black, rf9);
