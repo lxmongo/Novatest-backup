@@ -1963,7 +1963,7 @@ namespace nanovaTest.SelectMethod
         private int constant_m_end = Convert.ToInt32(1 / Math.Sqrt(2)); // for SNIP baseline formula
         private int CONSECUTIVE_SCAN_STEPS = 3;   //for peak detection
         private double THRESHOLD = 0.005f;        //for peak detection: slope
-        private double THRESHOLD_peak = 2f;       //for peak detection: slope
+        private double THRESHOLD_peak = 0.2f;       //for peak detection: slope
         private double retentionTimeThreshold = 2;
 
         public void WholeDataAnalysis(List<double> OriginalXv, List<double> OriginalYv, List<double> BaseLineYv, List<int> peaksv, List<int> bottomsv, List<double> Areav, List<double> Heightsv, double MinY)
