@@ -54,9 +54,11 @@ namespace nanovaTest.Calibrate
 
         private string MethodNameText;
 
-        private int count;
+        private int count = 0;
         private ResourceLoader loader;
         private string methodFileName;
+        public ChartAdornmentInfo AdornmentInfo { get; set; }
+        private ObservableCollection<string> operatorList;
 
         Random random = new Random();
         //信号线数据源
@@ -143,6 +145,11 @@ namespace nanovaTest.Calibrate
         private Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
         private Windows.Storage.StorageFile Rawfile;
 
+        public class ChartData
+        {
+            public double label { get; set;}
+            public double text { get; set;}
+        }
         public RunCalibratePage()
         {
             this.InitializeComponent();
@@ -154,6 +161,24 @@ namespace nanovaTest.Calibrate
             initPage();
         }
 
+        public void Dispose()
+        {
+            if (null != testInfoList)
+            {
+                testInfoList.Clear();
+            }
+            if (null != operatorList)
+            {
+                operatorList.Clear();
+            }
+            if (this.Basic_Chart != null)
+            {
+                foreach (var series in this.Basic_Chart.Series)
+                    series.ClearValue(ChartSeriesBase.ItemsSourceProperty);
+                this.Basic_Chart = null;
+            }
+        }
+
         private async void initPage()
         {
             try
@@ -161,6 +186,7 @@ namespace nanovaTest.Calibrate
                 LoadingIndicator.IsActive = true;
                 CalibrateGrid.Visibility = Visibility.Collapsed;
                 testInfoList = new ObservableCollection<CalibrateTestInfo>();
+                initOperator();
                 initTopChart();
                 devices_list();
                 await Task.Delay(TimeSpan.FromMilliseconds(500));
@@ -254,6 +280,41 @@ namespace nanovaTest.Calibrate
             VOCconcentrationList.Clear();
             MinY1 = 100;
             MinY2 = 100;
+        }
+        private async void initOperator()
+        {
+            StorageFile userfile = await storageFolder.CreateFileAsync("UserInfo.json", CreationCollisionOption.OpenIfExists);
+            if (null != userfile)
+            {
+                using (var stream = await userfile.OpenStreamForReadAsync())
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var content = reader.ReadToEnd();
+                        if (null != content && !"".Equals(content))
+                        {
+                            JsonArray array = JsonArray.Parse(content);
+                            operatorList = new ObservableCollection<string>();
+                            foreach (var jsonValue in array)
+                            {
+                                var value = JsonObject.Parse(jsonValue.Stringify());
+                                string LastName = value.GetNamedString("LastName");
+                                string FamilyName = value.GetNamedString("FamilyName");
+                                operatorList.Add(string.Format("{0}{1}{2}", FamilyName, " ", LastName));
+                            }
+                            if (null != operatorList && operatorList.Count > 0)
+                            {
+                                OperatorName.ItemsSource = operatorList;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void Popup_UserControlButtonClicked(object sender, EventArgs e)
+        {
+            this.IsHitTestVisible = true;
+            LoadingIndicator.IsActive = false;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -688,10 +749,10 @@ namespace nanovaTest.Calibrate
                                 ID = (Peak1DCount).ToString(),
                                 VOCName = currentvocname,
                                 Time = currentvoctime.ToString("0.00"),
-                                //FWHM = FWHMvalue.ToString("0.00"),
+                                FWHM = FWHMvalue.ToString("0.00"),
                                 Height = currentvocheight.ToString("0.00"),
                                 Area = currentvocarea.ToString("0.00"),
-                                ConcentrationFactor = currentCF
+                                Concentration = currentCF
                             });
                         }
                         //Reset other parameters to 0
@@ -736,10 +797,10 @@ namespace nanovaTest.Calibrate
                                 ID = (Peak1DCount).ToString(),
                                 VOCName = VOCNameList[j],
                                 Time = currentvoctime.ToString("0.00"),
-                                //FWHM = FWHMvalue.ToString("0.00"),
+                                FWHM = FWHMvalue.ToString("0.00"),
                                 Height = currentvocheight.ToString("0.00"),
                                 Area = currentvocarea.ToString("0.00"),
-                                ConcentrationFactor = currentCF
+                                Concentration = currentCF
                             });
                         }
                         //Reset other parameters to 0
@@ -780,10 +841,10 @@ namespace nanovaTest.Calibrate
                                     ID = Peak2DCount.ToString(),
                                     VOCName = VOCNameList[j],
                                     Time = currentvoctime.ToString("0.00"),
-                                    //FWHM = FWHMvalue.ToString("0.00"),
+                                    FWHM = FWHMvalue.ToString("0.00"),
                                     Height = currentvocheight.ToString("0.00"),
                                     Area = currentvocarea.ToString("0.00"),
-                                    ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
+                                    Concentration = VOCconcentrationList[j].ToString("0.00")
                                 });
                             }
                         }
@@ -960,10 +1021,10 @@ namespace nanovaTest.Calibrate
                                         ID = (Peak1DCount).ToString(),
                                         VOCName = currentvocname,
                                         Time = currentvoctime.ToString("0.00"),
-                                        //FWHM = FWHMvalue.ToString("0.00"),
+                                        FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        ConcentrationFactor = currentCF
+                                        Concentration = currentCF
                                     });
                                 }
                                 //Reset other parameters to 0
@@ -1008,10 +1069,10 @@ namespace nanovaTest.Calibrate
                                         ID = (Peak1DCount).ToString(),
                                         VOCName = VOCNameList[j],
                                         Time = currentvoctime.ToString("0.00"),
-                                        //FWHM = FWHMvalue.ToString("0.00"),
+                                        FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        ConcentrationFactor = currentCF
+                                        Concentration = currentCF
                                     });
                                 }
                                 //Reset other parameters to 0
@@ -1052,10 +1113,10 @@ namespace nanovaTest.Calibrate
                                             ID = Peak2DCount.ToString(),
                                             VOCName = VOCNameList[j],
                                             Time = currentvoctime.ToString("0.00"),
-                                            //FWHM = FWHMvalue.ToString("0.00"),
+                                            FWHM = FWHMvalue.ToString("0.00"),
                                             Height = currentvocheight.ToString("0.00"),
                                             Area = currentvocarea.ToString("0.00"),
-                                            ConcentrationFactor = VOCconcentrationList[j].ToString("0.00")
+                                            Concentration = VOCconcentrationList[j].ToString("0.00")
                                     });
                                     }
                                 }
@@ -1264,43 +1325,151 @@ namespace nanovaTest.Calibrate
                 //Access the PDF graphics instance of the page.
                 PdfGraphics graphics = page.Graphics;
                 //Create the PDF font instance.
-                //PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12, PdfFontStyle.Bold);
-                PdfFont font = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 12, PdfFontStyle.Bold);
+                Stream fontStream = File.OpenRead("Assets/gadugi.ttf");
+                Stream textFontStream = File.OpenRead("Assets/Calibri.ttf");
+                PdfFont titleFont = new PdfTrueTypeFont(fontStream, 20);
+                PdfFont headerFont = new PdfTrueTypeFont(fontStream, 9);
+                PdfFont logoFont = new PdfTrueTypeFont(fontStream, 30);
+                PdfFont footerFont = new PdfTrueTypeFont(fontStream, 9);
+                PdfFont font2 = new PdfTrueTypeFont(textFontStream, 11);
+                PdfFont font = new PdfTrueTypeFont(textFontStream, 11);
+                PdfFont tableFont = new PdfTrueTypeFont(textFontStream, 9);
+
                 PdfStringFormat sf = new PdfStringFormat();
                 sf.Alignment = PdfTextAlignment.Center;
                 sf.LineAlignment = PdfVerticalAlignment.Middle;
 
-                RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 0, 400, 30);
-                graphics.DrawString(string.Format("NovaTest {0}({1})", loader.GetString("Report"), MethodName.Text), font, PdfBrushes.Black, rf, sf);
+                //logo
+                Stream imageStream = File.OpenRead("Assets/logo.png");
+                PdfBitmap image = new PdfBitmap(imageStream);
+                RectangleF rf0 = new RectangleF(0, 0, 200, 45);
+                graphics.DrawImage(image, rf0);
 
-                RectangleF rf1 = new RectangleF(0, 35, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf1);
+                //header
+                PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Right);
+                String headerText = "Nanova Environmental, Inc.";
+                String headerText1 = "www.nanovaenv.com";
+                String headerText2 = "+1 (573)-476-6355";
+                RectangleF rfh = new RectangleF(page.Graphics.ClientSize.Width - 130, 0, 130, 20);
+                RectangleF rfh1 = new RectangleF(page.Graphics.ClientSize.Width - 130, 13, 130, 20);
+                RectangleF rfh2 = new RectangleF(page.Graphics.ClientSize.Width - 130, 26, 130, 20);
 
-                RectangleF rf2 = new RectangleF(220, 35, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("F", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf2);
+                graphics.DrawString(headerText, headerFont, PdfBrushes.Gray, rfh, format);
+                graphics.DrawString(headerText1, headerFont, PdfBrushes.Gray, rfh1, format);
+                graphics.DrawString(headerText2, headerFont, PdfBrushes.Gray, rfh2, format);
 
-                RectangleF rf3 = new RectangleF(0, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font, PdfBrushes.Black, rf3);
 
-                RectangleF rf4 = new RectangleF(220, 55, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font, PdfBrushes.Black, rf4);
 
-                RectangleF rf5 = new RectangleF(0, 75, 400, 40);
-                //graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SelectGas1"), GasComboBox.SelectedValue.ToString()), font, PdfBrushes.Black, rf5);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SelectGas1"), MethodName.Text), font, PdfBrushes.Black, rf5);
+                //report title
+                RectangleF rf = new RectangleF(page.Graphics.ClientSize.Width / 2 - 200, 85, 400, 30);
+                document.Pages[0].Graphics.DrawString("NovaTest P100 Calibration", titleFont, PdfBrushes.Black, rf, sf);
 
-                RectangleF rf6 = new RectangleF(220, 75, 400, 40);
-                graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ConcentrationPPB"), ConcentrationName.Text), font, PdfBrushes.Black, rf6);
+                RectangleF rf1 = new RectangleF(0, 130, 500, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf1);
+
+                RectangleF rf2 = new RectangleF(260, 130, 500, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
+
+                RectangleF rf3 = new RectangleF(0, 145, 500, 40);
+                graphics.DrawString(string.Format("{0} {1}", GasComboBoxText.Text, ConcentrationName.Text + "ppb"), font, PdfBrushes.Black, rf3);
+
+
+                RectangleF rf16 = new RectangleF(260, 145, 450, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf16);
+
+                RectangleF rf17 = new RectangleF(0, 159, 450, 40);
+                String instrumentString = "Instrument: NovaTest P100";
+                document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
+
+                RectangleF rf18 = new RectangleF(260, 159, 450, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", "Calibration File", calibrationFileName), font, PdfBrushes.Black, rf18);
+
+
+
+                RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 190, 400, 40);
+                String parameterString = "Programming Parameters";
+                //PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Right);
+                document.Pages[0].Graphics.DrawString(parameterString, font, PdfBrushes.Black, rf15);
+
+                RectangleF rf4 = new RectangleF(0, 208, 450, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
+
+                RectangleF rf5 = new RectangleF(180, 208, 450, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime") , WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
+
+                RectangleF rf6 = new RectangleF(360, 208, 450, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
+
+                double lowestTempvalue = JsonInputArray[0];
+                double lowestTvalue = JsonInputArray[1];
+                double Temp1value = JsonInputArray[2];
+                double HoldT1value = JsonInputArray[3];
+                //double HoldT1value = JsonInputArray[3] * 60;
+                double RampSpeed1value = JsonInputArray[4];
+                //double RampSpeed1value = JsonInputArray[4] / 60.0;
+                double Temp2value = JsonInputArray[5];
+                double HoldT2value = JsonInputArray[6];
+                //double HoldT2value = JsonInputArray[6] * 60;
+                double RampSpeed2value = JsonInputArray[7];
+                //double RampSpeed2value = JsonInputArray[7] / 60.0;
+
+                RectangleF rf7 = new RectangleF(0, 223, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
+
+                RectangleF rf8 = new RectangleF(180, 223, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1"), lowestTvalue), font2, PdfBrushes.Black, rf8);
+
+                RectangleF rf9 = new RectangleF(0, 238, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11") + "(°C)", Temp1value), font2, PdfBrushes.Black, rf9);
+
+                RectangleF rf10 = new RectangleF(180, 238, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp1HoldigTime"), HoldT1value), font2, PdfBrushes.Black, rf10);
+
+                RectangleF rf11 = new RectangleF(360, 238, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed11") + "(°C/min)", RampSpeed1value), font2, PdfBrushes.Black, rf11);
+
+                RectangleF rf12 = new RectangleF(0, 253, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2") + "(°C)", Temp2value), font2, PdfBrushes.Black, rf12);
+
+                RectangleF rf13 = new RectangleF(180, 253, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp2HoldigTime"), HoldT2value), font2, PdfBrushes.Black, rf13);
+
+                RectangleF rf14 = new RectangleF(360, 253, 400, 40);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2") + "(°C/min)", RampSpeed2value), font2, PdfBrushes.Black, rf14);
+
+               
+
+                PdfPen blackPen = new PdfPen(PdfColor.Empty);
+                PointF pf1 = new PointF(0, 185);
+                PointF pf2 = new PointF(page.Graphics.ClientSize.Width, 185);
+                graphics.DrawLine(blackPen, pf1, pf2);
+
+                PdfPen blackPen2 = new PdfPen(PdfColor.Empty);
+                PointF pf3 = new PointF(0, 205);
+                PointF pf4 = new PointF(page.Graphics.ClientSize.Width, 205);
+                graphics.DrawLine(blackPen, pf3, pf4);
+
+                PdfPen blackPen3 = new PdfPen(PdfColor.Empty);
+                PointF pf5 = new PointF(0, 268);
+                PointF pf6 = new PointF(page.Graphics.ClientSize.Width, 268);
+                graphics.DrawLine(blackPen, pf5, pf6);
 
 
                 //Initializing to render to Bitmap
                 var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
                 var renderTargetBitmap = new RenderTargetBitmap();
 
+                //*************************hide element
+                InfoListView.Visibility = Visibility.Collapsed;
                 //Create the Bitmpa from xaml page
-                await renderTargetBitmap.RenderAsync(CustomGrid, 510, 1600);
+                double gridWidth = CustomGrid.ActualWidth;
+                double gridHeight = CustomGrid.ActualHeight;
+                await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
                 //CustomImage.Source = renderTargetBitmap;
                 var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                //************************show element
+                InfoListView.Visibility = Visibility.Visible;
 
                 //Save the XAML in Bitmap image
                 using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
@@ -1318,20 +1487,121 @@ namespace nanovaTest.Calibrate
 
                     await encoder.FlushAsync();
 
-                    //Load and draw the Bitmap image in PDF
-                    //PdfImage img = PdfImage.FromStream(stream.AsStream());
-                    //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
+                
 
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(0, 105, 510, 450));
+                    graphics.DrawImage(img, new RectangleF(0, 275, (float)gridWidth / 1.3f, (float)gridHeight / 1.5f));
                 }
 
+
+                //footer
+
+                RectangleF bounds = new RectangleF(0, 0, document.Pages[0].GetClientSize().Width, 100);
+                PdfPageTemplateElement header = new PdfPageTemplateElement(bounds);
+
+                // information about novatest
+
+                SizeF pageSize = document.Pages[0].Size;
+
+               
+                PdfPageTemplateElement footerSpace = new PdfPageTemplateElement(bounds);
+                footerSpace.Foreground = true;
+                document.Template.Bottom = footerSpace;
+
+         
+                PdfPageNumberField number = new PdfPageNumberField();
+                //Create page count automatic field  
+                PdfPageCountField count = new PdfPageCountField();
+                //Add the fields in composite field  
+                PdfCompositeField compositeField1 = new PdfCompositeField(footerFont, PdfBrushes.Gray, "Copyright © 2017 Nanova Environmental, Inc.All Rights Reserved", number, count);
+                compositeField1.StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Bottom);
+                compositeField1.Bounds = footerSpace.Bounds;
+                compositeField1.Draw(footerSpace.Graphics);
+
+                PdfCompositeField compositeField = new PdfCompositeField(footerFont, PdfBrushes.Gray, "Page {0} of {1}", number, count);
+                //Align string of "Page {0} of {1}" to center   
+                compositeField.StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Bottom);
+                compositeField.Bounds = footerSpace.Bounds;
+                //Draw composite field at footer space  
+                compositeField.Draw(footerSpace.Graphics);
+
+
+
+                //*************************Second page
+                PdfFont font3 = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 10, PdfFontStyle.Regular);
+                //Add a page in the PDF document.
+                PdfPage page2 = document.Pages.Add();
+                //Access the PDF graphics instance of the page.
+                PdfGraphics graphics2 = page2.Graphics;
+                var Width = 70;
+                var Length = 20;
+                RectangleF p21 = new RectangleF(0, 0, Width-20, Length);
+                RectangleF p22 = new RectangleF(Width-20, 0, Width+50, Length);
+                RectangleF p23 = new RectangleF(2 * Width+30, 0, Width-10, Length);
+                RectangleF p24 = new RectangleF(3 * Width+20, 0, Width-10, Length);
+                RectangleF p25 = new RectangleF(4 * Width+10, 0, Width-10, Length);
+                RectangleF p26 = new RectangleF(5 * Width, 0, Width-10, Length);
+                RectangleF p27 = new RectangleF(6 * Width-10, 0, Width+10, Length);
+                RectangleF p21s = new RectangleF(0 + (0.18f * Width), 0, Width, Length);
+                RectangleF p22s = new RectangleF(Width + (0.25f * Width), 0, Width, Length);
+                RectangleF p23s = new RectangleF(2 * Width + (0.73f * Width), 0, Width, Length);
+                RectangleF p24s = new RectangleF(3 * Width + (0.4f * Width), 0, Width, Length);
+                RectangleF p25s = new RectangleF(4 * Width + (0.32f * Width), 0, Width, Length);
+                RectangleF p26s = new RectangleF(5 * Width + (0.3f * Width), 0, Width, Length);
+                RectangleF p27s = new RectangleF(6 * Width + (0.04f * Width), 0, Width, Length);
+                graphics2.DrawRectangle(PdfPens.Black, p21);
+                graphics2.DrawString("Peak#", font, PdfBrushes.Black, p21s);
+                graphics2.DrawRectangle(PdfPens.Black, p22);
+                graphics2.DrawString("Compound", font, PdfBrushes.Black, p22s);
+                graphics2.DrawRectangle(PdfPens.Black, p23);
+                graphics2.DrawString("RT(s)", font, PdfBrushes.Black, p23s);
+                graphics2.DrawRectangle(PdfPens.Black, p24);
+                graphics2.DrawString("FWHM(s)", font, PdfBrushes.Black, p24s);
+                graphics2.DrawRectangle(PdfPens.Black, p25);
+                graphics2.DrawString("Height", font, PdfBrushes.Black, p25s);
+                graphics2.DrawRectangle(PdfPens.Black, p26);
+                graphics2.DrawString("Area", font, PdfBrushes.Black, p26s);
+                graphics2.DrawRectangle(PdfPens.Black, p27);
+                graphics2.DrawString("CONCN Factor", font, PdfBrushes.Black, p27s);
+                for (int i = 0; i < testInfoList.Count; i++)
+                {
+                    p21 = new RectangleF(0, Length * (i + 1), Width-20, Length);
+                    p22 = new RectangleF(Width-20, Length * (i + 1), Width+50, Length);
+                    p23 = new RectangleF(2 * Width+30, Length * (i + 1), Width-10, Length);
+                    p24 = new RectangleF(3 * Width+20, Length * (i + 1), Width-10, Length);
+                    p25 = new RectangleF(4 * Width+10, Length * (i + 1), Width-10, Length);
+                    p26 = new RectangleF(5 * Width, Length * (i + 1), Width-10, Length);
+                    p27 = new RectangleF(6 * Width-10, Length * (i + 1), Width+10, Length);
+                    p21s = new RectangleF(0 + (0.3f * Width), Length * (i + 1.2f), Width, Length);
+                    p22s = new RectangleF(Width, Length * (i + 1.2f), Width, Length);
+                    p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f), Width, Length);
+                    p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f), Width, Length);
+                    p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f), Width, Length);
+                    p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i + 1.2f), Width, Length);
+                    p27s = new RectangleF(6 * Width + (0.4f * Width), Length * (i + 1.2f), Width, Length);
+
+                    graphics2.DrawRectangle(PdfPens.Black, p21);
+                    graphics2.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);
+                    graphics2.DrawRectangle(PdfPens.Black, p22);
+                    graphics2.DrawString(testInfoList[i].VOCName, font2, PdfBrushes.Black, p22s);
+                    graphics2.DrawRectangle(PdfPens.Black, p23);
+                    graphics2.DrawString(testInfoList[i].Time, font2, PdfBrushes.Black, p23s);
+                    graphics2.DrawRectangle(PdfPens.Black, p24);
+                    graphics2.DrawString(testInfoList[i].FWHM, font2, PdfBrushes.Black, p24s);
+                    graphics2.DrawRectangle(PdfPens.Black, p25);
+                    graphics2.DrawString(testInfoList[i].Height, font2, PdfBrushes.Black, p25s);
+                    graphics2.DrawRectangle(PdfPens.Black, p26);
+                    graphics2.DrawString(testInfoList[i].Area, font2, PdfBrushes.Black, p26s);
+                    graphics2.DrawRectangle(PdfPens.Black, p27);
+                    graphics2.DrawString(testInfoList[i].Concentration, font2, PdfBrushes.Black, p27s);
+                }
+                //*******************************************
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();
                 document.Save(docStream);
                 document.Close(true);
-                //fileFloder dir calibrate -->methodFileName -->dateTimeFileName
+
                 StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
                 StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate",
                     CreationCollisionOption.OpenIfExists);
@@ -1503,7 +1773,7 @@ namespace nanovaTest.Calibrate
                 Debug.WriteLine(VOCconcentration);
                 VOCconcentrationList.Add(VOCconcentration);
                 Debug.WriteLine(VOCconcentrationList);
-                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.00");
+                testInfoList[i].Concentration = VOCconcentration.ToString("0.00");
             }
             if (testInfoList.Count == 0)
             {

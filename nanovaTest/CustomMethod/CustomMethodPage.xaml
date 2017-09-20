@@ -238,7 +238,7 @@
                                         <TextBox TextChanged="EndTimeText1_TextChanged" x:Name="EndTimeText1" InputScope="Number" TextAlignment="Center" Text="0" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
                                     </StackPanel>
                                 </Grid>
-                                
+
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
@@ -263,7 +263,7 @@
                                         <TextBox TextChanged="EndTimeText2_TextChanged" x:Name="EndTimeText2" InputScope="Number" TextAlignment="Center" Text="0" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
                                     </StackPanel>
                                 </Grid>
-                                
+
                             </Grid>
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
@@ -288,7 +288,7 @@
                                         <TextBox TextChanged="EndTimeText3_TextChanged" x:Name="EndTimeText3" InputScope="Number" TextAlignment="Center" Text="0" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
                                     </StackPanel>
                                 </Grid>
-                                
+
                             </Grid>
                             <Grid Grid.Row="3">
                                 <Grid.ColumnDefinitions>
@@ -786,3 +786,4 @@
         </Grid>
     </Grid>
 </Page>
+
