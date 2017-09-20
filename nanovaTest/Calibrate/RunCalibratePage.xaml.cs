@@ -793,6 +793,8 @@ namespace nanovaTest.Calibrate
                 //显示表格控件
                 //testInfoList.Clear();
                 savePdf();
+                //change to config control 
+                Config_Click(new object(), new RoutedEventArgs());
             }
             /**********Send profile to arduino************/
             try

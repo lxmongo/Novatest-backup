@@ -841,6 +841,8 @@ namespace nanovaTest.SelectMethod
                 }
                 savePdf();
                 saveExportFile();
+                //change to config control 
+                Config_Click(new object(), new RoutedEventArgs());
             }
             /**********Send profile to arduino************/
             try

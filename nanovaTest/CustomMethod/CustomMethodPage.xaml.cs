@@ -1002,6 +1002,8 @@ namespace nanovaTest.CustomMethod
                     }
                     savePdf();
                     saveExportFile();
+                    //change to config control 
+                    Config_Click(new object(), new RoutedEventArgs());
                     //hide button for a while
                     CalcButtonImage.Visibility = Visibility.Collapsed;
                 }
