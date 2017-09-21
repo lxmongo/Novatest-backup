@@ -26,7 +26,7 @@
     "o-xylene"
   ],
   "lowestTempvalue": 50.0,
-  "lowestTvalue": 0.5,
+  "lowestTvalue": 0.0,
   "Temp1value": 80.0,
   "HoldT1value": 0.5,
   "RampSpeed1value": 15,
