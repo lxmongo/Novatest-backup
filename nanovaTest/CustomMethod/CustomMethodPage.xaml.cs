@@ -1002,6 +1002,8 @@ namespace nanovaTest.CustomMethod
                     }
                     savePdf();
                     saveExportFile();
+                    //change to config control 
+                    Config_Click(new object(), new RoutedEventArgs());
                     //hide button for a while
                     CalcButtonImage.Visibility = Visibility.Collapsed;
                 }
@@ -2017,7 +2019,7 @@ namespace nanovaTest.CustomMethod
             List<double> temp_x_b = new List<double>();
             List<double> temp_y_b = new List<double>();
 
-            detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
+            detectPeakAndBottom(OriginalX, OriginalY, BaseLineY, peaks, bottoms, Area, Heights, MinY);
             size = bottoms.Count;
             for (int i = 0; i < size; i++)
             {
@@ -2029,7 +2031,7 @@ namespace nanovaTest.CustomMethod
         }
 
         // peak and bottom detection
-        private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
+        private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
         {
             int signalAmount = OriginalX.Count;
             List<double> slopes = new List<double>();
@@ -2039,7 +2041,8 @@ namespace nanovaTest.CustomMethod
             int peakStop = 0;
             double slope = 0; //current slope
             List<double> values = new List<double>(); //save three consecutive slopes
-
+            //change threshold to 0.2
+                THRESHOLD_peak = 0.2f;
             //calculate the slopes of all scans
             for (int b = 0; b < signalAmount - 1; b++)
             {
@@ -2079,18 +2082,38 @@ namespace nanovaTest.CustomMethod
                         {
                             peakMax++;
                         }
-                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        if ((OriginalY[peakMax] - BaseLineY[peakMax]) > THRESHOLD_peak)
                         {
                             peaks.Add(peakMax);
                         }
                         //find peakStop
                         peakStop = peakMax;
                         if (peakStop == size - 1) break; //the last scan is a peak
+                        /*
                         while (slopes[peakStop] <= 0 && peakStop < size - 1)
                         {
                             peakStop++;
                         }
-                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        */
+                        //******************************************************************
+                        bool stopflag = false;
+                        values.Clear();
+                        while (!stopflag && peakStop < size - CONSECUTIVE_SCAN_STEPS - 1)
+                        {
+                            values.Clear();
+                            for (int j = 0; j < CONSECUTIVE_SCAN_STEPS; j++)
+                            {
+                                if (peakStop + j >= size) break;
+                                values.Add(slopes[peakStop + j]);
+                            }
+                            if (valuesAreSmallerThanThreshold(values))
+                            {
+                                stopflag = true;
+                            }
+                            peakStop++;
+                        }
+                        //******************************************************************
+                        if ((OriginalY[peakMax] - BaseLineY[peakMax]) > THRESHOLD_peak)
                         {
                             bottoms.Add(peakStop);
                         }
@@ -2110,6 +2133,17 @@ namespace nanovaTest.CustomMethod
             for (int i = 0; i < CONSECUTIVE_SCAN_STEPS; i++)
             {
                 if (values[i] < THRESHOLD)
+                    return false;
+            }
+            return true;
+        }
+
+        //sub method for peak detection
+        private bool valuesAreSmallerThanThreshold(List<double> values)
+        {
+            for (int i = 0; i < CONSECUTIVE_SCAN_STEPS; i++)
+            {
+                if (values[i] < -0.05)
                     return false;
             }
             return true;
