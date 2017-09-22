@@ -335,6 +335,14 @@
                                     </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
                                     </Charts:FastLineSeries>
 
+                                    <!--Add third series for the Peak-->
+                                    <Charts:FastLineSeries x:Name="PeakSeries"
+                                                     XBindingPath="X" 
+                                                     ShowTooltip="True" 
+                                                     YBindingPath="Y" >
+                                    </Charts:FastLineSeries>
+                                    <!--End of third series-->
+
                                     <Charts:SfChart.Legend>
                                         <Charts:ChartLegend IconVisibility="Collapsed"/>
                                     </Charts:SfChart.Legend>
@@ -343,7 +351,7 @@
                             </Grid>
 
                             <Grid Grid.Row="1" Margin="0 0 0 20">
-                                <ListView x:Name="InfoListView" Visibility="Collapsed" IsHitTestVisible="False" HorizontalContentAlignment="Stretch" Margin="0,30,10,0" 
+                                <ListView x:Name="InfoListView" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="InfoListView_ItemClick" HorizontalContentAlignment="Stretch" Margin="0,30,10,0" 
                               VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{x:Bind testInfoList}">
 
                                     <ListView.ItemTemplate>

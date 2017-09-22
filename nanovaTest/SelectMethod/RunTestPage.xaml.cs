@@ -2020,7 +2020,7 @@ namespace nanovaTest.SelectMethod
             List<double> temp_x_b = new List<double>();
             List<double> temp_y_b = new List<double>();
 
-            detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
+            detectPeakAndBottom(OriginalX, OriginalY, BaseLineY, peaks, bottoms, Area, Heights, MinY);
             size = bottoms.Count;
             for (int i = 0; i < size; i++)
             {
@@ -2031,9 +2031,8 @@ namespace nanovaTest.SelectMethod
             }
         }
 
-
         // peak and bottom detection
-        private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
+        private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
         {
             int signalAmount = OriginalX.Count;
             List<double> slopes = new List<double>();
@@ -2088,18 +2087,38 @@ namespace nanovaTest.SelectMethod
                         {
                             peakMax++;
                         }
-                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        if ((OriginalY[peakMax] - BaseLineY[peakMax]) > THRESHOLD_peak)
                         {
                             peaks.Add(peakMax);
                         }
                         //find peakStop
                         peakStop = peakMax;
                         if (peakStop == size - 1) break; //the last scan is a peak
+                        /*
                         while (slopes[peakStop] <= 0 && peakStop < size - 1)
                         {
                             peakStop++;
                         }
-                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        */
+                        //******************************************************************
+                        bool stopflag = false;
+                        values.Clear();
+                        while (!stopflag && peakStop < size - CONSECUTIVE_SCAN_STEPS - 1)
+                        {
+                            values.Clear();
+                            for (int j = 0; j < CONSECUTIVE_SCAN_STEPS; j++)
+                            {
+                                if (peakStop + j >= size) break;
+                                values.Add(slopes[peakStop + j]);
+                            }
+                            if (valuesAreSmallerThanThreshold(values))
+                            {
+                                stopflag = true;
+                            }
+                            peakStop++;
+                        }
+                        //******************************************************************
+                        if ((OriginalY[peakMax] - BaseLineY[peakMax]) > THRESHOLD_peak)
                         {
                             bottoms.Add(peakStop);
                         }
@@ -2119,6 +2138,17 @@ namespace nanovaTest.SelectMethod
             for (int i = 0; i < CONSECUTIVE_SCAN_STEPS; i++)
             {
                 if (values[i] < THRESHOLD)
+                    return false;
+            }
+            return true;
+        }
+
+        //sub method for peak detection
+        private bool valuesAreSmallerThanThreshold(List<double> values)
+        {
+            for (int i = 0; i < CONSECUTIVE_SCAN_STEPS; i++)
+            {
+                if (values[i] < -0.05)
                     return false;
             }
             return true;
@@ -2546,6 +2576,23 @@ namespace nanovaTest.SelectMethod
             {
                 Debug.WriteLine("VOC file not found");
             }
+        }
+
+        //Click on the Listview and run functions
+        private void InfoListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SelectTestInfo testinfo = (SelectTestInfo)e.ClickedItem;
+            Debug.WriteLine(testinfo.ID);
+            List<Data> peakdata = new List<Data>();
+            for (int i = 0; i < 100; i++)
+            {
+                //int x = int.Parse(testinfo.ID) * 10;
+                double x = double.Parse(testinfo.Time);
+                int y = i;
+                Data data = new Data(x, y);
+                peakdata.Add(data);
+            }
+            this.Basic_Chart.Series[2].ItemsSource = peakdata;
         }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
