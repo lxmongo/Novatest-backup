@@ -1382,11 +1382,11 @@ namespace nanovaTest.Calibrate
                 document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
 
                 RectangleF rf18 = new RectangleF(260, 159, 450, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", "Calibration File", calibrationFileName), font, PdfBrushes.Black, rf18);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", "File Name", calibrationFileName), font, PdfBrushes.Black, rf18);
 
 
 
-                RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 190, 400, 40);
+                RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 187, 400, 40);
                 String parameterString = "Programming Parameters";
                 //PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Right);
                 document.Pages[0].Graphics.DrawString(parameterString, font, PdfBrushes.Black, rf15);
@@ -1543,13 +1543,13 @@ namespace nanovaTest.Calibrate
                 RectangleF p25 = new RectangleF(4 * Width+10, 0, Width-10, Length);
                 RectangleF p26 = new RectangleF(5 * Width, 0, Width-10, Length);
                 RectangleF p27 = new RectangleF(6 * Width-10, 0, Width+10, Length);
-                RectangleF p21s = new RectangleF(0 + (0.18f * Width), 0, Width, Length);
-                RectangleF p22s = new RectangleF(Width + (0.25f * Width), 0, Width, Length);
-                RectangleF p23s = new RectangleF(2 * Width + (0.73f * Width), 0, Width, Length);
-                RectangleF p24s = new RectangleF(3 * Width + (0.4f * Width), 0, Width, Length);
-                RectangleF p25s = new RectangleF(4 * Width + (0.32f * Width), 0, Width, Length);
-                RectangleF p26s = new RectangleF(5 * Width + (0.3f * Width), 0, Width, Length);
-                RectangleF p27s = new RectangleF(6 * Width + (0.04f * Width), 0, Width, Length);
+                RectangleF p21s = new RectangleF(0 + (0.18f * Width), 3, Width, Length);
+                RectangleF p22s = new RectangleF(Width + (0.25f * Width), 3, Width, Length);
+                RectangleF p23s = new RectangleF(2 * Width + (0.73f * Width), 3, Width, Length);
+                RectangleF p24s = new RectangleF(3 * Width + (0.4f * Width), 3, Width, Length);
+                RectangleF p25s = new RectangleF(4 * Width + (0.32f * Width), 3, Width, Length);
+                RectangleF p26s = new RectangleF(5 * Width + (0.3f * Width), 3, Width, Length);
+                RectangleF p27s = new RectangleF(6 * Width + (0.04f * Width), 3, Width, Length);
                 graphics2.DrawRectangle(PdfPens.Black, p21);
                 graphics2.DrawString("Peak#", font, PdfBrushes.Black, p21s);
                 graphics2.DrawRectangle(PdfPens.Black, p22);

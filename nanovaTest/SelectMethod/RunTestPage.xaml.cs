@@ -1385,7 +1385,7 @@ namespace nanovaTest.SelectMethod
 
                 document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
 
-                RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 190, 400, 40);
+                RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 187, 400, 40);
                 String parameterString = "Programming Parameters";
                 //PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Right);
                 document.Pages[0].Graphics.DrawString(parameterString, font, PdfBrushes.Black, rf15);
@@ -1547,14 +1547,14 @@ namespace nanovaTest.SelectMethod
                 RectangleF p24 = new RectangleF(3 * Width + 20, 0, Width - 10, Length);
                 RectangleF p25 = new RectangleF(4 * Width + 10, 0, Width - 10, Length);
                 RectangleF p26 = new RectangleF(5 * Width, 0, Width - 10, Length);
-                RectangleF p27 = new RectangleF(6 * Width - 10, 0, Width + 10, Length);
+                RectangleF p27 = new RectangleF(6 * Width - 10, 0, Width + 35, Length);
                 RectangleF p21s = new RectangleF(0 + (0.18f * Width), 3, Width, Length);
                 RectangleF p22s = new RectangleF(Width + (0.25f * Width), 3, Width, Length);
                 RectangleF p23s = new RectangleF(2 * Width + (0.73f * Width), 3, Width, Length);
                 RectangleF p24s = new RectangleF(3 * Width + (0.4f * Width), 3, Width, Length);
                 RectangleF p25s = new RectangleF(4 * Width + (0.32f * Width), 3, Width, Length);
                 RectangleF p26s = new RectangleF(5 * Width + (0.3f * Width), 3, Width, Length);
-                RectangleF p27s = new RectangleF(6 * Width + (0.04f * Width), 3, Width, Length);
+                RectangleF p27s = new RectangleF(6 * Width + (0f * Width), 3, Width+30, Length);
 
                 //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
                 graphics2.DrawRectangle(PdfPens.Black, p21);
@@ -1562,15 +1562,15 @@ namespace nanovaTest.SelectMethod
                 graphics2.DrawRectangle(PdfPens.Black, p22);
                 graphics2.DrawString("Compound", font, PdfBrushes.Black, p22s);
                 graphics2.DrawRectangle(PdfPens.Black, p23);
-                graphics2.DrawString("RT(s)", font, PdfBrushes.Black, p23s);
+                graphics2.DrawString("RT (s)", font, PdfBrushes.Black, p23s);
                 graphics2.DrawRectangle(PdfPens.Black, p24);
-                graphics2.DrawString("FWHM(s)", font, PdfBrushes.Black, p24s);
+                graphics2.DrawString("FWHM (s)", font, PdfBrushes.Black, p24s);
                 graphics2.DrawRectangle(PdfPens.Black, p25);
                 graphics2.DrawString("Height", font, PdfBrushes.Black, p25s);
                 graphics2.DrawRectangle(PdfPens.Black, p26);
                 graphics2.DrawString("Area", font, PdfBrushes.Black, p26s);
                 graphics2.DrawRectangle(PdfPens.Black, p27);
-                graphics2.DrawString("CONCN Factor", font, PdfBrushes.Black, p27s);
+                graphics2.DrawString("Concentration (ppd)", font, PdfBrushes.Black, p27s);
                 for (int i = 0; i < testInfoList.Count; i++)
                 {
                     Debug.WriteLine(testInfoList[i].VOCName);
@@ -1580,14 +1580,14 @@ namespace nanovaTest.SelectMethod
                     p24 = new RectangleF(3 * Width + 20, Length * (i + 1), Width - 10, Length);
                     p25 = new RectangleF(4 * Width + 10, Length * (i + 1), Width - 10, Length);
                     p26 = new RectangleF(5 * Width, Length * (i + 1), Width - 10, Length);
-                    p27 = new RectangleF(6 * Width - 10, Length * (i + 1), Width + 10, Length);
+                    p27 = new RectangleF(6 * Width - 10, Length * (i + 1), Width + 35, Length);
                     p21s = new RectangleF(0 + (0.3f * Width), Length * (i + 1.2f), Width, Length);
                     p22s = new RectangleF(Width - 10, Length * (i + 1.2f), Width + 50, Length);
                     p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f), Width, Length);
                     p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f), Width, Length);
                     p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f), Width, Length);
                     p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i + 1.2f), Width, Length);
-                    p27s = new RectangleF(6 * Width + (0.4f * Width), Length * (i + 1.2f), Width, Length);
+                    p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i + 1.2f), Width+30, Length);
 
                     graphics2.DrawRectangle(PdfPens.Black, p21);
                     graphics2.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);

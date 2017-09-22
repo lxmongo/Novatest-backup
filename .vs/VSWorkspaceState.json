@@ -2,14 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\nanovaTest",
-    "\\nanovaTest\\Calibrate",
-    "\\nanovaTest\\obj\\x64",
-    "\\nanovaTest\\obj\\x64\\Debug",
-    "\\nanovaTest\\obj\\x64\\Debug\\VOCLibrary",
-    "\\nanovaTest\\obj\\x64\\Release",
-    "\\nanovaTest\\obj\\x64\\Release\\VOCLibrary",
-    "\\nanovaTest\\obj\\x86",
-    "\\nanovaTest\\obj\\x86\\Debug"
+    "\\nanovaTest\\Calibrate"
   ],
   "SelectedNode": "\\nanovaTest\\Calibrate\\CalibratePage.xaml.cs",
   "PreviewInSolutionExplorer": false
