@@ -1566,6 +1566,7 @@ namespace nanovaTest.Calibrate
                 graphics2.DrawString("CONCN Factor", font, PdfBrushes.Black, p27s);
                 for (int i = 0; i < testInfoList.Count; i++)
                 {
+                    Debug.WriteLine(testInfoList[i].VOCName);
                     p21 = new RectangleF(0, Length * (i + 1), Width-20, Length);
                     p22 = new RectangleF(Width-20, Length * (i + 1), Width+50, Length);
                     p23 = new RectangleF(2 * Width+30, Length * (i + 1), Width-10, Length);
@@ -1574,7 +1575,7 @@ namespace nanovaTest.Calibrate
                     p26 = new RectangleF(5 * Width, Length * (i + 1), Width-10, Length);
                     p27 = new RectangleF(6 * Width-10, Length * (i + 1), Width+10, Length);
                     p21s = new RectangleF(0 + (0.3f * Width), Length * (i + 1.2f), Width, Length);
-                    p22s = new RectangleF(Width, Length * (i + 1.2f), Width, Length);
+                    p22s = new RectangleF(Width-10, Length * (i + 1.2f), Width+50, Length);
                     p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f), Width, Length);
                     p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f), Width, Length);
                     p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f), Width, Length);

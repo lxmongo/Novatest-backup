@@ -3,13 +3,14 @@
     "",
     "\\nanovaTest",
     "\\nanovaTest\\Calibrate",
-    "\\nanovaTest\\CustomMethod",
-    "\\nanovaTest\\SelectMethod",
-    "\\nanovaTest\\Strings",
-    "\\nanovaTest\\Strings\\en",
-    "\\nanovaTest\\Strings\\en-US",
-    "\\nanovaTest\\Strings\\zh-Hans"
+    "\\nanovaTest\\obj\\x64",
+    "\\nanovaTest\\obj\\x64\\Debug",
+    "\\nanovaTest\\obj\\x64\\Debug\\VOCLibrary",
+    "\\nanovaTest\\obj\\x64\\Release",
+    "\\nanovaTest\\obj\\x64\\Release\\VOCLibrary",
+    "\\nanovaTest\\obj\\x86",
+    "\\nanovaTest\\obj\\x86\\Debug"
   ],
-  "SelectedNode": "\\nanovaTest\\SelectMethod\\RunTestPage.xaml.cs",
+  "SelectedNode": "\\nanovaTest\\Calibrate\\CalibratePage.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
