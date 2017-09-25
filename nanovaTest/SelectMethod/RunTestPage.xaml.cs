@@ -267,6 +267,7 @@ namespace nanovaTest.SelectMethod
             initTopChart();
             this.Basic_Chart.Series[0].ItemsSource = null;
             this.Basic_Chart.Series[1].ItemsSource = null;
+            this.Basic_Chart.Series[2].ItemsSource = null;
             this.Basic_Chart1.Series[0].ItemsSource = null;
             this.Basic_Chart1.Series[1].ItemsSource = null;
             ReadInputStr = "";
@@ -2030,6 +2031,7 @@ namespace nanovaTest.SelectMethod
                 temp_y_b.Add(valueY);
             }
         }
+
 
         // peak and bottom detection
         private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
