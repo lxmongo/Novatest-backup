@@ -1,2 +1,2 @@
-MainPackage=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\x86\Debug\nanovaTest_1.0.60.0_x86_Debug.appx
-SymbolPackage=C:\Users\ytm2d\Desktop\deploy\nanovaTest_1.0.60.0_Debug_Test\nanovaTest_1.0.60.0_x86_Debug.appxsym
+MainPackage=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\x86\Debug\nanovaTest_1.0.61.0_x86_Debug.appx
+SymbolPackage=C:\Users\ytm2d\Desktop\deploy\nanovaTest_1.0.61.0_Debug_Test\nanovaTest_1.0.61.0_x86_Debug.appxsym
