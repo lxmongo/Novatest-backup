@@ -336,11 +336,14 @@
                                     </Charts:FastLineSeries>
 
                                     <!--Add third series for the Peak-->
-                                    <Charts:FastLineSeries x:Name="PeakSeries"
+                                    <Charts:LineSeries x:Name="PeakSeries"
                                                      XBindingPath="X" 
                                                      ShowTooltip="True" 
-                                                     YBindingPath="Y" >
-                                    </Charts:FastLineSeries>
+                                                     YBindingPath="Y" 
+                                                     EnableSeriesDragging = "True"
+                                                     EnableDragTooltip = "True"
+                                                           >
+                                    </Charts:LineSeries>
                                     <!--End of third series-->
 
                                     <Charts:SfChart.Legend>
@@ -350,8 +353,29 @@
                                 </Charts:SfChart>
                             </Grid>
 
-                            <Grid Grid.Row="1" Margin="0 0 0 20">
-                                <ListView x:Name="InfoListView" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="InfoListView_ItemClick" HorizontalContentAlignment="Stretch" Margin="0,30,10,0" 
+                            <Grid x:Name="AnalysisGrid" Visibility="Collapsed" Grid.Row="1" Margin="0 0 0 20">
+                                <Button x:Name="SaveEachPeak" Visibility="Visible" Click="SaveEachPeak_Click"  Height="40" Width="130" 
+                                        Style="{StaticResource TransparentStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="40" BorderThickness="0" Margin="0,10,0,0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="ms-appx:///Assets/start_new.png" />
+                                        <TextBlock x:Uid="SavePeakText" x:Name="SavePeakText" Text="Save Peak" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="GenerateTableAgain" Visibility="Visible" Click="GenerateTableAgain_Click"  Height="40" Width="130" 
+                                        Style="{StaticResource TransparentStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="40" BorderThickness="0" Margin="0,10,170,0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="ms-appx:///Assets/start_new.png" />
+                                        <TextBlock x:Uid="GenerateTableAgainText" x:Name="GenerateTableAgainText" Text="Recalculate Table" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="SaveAllPeak" Visibility="Visible" Click="SaveAllPeak_Click" Height="40" Width="130" 
+                                        Style="{StaticResource TransparentStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="40" BorderThickness="0" Margin="0,10,30,0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="ms-appx:///Assets/start_new.png" />
+                                        <TextBlock x:Uid="SaveAllPeakText" x:Name="SaveAllPeakText" Text="Save to file" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+                                <ListView x:Name="InfoListView" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="InfoListView_ItemClick" HorizontalContentAlignment="Stretch" Margin="0,60,10,0" 
                               VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{x:Bind testInfoList}">
 
                                     <ListView.ItemTemplate>

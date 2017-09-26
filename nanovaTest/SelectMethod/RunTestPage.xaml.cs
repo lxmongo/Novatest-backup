@@ -92,6 +92,10 @@ namespace nanovaTest.SelectMethod
         private string[,] newinfo;
         private string calibrationFileName = "N/A";
 
+        //RetentionTime data
+        SelectTestInfo PeakInfo;
+        private double NewPeakSelect = 0;
+
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
         private int heartcuttingNumber = 0;
@@ -677,6 +681,7 @@ namespace nanovaTest.SelectMethod
             /************************************************/
             StartCountDown();
             Status_Click(new object(), new RoutedEventArgs());
+            AnalysisGrid.Visibility = Visibility.Collapsed;
             InfoListView.Visibility = Visibility.Collapsed;
             SecondaryGrid.Visibility = Visibility.Collapsed;
         }
@@ -759,6 +764,7 @@ namespace nanovaTest.SelectMethod
                         currentconcen = 0;
                     }
                     InfoListView.Visibility = Visibility;
+                    AnalysisGrid.Visibility = Visibility;
                 }
                 else
                 {
@@ -804,6 +810,7 @@ namespace nanovaTest.SelectMethod
                         currentconcen = 0;
                     }
                     InfoListView.Visibility = Visibility;
+                    AnalysisGrid.Visibility = Visibility;
                     if (heartcuttingNumber > 0)
                     {
                         int Peak2DCount = 0;
@@ -1026,6 +1033,7 @@ namespace nanovaTest.SelectMethod
                                 currentconcen = 0;
                             }
                             InfoListView.Visibility = Visibility;
+                            AnalysisGrid.Visibility = Visibility;
                         }
                         else
                         {
@@ -1071,6 +1079,7 @@ namespace nanovaTest.SelectMethod
                                 currentconcen = 0;
                             }
                             InfoListView.Visibility = Visibility;
+                            AnalysisGrid.Visibility = Visibility;
                             if (heartcuttingNumber > 0)
                             {
                                 int Peak2DCount = 0;
@@ -1465,6 +1474,7 @@ namespace nanovaTest.SelectMethod
 
                 //*************************hide element
                 InfoListView.Visibility = Visibility.Collapsed;
+                AnalysisGrid.Visibility = Visibility.Collapsed;
                 //Create the Bitmpa from xaml page
                 double gridWidth = CustomGrid.ActualWidth;
                 double gridHeight = CustomGrid.ActualHeight;
@@ -1474,7 +1484,7 @@ namespace nanovaTest.SelectMethod
 
                 //************************show element
                 InfoListView.Visibility = Visibility.Visible;
-
+                AnalysisGrid.Visibility = Visibility.Visible;
                 //Save the XAML in Bitmap image
                 using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
                 {
@@ -2510,7 +2520,7 @@ namespace nanovaTest.SelectMethod
                 StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
                 StorageFolder retentionFolder = await applicationFolder.CreateFolderAsync("calibrate_test",
                     CreationCollisionOption.OpenIfExists);
-                StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(FileName,
+                StorageFolder pdfFolder = await retentionFolder.CreateFolderAsync(methodFileName,
                     CreationCollisionOption.OpenIfExists);
                 //Query the file
                 List<string> fileTypeFilter = new List<string>();
@@ -2573,28 +2583,221 @@ namespace nanovaTest.SelectMethod
                         //Debug.WriteLine(VOCconcentrationList[index]);
                     }
                 }
+                Debug.WriteLine(VOCconcentrationList.Count);
+                Debug.WriteLine(VOCNameList.Count);
             }
             catch (FileNotFoundException)
             {
                 Debug.WriteLine("VOC file not found");
             }
         }
-
+        
         //Click on the Listview and run functions
         private void InfoListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            SelectTestInfo testinfo = (SelectTestInfo)e.ClickedItem;
-            Debug.WriteLine(testinfo.ID);
+            //clear annotation
+            this.Basic_Chart.Annotations.Clear();
+            PeakInfo = (SelectTestInfo)e.ClickedItem;
+            Debug.WriteLine(PeakInfo.ID);
+            /*
             List<Data> peakdata = new List<Data>();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
-                //int x = int.Parse(testinfo.ID) * 10;
-                double x = double.Parse(testinfo.Time);
+                int x = int.Parse(testinfo.ID) * 10;
+                //double x = double.Parse(testinfo.Time);
                 int y = i;
                 Data data = new Data(x, y);
                 peakdata.Add(data);
             }
             this.Basic_Chart.Series[2].ItemsSource = peakdata;
+            */
+
+            //Add annotation
+            LineAnnotation annotation = new VerticalLineAnnotation()
+            {
+                //X1 = double.Parse("10.12"),
+                X1 = double.Parse(PeakInfo.Time),
+                //X2 = 10,
+                //Y1 = 5,
+                //Y2 = 10,
+                CanDrag = true,
+                Stroke = new SolidColorBrush(Colors.LightGreen),
+                CanResize = true,
+                GrabExtent = 10,
+                ShowAxisLabel = true,
+                StrokeThickness = 5
+            };
+            this.Basic_Chart.Annotations.Add(annotation);
+        }
+
+        private void SaveEachPeak_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Basic_Chart.Annotations.Count > 0)
+            {
+                NewPeakSelect = (double)this.Basic_Chart.Annotations[0].X1;
+                NewPeakSelect = Math.Round(NewPeakSelect,2);
+                RetentionTimeList[int.Parse(PeakInfo.ID) - 1] = NewPeakSelect;
+                if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 4)
+                {
+                    RetentionTimeList[int.Parse(PeakInfo.ID)] = NewPeakSelect;
+                }
+                for (int i = 0; i < RetentionTimeList.Count; i++)
+                {
+                    Debug.WriteLine(RetentionTimeList[i]);
+                }
+                this.Basic_Chart.Annotations.Clear();
+                NotifyPopup notifyPopup = new NotifyPopup("New Peak Saved");
+                notifyPopup.Show();
+            }
+        }
+
+        private async void SaveAllPeak_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //Create a folder: Retention_update -->methodFileName -->dateTimeFileName
+                StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder ExportFileFolder = await applicationFolder.CreateFolderAsync("Retention_update",
+                    CreationCollisionOption.OpenIfExists);
+                StorageFolder FileFolder = await ExportFileFolder.CreateFolderAsync(methodFileName,
+                    CreationCollisionOption.OpenIfExists);
+
+                //Create Export file title parameters
+                string FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+                string ExportFileName = FileNameTime + ".dat";
+                StorageFile ExportFile = await FileFolder.CreateFileAsync(ExportFileName, CreationCollisionOption.OpenIfExists);
+                //Add retention
+                for (int i = 0; i < RetentionTimeList.Count - 1; i++)
+                {
+                    await Windows.Storage.FileIO.AppendTextAsync(ExportFile, RetentionTimeList[i] + ",");
+                }
+                await Windows.Storage.FileIO.AppendTextAsync(ExportFile, RetentionTimeList[RetentionTimeList.Count - 1].ToString());
+                NotifyPopup notifyPopup = new NotifyPopup("Retention time update successfully");
+                notifyPopup.Show();
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine("Update file not found");
+            }
+        }
+
+        private void GenerateTableAgain_Click(object sender, RoutedEventArgs e)
+        {
+            //clear parameters
+            peaks1.Clear();
+            bottoms1.Clear();
+            Area1.Clear();
+            Heights1.Clear();
+            //data analysis
+            WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
+            //显示表格控件
+            testInfoList.Clear();
+            double currentvoctime = 0;
+            double currentvocheight = 0;
+            double currentvocarea = 0;
+            double FWHMvalue = 0;
+            double currentconcen = 0;
+            int Peak1DCount = 0;
+            if (MethodNameText == "BTEX")
+            {
+                int p = 0;
+                for (int j = 0; j < VOCNameList.Count; j++)
+                {
+                    for (; p < peaks1.Count && p < bottoms1.Count - 1; p++)
+                    {
+                        if (Math.Abs(x1[peaks1[p]] - RetentionTimeList[j]) < retentionTimeThreshold)
+                        {
+                            currentvoctime = x1[peaks1[p]];
+                            currentvocheight = Heights1[p];
+                            currentvocarea = Area1[p];
+                            FWHMvalue = CalculateFWHM(bottoms1[p], peaks1[p], bottoms1[p + 1], x1, y1, y_b1);
+                            break;
+                        }
+                    }
+                    //handle null error
+                    CalibrationFactor = 1;
+                    if (VOCconcentrationList.Count == VOCNameList.Count)
+                    {
+                        CalibrationFactor = VOCconcentrationList[j];
+                    }
+                    currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
+                    string currentvocname = VOCNameList[j];
+                    if (j == 3)
+                        currentvocname = currentvocname + " & " + VOCNameList[j + 1];
+                    if (j != 4)
+                    {
+                        Peak1DCount++;
+                        testInfoList.Add(new SelectTestInfo
+                        {
+                            ID = (Peak1DCount).ToString(),
+                            VOCName = currentvocname,
+                            Time = currentvoctime.ToString("0.00"),
+                            FWHM = FWHMvalue.ToString("0.00"),
+                            Height = currentvocheight.ToString("0.00"),
+                            Area = currentvocarea.ToString("0.00"),
+                            Concentration = currentconcen.ToString("0.00")
+                        });
+                    }
+                    //Reset other parameters to 0
+                    currentvoctime = 0;
+                    currentvocheight = 0;
+                    currentvocarea = 0;
+                    FWHMvalue = 0;
+                    currentconcen = 0;
+                }
+                InfoListView.Visibility = Visibility;
+                AnalysisGrid.Visibility = Visibility;
+            }
+            else
+            {
+                for (int j = 0; j < VOCNameList.Count; j++)
+                {
+                    for (int p = 0; p < peaks1.Count && p < bottoms1.Count - 1; p++)
+                    {
+                        if (Math.Abs(x1[peaks1[p]] - RetentionTimeList[j]) < retentionTimeThreshold)
+                        {
+                            currentvoctime = x1[peaks1[p]];
+                            currentvocheight = Heights1[p];
+                            currentvocarea = Area1[p];
+                            FWHMvalue = CalculateFWHM(bottoms1[p], peaks1[p], bottoms1[p + 1], x1, y1, y_b1);
+                            break;
+                        }
+                    }
+                    //handle null error
+                    CalibrationFactor = 1;
+                    if (VOCconcentrationList.Count == VOCNameList.Count)
+                    {
+                        CalibrationFactor = VOCconcentrationList[j];
+                    }
+                    currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
+                    if (Math.Abs(RetentionTimeList[j] - 0) > 0.01) //2D gas
+                    {
+                        Peak1DCount++;
+                        testInfoList.Add(new SelectTestInfo
+                        {
+                            ID = (Peak1DCount).ToString(),
+                            VOCName = VOCNameList[j],
+                            Time = currentvoctime.ToString("0.00"),
+                            FWHM = FWHMvalue.ToString("0.00"),
+                            Height = currentvocheight.ToString("0.00"),
+                            Area = currentvocarea.ToString("0.00"),
+                            Concentration = currentconcen.ToString("0.00")
+                        });
+                    }
+                    //Reset other parameters to 0
+                    currentvoctime = 0;
+                    currentvocheight = 0;
+                    currentvocarea = 0;
+                    FWHMvalue = 0;
+                    currentconcen = 0;
+                }
+            }
+
+            InfoListView.Visibility = Visibility.Collapsed;
+            InfoListView.ItemsSource = null;
+            InfoListView.ItemsSource = testInfoList;
+            InfoListView.Visibility = Visibility.Visible;
+            savePdf();
         }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
