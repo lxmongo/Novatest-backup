@@ -36,6 +36,7 @@ using Syncfusion.Pdf.Graphics;
 using Syncfusion.UI.Xaml.Charts;
 using Windows.UI;
 using Windows.System.Profile;
+using System.Linq;
 
 namespace nanovaTest.Calibrate
 {

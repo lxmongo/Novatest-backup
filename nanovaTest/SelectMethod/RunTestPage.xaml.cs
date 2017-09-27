@@ -95,6 +95,7 @@ namespace nanovaTest.SelectMethod
         //RetentionTime data
         SelectTestInfo PeakInfo;
         private double NewPeakSelect = 0;
+        ChartZoomPanBehavior zoomBehavior;
 
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
@@ -193,7 +194,7 @@ namespace nanovaTest.SelectMethod
 
         private void zoomPan_Loaded(object sender, global::Windows.UI.Xaml.RoutedEventArgs e)
         {
-            ChartZoomPanBehavior zoomBehavior = new ChartZoomPanBehavior();
+            zoomBehavior = new ChartZoomPanBehavior();
             zoomBehavior.EnablePanning = true;
             zoomBehavior.ZoomMode = Syncfusion.UI.Xaml.Charts.ZoomMode.XY;
             zoomBehavior.HorizontalPosition = HorizontalAlignment.Left;
@@ -260,6 +261,8 @@ namespace nanovaTest.SelectMethod
 
         private void initialAllArray()
         {
+            //clear the peak notation when start
+            this.Basic_Chart.Annotations.Clear();
             CurrentStepRemainTimeText.FontSize = 20;
             //initial all data from last test
             source.Clear();
@@ -1983,6 +1986,7 @@ namespace nanovaTest.SelectMethod
         {
             // initialize y_b
             x_b.Clear();
+            BaseLineYv.Clear();
             for (int v = 0; v < OriginalXv.Count; v++)
             {
                 if (OriginalYv[v] < MinY)
@@ -2628,6 +2632,8 @@ namespace nanovaTest.SelectMethod
                 StrokeThickness = 5
             };
             this.Basic_Chart.Annotations.Add(annotation);
+            //clear and add
+            zoomBehavior.EnableSelectionZooming = false;
         }
 
         private void SaveEachPeak_Click(object sender, RoutedEventArgs e)
@@ -2646,6 +2652,7 @@ namespace nanovaTest.SelectMethod
                     Debug.WriteLine(RetentionTimeList[i]);
                 }
                 this.Basic_Chart.Annotations.Clear();
+                zoomBehavior.EnableSelectionZooming = true;
                 NotifyPopup notifyPopup = new NotifyPopup("New Peak Saved");
                 notifyPopup.Show();
             }
