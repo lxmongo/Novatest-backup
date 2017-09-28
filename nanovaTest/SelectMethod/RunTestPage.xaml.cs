@@ -38,6 +38,7 @@ using Syncfusion.UI.Xaml.Charts;
 using Windows.System.Profile;
 using Windows.UI;
 using Newtonsoft.Json.Linq;
+using System.Windows;
 
 namespace nanovaTest.SelectMethod
 {
@@ -96,6 +97,7 @@ namespace nanovaTest.SelectMethod
         SelectTestInfo PeakInfo;
         private double NewPeakSelect = 0;
         ChartZoomPanBehavior zoomBehavior;
+        HiLoSeries RetentionSeries = new HiLoSeries();
 
         //temp profile from json file, length =18
         private List<double> JsonInputArray = new List<double>();
@@ -263,6 +265,11 @@ namespace nanovaTest.SelectMethod
         {
             //clear the peak notation when start
             this.Basic_Chart.Annotations.Clear();
+            if (Basic_Chart.Series.Contains(RetentionSeries))
+            {
+                Basic_Chart.Series.Remove(RetentionSeries);
+            }
+            ThresholdInput.Text = THRESHOLD_peak.ToString("0.00");
             CurrentStepRemainTimeText.FontSize = 20;
             //initial all data from last test
             source.Clear();
@@ -709,6 +716,8 @@ namespace nanovaTest.SelectMethod
                     standardSource.Add(new Data(x_b[i], y_b1[i]));
                 }
                 this.Basic_Chart.Series[1].ItemsSource = standardSource;
+                //Add Peak Indicator
+                CreateIndicateLine();
 
                 //显示表格控件
                 testInfoList.Clear();
@@ -980,6 +989,8 @@ namespace nanovaTest.SelectMethod
                             standardSource.Add(new Data(x_b[i], y_b1[i]));
                         }
                         this.Basic_Chart.Series[1].ItemsSource = standardSource;
+                        //Add Peak Indicator
+                        CreateIndicateLine();
                         //显示表格控件
                         testInfoList.Clear();
                         double currentvoctime = 0;
@@ -2050,6 +2061,7 @@ namespace nanovaTest.SelectMethod
         // peak and bottom detection
         private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
         {
+            Debug.WriteLine(THRESHOLD_peak);
             int signalAmount = OriginalX.Count;
             List<double> slopes = new List<double>();
             int size = 0;
@@ -2059,11 +2071,6 @@ namespace nanovaTest.SelectMethod
             double slope = 0; //current slope
             List<double> values = new List<double>(); //save thre  e consecutive slopes
 
-            //change threshold for BTEX and airquality to 0.2
-            if (methodFileName == "BTEX" || methodFileName == "Air Quality")
-            {
-                THRESHOLD_peak = 0.2f;
-            }
             //calculate the slopes of all scans
             for (int b = 0; b < signalAmount - 1; b++)
             {
@@ -2695,6 +2702,8 @@ namespace nanovaTest.SelectMethod
             bottoms1.Clear();
             Area1.Clear();
             Heights1.Clear();
+            //add new Threshold
+            THRESHOLD_peak = double.Parse(ThresholdInput.Text);
             //data analysis
             WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
             //显示表格控件
@@ -2805,6 +2814,47 @@ namespace nanovaTest.SelectMethod
             InfoListView.ItemsSource = testInfoList;
             InfoListView.Visibility = Visibility.Visible;
             savePdf();
+            CreateIndicateLine();
+        }
+
+        private void CreateIndicateLine()
+        {
+            if (Basic_Chart.Series.Contains(RetentionSeries))
+            {
+                Basic_Chart.Series.Remove(RetentionSeries);
+            }
+            List<Data3> peakdata = new List<Data3>();
+            for (int i = 0; i < RetentionTimeList.Count; i++)
+            {
+                //double x = i * 10;
+                double x = RetentionTimeList[i];
+                double y = 0.5;
+                double z = 0;
+                double index = i + 1;
+                Data3 data = new Data3(x, y, z);
+                peakdata.Add(data);
+            }
+            RetentionSeries = new HiLoSeries()
+            {
+                ItemsSource = peakdata,
+                XBindingPath = "X",
+                High = "Y",
+                Low = "Z",
+                StrokeThickness = 2,
+                Interior = new SolidColorBrush(Colors.DarkRed),
+                ShowTooltip = false
+            };
+            ChartAdornmentInfo adornmentInfo = new ChartAdornmentInfo()
+            {
+                AdornmentsPosition = AdornmentsPosition.Top,
+                ShowLabel = true,
+                SegmentLabelContent = LabelContent.XValue
+            };
+            RetentionSeries.AdornmentsInfo = adornmentInfo;
+
+            Basic_Chart.Series.Add(RetentionSeries);
+            Basic_Chart.Visibility = Visibility.Collapsed;
+            Basic_Chart.Visibility = Visibility.Visible;
         }
 
         //private void ThresholdReset_Click(object sender, RoutedEventArgs e)
@@ -2836,6 +2886,34 @@ namespace nanovaTest.SelectMethod
         }
 
         public double Y
+        {
+            get;
+            set;
+        }
+    }
+
+    public class Data3
+    {
+        public Data3(double x, double y, double z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
+        public double X
+        {
+            get;
+            set;
+        }
+
+        public double Y
+        {
+            get;
+            set;
+        }
+
+        public double Z
         {
             get;
             set;
