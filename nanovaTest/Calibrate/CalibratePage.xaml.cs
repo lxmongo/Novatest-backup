@@ -99,6 +99,11 @@ namespace nanovaTest.Calibrate
             Frame.Navigate(typeof(RunCalibratePage), "WaterSample-Online");
         }
 
+        private void delete_Button_Cleaning_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void delete_Button_TVOC_Click(object sender, RoutedEventArgs e)
         {
 
