@@ -27,6 +27,8 @@ namespace nanovaTest.SelectMethod
         IList<Data> source;
         Random random;
         int count = 0;
+        //Basic_Chart1.Behaviors.Clear();
+          //Basic_Chart.Behaviors.Clear();
 
         public ChartsTest()
         {

@@ -602,6 +602,7 @@ namespace nanovaTest.Calibrate
                 ClickStatus = 0;
             }
         }
+
         //状态切换状态点击事件
         private void Status_Click(object sender, RoutedEventArgs e)
         {
@@ -1438,7 +1439,7 @@ namespace nanovaTest.Calibrate
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2") + "(°C/min)", RampSpeed2value), font2, PdfBrushes.Black, rf14);
 
                
-
+                //Draw lines
                 PdfPen blackPen = new PdfPen(PdfColor.Empty);
                 PointF pf1 = new PointF(0, 185);
                 PointF pf2 = new PointF(page.Graphics.ClientSize.Width, 185);
@@ -1455,12 +1456,14 @@ namespace nanovaTest.Calibrate
                 graphics.DrawLine(blackPen, pf5, pf6);
 
 
+         
                 //Initializing to render to Bitmap
                 var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
                 var renderTargetBitmap = new RenderTargetBitmap();
 
                 //*************************hide element
                 InfoListView.Visibility = Visibility.Collapsed;
+
                 //Create the Bitmpa from xaml page
                 double gridWidth = CustomGrid.ActualWidth;
                 double gridHeight = CustomGrid.ActualHeight;
@@ -1474,7 +1477,6 @@ namespace nanovaTest.Calibrate
                 //Save the XAML in Bitmap image
                 using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
                 {
-
                     var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
                     encoder.SetPixelData(
                         BitmapPixelFormat.Bgra8,
@@ -1486,10 +1488,9 @@ namespace nanovaTest.Calibrate
                         pixelBuffer.ToArray());
 
                     await encoder.FlushAsync();
-
-                
-
+                   
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
+
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
                     graphics.DrawImage(img, new RectangleF(0, 275, (float)gridWidth / 1.3f, (float)gridHeight / 1.5f));
                 }
