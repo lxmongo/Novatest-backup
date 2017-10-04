@@ -1447,15 +1447,15 @@ namespace nanovaTest.Calibrate
                         for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
                         {
                             await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                                VOCNameList[i] + ":" + VOCconcentrationList[i] + "|");
+                                VOCNameList[i] + ":" + Math.Round(VOCconcentrationList[i], 3) + "|");
                             if (i == 3)
                             {
                                 await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                                    VOCNameList[i+1] + ":" + VOCconcentrationList[i] + "|");
+                                    VOCNameList[i+1] + ":" + Math.Round(VOCconcentrationList[i], 3) + "|");
                             }
                         }
                         await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                            VOCNameList[VOCconcentrationList.Count] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
+                            VOCNameList[VOCconcentrationList.Count] + ":" + Math.Round(VOCconcentrationList[VOCconcentrationList.Count - 1], 3));
                     }
                 }
             }
@@ -1477,10 +1477,10 @@ namespace nanovaTest.Calibrate
                     for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
                     {
                         await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                            VOCNameList[i] + ":" + VOCconcentrationList[i] + "|");
+                            VOCNameList[i] + ":" + Math.Round(VOCconcentrationList[i], 3) + "|");
                     }
                     await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                        VOCNameList[VOCconcentrationList.Count - 1] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
+                        VOCNameList[VOCconcentrationList.Count - 1] + ":" + Math.Round(VOCconcentrationList[VOCconcentrationList.Count - 1], 3));
                 }
             }
             else
@@ -1504,9 +1504,10 @@ namespace nanovaTest.Calibrate
                     VOCconcentration = 0;
                 }
                 Debug.WriteLine(VOCconcentration);
+                Math.Round(VOCconcentration, 3);
                 VOCconcentrationList.Add(VOCconcentration);
                 Debug.WriteLine(VOCconcentrationList);
-                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.00");
+                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.000");
             }
             if (testInfoList.Count == 0)
             {

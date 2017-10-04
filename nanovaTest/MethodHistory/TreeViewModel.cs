@@ -126,7 +126,7 @@ namespace nanovaTest.MethodHistory
                     list.Add(item.Name);
                 }
             }
-
+            list.Reverse();
             return list;
         }
 

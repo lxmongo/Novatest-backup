@@ -34,6 +34,7 @@ using nanovaTest.Utils;
 using nanovaTest.Models;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
+using Syncfusion.Pdf.Tables;
 using Syncfusion.UI.Xaml.Charts;
 using Windows.System.Profile;
 using Windows.UI;
@@ -553,13 +554,11 @@ namespace nanovaTest.SelectMethod
                 foreach (StorageFile file in fileList)
                 {
                     // Process file
-                    Debug.WriteLine(file.Name);
                     if (long.Parse(file.Name.Split('.')[0]) > maxvalue)
                     {
                         maxvalue = long.Parse(file.Name.Split('.')[0]);
                     }
                 }
-                Debug.WriteLine(maxvalue);
 
                 //Get the latest file 
                 string latestFilename = maxvalue.ToString() + ".dat";
@@ -579,7 +578,6 @@ namespace nanovaTest.SelectMethod
                 for (int i = 0; i < result.Length; i++)
                 {
                     RetentionTimeList[i] = Math.Round(float.Parse(result[i]), 2);
-                    Debug.WriteLine(RetentionTimeList[i]);
                 }
             }
             catch (FileNotFoundException)
@@ -750,7 +748,6 @@ namespace nanovaTest.SelectMethod
                             CalibrationFactor = VOCconcentrationList[j];
                         }
                         currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
-                        Debug.WriteLine(CalibrationFactor);
                         string currentvocname = VOCNameList[j];
                         if (j == 3)
                             currentvocname = currentvocname + " & " + VOCNameList[j + 1];
@@ -2609,6 +2606,15 @@ namespace nanovaTest.SelectMethod
             //clear annotation
             this.Basic_Chart.Annotations.Clear();
             PeakInfo = (SelectTestInfo)e.ClickedItem;
+            int index = int.Parse(PeakInfo.ID) - 1;
+            if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 4)
+            {
+                index = 4;
+            }
+            if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 5)
+            {
+                index = 5;
+            }
             Debug.WriteLine(PeakInfo.ID);
             /*
             List<Data> peakdata = new List<Data>();
@@ -2627,16 +2633,16 @@ namespace nanovaTest.SelectMethod
             LineAnnotation annotation = new VerticalLineAnnotation()
             {
                 //X1 = double.Parse("10.12"),
-                X1 = double.Parse(PeakInfo.Time),
+                X1 = RetentionTimeList[index],
                 //X2 = 10,
                 //Y1 = 5,
                 //Y2 = 10,
                 CanDrag = true,
-                Stroke = new SolidColorBrush(Colors.LightGreen),
+                Stroke = new SolidColorBrush(Windows.UI.Color.FromArgb(0xC8,0x53, 0xB7, 0x4A)),
                 CanResize = true,
                 GrabExtent = 10,
                 ShowAxisLabel = true,
-                StrokeThickness = 5
+                StrokeThickness = 2
             };
             this.Basic_Chart.Annotations.Add(annotation);
             //clear and add
@@ -2652,6 +2658,11 @@ namespace nanovaTest.SelectMethod
                 RetentionTimeList[int.Parse(PeakInfo.ID) - 1] = NewPeakSelect;
                 if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 4)
                 {
+                    RetentionTimeList[int.Parse(PeakInfo.ID)] = NewPeakSelect;
+                }
+                if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 5)
+                {
+                    RetentionTimeList[int.Parse(PeakInfo.ID) - 1] = RetentionTimeList[int.Parse(PeakInfo.ID) - 2];
                     RetentionTimeList[int.Parse(PeakInfo.ID)] = NewPeakSelect;
                 }
                 for (int i = 0; i < RetentionTimeList.Count; i++)
@@ -2850,8 +2861,11 @@ namespace nanovaTest.SelectMethod
                 ShowLabel = true,
                 SegmentLabelContent = LabelContent.XValue
             };
-            RetentionSeries.AdornmentsInfo = adornmentInfo;
-
+            //RetentionSeries.AdornmentsInfo = adornmentInfo;
+            if (MethodNameText != "EnvironmentalAir")
+            {
+                RetentionSeries.AdornmentsInfo = adornmentInfo;
+            }
             Basic_Chart.Series.Add(RetentionSeries);
             Basic_Chart.Visibility = Visibility.Collapsed;
             Basic_Chart.Visibility = Visibility.Visible;
