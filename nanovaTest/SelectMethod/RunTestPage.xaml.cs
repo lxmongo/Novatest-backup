@@ -1485,8 +1485,7 @@ namespace nanovaTest.SelectMethod
                 //Save the XAML in Bitmap image
                 using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
                 {
-                    //Basic_Chart1.Behaviors.Clear();
-                    //Basic_Chart.Behaviors.Clear();
+                    
 
                     var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
                     encoder.SetPixelData(
@@ -1582,88 +1581,120 @@ namespace nanovaTest.SelectMethod
                 graphics2.DrawString("Concentration (ppb)", font, PdfBrushes.Black, p27s);
 
                 int i = 0;
-
-
-                for (i = 0; i < testInfoList.Count; i++)
+                if (testInfoList.Count <= 5)
                 {
-                    if (i < 5)
+                    for (i = 0; i < testInfoList.Count; i++)
                     {
-                       
-                            Debug.WriteLine(testInfoList[i].VOCName);
 
-                            p21 = new RectangleF(0, Length * (i + 1) + 600, Width - 30, Length);
-                            p22 = new RectangleF(Width - 30, Length * (i + 1) + 600, Width + 65, Length);
-                            p23 = new RectangleF(2 * Width + 35, Length * (i + 1) + 600, Width - 15, Length);
-                            p24 = new RectangleF(3 * Width + 20, Length * (i + 1) + 600, Width - 10, Length);
-                            p25 = new RectangleF(4 * Width + 10, Length * (i + 1) + 600, Width - 10, Length);
-                            p26 = new RectangleF(5 * Width, Length * (i + 1) + 600, Width - 10, Length);
-                            p27 = new RectangleF(6 * Width - 10, Length * (i + 1) + 600, Width + 35, Length);
-                            p21s = new RectangleF(0 + (0.22f * Width), Length * (i + 1.2f) + 600, Width, Length);
-                            p22s = new RectangleF(Width - 20, Length * (i + 1.2f) + 600, Width + 60, Length);
-                            p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f) + 600, Width, Length);
-                            p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width, Length);
-                            p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f) + 600, Width, Length);
-                            p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i + 1.2f) + 600, Width, Length);
-                            p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width + 30, Length);
+                        Debug.WriteLine(testInfoList[i].VOCName);
 
-                            graphics2.DrawRectangle(PdfPens.Black, p21);
-                            graphics2.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);
-                            graphics2.DrawRectangle(PdfPens.Black, p22);
-                            graphics2.DrawString(testInfoList[i].VOCName, font2, PdfBrushes.Black, p22s);
-                            graphics2.DrawRectangle(PdfPens.Black, p23);
-                            graphics2.DrawString(testInfoList[i].Time, font2, PdfBrushes.Black, p23s);
-                            graphics2.DrawRectangle(PdfPens.Black, p24);
-                            graphics2.DrawString(testInfoList[i].FWHM, font2, PdfBrushes.Black, p24s);
-                            graphics2.DrawRectangle(PdfPens.Black, p25);
-                            graphics2.DrawString(testInfoList[i].Height, font2, PdfBrushes.Black, p25s);
-                            graphics2.DrawRectangle(PdfPens.Black, p26);
-                            graphics2.DrawString(testInfoList[i].Area, font2, PdfBrushes.Black, p26s);
-                            graphics2.DrawRectangle(PdfPens.Black, p27);
-                            graphics2.DrawString(testInfoList[i].Concentration, font2, PdfBrushes.Black, p27s);
-                        }
+                        p21 = new RectangleF(0, Length * (i + 1) + 600, Width - 30, Length);
+                        p22 = new RectangleF(Width - 30, Length * (i + 1) + 600, Width + 65, Length);
+                        p23 = new RectangleF(2 * Width + 35, Length * (i + 1) + 600, Width - 15, Length);
+                        p24 = new RectangleF(3 * Width + 20, Length * (i + 1) + 600, Width - 10, Length);
+                        p25 = new RectangleF(4 * Width + 10, Length * (i + 1) + 600, Width - 10, Length);
+                        p26 = new RectangleF(5 * Width, Length * (i + 1) + 600, Width - 10, Length);
+                        p27 = new RectangleF(6 * Width - 10, Length * (i + 1) + 600, Width + 35, Length);
+                        p21s = new RectangleF(0 + (0.22f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p22s = new RectangleF(Width - 20, Length * (i + 1.2f) + 600, Width + 60, Length);
+                        p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width + 30, Length);
+
+                        graphics2.DrawRectangle(PdfPens.Black, p21);
+                        graphics2.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);
+                        graphics2.DrawRectangle(PdfPens.Black, p22);
+                        graphics2.DrawString(testInfoList[i].VOCName, font2, PdfBrushes.Black, p22s);
+                        graphics2.DrawRectangle(PdfPens.Black, p23);
+                        graphics2.DrawString(testInfoList[i].Time, font2, PdfBrushes.Black, p23s);
+                        graphics2.DrawRectangle(PdfPens.Black, p24);
+                        graphics2.DrawString(testInfoList[i].FWHM, font2, PdfBrushes.Black, p24s);
+                        graphics2.DrawRectangle(PdfPens.Black, p25);
+                        graphics2.DrawString(testInfoList[i].Height, font2, PdfBrushes.Black, p25s);
+                        graphics2.DrawRectangle(PdfPens.Black, p26);
+                        graphics2.DrawString(testInfoList[i].Area, font2, PdfBrushes.Black, p26s);
+                        graphics2.DrawRectangle(PdfPens.Black, p27);
+                        graphics2.DrawString(testInfoList[i].Concentration, font2, PdfBrushes.Black, p27s);
+                    }
+                }
+                //*******second page
+                else if (testInfoList.Count > 5)
+                {
+                    for (i = 0; i < 5; i++)
+                    {
+
+                        Debug.WriteLine(testInfoList[i].VOCName);
+
+                        p21 = new RectangleF(0, Length * (i + 1) + 600, Width - 30, Length);
+                        p22 = new RectangleF(Width - 30, Length * (i + 1) + 600, Width + 65, Length);
+                        p23 = new RectangleF(2 * Width + 35, Length * (i + 1) + 600, Width - 15, Length);
+                        p24 = new RectangleF(3 * Width + 20, Length * (i + 1) + 600, Width - 10, Length);
+                        p25 = new RectangleF(4 * Width + 10, Length * (i + 1) + 600, Width - 10, Length);
+                        p26 = new RectangleF(5 * Width, Length * (i + 1) + 600, Width - 10, Length);
+                        p27 = new RectangleF(6 * Width - 10, Length * (i + 1) + 600, Width + 35, Length);
+                        p21s = new RectangleF(0 + (0.22f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p22s = new RectangleF(Width - 20, Length * (i + 1.2f) + 600, Width + 60, Length);
+                        p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i + 1.2f) + 600, Width, Length);
+                        p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width + 30, Length);
+
+                        graphics2.DrawRectangle(PdfPens.Black, p21);
+                        graphics2.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);
+                        graphics2.DrawRectangle(PdfPens.Black, p22);
+                        graphics2.DrawString(testInfoList[i].VOCName, font2, PdfBrushes.Black, p22s);
+                        graphics2.DrawRectangle(PdfPens.Black, p23);
+                        graphics2.DrawString(testInfoList[i].Time, font2, PdfBrushes.Black, p23s);
+                        graphics2.DrawRectangle(PdfPens.Black, p24);
+                        graphics2.DrawString(testInfoList[i].FWHM, font2, PdfBrushes.Black, p24s);
+                        graphics2.DrawRectangle(PdfPens.Black, p25);
+                        graphics2.DrawString(testInfoList[i].Height, font2, PdfBrushes.Black, p25s);
+                        graphics2.DrawRectangle(PdfPens.Black, p26);
+                        graphics2.DrawString(testInfoList[i].Area, font2, PdfBrushes.Black, p26s);
+                        graphics2.DrawRectangle(PdfPens.Black, p27);
+                        graphics2.DrawString(testInfoList[i].Concentration, font2, PdfBrushes.Black, p27s);
                     }
 
-               
+                    PdfPage page2 = document.Pages.Add();
+                    PdfGraphics graphics3 = page2.Graphics;
+                    for (i = 5; i < testInfoList.Count; i++)
+                    {
+                        Debug.WriteLine(testInfoList[i].VOCName);
+                        p21 = new RectangleF(0, Length * (i - 4), Width - 30, Length);
+                        p22 = new RectangleF(Width - 30, Length * (i - 4), Width + 65, Length);
+                        p23 = new RectangleF(2 * Width + 35, Length * (i - 4), Width - 15, Length);
+                        p24 = new RectangleF(3 * Width + 20, Length * (i - 4), Width - 10, Length);
+                        p25 = new RectangleF(4 * Width + 10, Length * (i - 4), Width - 10, Length);
+                        p26 = new RectangleF(5 * Width, Length * (i - 4), Width - 10, Length);
+                        p27 = new RectangleF(6 * Width - 10, Length * (i - 4), Width + 35, Length);
+                        p21s = new RectangleF(0 + (0.22f * Width), Length * (i - 5 + 1.2f), Width, Length);
+                        p22s = new RectangleF(Width - 20, Length * (i - 5 + 1.2f), Width + 60, Length);
+                        p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i - 5 + 1.2f), Width, Length);
+                        p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i - 5 + 1.2f), Width, Length);
+                        p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i - 5 + 1.2f), Width, Length);
+                        p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i - 5 + 1.2f), Width, Length);
+                        p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i - 5 + 1.2f), Width + 30, Length);
 
-               
-                        PdfPage page2 = document.Pages.Add();
-                        PdfGraphics graphics3 = page2.Graphics;
+                        graphics3.DrawRectangle(PdfPens.Black, p21);
+                        graphics3.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);
+                        graphics3.DrawRectangle(PdfPens.Black, p22);
+                        graphics3.DrawString(testInfoList[i].VOCName, font2, PdfBrushes.Black, p22s);
+                        graphics3.DrawRectangle(PdfPens.Black, p23);
+                        graphics3.DrawString(testInfoList[i].Time, font2, PdfBrushes.Black, p23s);
+                        graphics3.DrawRectangle(PdfPens.Black, p24);
+                        graphics3.DrawString(testInfoList[i].FWHM, font2, PdfBrushes.Black, p24s);
+                        graphics3.DrawRectangle(PdfPens.Black, p25);
+                        graphics3.DrawString(testInfoList[i].Height, font2, PdfBrushes.Black, p25s);
+                        graphics3.DrawRectangle(PdfPens.Black, p26);
+                        graphics3.DrawString(testInfoList[i].Area, font2, PdfBrushes.Black, p26s);
+                        graphics3.DrawRectangle(PdfPens.Black, p27);
+                        graphics3.DrawString(testInfoList[i].Concentration, font2, PdfBrushes.Black, p27s);
+                    }
+                }
 
-                        for (i = 5; i < testInfoList.Count; i++)
-                        {
-                            Debug.WriteLine(testInfoList[i].VOCName);
-                            p21 = new RectangleF(0, Length * (i - 4), Width - 30, Length);
-                            p22 = new RectangleF(Width - 30, Length * (i - 4), Width + 65, Length);
-                            p23 = new RectangleF(2 * Width + 35, Length * (i - 4), Width - 15, Length);
-                            p24 = new RectangleF(3 * Width + 20, Length * (i - 4), Width - 10, Length);
-                            p25 = new RectangleF(4 * Width + 10, Length * (i - 4), Width - 10, Length);
-                            p26 = new RectangleF(5 * Width, Length * (i - 4), Width - 10, Length);
-                            p27 = new RectangleF(6 * Width - 10, Length * (i - 4), Width + 35, Length);
-                            p21s = new RectangleF(0 + (0.22f * Width), Length * (i - 5 + 1.2f), Width, Length);
-                            p22s = new RectangleF(Width - 20, Length * (i - 5 + 1.2f), Width + 60, Length);
-                            p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i - 5 + 1.2f), Width, Length);
-                            p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i - 5 + 1.2f), Width, Length);
-                            p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i - 5 + 1.2f), Width, Length);
-                            p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i - 5 + 1.2f), Width, Length);
-                            p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i - 5 + 1.2f), Width + 30, Length);
-
-                            graphics3.DrawRectangle(PdfPens.Black, p21);
-                            graphics3.DrawString(testInfoList[i].ID, font2, PdfBrushes.Black, p21s);
-                            graphics3.DrawRectangle(PdfPens.Black, p22);
-                            graphics3.DrawString(testInfoList[i].VOCName, font2, PdfBrushes.Black, p22s);
-                            graphics3.DrawRectangle(PdfPens.Black, p23);
-                            graphics3.DrawString(testInfoList[i].Time, font2, PdfBrushes.Black, p23s);
-                            graphics3.DrawRectangle(PdfPens.Black, p24);
-                            graphics3.DrawString(testInfoList[i].FWHM, font2, PdfBrushes.Black, p24s);
-                            graphics3.DrawRectangle(PdfPens.Black, p25);
-                            graphics3.DrawString(testInfoList[i].Height, font2, PdfBrushes.Black, p25s);
-                            graphics3.DrawRectangle(PdfPens.Black, p26);
-                            graphics3.DrawString(testInfoList[i].Area, font2, PdfBrushes.Black, p26s);
-                            graphics3.DrawRectangle(PdfPens.Black, p27);
-                            graphics3.DrawString(testInfoList[i].Concentration, font2, PdfBrushes.Black, p27s);
-                        }
-                    
-                
                 //*******************************************
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();
