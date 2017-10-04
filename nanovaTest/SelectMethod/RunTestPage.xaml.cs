@@ -2606,6 +2606,15 @@ namespace nanovaTest.SelectMethod
             //clear annotation
             this.Basic_Chart.Annotations.Clear();
             PeakInfo = (SelectTestInfo)e.ClickedItem;
+            int index = int.Parse(PeakInfo.ID) - 1;
+            if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 4)
+            {
+                index = 4;
+            }
+            if (MethodName.Text == "BTEX" && int.Parse(PeakInfo.ID) == 5)
+            {
+                index = 5;
+            }
             Debug.WriteLine(PeakInfo.ID);
             /*
             List<Data> peakdata = new List<Data>();
@@ -2624,16 +2633,16 @@ namespace nanovaTest.SelectMethod
             LineAnnotation annotation = new VerticalLineAnnotation()
             {
                 //X1 = double.Parse("10.12"),
-                X1 = double.Parse(PeakInfo.Time),
+                X1 = RetentionTimeList[index],
                 //X2 = 10,
                 //Y1 = 5,
                 //Y2 = 10,
                 CanDrag = true,
-                Stroke = new SolidColorBrush(Colors.LightGreen),
+                Stroke = new SolidColorBrush(Windows.UI.Color.FromArgb(0xC8,0x53, 0xB7, 0x4A)),
                 CanResize = true,
                 GrabExtent = 10,
                 ShowAxisLabel = true,
-                StrokeThickness = 5
+                StrokeThickness = 2
             };
             this.Basic_Chart.Annotations.Add(annotation);
             //clear and add

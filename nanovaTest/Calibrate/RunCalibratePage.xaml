@@ -272,7 +272,8 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          Header="Intensity"
+                                          Header="Time (s)"
+                                          FontSize="13"
                                           Interval="10"
                                           ThumbLabelVisibility="Visible" />
                                         </Charts:SfChart.PrimaryAxis>
@@ -284,9 +285,9 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          FontSize="14"
+                                          FontSize="13"
                                           Interval="2"
-                                          Header="Time(s)"
+                                          Header="Intensity"
                                           ThumbLabelVisibility="Visible">
 
                                             </Charts:NumericalAxis>

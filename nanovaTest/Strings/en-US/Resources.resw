@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BeginTime.Text" xml:space="preserve">
-    <value>Begin Time</value>
+    <value>Begin Time (s)</value>
   </data>
   <data name="Calibrate.Text" xml:space="preserve">
     <value>Calibrate</value>
@@ -136,13 +136,13 @@
     <value>CONFIG</value>
   </data>
   <data name="EndTime.Text" xml:space="preserve">
-    <value>End Time</value>
+    <value>End Time (s)</value>
   </data>
   <data name="ExperienceName.Text" xml:space="preserve">
     <value>SAMPLE NAME</value>
   </data>
   <data name="HeartCuttingPeriods.Text" xml:space="preserve">
-    <value>HEART CUTTING PERIODS</value>
+    <value>HEART CUTTING PROFILE</value>
   </data>
   <data name="HighestTemp.Text" xml:space="preserve">
     <value>Highest Temp (℃)</value>
@@ -181,7 +181,7 @@
     <value>OPERATOR</value>
   </data>
   <data name="TempRampSpeed1.Text" xml:space="preserve">
-    <value>Ramp Speed (℃/min)</value>
+    <value>Ramp Speed 1 (℃/min)</value>
   </data>
   <data name="SamplingProfile.Text" xml:space="preserve">
     <value>SAMPLING PROFILE</value>
@@ -307,7 +307,7 @@
     <value>START</value>
   </data>
   <data name="Second" xml:space="preserve">
-    <value> Second</value>
+    <value>Second</value>
   </data>
   <data name="ConcentrationPPB" xml:space="preserve">
     <value>Concentration (ppb)</value>
@@ -556,13 +556,13 @@
     <value>Current Pressure (psi)</value>
   </data>
   <data name="EndTime1" xml:space="preserve">
-    <value>End Time</value>
+    <value>End Time (s)</value>
   </data>
   <data name="FWHMTable.Text" xml:space="preserve">
     <value>FWHM (s)</value>
   </data>
   <data name="HeartCuttingPeriodspdf" xml:space="preserve">
-    <value>HEART CUTTING PERIODS</value>
+    <value>HEART CUTTING PROFILE</value>
   </data>
   <data name="HeightTable.Text" xml:space="preserve">
     <value>Height</value>
@@ -601,16 +601,16 @@
     <value>Temp2 Hold Time (min)</value>
   </data>
   <data name="Temperature1.Text" xml:space="preserve">
-    <value>Temp. 1 </value>
+    <value>Temp1 </value>
   </data>
   <data name="Temperature11" xml:space="preserve">
-    <value>Temp. 1 </value>
+    <value>Temp1 </value>
   </data>
   <data name="Temperature2.Text" xml:space="preserve">
-    <value>Temp. 2 </value>
+    <value>Temp2 </value>
   </data>
   <data name="Temperatures2" xml:space="preserve">
-    <value>Temp. 2 </value>
+    <value>Temp2 </value>
   </data>
   <data name="TempRampSpeed2.Text" xml:space="preserve">
     <value>Ramp Speed 2 (℃/min)</value>
