@@ -267,7 +267,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Charts:SfChart 
                                 x:Name="Basic_Chart"
-                                    Loaded="zoomPan_Loaded"
+                                Loaded="zoomPan_Loaded"
                                 Margin="0,0,40,0"
                                 RelativePanel.AlignLeftWithPanel="True"
                                 RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2">
@@ -322,18 +322,7 @@
                                                      XBindingPath="X" 
                                                      ShowTooltip="True" 
                                                      YBindingPath="Y" >
-                                        <!--<Charts:FastLineBitmapSeries.AdornmentsInfo>
-
-                                        <Charts:ChartAdornmentInfo 
-                                            x:Name="splineAdornmentInfo"
-                                            SymbolStroke="#1E90FF"
-                                            SymbolInterior="#1E90FF"
-                                            ShowLabel="False"
-                                            SymbolWidth="4"                                                   
-                                            SymbolHeight="4" 
-                                            Symbol="Ellipse"></Charts:ChartAdornmentInfo>
-
-                                    </Charts:FastLineBitmapSeries.AdornmentsInfo>-->
+                                       
                                     </Charts:FastLineSeries>
 
                                     <!--Add third series for the Peak-->

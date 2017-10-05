@@ -57,6 +57,17 @@
                                 <TextBlock x:Uid="Config" x:Name="ConfigText" Foreground="#007DC4" Text="CONFIG" Margin="-100,5,0,0" TextAlignment="Center" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock x:Uid="OperatorName" Text="OPERATOR" FontSize="14" Margin="10,10,10,0" Foreground="#FF4F4F4F"/>
+                            <!--<TextBox x:Name="OperatorName" Margin="10,10,10,0" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>-->
+                            <ComboBox x:Name="OperatorName" Margin="10,10,10,0" Width="275" MinHeight="10" Height="30" FontSize="12" BorderThickness="0.5">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+                        </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">
                         <Button Height="40" Style="{StaticResource TransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="Status_Click">
@@ -76,7 +87,7 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock x:Uid="Calibrate" x:Name="CalibrateName" Text="Calibrate" FontSize="25" Foreground="#FF4F4F4F"/>
                         </StackPanel>
-                        
+
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid x:Name="ConfigGrid">
@@ -120,7 +131,7 @@
                                             <TextBox IsReadOnly="True" Background="#4f4f4f" x:Name="WaitTimeText" InputScope="Number" TextWrapping="Wrap" VerticalAlignment="Center"
                                                  TextAlignment="Center" Text="30" MinHeight="10" FontSize="12" BorderThickness="0.5"/>
                                         </Border>
-                                        
+
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -145,7 +156,7 @@
                                         <TextBox x:Name="ConcentrationName" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap"
                                          TextAlignment="Center" FontSize="12"  Width="220" MinHeight="10"  BorderThickness="0.5"/>
                                     </Border>
-                                    
+
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="5" Height="150"></Grid>
@@ -383,7 +394,7 @@
                                                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Height}" />
                                                     </Border>
                                                     <Border Grid.Column="5" >
-                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind ConcentrationFactor}" />
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Concentration}" />
                                                     </Border>
                                                 </Grid>
                                             </DataTemplate>
@@ -574,7 +585,7 @@
                                                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Height}" />
                                                     </Border>
                                                     <Border Grid.Column="5" >
-                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind ConcentrationFactor}" />
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Concentration}" />
                                                     </Border>
                                                 </Grid>
                                             </DataTemplate>
@@ -642,7 +653,7 @@
                             </Grid>
                         </Grid>
                     </Grid>
-                    
+
                 </ScrollViewer>
             </Grid>
         </Grid>
@@ -653,3 +664,4 @@
         </Grid>
     </Grid>
 </Page>
+

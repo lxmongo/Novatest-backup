@@ -3,12 +3,8 @@
     "",
     "\\nanovaTest",
     "\\nanovaTest\\Calibrate",
-    "\\nanovaTest\\CustomMethod",
     "\\nanovaTest\\SelectMethod",
-    "\\nanovaTest\\Strings",
-    "\\nanovaTest\\Strings\\en",
-    "\\nanovaTest\\Strings\\en-US",
-    "\\nanovaTest\\Strings\\zh-Hans"
+    "\\nanovaTest\\SelectMethod\\Setting"
   ],
   "SelectedNode": "\\nanovaTest\\SelectMethod\\RunTestPage.xaml.cs",
   "PreviewInSolutionExplorer": false

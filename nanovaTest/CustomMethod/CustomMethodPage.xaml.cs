@@ -346,10 +346,7 @@ namespace nanovaTest.CustomMethod
 
                 RectangleF rf2 = new RectangleF(260, 130, 500, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
-                //*********************************
-                //RectangleF rf3 = new RectangleF(0, 145, 500, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf3);
-                //*****************************************************
+               
                 RectangleF rf16 = new RectangleF(260, 145, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf16);
 
@@ -375,46 +372,7 @@ namespace nanovaTest.CustomMethod
 
                 RectangleF rf6 = new RectangleF(360, 208, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
-                //*********************************************
-                //double lowestTempvalue = JsonInputArray[0];
-                //double lowestTvalue = JsonInputArray[1];
-                //double Temp1value = JsonInputArray[2];
-                //double HoldT1value = JsonInputArray[3];
-                ////double HoldT1value = JsonInputArray[3] * 60;
-                //double RampSpeed1value = JsonInputArray[4];
-                ////double RampSpeed1value = JsonInputArray[4] / 60.0;
-                //double Temp2value = JsonInputArray[5];
-                //double HoldT2value = JsonInputArray[6];
-                ////double HoldT2value = JsonInputArray[6] * 60;
-                //double RampSpeed2value = JsonInputArray[7];
-                //double RampSpeed2value = JsonInputArray[7] / 60.0;
-                //***************************************************
-                //RectangleF rf7 = new RectangleF(0, 223, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
-
-                //RectangleF rf8 = new RectangleF(180, 223, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1") + "(min)", lowestTvalue), font2, PdfBrushes.Black, rf8);
-
-                //RectangleF rf9 = new RectangleF(0, 238, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11") + "(°C)", Temp1value), font2, PdfBrushes.Black, rf9);
-
-                //RectangleF rf10 = new RectangleF(180, 238, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp1HoldigTime"), HoldT1value), font2, PdfBrushes.Black, rf10);
-
-                //RectangleF rf11 = new RectangleF(360, 238, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed11") + "(°C/min)", RampSpeed1value), font2, PdfBrushes.Black, rf11);
-
-                //RectangleF rf12 = new RectangleF(0, 253, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2") + "(°C)", Temp2value), font2, PdfBrushes.Black, rf12);
-
-                //RectangleF rf13 = new RectangleF(180, 253, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp2HoldigTime"), HoldT2value), font2, PdfBrushes.Black, rf13);
-
-                //RectangleF rf14 = new RectangleF(360, 253, 400, 40);
-                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2") + "(°C/min)", RampSpeed2value), font2, PdfBrushes.Black, rf14);
-
-                //RectangleF rf19 = new RectangleF(380, 0, 0, 0);
-                //document.Pages[0].Graphics.DrawString("NovaTest", logoFont, PdfBrushes.DodgerBlue, rf19);
+            
 
                 PdfPen blackPen = new PdfPen(PdfColor.Empty);
                 PointF pf1 = new PointF(0, 185);
@@ -433,17 +391,7 @@ namespace nanovaTest.CustomMethod
 
                 if (heartcuttingNumber > 0)
                 {
-                    /*RectangleF rf2dperiod = new RectangleF(0, 195, 400, 40);
-                    document.Pages[0].Graphics.DrawString(string.Format("{0}:", loader.GetString("HeartCuttingPeriodspdf")), font, PdfBrushes.Black, rf2dperiod);
-                    int picturestartposition = 205;
-                    for (int pdf2d = 0; pdf2d < heartcuttingNumber; pdf2d++)
-                    {
-                        RectangleF rf2dstart = new RectangleF(0, 205 + pdf2d * 20, 400, 40);
-                        document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), heartcuttingStartList[pdf2d + 1].ToString()), font, PdfBrushes.Black, rf2dstart);
-                        RectangleF rf2dend = new RectangleF(220, 205 + pdf2d * 20, 400, 40);
-                        document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("EndTime1"), heartcuttingEndList[pdf2d + 1].ToString()), font, PdfBrushes.Black, rf2dend);
-                        picturestartposition = picturestartposition + 20;
-                    }*/
+                   
                     //Initializing to render to Bitmap
                     var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
                     var renderTargetBitmap = new RenderTargetBitmap();
@@ -469,10 +417,7 @@ namespace nanovaTest.CustomMethod
 
                         await encoder.FlushAsync();
 
-                        //Load and draw the Bitmap image in PDF
-                        //PdfImage img = PdfImage.FromStream(stream.AsStream());
-                        //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
-
+                     
                         PdfImage img = PdfImage.FromStream(stream.AsStream());
                         //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
                         document.Pages[0].Graphics.DrawImage(img, new RectangleF(0, 195, 500, 400));
