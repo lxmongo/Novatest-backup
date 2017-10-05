@@ -99,7 +99,6 @@ namespace nanovaTest.SelectMethod
         //RetentionTime data
         SelectTestInfo PeakInfo;
         private double NewPeakSelect = 0;
-        ChartZoomPanBehavior zoomBehavior;
         HiLoSeries RetentionSeries = new HiLoSeries();
 
         //temp profile from json file, length =18
