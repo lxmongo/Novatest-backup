@@ -280,7 +280,8 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          Header="Time(s)"
+                                          FontSize="13"
+                                          Header="Time (s)"
                                           Interval="10"
                                           ThumbLabelVisibility="Visible" />
                                     </Charts:SfChart.PrimaryAxis>
@@ -292,7 +293,7 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          FontSize="14"
+                                          FontSize="13"
                                           Interval="2"
                                           Header="Intensity"
                                           ThumbLabelVisibility="Visible">
@@ -511,7 +512,8 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          Header="Time(s)"
+                                          FontSize="13"
+                                          Header="Time (s)"
                                           Interval="10"
                                           ThumbLabelVisibility="Visible" />
                                     </Charts:SfChart.PrimaryAxis>
@@ -523,7 +525,7 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          FontSize="14"
+                                          FontSize="13"
                                           Interval="2"
                                           Header="Intensity"
                                           ThumbLabelVisibility="Visible">
