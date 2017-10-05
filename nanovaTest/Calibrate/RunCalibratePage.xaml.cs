@@ -36,6 +36,7 @@ using Syncfusion.Pdf.Graphics;
 using Syncfusion.UI.Xaml.Charts;
 using Windows.UI;
 using Windows.System.Profile;
+using System.Linq;
 
 namespace nanovaTest.Calibrate
 {
@@ -857,6 +858,8 @@ namespace nanovaTest.Calibrate
                 //显示表格控件
                 //testInfoList.Clear();
                 savePdf();
+                //change to config control 
+                Config_Click(new object(), new RoutedEventArgs());
             }
             /**********Send profile to arduino************/
             try
@@ -1867,15 +1870,15 @@ namespace nanovaTest.Calibrate
                         for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
                         {
                             await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                                VOCNameList[i] + ":" + VOCconcentrationList[i] + "|");
+                                VOCNameList[i] + ":" + Math.Round(VOCconcentrationList[i], 3) + "|");
                             if (i == 3)
                             {
                                 await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                                    VOCNameList[i+1] + ":" + VOCconcentrationList[i] + "|");
+                                    VOCNameList[i+1] + ":" + Math.Round(VOCconcentrationList[i], 3) + "|");
                             }
                         }
                         await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                            VOCNameList[VOCconcentrationList.Count] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
+                            VOCNameList[VOCconcentrationList.Count] + ":" + Math.Round(VOCconcentrationList[VOCconcentrationList.Count - 1], 3));
                     }
                 }
             }
@@ -1897,10 +1900,10 @@ namespace nanovaTest.Calibrate
                     for (int i = 0; i < VOCconcentrationList.Count - 1; i++)
                     {
                         await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                            VOCNameList[i] + ":" + VOCconcentrationList[i] + "|");
+                            VOCNameList[i] + ":" + Math.Round(VOCconcentrationList[i], 3) + "|");
                     }
                     await Windows.Storage.FileIO.AppendTextAsync(Rawfile,
-                        VOCNameList[VOCconcentrationList.Count - 1] + ":" + VOCconcentrationList[VOCconcentrationList.Count - 1]);
+                        VOCNameList[VOCconcentrationList.Count - 1] + ":" + Math.Round(VOCconcentrationList[VOCconcentrationList.Count - 1], 3));
                 }
             }
             else
@@ -1924,9 +1927,10 @@ namespace nanovaTest.Calibrate
                     VOCconcentration = 0;
                 }
                 Debug.WriteLine(VOCconcentration);
+                Math.Round(VOCconcentration, 3);
                 VOCconcentrationList.Add(VOCconcentration);
                 Debug.WriteLine(VOCconcentrationList);
-                testInfoList[i].Concentration = VOCconcentration.ToString("0.00");
+                testInfoList[i].ConcentrationFactor = VOCconcentration.ToString("0.000");
             }
             if (testInfoList.Count == 0)
             {
@@ -2300,7 +2304,7 @@ namespace nanovaTest.Calibrate
             List<double> temp_x_b = new List<double>();
             List<double> temp_y_b = new List<double>();
 
-            detectPeakAndBottom(OriginalX, OriginalY, peaks, bottoms, Area, Heights, MinY);
+            detectPeakAndBottom(OriginalX, OriginalY, BaseLineY, peaks, bottoms, Area, Heights, MinY);
             size = bottoms.Count;
             for (int i = 0; i < size; i++)
             {
@@ -2313,7 +2317,7 @@ namespace nanovaTest.Calibrate
 
 
         // peak and bottom detection
-        private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
+        private void detectPeakAndBottom(List<double> OriginalX, List<double> OriginalY, List<double> BaseLineY, List<int> peaks, List<int> bottoms, List<double> Area, List<double> Heights, double MinY)
         {
             int signalAmount = OriginalX.Count;
             List<double> slopes = new List<double>();
@@ -2367,18 +2371,38 @@ namespace nanovaTest.Calibrate
                         {
                             peakMax++;
                         }
-                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        if ((OriginalY[peakMax] - BaseLineY[peakMax]) > THRESHOLD_peak)
                         {
                             peaks.Add(peakMax);
                         }
                         //find peakStop
                         peakStop = peakMax;
                         if (peakStop == size - 1) break; //the last scan is a peak
+                        /*
                         while (slopes[peakStop] <= 0 && peakStop < size - 1)
                         {
                             peakStop++;
                         }
-                        if ((OriginalY[peakMax] - MinY) > THRESHOLD_peak)
+                        */
+                        //******************************************************************
+                        bool stopflag = false;
+                        values.Clear();
+                        while(!stopflag && peakStop < size - CONSECUTIVE_SCAN_STEPS -1)
+                        {
+                            values.Clear();
+                            for (int j = 0; j < CONSECUTIVE_SCAN_STEPS; j++)
+                            {
+                                if (peakStop + j >= size) break;
+                                values.Add(slopes[peakStop + j]);
+                            }
+                            if (valuesAreSmallerThanThreshold(values))
+                            {
+                                stopflag = true;
+                            }
+                            peakStop++;
+                        }
+                        //******************************************************************
+                        if ((OriginalY[peakMax] - BaseLineY[peakMax]) > THRESHOLD_peak)
                         {
                             bottoms.Add(peakStop);
                         }
@@ -2398,6 +2422,17 @@ namespace nanovaTest.Calibrate
             for (int i = 0; i < CONSECUTIVE_SCAN_STEPS; i++)
             {
                 if (values[i] < THRESHOLD)
+                    return false;
+            }
+            return true;
+        }
+
+        //sub method for peak detection
+        private bool valuesAreSmallerThanThreshold(List<double> values)
+        {
+            for (int i = 0; i < CONSECUTIVE_SCAN_STEPS; i++)
+            {
+                if (values[i] < -0.05)
                     return false;
             }
             return true;

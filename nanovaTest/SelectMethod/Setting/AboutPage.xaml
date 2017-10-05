@@ -23,9 +23,9 @@
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Nanova GC" Foreground="#696969" FontSize="20" TextAlignment="Center"/>
+                <TextBlock Text="NovaSoft" Foreground="#696969" FontSize="28" TextAlignment="Center"/>
                 <TextBlock x:Name="VersionNum" Text="Version 1.0.0 build-1" Foreground="DimGray" TextAlignment="Center" Margin="0 10  0 0"/>
-                <TextBlock Text="Nanova Gas Chromatograph" Foreground="#696969" FontSize="20" Margin="0 20 0 0"/>
+                <TextBlock Text="NovaTest Portable Gas Chromatograph" Foreground="#696969" FontSize="18" Margin="0 20 0 0"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -292,11 +292,11 @@ namespace nanovaTest.VOCLibrary
                         var displayName = loader.GetString(vocName.GetString());
                         if(null != displayName && !"".Equals(displayName))
                         {
-                            info.VOC = string.Format("{0}({1})", displayName, vocName.GetString());
+                            info.VOC = vocName.GetString();
                         }
                         else
                         {
-                            info.VOC = string.Format("{0}({1})", vocName.GetString(), vocName.GetString());
+                            info.VOC =vocName.GetString();
                         }
                         
                         if (voc != null)
@@ -351,7 +351,7 @@ namespace nanovaTest.VOCLibrary
             SetButtonColor(sender as Button);
             //加载数据
             VOCViewList.Visibility = Visibility.Collapsed;
-            InitListByName("TVOC");
+            UpdateCF("TVOC");
             InitListByName("TVOC");
             UpdateRentention("TVOC");
             await Task.Delay(TimeSpan.FromMilliseconds(DelayTime));
