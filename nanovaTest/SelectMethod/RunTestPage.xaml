@@ -280,7 +280,8 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          Header="Time(s)"
+                                          FontSize="13"
+                                          Header="Time (s)"
                                           Interval="10"
                                           ThumbLabelVisibility="Visible" />
                                     </Charts:SfChart.PrimaryAxis>
@@ -292,7 +293,7 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          FontSize="14"
+                                          FontSize="13"
                                           Interval="2"
                                           Header="Intensity"
                                           ThumbLabelVisibility="Visible">
@@ -350,19 +351,20 @@
                                         <TextBlock x:Uid="SavePeakText" x:Name="SavePeakText" Text="Save Peak" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
                                     </StackPanel>
                                 </Button>
-                                <TextBox x:Name="ThresholdInput" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,15,0,0" Grid.Row="1" TextWrapping="Wrap" Text=""/>
+                                <TextBlock x:Uid="PeakThresholdText" Text="Peak Threshold:" FontSize="14" Margin="140,20,10,0" Foreground="#FF4F4F4F"/>
+                                <TextBox x:Name="ThresholdInput" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="245,15,0,0" Grid.Row="1" TextWrapping="Wrap" Text=""/>
                                 <Button x:Name="GenerateTableAgain" Visibility="Visible" Click="GenerateTableAgain_Click"  Height="40" Width="130" 
                                         Style="{StaticResource TransparentStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="40" BorderThickness="0" Margin="0,10,170,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Image Source="ms-appx:///Assets/start_new.png" />
-                                        <TextBlock x:Uid="GenerateTableAgainText" x:Name="GenerateTableAgainText" Text="Recalculate Table" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="GenerateTableAgainText" x:Name="GenerateTableAgainText" Text="Recalculate" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
                                     </StackPanel>
                                 </Button>
                                 <Button x:Name="SaveAllPeak" Visibility="Visible" Click="SaveAllPeak_Click" Height="40" Width="130" 
                                         Style="{StaticResource TransparentStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="40" BorderThickness="0" Margin="0,10,30,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Image Source="ms-appx:///Assets/start_new.png" />
-                                        <TextBlock x:Uid="SaveAllPeakText" x:Name="SaveAllPeakText" Text="Save to file" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="SaveAllPeakText" x:Name="SaveAllPeakText" Text="Save RT" Margin="-122 0 0 0" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"/>
                                     </StackPanel>
                                 </Button>
                                 <ListView x:Name="InfoListView" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="InfoListView_ItemClick" HorizontalContentAlignment="Stretch" Margin="0,60,10,0" 
@@ -500,7 +502,8 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          Header="Time(s)"
+                                          FontSize="13"
+                                          Header="Time (s)"
                                           Interval="10"
                                           ThumbLabelVisibility="Visible" />
                                     </Charts:SfChart.PrimaryAxis>
@@ -512,7 +515,7 @@
                                         DeferredScrolling="True"
                                           EnableScrollBar="True"
                                           EnableTouchMode="True"
-                                          FontSize="14"
+                                          FontSize="13"
                                           Interval="2"
                                           Header="Intensity"
                                           ThumbLabelVisibility="Visible">

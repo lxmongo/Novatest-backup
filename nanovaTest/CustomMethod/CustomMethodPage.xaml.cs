@@ -42,6 +42,12 @@ using Windows.Data.Json;
 using Syncfusion.UI.Xaml.Charts;
 using Windows.System.Profile;
 using Windows.UI;
+using System.Text;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.ApplicationModel;
+using nanovaTest.Models;
+using Newtonsoft.Json.Linq;
+
 
 namespace nanovaTest.CustomMethod
 {
@@ -58,6 +64,10 @@ namespace nanovaTest.CustomMethod
 
         //上图信号线数据源
         IList<Data> topSource;
+
+        //Pdf
+        Data top = new Data(1, 2);
+        ChartZoomPanBehavior zoomBehavior = new ChartZoomPanBehavior();
         //上图基准线数据源
         IList<Data> topStandardSource;
 
@@ -283,6 +293,7 @@ namespace nanovaTest.CustomMethod
             //Create a new PDF document.
             using (PdfDocument document = new PdfDocument())
             {
+                //Create a new PDF document.
                 //Add a page in the PDF document.
                 PdfPage page = document.Pages.Add();
                 //Access the PDF graphics instance of the page.
@@ -298,6 +309,7 @@ namespace nanovaTest.CustomMethod
                 PdfFont footerFont = new PdfTrueTypeFont(fontStream, 9);
                 PdfFont font2 = new PdfTrueTypeFont(textFontStream, 11);
                 PdfFont font = new PdfTrueTypeFont(textFontStream, 11);
+                PdfFont tableFont = new PdfTrueTypeFont(textFontStream, 9);
 
 
                 // PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Regular);
@@ -346,7 +358,12 @@ namespace nanovaTest.CustomMethod
 
                 RectangleF rf2 = new RectangleF(260, 130, 500, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("OperatorName1"), OperatorName.SelectedValue), font, PdfBrushes.Black, rf2);
-               
+                //*********************************
+                RectangleF rf3 = new RectangleF(0, 145, 500, 40);
+                String methodString = "Method: Advance Test";
+                document.Pages[0].Graphics.DrawString(methodString, font, PdfBrushes.Black, rf3);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Method"), MethodName.Text), font, PdfBrushes.Black, rf3);
+                //*****************************************************
                 RectangleF rf16 = new RectangleF(260, 145, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("StartTime"), DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", DateTimeFormatInfo.InvariantInfo)), font, PdfBrushes.Black, rf16);
 
@@ -354,8 +371,10 @@ namespace nanovaTest.CustomMethod
                 String instrumentString = "Instrument: NovaTest P100";
                 document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
 
-                RectangleF rf18 = new RectangleF(0, 95, 400, 40);
-                String CalibrationfileString = "Calibration File: N/A";
+
+                RectangleF rf18 = new RectangleF(260, 159, 450, 40);
+                String CalibrationfileString = "Calibration File: ";
+
 
                 document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
 
@@ -368,11 +387,49 @@ namespace nanovaTest.CustomMethod
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime") + "(min)", SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
 
                 RectangleF rf5 = new RectangleF(180, 208, 450, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime") + "(s)", WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
 
                 RectangleF rf6 = new RectangleF(360, 208, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
-            
+                //*********************************************
+                //double lowestTempvalue = JsonInputArray[0];
+                //double lowestTvalue = JsonInputArray[1];
+                //double Temp1value = JsonInputArray[2];
+                //double HoldT1value = JsonInputArray[3];
+                ////double HoldT1value = JsonInputArray[3] * 60;
+                //double RampSpeed1value = JsonInputArray[4];
+                ////double RampSpeed1value = JsonInputArray[4] / 60.0;
+                //double Temp2value = JsonInputArray[5];
+                //double HoldT2value = JsonInputArray[6];
+                ////double HoldT2value = JsonInputArray[6] * 60;
+                //double RampSpeed2value = JsonInputArray[7];
+                //double RampSpeed2value = JsonInputArray[7] / 60.0;
+                //***************************************************
+                RectangleF rf7 = new RectangleF(0, 223, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", LowestTempText.Text), font2, PdfBrushes.Black, rf7);
+                RectangleF rf8 = new RectangleF(180, 223, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1") + "(min)", lowestTvalue), font2, PdfBrushes.Black, rf8);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1"), LowHoldingTimeText.Text), font2, PdfBrushes.Black, rf8);
+                RectangleF rf9 = new RectangleF(0, 238, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11") + "(°C)", Temp1value), font2, PdfBrushes.Black, rf9);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperature11") + "(°C)", Temp1Text.Text), font2, PdfBrushes.Black, rf9);
+                RectangleF rf10 = new RectangleF(180, 238, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp1HoldigTime"), HoldT1value), font2, PdfBrushes.Black, rf10);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp1HoldigTime"), Hold1Text.Text), font2, PdfBrushes.Black, rf10);
+                RectangleF rf11 = new RectangleF(360, 238, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed11") + "(°C/min)", RampSpeed1value), font2, PdfBrushes.Black, rf11);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed11"), RampSpeed1Text.Text), font2, PdfBrushes.Black, rf11);
+                RectangleF rf12 = new RectangleF(0, 253, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2") + "(°C)", Temp2value), font2, PdfBrushes.Black, rf12);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temperatures2") + "(°C)", Temp2Text.Text), font2, PdfBrushes.Black, rf12);
+                RectangleF rf13 = new RectangleF(180, 253, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp2HoldigTime"), HoldT2value), font2, PdfBrushes.Black, rf13);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("Temp2HoldigTime"), Hold2Text.Text), font2, PdfBrushes.Black, rf13);
+                RectangleF rf14 = new RectangleF(360, 253, 400, 40);
+                //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2") + "(°C/min)", RampSpeed2value), font2, PdfBrushes.Black, rf14);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("RampSpeed2"), RampSpeed2Text.Text), font2, PdfBrushes.Black, rf14);
+
 
                 PdfPen blackPen = new PdfPen(PdfColor.Empty);
                 PointF pf1 = new PointF(0, 185);
@@ -389,115 +446,220 @@ namespace nanovaTest.CustomMethod
                 PointF pf6 = new PointF(page.Graphics.ClientSize.Width, 268);
                 graphics.DrawLine(blackPen, pf5, pf6);
 
-                if (heartcuttingNumber > 0)
+
+
+                ////Initializing to render to Bitmap
+
+                //var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                //var renderTargetBitmap = new RenderTargetBitmap();
+
+                ////*************************hide element
+                //BottomChartGrid.Visibility = Visibility.Collapsed;
+                ////Create the Bitmpa from xaml page
+                //double gridWidth = CustomGrid.ActualWidth;
+                //double gridHeight = CustomGrid.ActualHeight;
+                //await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
+                ////CustomImage.Source = renderTargetBitmap;
+                //var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                ////************************show element
+                //BottomChartGrid.Visibility = Visibility.Visible;
+
+                ////Save the XAML in Bitmap image
+                //using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                //{
+
+                //    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                //    encoder.SetPixelData(
+                //        BitmapPixelFormat.Bgra8,
+                //        BitmapAlphaMode.Ignore,
+                //        (uint)renderTargetBitmap.PixelWidth,
+                //        (uint)renderTargetBitmap.PixelHeight,
+                //        logicalDpi,
+                //        logicalDpi,
+                //        pixelBuffer.ToArray());
+
+                //    await encoder.FlushAsync();
+
+                //    //Load and draw the Bitmap image in PDF
+                //    //PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //    //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
+
+                //    PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
+                //    graphics.DrawImage(img, new RectangleF(0, 275, (float)gridWidth / 1.3f, (float)gridHeight / 1.5f));
+                //}
+
+
+                //if (heartcuttingNumber > 0)
+                //{
+
+                //    //Initializing to render to Bitmap
+                //    var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                //    var renderTargetBitmap = new RenderTargetBitmap();
+
+                //    //Create the Bitmpa from xaml page
+                //    await renderTargetBitmap.RenderAsync(CustomTopGrid, 700, 900);
+                //    //CustomImage.Source = renderTargetBitmap;
+                //    var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                //    //Save the XAML in Bitmap image
+                //    using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                //    {
+
+                //        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                //        encoder.SetPixelData(
+                //            BitmapPixelFormat.Yuy2,
+                //            BitmapAlphaMode.Premultiplied,
+                //            (uint)renderTargetBitmap.PixelWidth,
+                //            (uint)renderTargetBitmap.PixelHeight,
+                //            logicalDpi,
+                //            logicalDpi,
+                //            pixelBuffer.ToArray());
+
+                //        await encoder.FlushAsync();
+
+
+                //        PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //        //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
+                //        document.Pages[0].Graphics.DrawImage(img, new RectangleF(0, 195, 500, 400));
+                //    }
+
+                //    document.Pages.Add();
+
+                //    //Initializing to render to Bitmap
+                //    var logicalDpi1 = DisplayInformation.GetForCurrentView().LogicalDpi;
+                //    var renderTargetBitmap1 = new RenderTargetBitmap();
+
+                //    //Create the Bitmpa from xaml page
+                //    await renderTargetBitmap1.RenderAsync(CustomBottomGrid, 510, 1600);
+                //    //CustomImage.Source = renderTargetBitmap;
+                //    var pixelBuffer1 = await renderTargetBitmap1.GetPixelsAsync();
+
+                //    //Save the XAML in Bitmap image
+                //    using (var stream1 = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                //    {
+
+                //        var encoder1 = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream1);
+                //        encoder1.SetPixelData(
+                //            BitmapPixelFormat.Bgra8,
+                //            BitmapAlphaMode.Ignore,
+                //            (uint)renderTargetBitmap1.PixelWidth,
+                //            (uint)renderTargetBitmap1.PixelHeight,
+                //            logicalDpi1,
+                //            logicalDpi1,
+                //            pixelBuffer1.ToArray());
+
+                //        await encoder1.FlushAsync();
+
+                //        //Load and draw the Bitmap image in PDF
+                //        //PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //        //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
+
+                //        PdfImage img = PdfImage.FromStream(stream1.AsStream());
+                //        //pdfMetafile pdfMetafile = PdfImage.FromStream(stream1.AsStream());
+                //        //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
+                //        document.Pages[1].Graphics.DrawImage(img, new RectangleF(0, 0, 510, 450));
+                //    }
+                //}
+                //else
+                //{
+
+                //    //Initializing to render to Bitmap
+                //    var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                //    var renderTargetBitmap = new RenderTargetBitmap();
+
+                //    //Create the Bitmpa from xaml page
+                //    await renderTargetBitmap.RenderAsync(CustomTopGrid, 510, 1600);
+                //    //CustomImage.Source = renderTargetBitmap;
+                //    var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                //    //Save the XAML in Bitmap image
+                //    using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                //    {
+
+                //        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                //        encoder.SetPixelData(
+                //            BitmapPixelFormat.Bgra8,
+                //            BitmapAlphaMode.Ignore,
+                //            (uint)renderTargetBitmap.PixelWidth,
+                //            (uint)renderTargetBitmap.PixelHeight,
+                //            logicalDpi,
+                //            logicalDpi,
+                //            pixelBuffer.ToArray());
+
+                //        await encoder.FlushAsync();
+
+                //        //Load and draw the Bitmap image in PDF
+                //        //PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //        //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
+
+                //        PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //        //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
+
+                //        document.Pages[0].Graphics.DrawImage(img, new RectangleF(0, 195, 510, 450));
+                //    }
+                //}
+
+
+                var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                var renderTargetBitmap = new RenderTargetBitmap();
+
+                //*************************hide element
+                PrimaryGrid.Visibility = Visibility.Collapsed;
+
+                //***hide toolbox
+                Basic_Chart.Behaviors.Clear();
+
+
+                //Create the Bitmap from xaml page
+                Basic_Chart.Height = 310f;
+                TopChartGrid.Height = 320f;
+
+                double gridWidth = CustomGrid.ActualWidth;
+                double gridHeight = CustomGrid.ActualHeight;
+                await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
+
+                //CustomImage.Source = renderTargetBitmap;
+                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                //************************show element
+                PrimaryGrid.Visibility = Visibility.Visible;
+
+
+                //Save the XAML in Bitmap image
+                using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
                 {
-                   
-                    //Initializing to render to Bitmap
-                    var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-                    var renderTargetBitmap = new RenderTargetBitmap();
+                    //Basic_Chart1.Behaviors.Clear();
+                    //Basic_Chart.Behaviors.Clear();
 
-                    //Create the Bitmpa from xaml page
-                    await renderTargetBitmap.RenderAsync(CustomTopGrid, 700, 900);
-                    //CustomImage.Source = renderTargetBitmap;
-                    var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                    encoder.SetPixelData(
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Ignore,
+                        // PixelHeight = 450f,
+                        (uint)renderTargetBitmap.PixelWidth,
+                        (uint)renderTargetBitmap.PixelHeight,
+                        logicalDpi,
+                        logicalDpi,
+                        pixelBuffer.ToArray());
 
-                    //Save the XAML in Bitmap image
-                    using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
-                    {
+                    await encoder.FlushAsync();
 
-                        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                        encoder.SetPixelData(
-                            BitmapPixelFormat.Yuy2,
-                            BitmapAlphaMode.Premultiplied,
-                            (uint)renderTargetBitmap.PixelWidth,
-                            (uint)renderTargetBitmap.PixelHeight,
-                            logicalDpi,
-                            logicalDpi,
-                            pixelBuffer.ToArray());
 
-                        await encoder.FlushAsync();
+                    PdfImage img = PdfImage.FromStream(stream.AsStream());
+                    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
 
-                     
-                        PdfImage img = PdfImage.FromStream(stream.AsStream());
-                        //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                        document.Pages[0].Graphics.DrawImage(img, new RectangleF(0, 195, 500, 400));
-                    }
-
-                    document.Pages.Add();
-
-                    //Initializing to render to Bitmap
-                    var logicalDpi1 = DisplayInformation.GetForCurrentView().LogicalDpi;
-                    var renderTargetBitmap1 = new RenderTargetBitmap();
-
-                    //Create the Bitmpa from xaml page
-                    await renderTargetBitmap1.RenderAsync(CustomBottomGrid, 510, 1600);
-                    //CustomImage.Source = renderTargetBitmap;
-                    var pixelBuffer1 = await renderTargetBitmap1.GetPixelsAsync();
-
-                    //Save the XAML in Bitmap image
-                    using (var stream1 = new Windows.Storage.Streams.InMemoryRandomAccessStream())
-                    {
-
-                        var encoder1 = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream1);
-                        encoder1.SetPixelData(
-                            BitmapPixelFormat.Bgra8,
-                            BitmapAlphaMode.Ignore,
-                            (uint)renderTargetBitmap1.PixelWidth,
-                            (uint)renderTargetBitmap1.PixelHeight,
-                            logicalDpi1,
-                            logicalDpi1,
-                            pixelBuffer1.ToArray());
-
-                        await encoder1.FlushAsync();
-
-                        //Load and draw the Bitmap image in PDF
-                        //PdfImage img = PdfImage.FromStream(stream.AsStream());
-                        //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
-
-                        PdfImage img = PdfImage.FromStream(stream1.AsStream());
-                        //pdfMetafile pdfMetafile = PdfImage.FromStream(stream1.AsStream());
-                        //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                        document.Pages[1].Graphics.DrawImage(img, new RectangleF(0, 0, 510, 450));
-                    }
+                    graphics.DrawImage(img, new RectangleF(-2, 275, (float)gridWidth / 1.2f, 325f));
                 }
-                else
-                {
 
-                    //Initializing to render to Bitmap
-                    var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-                    var renderTargetBitmap = new RenderTargetBitmap();
 
-                    //Create the Bitmpa from xaml page
-                    await renderTargetBitmap.RenderAsync(CustomTopGrid, 510, 1600);
-                    //CustomImage.Source = renderTargetBitmap;
-                    var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
-                    //Save the XAML in Bitmap image
-                    using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
-                    {
 
-                        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                        encoder.SetPixelData(
-                            BitmapPixelFormat.Bgra8,
-                            BitmapAlphaMode.Ignore,
-                            (uint)renderTargetBitmap.PixelWidth,
-                            (uint)renderTargetBitmap.PixelHeight,
-                            logicalDpi,
-                            logicalDpi,
-                            pixelBuffer.ToArray());
 
-                        await encoder.FlushAsync();
 
-                        //Load and draw the Bitmap image in PDF
-                        //PdfImage img = PdfImage.FromStream(stream.AsStream());
-                        //Task<IRandomAccessStream> s = GenerateImage(TopGrid);
 
-                        PdfImage img = PdfImage.FromStream(stream.AsStream());
-                        //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
 
-                        document.Pages[0].Graphics.DrawImage(img, new RectangleF(0, 195, 510, 450));
-                    }
-                }
 
                 //footer
 
@@ -541,6 +703,168 @@ namespace nanovaTest.CustomMethod
                 //Draw composite field at footer space  
                 compositeField.Draw(footerSpace.Graphics);
 
+                // second page for table
+                PdfFont font3 = new PdfCjkStandardFont(PdfCjkFontFamily.SinoTypeSongLight, 10, PdfFontStyle.Regular);
+                // center the context
+                PdfStringFormat centerTable = new PdfStringFormat();
+                centerTable.Alignment = PdfTextAlignment.Center;
+                centerTable.LineAlignment = PdfVerticalAlignment.Middle;
+                RectangleF CT = new RectangleF(page.Graphics.ClientSize.Width / 2 - 165, 0, 400, 30);
+
+                //Add a page in the PDF document.
+                PdfPage page2 = document.Pages.Add();
+                //PdfPage page = document.Pages.Add();
+                //Access the PDF graphics instance of the page.
+                PdfGraphics graphics2 = page2.Graphics;
+                var Width = 70;
+                var Length = 20;
+                if (primaryInfoList.Count <= 5)
+                {
+                    RectangleF p21 = new RectangleF(0, 580, Width - 20, Length);
+                    RectangleF p22 = new RectangleF(Width - 20, 580, Width + 50, Length);
+                    RectangleF p23 = new RectangleF(2 * Width + 30, 580, Width - 10, Length);
+                    RectangleF p24 = new RectangleF(3 * Width + 20, 580, Width - 10, Length);
+                    RectangleF p25 = new RectangleF(4 * Width + 10, 580, Width - 10, Length);
+
+                    PointF pf21 = new PointF(0, 580);
+                    PointF pf22 = new PointF(page.Graphics.ClientSize.Width, 580);
+                    document.Pages[0].Graphics.DrawLine(blackPen, pf21, pf22);
+
+                    PointF pf23 = new PointF(0, 600);
+                    PointF pf24 = new PointF(page.Graphics.ClientSize.Width, 600);
+                    document.Pages[0].Graphics.DrawLine(blackPen, pf23, pf24);
+
+
+                    PointF pf25 = new PointF(0, 700);
+                    PointF pf26 = new PointF(page.Graphics.ClientSize.Width, 700);
+                    document.Pages[0].Graphics.DrawLine(blackPen, pf25, pf26);
+
+
+
+                    //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
+                    //graphics2.DrawRectangle(PdfPens.Black, p21);
+                    //graphics2.DrawString("Peak#", tableFont, PdfBrushes.Black, p21s);
+                    document.Pages[0].Graphics.DrawString("Peak#", tableFont, PdfBrushes.Black, p21, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p22);
+                    //graphics2.DrawString("Compound", tableFont, PdfBrushes.Black, p22s);
+                    //graphics2.DrawRectangle(PdfPens.Black, p22);
+                    //graphics2.DrawString("RT(s)", tableFont, PdfBrushes.Black, p22s);
+                    document.Pages[0].Graphics.DrawString("RT(s)", tableFont, PdfBrushes.Black, p22, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p23);
+                    //graphics2.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p23s);
+                    document.Pages[0].Graphics.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p23, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p24);
+                    //graphics2.DrawString("Height", tableFont, PdfBrushes.Black, p24s);
+                    document.Pages[0].Graphics.DrawString("Height", tableFont, PdfBrushes.Black, p24, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p25);
+                    //graphics2.DrawString("Area", tableFont, PdfBrushes.Black, p25s);
+                    document.Pages[0].Graphics.DrawString("Area", tableFont, PdfBrushes.Black, p25, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p27);
+                    //graphics2.DrawString("CONCN", tableFont, PdfBrushes.Black, p27s);
+
+                    for (int i = 0; i < primaryInfoList.Count; i++) //testInfoList
+                    {
+
+
+
+
+
+                        p21 = new RectangleF(0, 580 + Length * (i + 1), Width - 20, Length);
+                        p22 = new RectangleF(Width - 20, 580 + Length * (i + 1), Width + 50, Length);
+                        p23 = new RectangleF(2 * Width + 30, 580 + Length * (i + 1), Width - 10, Length);
+                        p24 = new RectangleF(3 * Width + 20, 580 + Length * (i + 1), Width - 10, Length);
+                        p25 = new RectangleF(4 * Width + 10, 580 + Length * (i + 1), Width - 10, Length);
+                       // graphics2.DrawRectangle(PdfPens.Black, p21);
+                        document.Pages[0].Graphics.DrawString(primaryInfoList[i].ID, font2, PdfBrushes.Black, p21, centerTable);
+
+                        //  graphics2.DrawRectangle(PdfPens.Black, p22);
+                        document.Pages[0].Graphics.DrawString(primaryInfoList[i].RetentionTime, font2, PdfBrushes.Black, p22, centerTable);
+                        //graphics2.DrawRectangle(PdfPens.Black, p23);
+                        document.Pages[0].Graphics.DrawString(primaryInfoList[i].FWHM, font2, PdfBrushes.Black, p23, centerTable);
+                        //graphics2.DrawRectangle(PdfPens.Black, p24);
+                        document.Pages[0].Graphics.DrawString(primaryInfoList[i].Height, font2, PdfBrushes.Black, p24, centerTable);
+                        //graphics2.DrawRectangle(PdfPens.Black, p25);
+                        document.Pages[0].Graphics.DrawString(primaryInfoList[i].Area, font2, PdfBrushes.Black, p25, centerTable);
+
+
+                    }
+                }
+                else
+                {
+                    RectangleF p21 = new RectangleF(0, 0, Width - 20, Length);
+                    RectangleF p22 = new RectangleF(Width - 20, 0, Width + 50, Length);
+                    RectangleF p23 = new RectangleF(2 * Width + 30, 0, Width - 10, Length);
+                    RectangleF p24 = new RectangleF(3 * Width + 20, 0, Width - 10, Length);
+                    RectangleF p25 = new RectangleF(4 * Width + 10, 0, Width - 10, Length);
+
+
+                    PointF pf21 = new PointF(0, 0);
+                    PointF pf22 = new PointF(page.Graphics.ClientSize.Width, 0);
+                    document.Pages[1].Graphics.DrawLine(blackPen, pf21, pf22);
+
+
+                    PointF pf23 = new PointF(0, 20);
+                    PointF pf24 = new PointF(page.Graphics.ClientSize.Width, 20);
+                    document.Pages[1].Graphics.DrawLine(blackPen, pf23, pf24);
+                    PointF pf25 = new PointF(0, (primaryInfoList.Count + 1) * 20);
+                    PointF pf26 = new PointF(page.Graphics.ClientSize.Width, (primaryInfoList.Count + 1) * 20);
+                    document.Pages[1].Graphics.DrawLine(blackPen, pf25, pf26);
+
+
+
+                    //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
+                   // graphics2.DrawRectangle(PdfPens.Black, p21);
+                    //graphics2.DrawString("Peak#", tableFont, PdfBrushes.Black, p21s);
+                    document.Pages[1].Graphics.DrawString("Peak#", tableFont, PdfBrushes.Black, p21, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p22);
+                    //graphics2.DrawString("Compound", tableFont, PdfBrushes.Black, p22s);
+                   // graphics2.DrawRectangle(PdfPens.Black, p22);
+                    //graphics2.DrawString("RT(s)", tableFont, PdfBrushes.Black, p22s);
+                    document.Pages[1].Graphics.DrawString("RT(s)", tableFont, PdfBrushes.Black, p22, centerTable);
+                   // graphics2.DrawRectangle(PdfPens.Black, p23);
+                    //graphics2.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p23s);
+                    document.Pages[1].Graphics.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p23, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p24);
+                    //graphics2.DrawString("Height", tableFont, PdfBrushes.Black, p24s);
+                    document.Pages[1].Graphics.DrawString("Height", tableFont, PdfBrushes.Black, p24, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p25);
+                    //graphics2.DrawString("Area", tableFont, PdfBrushes.Black, p25s);
+                    document.Pages[1].Graphics.DrawString("Area", tableFont, PdfBrushes.Black, p25, centerTable);
+                    //graphics2.DrawRectangle(PdfPens.Black, p27);
+                    //graphics2.DrawString("CONCN", tableFont, PdfBrushes.Black, p27s);
+
+                    for (int i = 0; i < primaryInfoList.Count; i++) //testInfoList
+                    {
+
+
+
+
+
+
+                        p21 = new RectangleF(0, Length * (i + 1), Width - 20, Length);
+                        p22 = new RectangleF(Width - 20, Length * (i + 1), Width + 50, Length);
+                        p23 = new RectangleF(2 * Width + 30, Length * (i + 1), Width - 10, Length);
+                        p24 = new RectangleF(3 * Width + 20, Length * (i + 1), Width - 10, Length);
+                        p25 = new RectangleF(4 * Width + 10, Length * (i + 1), Width - 10, Length);
+                        //graphics2.DrawRectangle(PdfPens.Black, p21);
+                        document.Pages[1].Graphics.DrawString(primaryInfoList[i].ID, font2, PdfBrushes.Black, p21, centerTable);
+
+                        //  graphics2.DrawRectangle(PdfPens.Black, p22);
+                        document.Pages[1].Graphics.DrawString(primaryInfoList[i].RetentionTime, font2, PdfBrushes.Black, p22, centerTable);
+                        //graphics2.DrawRectangle(PdfPens.Black, p23);
+                        document.Pages[1].Graphics.DrawString(primaryInfoList[i].FWHM, font2, PdfBrushes.Black, p23, centerTable);
+                        //graphics2.DrawRectangle(PdfPens.Black, p24);
+                        document.Pages[1].Graphics.DrawString(primaryInfoList[i].Height, font2, PdfBrushes.Black, p24, centerTable);
+                        //graphics2.DrawRectangle(PdfPens.Black, p25);
+                        document.Pages[1].Graphics.DrawString(primaryInfoList[i].Area, font2, PdfBrushes.Black, p25, centerTable);
+
+
+                    }
+
+                }
+
+
+
                 //Save the Pdf document
                 MemoryStream docStream = new MemoryStream();
                 document.Save(docStream);
@@ -562,6 +886,9 @@ namespace nanovaTest.CustomMethod
                     st.Dispose();
                 }
                 NotifyPopup notifyPopup = new NotifyPopup(loader.GetString("SaveSuccess"));
+                Basic_Chart.Height = 700f;
+                TopChartGrid.Height = 700f;
+                Basic_Chart.Behaviors.Add(zoomBehavior);
                 notifyPopup.Show();
             }
         }
@@ -582,7 +909,7 @@ namespace nanovaTest.CustomMethod
                 string FileNameTime = System.DateTime.Now.ToString("yyyyMMddHHmmss");
                 string ExportFileName = ExperienceName.Text + "_" + OperatorName.SelectedValue + "_" + FileNameTime + ".dat";
                 StorageFile ExportFile = await FileFolder.CreateFileAsync(ExportFileName, CreationCollisionOption.OpenIfExists);
-                await Windows.Storage.FileIO.AppendTextAsync(ExportFile,"Experience Name: " + ExperienceName.Text + "\n"
+                await Windows.Storage.FileIO.AppendTextAsync(ExportFile, "Experience Name: " + ExperienceName.Text + "\n"
                 + "Operator Name: " + OperatorName.SelectedValue + "\n"
                 + "Start time: " + " " + System.DateTime.Now.ToString() + "\n"
                 + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
@@ -885,7 +1212,7 @@ namespace nanovaTest.CustomMethod
                     //data analysis
                     WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
                     if (heartcuttingNumber > 0)
-                    WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
+                        WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
                     //Add baseline
                     this.Basic_Chart.Series[1].ItemsSource = null;
                     for (int i = 0; i < x_b.Count && i < y_b1.Count; i++)
@@ -923,7 +1250,7 @@ namespace nanovaTest.CustomMethod
                     }
                     PrimaryGrid.Visibility = Visibility;
 
-                    if(heartcuttingNumber > 0)
+                    if (heartcuttingNumber > 0)
                     {
                         secondaryInfoList.Clear();
                         for (int j = 0; j < peaks2.Count && j < (bottoms2.Count - 1); j++)
@@ -1020,7 +1347,7 @@ namespace nanovaTest.CustomMethod
 
             await Windows.Storage.FileIO.AppendTextAsync(Rawfile, "Experience Name: " + ExperienceName.Text + "\n"
                 + "Operator Name: " + OperatorName.SelectedValue + "\n"
-                + "Start time: " + System.DateTime.Now.ToString()+ " " + System.DateTime.Now.ToString() + "\n"
+                + "Start time: " + System.DateTime.Now.ToString() + " " + System.DateTime.Now.ToString() + "\n"
                 + "Sampling/Pumping time: " + Sampletimeuwp + "\n"
                 + "Waiting time: " + Waitingtimeuwp + "\n"
                 + "Lowest Temperature: " + LowestTempText.Text + "\n"
@@ -1091,8 +1418,8 @@ namespace nanovaTest.CustomMethod
                         //data analysis
                         WholeDataAnalysis(x1, y1, y_b1, peaks1, bottoms1, Area1, Heights1, MinY1);
                         if (heartcuttingNumber > 0)
-                        WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
-                   
+                            WholeDataAnalysis(x2, y2, y_b2, peaks2, bottoms2, Area2, Heights2, MinY2);
+
                         //Add baseline
                         this.Basic_Chart.Series[1].ItemsSource = null;
                         for (int i = 0; i < x_b.Count && i < y_b1.Count; i++)
@@ -1136,7 +1463,7 @@ namespace nanovaTest.CustomMethod
                             secondaryInfoList.Clear();
                             for (int j = 0; j < peaks2.Count && j < (bottoms2.Count - 1); j++)
                             {
-                                double FWHMvalue = CalculateFWHM(bottoms2[j], peaks2[j], bottoms2[j + 1], x2, y2,y_b2);
+                                double FWHMvalue = CalculateFWHM(bottoms2[j], peaks2[j], bottoms2[j + 1], x2, y2, y_b2);
                                 if (y2[peaks2[j]] >= 100)
                                 {
                                     MessageDialog popup = new MessageDialog(loader.GetString("SaturationNotice"));
@@ -1544,7 +1871,7 @@ namespace nanovaTest.CustomMethod
             //end add other port
 
             services = await DeviceInformation.FindAllAsync(selector);
-            
+
             if (services.Count > 0)
             {
                 DeviceInformation deviceInfo = services[0];
@@ -1559,7 +1886,7 @@ namespace nanovaTest.CustomMethod
                     serialDevice.StopBits = SerialStopBitCount.One;
                     serialDevice.DataBits = 8;
                     serialDevice.Handshake = SerialHandshake.None;
-                    
+
                     // Create cancellation token object to close I/O operations when closing the device
                     ReadCancellationTokenSource = new CancellationTokenSource();
                     Listen();
@@ -1624,7 +1951,7 @@ namespace nanovaTest.CustomMethod
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
@@ -1706,7 +2033,7 @@ namespace nanovaTest.CustomMethod
                     ActualPressure = float.Parse(RawNumbersStr[5]);
                     //Debug.WriteLine(ActualTemp);
                     //End test
-                    if (Math.Abs(UsedTime - (-5)) < 0.1) 
+                    if (Math.Abs(UsedTime - (-5)) < 0.1)
                     {
                         FinishTestFunction();
                     }
@@ -1724,7 +2051,7 @@ namespace nanovaTest.CustomMethod
                     }
                 }
             }
-            
+
         }
         /// <summary>
         /// CancelReadTask:
@@ -1986,8 +2313,8 @@ namespace nanovaTest.CustomMethod
             int peakStop = 0;
             double slope = 0; //current slope
             List<double> values = new List<double>(); //save three consecutive slopes
-            //change threshold to 0.2
-                THRESHOLD_peak = 0.2f;
+                                                      //change threshold to 0.2
+            THRESHOLD_peak = 0.2f;
             //calculate the slopes of all scans
             for (int b = 0; b < signalAmount - 1; b++)
             {
