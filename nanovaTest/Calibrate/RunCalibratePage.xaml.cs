@@ -1942,7 +1942,7 @@ namespace nanovaTest.Calibrate
                 Math.Round(VOCconcentration, 3);
                 VOCconcentrationList.Add(VOCconcentration);
                 Debug.WriteLine(VOCconcentrationList);
-                testInfoList[i].Concentration = VOCconcentration.ToString("0.000");
+                testInfoList[i].Concentration = VOCconcentration.ToString("0.0");
             }
             if (testInfoList.Count == 0)
             {

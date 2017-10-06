@@ -754,7 +754,7 @@ namespace nanovaTest.SelectMethod
                         currentconcen = currentvocarea * CalibrationFactor / (FlowRate * Sampletimeuwp);
                         string currentvocname = VOCNameList[j];
                         if (j == 3)
-                            currentvocname = currentvocname + " & " + VOCNameList[j + 1];
+                            currentvocname = "M,P-xylene";
                         if (j != 4)
                         {
                             Peak1DCount++;
@@ -766,7 +766,7 @@ namespace nanovaTest.SelectMethod
                                 FWHM = FWHMvalue.ToString("0.00"),
                                 Height = currentvocheight.ToString("0.00"),
                                 Area = currentvocarea.ToString("0.00"),
-                                Concentration = currentconcen.ToString("0.00")
+                                Concentration = currentconcen.ToString("0.0")
                             });
                         }
                         //Reset other parameters to 0
@@ -812,7 +812,7 @@ namespace nanovaTest.SelectMethod
                                 FWHM = FWHMvalue.ToString("0.00"),
                                 Height = currentvocheight.ToString("0.00"),
                                 Area = currentvocarea.ToString("0.00"),
-                                Concentration = currentconcen.ToString("0.00")
+                                Concentration = currentconcen.ToString("0.0")
                             });
                         }
                         //Reset other parameters to 0
@@ -1037,7 +1037,7 @@ namespace nanovaTest.SelectMethod
                                         FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        Concentration = currentconcen.ToString("0.00")
+                                        Concentration = currentconcen.ToString("0.0")
                                     });
                                 }
                                 //Reset other parameters to 0
@@ -1083,7 +1083,7 @@ namespace nanovaTest.SelectMethod
                                         FWHM = FWHMvalue.ToString("0.00"),
                                         Height = currentvocheight.ToString("0.00"),
                                         Area = currentvocarea.ToString("0.00"),
-                                        Concentration = currentconcen.ToString("0.00")
+                                        Concentration = currentconcen.ToString("0.0")
                                     });
                                 }
                                 //Reset other parameters to 0
@@ -2904,7 +2904,7 @@ namespace nanovaTest.SelectMethod
                             FWHM = FWHMvalue.ToString("0.00"),
                             Height = currentvocheight.ToString("0.00"),
                             Area = currentvocarea.ToString("0.00"),
-                            Concentration = currentconcen.ToString("0.00")
+                            Concentration = currentconcen.ToString("0.0")
                         });
                     }
                     //Reset other parameters to 0
@@ -2950,7 +2950,7 @@ namespace nanovaTest.SelectMethod
                             FWHM = FWHMvalue.ToString("0.00"),
                             Height = currentvocheight.ToString("0.00"),
                             Area = currentvocarea.ToString("0.00"),
-                            Concentration = currentconcen.ToString("0.00")
+                            Concentration = currentconcen.ToString("0.0")
                         });
                     }
                     //Reset other parameters to 0

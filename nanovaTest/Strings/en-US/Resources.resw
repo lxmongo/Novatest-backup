@@ -639,7 +639,7 @@
   <data name="SaturationNotice" xml:space="preserve">
     <value>The volumn of the sample is too large, please shorten the sampling time and test again. </value>
   </data>
-  <data name="VOCNameTable" xml:space="preserve">
+  <data name="VOCNameTable.Text" xml:space="preserve">
     <value>VOC Name</value>
   </data>
   <data name="DeepClean1" xml:space="preserve">

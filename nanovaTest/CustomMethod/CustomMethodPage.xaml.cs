@@ -774,7 +774,7 @@ namespace nanovaTest.CustomMethod
                         p23 = new RectangleF(2 * Width + 30, 580 + Length * (i + 1), Width - 10, Length);
                         p24 = new RectangleF(3 * Width + 20, 580 + Length * (i + 1), Width - 10, Length);
                         p25 = new RectangleF(4 * Width + 10, 580 + Length * (i + 1), Width - 10, Length);
-                        graphics2.DrawRectangle(PdfPens.Black, p21);
+                       // graphics2.DrawRectangle(PdfPens.Black, p21);
                         document.Pages[0].Graphics.DrawString(primaryInfoList[i].ID, font2, PdfBrushes.Black, p21, centerTable);
 
                         //  graphics2.DrawRectangle(PdfPens.Black, p22);
@@ -813,21 +813,21 @@ namespace nanovaTest.CustomMethod
 
 
                     //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
-                    graphics2.DrawRectangle(PdfPens.Black, p21);
+                   // graphics2.DrawRectangle(PdfPens.Black, p21);
                     //graphics2.DrawString("Peak#", tableFont, PdfBrushes.Black, p21s);
                     document.Pages[1].Graphics.DrawString("Peak#", tableFont, PdfBrushes.Black, p21, centerTable);
                     //graphics2.DrawRectangle(PdfPens.Black, p22);
                     //graphics2.DrawString("Compound", tableFont, PdfBrushes.Black, p22s);
-                    graphics2.DrawRectangle(PdfPens.Black, p22);
+                   // graphics2.DrawRectangle(PdfPens.Black, p22);
                     //graphics2.DrawString("RT(s)", tableFont, PdfBrushes.Black, p22s);
                     document.Pages[1].Graphics.DrawString("RT(s)", tableFont, PdfBrushes.Black, p22, centerTable);
-                    graphics2.DrawRectangle(PdfPens.Black, p23);
+                   // graphics2.DrawRectangle(PdfPens.Black, p23);
                     //graphics2.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p23s);
                     document.Pages[1].Graphics.DrawString("FWHM(s)", tableFont, PdfBrushes.Black, p23, centerTable);
-                    graphics2.DrawRectangle(PdfPens.Black, p24);
+                    //graphics2.DrawRectangle(PdfPens.Black, p24);
                     //graphics2.DrawString("Height", tableFont, PdfBrushes.Black, p24s);
                     document.Pages[1].Graphics.DrawString("Height", tableFont, PdfBrushes.Black, p24, centerTable);
-                    graphics2.DrawRectangle(PdfPens.Black, p25);
+                    //graphics2.DrawRectangle(PdfPens.Black, p25);
                     //graphics2.DrawString("Area", tableFont, PdfBrushes.Black, p25s);
                     document.Pages[1].Graphics.DrawString("Area", tableFont, PdfBrushes.Black, p25, centerTable);
                     //graphics2.DrawRectangle(PdfPens.Black, p27);
@@ -846,7 +846,7 @@ namespace nanovaTest.CustomMethod
                         p23 = new RectangleF(2 * Width + 30, Length * (i + 1), Width - 10, Length);
                         p24 = new RectangleF(3 * Width + 20, Length * (i + 1), Width - 10, Length);
                         p25 = new RectangleF(4 * Width + 10, Length * (i + 1), Width - 10, Length);
-                        graphics2.DrawRectangle(PdfPens.Black, p21);
+                        //graphics2.DrawRectangle(PdfPens.Black, p21);
                         document.Pages[1].Graphics.DrawString(primaryInfoList[i].ID, font2, PdfBrushes.Black, p21, centerTable);
 
                         //  graphics2.DrawRectangle(PdfPens.Black, p22);

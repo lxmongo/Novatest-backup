@@ -639,7 +639,7 @@
   <data name="SaturationNotice" xml:space="preserve">
     <value>样品体积过大，请缩短取样时间重新测试。</value>
   </data>
-  <data name="VOCNameTable" xml:space="preserve">
+  <data name="VOCNameTable.Text" xml:space="preserve">
     <value>VOC名称</value>
   </data>
   <data name="DeepClean1" xml:space="preserve">

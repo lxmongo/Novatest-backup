@@ -191,6 +191,7 @@ namespace nanovaTest.Setting
 
         private void savaUser_Click(object sender, RoutedEventArgs e)
         {
+            //ExportImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/save_clicked.png"));
             var mod = cellGrid.Model;
             ObservableCollection<UserInfo> list = new ObservableCollection<UserInfo>();
             for(int i = 1; i < 55; i++)

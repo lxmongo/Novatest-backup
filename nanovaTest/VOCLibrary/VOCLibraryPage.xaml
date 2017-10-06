@@ -95,8 +95,8 @@
                                 <Grid Height="40" Margin="-11 0 -11 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.5*" />
-                                        <ColumnDefinition Width="5*" />
-                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="4.5*" />
+                                        <ColumnDefinition Width="1.5*" />
                                         <ColumnDefinition Width="1*" />
                                         <ColumnDefinition Width="1*" />
                                         <ColumnDefinition Width="2*" />
@@ -147,8 +147,8 @@
                                     <Grid Grid.Row="0" Height="40" HorizontalAlignment="Stretch"  VerticalAlignment="Center">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.5*" />
-                                            <ColumnDefinition Width="5*" />
-                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="4.5*" />
+                                            <ColumnDefinition Width="1.5*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="2*" />

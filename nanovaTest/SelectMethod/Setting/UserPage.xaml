@@ -38,9 +38,13 @@
                 </Button>
             </Grid>
             <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <syncfusion:SfCellGrid x:Name="cellGrid" AllowColumnResize="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="589*"/>
+                    <ColumnDefinition Width="691*"/>
+                </Grid.ColumnDefinitions>
+                <syncfusion:SfCellGrid x:Name="cellGrid" AllowColumnResize="True" Grid.ColumnSpan="2">
                     <syncfusion:SfCellGrid.Resources>
-                        
+
                     </syncfusion:SfCellGrid.Resources>
                 </syncfusion:SfCellGrid>
             </Grid>
