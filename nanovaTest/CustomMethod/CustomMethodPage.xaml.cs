@@ -372,11 +372,11 @@ namespace nanovaTest.CustomMethod
                 document.Pages[0].Graphics.DrawString(instrumentString, font, PdfBrushes.Black, rf17);
 
 
-                RectangleF rf18 = new RectangleF(260, 159, 450, 40);
-                String CalibrationfileString = "Calibration File: ";
+                //RectangleF rf18 = new RectangleF(260, 159, 450, 40);
+                //String CalibrationfileString = "Calibration File: ";
 
 
-                document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
+                //document.Pages[0].Graphics.DrawString(CalibrationfileString, font, PdfBrushes.Black, rf18);
 
                 RectangleF rf15 = new RectangleF(page.Graphics.ClientSize.Width / 2 - 70, 190, 400, 40);
                 String parameterString = "Programming Parameters";
@@ -384,7 +384,7 @@ namespace nanovaTest.CustomMethod
                 document.Pages[0].Graphics.DrawString(parameterString, font, PdfBrushes.Black, rf15);
 
                 RectangleF rf4 = new RectangleF(0, 208, 450, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime") + "(min)", SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("SamplingPumpingTime"), SamplingTimeText.Text), font2, PdfBrushes.Black, rf4);
 
                 RectangleF rf5 = new RectangleF(180, 208, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
@@ -407,7 +407,7 @@ namespace nanovaTest.CustomMethod
                 //***************************************************
                 RectangleF rf7 = new RectangleF(0, 223, 400, 40);
                 //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", LowestTempText.Text), font2, PdfBrushes.Black, rf7);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + " (°C)", LowestTempText.Text), font2, PdfBrushes.Black, rf7);
                 RectangleF rf8 = new RectangleF(180, 223, 400, 40);
                 //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1") + "(min)", lowestTvalue), font2, PdfBrushes.Black, rf8);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowHoldingTime1"), LowHoldingTimeText.Text), font2, PdfBrushes.Black, rf8);
@@ -613,7 +613,7 @@ namespace nanovaTest.CustomMethod
 
 
                 //Create the Bitmap from xaml page
-                Basic_Chart.Height = 310f;
+                Basic_Chart.Height = 320f;
                 TopChartGrid.Height = 320f;
 
                 double gridWidth = CustomGrid.ActualWidth;
@@ -649,8 +649,8 @@ namespace nanovaTest.CustomMethod
 
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-
-                    graphics.DrawImage(img, new RectangleF(-2, 275, (float)gridWidth / 1.2f, 325f));
+                    graphics.DrawImage(img, new RectangleF(-2, 275, 560, 650));
+                    //graphics.DrawImage(img, new RectangleF(-2, 275, (float)gridWidth / 1.2f, 325f));
                 }
 
 

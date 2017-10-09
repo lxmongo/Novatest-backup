@@ -163,7 +163,7 @@
                             <Grid Grid.Column="1" Margin="10,0,10,0">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Uid="Temperature2" Text="Temperature 2 (℃)" FontSize="12" Foreground="#FF4F4F4F"/>
-                                    <TextBox x:Name="Temp2Text" InputScope="Number" TextAlignment="Center" Text="35" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
+                                    <TextBox x:Name="Temp2Text" InputScope="Number" TextAlignment="Center" Text="35.0" MinHeight="10" Height="25" FontSize="12" BorderThickness="0.5"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
