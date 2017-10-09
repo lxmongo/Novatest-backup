@@ -90,7 +90,7 @@ namespace nanovaTest.Setting
             mod[0, 2].Font.FontSize = 18;
             mod[0, 2].Font.FontWeight = FontWeights.Bold;
 
-            mod[0, 3].CellValue = "Employee No.";
+            mod[0, 3].CellValue = "Employee No";
             mod[0, 3].Background = new SolidColorBrush(Colors.Gray);
             mod[0, 3].HorizontalAlignment = HorizontalAlignment.Center;
             mod[0, 3].VerticalAlignment = VerticalAlignment.Center;
@@ -104,7 +104,7 @@ namespace nanovaTest.Setting
             mod[0, 4].Font.FontSize = 18;
             mod[0, 4].Font.FontWeight = FontWeights.Bold;
 
-            mod[0, 5].CellValue = "Dept.";
+            mod[0, 5].CellValue = "Dept";
             mod[0, 5].Background = new SolidColorBrush(Colors.Gray);
             mod[0, 5].HorizontalAlignment = HorizontalAlignment.Center;
             mod[0, 5].VerticalAlignment = VerticalAlignment.Center;

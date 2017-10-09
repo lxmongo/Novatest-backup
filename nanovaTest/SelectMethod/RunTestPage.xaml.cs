@@ -1420,7 +1420,7 @@ namespace nanovaTest.SelectMethod
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("WaitingTime"), WaitTimeText.Text), font2, PdfBrushes.Black, rf5);
 
                 RectangleF rf6 = new RectangleF(360, 208, 450, 40);
-                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
+                document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressure), font2, PdfBrushes.Black, rf6);
 
                 double lowestTempvalue = JsonInputArray[0];
                 double lowestTvalue = JsonInputArray[1];
@@ -1488,8 +1488,8 @@ namespace nanovaTest.SelectMethod
                 //***hide toolbox
                 Basic_Chart.Behaviors.Clear();       
                 //Create the Bitmap from xaml page
-                Basic_Chart.Height = 320f;
-                TopGrid.Height = 320f;
+                //Basic_Chart.Height = 320f;
+                //TopGrid.Height = 320f;
                 AnalysisGrid.Visibility = Visibility.Collapsed;
                 //Create the Bitmpa from xaml page
 
@@ -1525,8 +1525,8 @@ namespace nanovaTest.SelectMethod
 
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-
-                    graphics.DrawImage(img, new RectangleF(-2, 275, (float)gridWidth/1.2f, 323f));
+                    graphics.DrawImage(img, new RectangleF(-2, 275, 560, (float)gridHeight / 2.2f));
+                    //graphics.DrawImage(img, new RectangleF(-2, 275, (float)gridWidth/1.2f, 323f));
                 }
 
 

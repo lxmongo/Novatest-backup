@@ -1514,7 +1514,8 @@ namespace nanovaTest.Calibrate
                     PdfImage img = PdfImage.FromStream(stream.AsStream());
 
                     //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(-46, 275, (float)gridWidth / 1.18f, 350f));
+                    graphics.DrawImage(img, new RectangleF(-2, 275, 560, (float)gridHeight / 2.2f));
+                    //graphics.DrawImage(img, new RectangleF(-46, 275, (float)gridWidth / 1.18f, 350f));
                 }
 
 

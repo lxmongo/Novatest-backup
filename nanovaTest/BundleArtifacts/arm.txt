@@ -1,7 +1,7 @@
-MainPackage=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.69.0_ARM_Debug.appx
-SymbolPackage=C:\Users\ytm2d\Desktop\deploy\nanovaTest_1.0.69.0_Debug_Test\nanovaTest_1.0.69.0_ARM_Debug.appxsym
-ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.69.0_language-zh-hans.appx
-ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.69.0_scale-100.appx
-ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.69.0_scale-125.appx
-ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.69.0_scale-150.appx
-ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.69.0_scale-400.appx
+MainPackage=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.70.0_ARM_Debug.appx
+SymbolPackage=C:\Users\ytm2d\Desktop\deploy\nanovaTest_1.0.70.0_Debug_Test\nanovaTest_1.0.70.0_ARM_Debug.appxsym
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.70.0_language-zh-hans.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.70.0_scale-100.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.70.0_scale-125.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.70.0_scale-150.appx
+ResourcePack=C:\Users\ytm2d\OneDrive\Documents\NanovaGithub\Novatest\nanovaTest\bin\ARM\Debug\nanovaTest_1.0.70.0_scale-400.appx

@@ -645,4 +645,67 @@
   <data name="DeepClean1" xml:space="preserve">
     <value>Deep Clean</value>
   </data>
+  <data name="Calibration File" xml:space="preserve">
+    <value>Calibration File</value>
+  </data>
+  <data name="Calibration Gas" xml:space="preserve">
+    <value>Calibration Gas</value>
+  </data>
+  <data name="Dept" xml:space="preserve">
+    <value>Dept</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Instrument" xml:space="preserve">
+    <value>Instrument</value>
+  </data>
+  <data name="Intensity" xml:space="preserve">
+    <value>Intensity</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Mw" xml:space="preserve">
+    <value>Mw</value>
+  </data>
+  <data name="NovaTest Portable Gas Chromatograph" xml:space="preserve">
+    <value>NovaTest Portable Gas Chromatograph</value>
+  </data>
+  <data name="Operator" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+  <data name="Peak Threshold" xml:space="preserve">
+    <value>Peak Threshold</value>
+  </data>
+  <data name="Programming Parameters" xml:space="preserve">
+    <value>Programming Parameters</value>
+  </data>
+  <data name="Recalculate" xml:space="preserve">
+    <value>Recalculate</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Sample Name" xml:space="preserve">
+    <value>Sample Name</value>
+  </data>
+  <data name="Save Peak" xml:space="preserve">
+    <value>Save Peak</value>
+  </data>
+  <data name="Save RT" xml:space="preserve">
+    <value>Save RT</value>
+  </data>
+  <data name="Time (s)" xml:space="preserve">
+    <value>Time (s)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Employee No" xml:space="preserve">
+    <value>Employee No</value>
+  </data>
 </root>
