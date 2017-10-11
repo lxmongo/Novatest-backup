@@ -1584,7 +1584,7 @@ namespace nanovaTest.SelectMethod
                 RectangleF p24s = new RectangleF(3 * Width + (0.4f * Width), 603, Width, Length);
                 RectangleF p25s = new RectangleF(4 * Width + (0.32f * Width), 603, Width, Length);
                 RectangleF p26s = new RectangleF(5 * Width + (0.3f * Width), 603, Width, Length);
-                RectangleF p27s = new RectangleF(6 * Width + (0f * Width) + 30, 603, Width + 30, Length);
+                RectangleF p27s = new RectangleF(6 * Width + (0f * Width), 603, Width + 50, Length);
 
                 //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("ExperienceName1"), ExperienceName.Text), font, PdfBrushes.Black, rf1);
                 PointF pfp3 = new PointF(0, 598);
@@ -1613,7 +1613,7 @@ namespace nanovaTest.SelectMethod
                 //graphics2.DrawRectangle(PdfPens.White, p26);
                 graphics2.DrawString("Area", font, PdfBrushes.Black, p26s);
                 //graphics2.DrawRectangle(PdfPens.White, p27);
-                graphics2.DrawString("CONCN", font, PdfBrushes.Black, p27s);
+                graphics2.DrawString("concentration (ppb)", font, PdfBrushes.Black, p27s);
 
                 int i = 0;
 
@@ -1679,7 +1679,7 @@ namespace nanovaTest.SelectMethod
                         p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width, Length);
                         p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i + 1.2f) + 600, Width, Length);
                         p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i + 1.2f) + 600, Width, Length);
-                        p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width + 30, Length);
+                        p27s = new RectangleF(6 * Width + (0.5f * Width), Length * (i + 1.2f) + 600, Width + 50, Length);
 
 
                         // graphics2.DrawRectangle(PdfPens.White, p21);
@@ -1717,7 +1717,7 @@ namespace nanovaTest.SelectMethod
                     p24s = new RectangleF(3 * Width + (0.5f * Width), Length * (i - 3), Width, Length);
                     p25s = new RectangleF(4 * Width + (0.4f * Width), Length * (i - 3), Width, Length);
                     p26s = new RectangleF(5 * Width + (0.35f * Width), Length * (i - 3), Width, Length);
-                    p27s = new RectangleF(6 * Width + (0.5f * Width) - 5, Length * (i - 3), Width + 30, Length);
+                    p27s = new RectangleF(6 * Width + (0.5f * Width) - 33, Length * (i - 3), Width + 50, Length);
 
 
                     graphics3.DrawString("Peak#", font, PdfBrushes.Black, p21s);
@@ -1726,7 +1726,7 @@ namespace nanovaTest.SelectMethod
                     graphics3.DrawString("FWHM (s)", font, PdfBrushes.Black, p24s);
                     graphics3.DrawString("Height", font, PdfBrushes.Black, p25s);
                     graphics3.DrawString("Area", font, PdfBrushes.Black, p26s);
-                    graphics3.DrawString("CONCN", font, PdfBrushes.Black, p27s);
+                    graphics3.DrawString("concentration (ppd)", font, PdfBrushes.Black, p27s);
 
 
                     for (i = 5; i < testInfoList.Count; i++)
