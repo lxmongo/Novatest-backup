@@ -392,19 +392,7 @@ namespace nanovaTest.CustomMethod
                 RectangleF rf6 = new RectangleF(360, 208, 450, 40);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("PressurePDF1"), SetPressureText.Text), font2, PdfBrushes.Black, rf6);
                 //*********************************************
-                //double lowestTempvalue = JsonInputArray[0];
-                //double lowestTvalue = JsonInputArray[1];
-                //double Temp1value = JsonInputArray[2];
-                //double HoldT1value = JsonInputArray[3];
-                ////double HoldT1value = JsonInputArray[3] * 60;
-                //double RampSpeed1value = JsonInputArray[4];
-                ////double RampSpeed1value = JsonInputArray[4] / 60.0;
-                //double Temp2value = JsonInputArray[5];
-                //double HoldT2value = JsonInputArray[6];
-                ////double HoldT2value = JsonInputArray[6] * 60;
-                //double RampSpeed2value = JsonInputArray[7];
-                //double RampSpeed2value = JsonInputArray[7] / 60.0;
-                //***************************************************
+                
                 RectangleF rf7 = new RectangleF(0, 223, 400, 40);
                 //document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + "(°C)", lowestTempvalue), font2, PdfBrushes.Black, rf7);
                 document.Pages[0].Graphics.DrawString(string.Format("{0}: {1}", loader.GetString("LowestTemp1") + " (°C)", LowestTempText.Text), font2, PdfBrushes.Black, rf7);

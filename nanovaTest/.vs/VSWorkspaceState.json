@@ -1,19 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bin",
-    "\\bin\\x86",
-    "\\bin\\x86\\Debug",
+    "\\Calibrate",
     "\\CustomMethod",
     "\\MethodHistory",
     "\\obj",
     "\\obj\\x86",
     "\\obj\\x86\\Release",
-    "\\obj\\x86\\Release\\MethodHistory",
-    "\\obj\\x86\\Release\\SelectMethod",
-    "\\obj\\x86\\Release\\SelectMethod\\Setting",
-    "\\SelectMethod"
+    "\\obj\\x86\\Release\\MethodHistory"
   ],
-  "SelectedNode": "\\Assets",
+  "SelectedNode": "\\Calibrate\\RunCalibratePage.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

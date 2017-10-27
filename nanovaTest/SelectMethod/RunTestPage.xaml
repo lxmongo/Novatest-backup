@@ -270,7 +270,7 @@
                                 Loaded="zoomPan_Loaded"
                                 Margin="0,0,40,0"
                                 RelativePanel.AlignLeftWithPanel="True"
-                                RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2">
+                                RelativePanel.AlignRightWithPanel="True" Grid.ColumnSpan="2" Background="White">
                                     <!--  SelectionChanged="{x:Bind ViewModels.SeriesSelectionChanged}"  -->
 
                                     <Charts:SfChart.PrimaryAxis>

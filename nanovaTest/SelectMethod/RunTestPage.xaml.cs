@@ -1340,6 +1340,7 @@ namespace nanovaTest.SelectMethod
 
                 //add custom fonts and loading the custom TTF font
                 Stream fontStream = File.OpenRead("Assets/gadugi.ttf");
+               // ("Novatest/nanovaTest/bin/x86/Debug/Chart.png")
                 Stream textFontStream = File.OpenRead("Assets/Calibri.ttf");
                 PdfFont titleFont = new PdfTrueTypeFont(fontStream, 20);
                 PdfFont headerFont = new PdfTrueTypeFont(fontStream, 9);
@@ -1357,10 +1358,7 @@ namespace nanovaTest.SelectMethod
                 
 
                 //logo
-                Stream imageStream = File.OpenRead("Assets/logo.png");
-                PdfBitmap image = new PdfBitmap(imageStream);
-                RectangleF rf0 = new RectangleF(0, 0, 200, 45);
-                graphics.DrawImage(image, rf0);
+              
 
                 //header
                 PdfStringFormat format = new PdfStringFormat(PdfTextAlignment.Right);
@@ -1486,50 +1484,68 @@ namespace nanovaTest.SelectMethod
                 InfoListView.Visibility = Visibility.Collapsed;
 
                 //***hide toolbox
-                Basic_Chart.Behaviors.Clear();       
+                Basic_Chart.Behaviors.Clear();
                 //Create the Bitmap from xaml page
-                //Basic_Chart.Height = 320f;
-                //TopGrid.Height = 320f;
-                AnalysisGrid.Visibility = Visibility.Collapsed;
+
+                //Basic_Chart.Width = 560;
+                //TopGrid.Width = 560;
+                //TopGrid.Height = 315;
+                //Basic_Chart.Height = 315;
+                //TopGrid.Width = 30f;
+                //AnalysisGrid.Visibility = Visibility.Collapsed;
                 //Create the Bitmpa from xaml page
 
-                double gridWidth = CustomGrid.ActualWidth;
-                double gridHeight = CustomGrid.ActualHeight;
-                await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
+                //double gridWidth = Basic_Chart.ActualWidth/1.2f;
+                //double gridHeight = CustomGrid.ActualHeight;
+               // await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
+
+                //Basic_Chart.Height = gridHeight/1.5f;
+                //TopGrid.Height = gridHeight/1.6f;
 
                 //CustomImage.Source = renderTargetBitmap;
-                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
-
+               // var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+                 
                 //************************show element
                 InfoListView.Visibility = Visibility.Visible;
-                AnalysisGrid.Visibility = Visibility.Visible;
+                //AnalysisGrid.Visibility = Visibility.Visible;
 
-                //Save the XAML in Bitmap image
-                using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
+                //RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+                await renderTargetBitmap.RenderAsync(Basic_Chart, (int)Basic_Chart.ActualWidth, (int)Basic_Chart.ActualHeight);
+                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                
+                var localFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+                var currentDate = DateTime.Now.ToString("yyyyMMddHHmmss");
+                var saveFile = await localFolder.CreateFileAsync(string.Format("{0}.bmp", currentDate),
+                     Windows.Storage.CreationCollisionOption.GenerateUniqueName);
+                //CreateFileAsync("Chart.png", Windows.Storage.CreationCollisionOption.GenerateUniqueName);
+
+                // Encodage de l'image en mémoire dans le fichier désigné sur le disque
+                using (var fileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
                 {
-                    
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream);
 
-                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
                     encoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Ignore,
-                       // PixelHeight = 450f,
+                        BitmapPixelFormat.Rgba8,
+                        BitmapAlphaMode.Premultiplied,
                         (uint)renderTargetBitmap.PixelWidth,
                         (uint)renderTargetBitmap.PixelHeight,
-                        logicalDpi,
-                        logicalDpi,
+                        DisplayInformation.GetForCurrentView().LogicalDpi,
+                        DisplayInformation.GetForCurrentView().LogicalDpi,
                         pixelBuffer.ToArray());
 
                     await encoder.FlushAsync();
-
-
-                    PdfImage img = PdfImage.FromStream(stream.AsStream());
-                    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(-2, 275, 560, (float)gridHeight / 2.2f));
-                    //graphics.DrawImage(img, new RectangleF(-2, 275, (float)gridWidth/1.2f, 323f));
                 }
 
-
+               Stream imageStream = File.OpenRead(string.Format("{0}.bmp", currentDate));
+                //var img = await saveFile.OpenReadAsync();
+               // ConfigImage.Source = new BitmapImage(img);
+               PdfBitmap image = new PdfBitmap(imageStream);
+               RectangleF rf0 = new RectangleF(-2, 275, 560, 320);
+               // PdfImage
+                //graphics.DrawImage
+                graphics.DrawImage(image, rf0);
                 //footer
 
                 RectangleF bounds = new RectangleF(0, 0, document.Pages[0].GetClientSize().Width, 100);
@@ -2851,6 +2867,7 @@ namespace nanovaTest.SelectMethod
         private void GenerateTableAgain_Click(object sender, RoutedEventArgs e)
         {
             //clear parameters
+           
             peaks1.Clear();
             bottoms1.Clear();
             Area1.Clear();
@@ -2966,6 +2983,7 @@ namespace nanovaTest.SelectMethod
             InfoListView.ItemsSource = null;
             InfoListView.ItemsSource = testInfoList;
             InfoListView.Visibility = Visibility.Visible;
+            
             savePdf();
             CreateIndicateLine();
         }

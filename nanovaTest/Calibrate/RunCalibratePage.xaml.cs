@@ -1331,11 +1331,20 @@ namespace nanovaTest.Calibrate
             YaxisMax1 = 20;
         }
 
+       
+
         private async void savePdf()
         {
             //Create a new PDF document.
             using (PdfDocument document = new PdfDocument())
             {
+
+                
+                ////SfChart.CacheModeProperty.GetMetadata.appFolder;
+                //   // Save("ChartSample112.png", appFolder);
+
+
+
                 //Add a page in the PDF document.
                 PdfPage page = document.Pages.Add();
                 //Access the PDF graphics instance of the page.
@@ -1471,55 +1480,65 @@ namespace nanovaTest.Calibrate
                 graphics.DrawLine(blackPen, pf5, pf6);
 
 
+
          
                 //Initializing to render to Bitmap
-                var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-                var renderTargetBitmap = new RenderTargetBitmap();
+               // var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+               // var renderTargetBitmap = new RenderTargetBitmap();
 
                 //*************************hide element
                 InfoListView.Visibility = Visibility.Collapsed;
                 AnalysisGrid.Visibility = Visibility.Collapsed;
-                //***hide toolbox
-                Basic_Chart.Behaviors.Clear();
-
-                //Create the Bitmpa from xaml page
-                Basic_Chart.Height = 350f;
-                TopChartGrid.Height = 350f;
-
-                double gridWidth = CustomGrid.ActualWidth;
-                double gridHeight = CustomGrid.ActualHeight;
-                await renderTargetBitmap.RenderAsync(CustomGrid, (int)gridWidth, (int)gridHeight);
-                //CustomImage.Source = renderTargetBitmap;
-                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+            
+             
 
                 //************************show element
                 InfoListView.Visibility = Visibility.Visible;
                 AnalysisGrid.Visibility = Visibility.Visible;
 
-                //Save the XAML in Bitmap image
-                using (var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream())
-                {
-                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                    encoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Ignore,
-                        (uint)renderTargetBitmap.PixelWidth,
-                        (uint)renderTargetBitmap.PixelHeight,
-                        logicalDpi,
-                        logicalDpi,
-                        pixelBuffer.ToArray());
 
-                    await encoder.FlushAsync();
-                   
-                    PdfImage img = PdfImage.FromStream(stream.AsStream());
+                //Rendu du composant Xaml, ici le graphique 'Syncfusion.Chart', sous forme d'image en mémoire.
+                //RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+                //await renderTargetBitmap.RenderAsync(Basic_Chart, (int)Basic_Chart.ActualWidth, (int)Basic_Chart.ActualHeight);
+                //var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
-                    //PdfBitmap image = new PdfBitmap(renderTargetBitmap.);
-                    graphics.DrawImage(img, new RectangleF(-2, 275, 560, (float)gridHeight / 2.2f));
-                    //graphics.DrawImage(img, new RectangleF(-46, 275, (float)gridWidth / 1.18f, 350f));
-                }
+                //var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+               // var localFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+               // var saveFile = await localFolder.CreateFileAsync("Chart333.png", Windows.Storage.CreationCollisionOption.GenerateUniqueName);
+               // string path = @"C:\Users\xiaoliu\Novatest\nanovaTest\Assets";
+                //StorageFolder pdfFolder = await cali.CreateFolderAsync(methodFileName,
+                  
+
+                //await pdfFolder.CreateFileAsync(FileNameTime + ".dat", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+               
+                // Encodage de l'image en mémoire dans le fichier désigné sur le disque
+                //using (var fileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
+                //{
+                //    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream);
+
+                //    encoder.SetPixelData(
+                //        BitmapPixelFormat.Bgra8,
+                //        BitmapAlphaMode.Ignore,
+                //        (uint)renderTargetBitmap.PixelWidth,
+                //        (uint)renderTargetBitmap.PixelHeight,
+                //        DisplayInformation.GetForCurrentView().LogicalDpi,
+                //        DisplayInformation.GetForCurrentView().LogicalDpi,
+                //        pixelBuffer.ToArray());
+
+                //    await encoder.FlushAsync();
+                //}
 
 
-                //footer
+                //StorageFolder appFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                
+                double gridWidth = CustomGrid.ActualWidth;
+                double gridHeight = CustomGrid.ActualHeight;
+
+                //Stream saveImage = File.OpenRead("Assets/bin/x86/Debug/AppX/Chart333.png");
+                //PdfBitmap image2 = new PdfBitmap(imageStream);
+               // graphics.DrawImage(image2, new RectangleF(-2, 275, (float)gridWidth / 1.5f, (float)gridHeight / 2.2f));
+                //RectangleF rf01 = new RectangleF(0, 0, 200, 45);
+                // Stream savedImage = File.OpenRead(localFolder.Disp   layName, stream("Chart.png"));
 
                 RectangleF bounds = new RectangleF(0, 0, document.Pages[0].GetClientSize().Width, 100);
                 PdfPageTemplateElement header = new PdfPageTemplateElement(bounds);
@@ -1557,13 +1576,7 @@ namespace nanovaTest.Calibrate
                 PdfGraphics graphics2 = page.Graphics;
                 var Width = 70;
                 var Length = 20;
-                //RectangleF p21 = new RectangleF(0, 600, Width - 30, Length);
-                //RectangleF p22 = new RectangleF(Width - 30, 600, Width + 65, Length);
-                //RectangleF p23 = new RectangleF(2 * Width + 35, 600, Width - 15, Length);
-                //RectangleF p24 = new RectangleF(3 * Width + 20, 600, Width - 10, Length);
-                //RectangleF p25 = new RectangleF(4 * Width + 10, 600, Width - 10, Length);
-                //RectangleF p26 = new RectangleF(5 * Width, 600, Width - 10, Length);
-                //RectangleF p27 = new RectangleF(6 * Width - 10, 600, Width + 35, Length);
+                
                 RectangleF p21s = new RectangleF(10, 603, Width, Length);
                 RectangleF p22s = new RectangleF(Width - 15, 603, Width, Length);
                 RectangleF p23s = new RectangleF(2 * Width + (0.73f * Width), 603, Width, Length);
@@ -1609,14 +1622,7 @@ namespace nanovaTest.Calibrate
                     {
 
                         Debug.WriteLine(testInfoList[i].VOCName);
-
-                        //p21 = new RectangleF(0, Length * (i + 1) + 600, Width - 30, Length);
-                        //p22 = new RectangleF(Width - 30, Length * (i + 1) + 600, Width + 65, Length);
-                        //p23 = new RectangleF(2 * Width + 35, Length * (i + 1) + 600, Width - 15, Length);
-                        //p24 = new RectangleF(3 * Width + 20, Length * (i + 1) + 600, Width - 10, Length);
-                        //p25 = new RectangleF(4 * Width + 10, Length * (i + 1) + 600, Width - 10, Length);
-                        //p26 = new RectangleF(5 * Width, Length * (i + 1) + 600, Width - 10, Length);
-                        //p27 = new RectangleF(6 * Width - 10, Length * (i + 1) + 600, Width + 35, Length);
+                        
                         p21s = new RectangleF(0 + (0.22f * Width), Length * (i + 1.2f) + 600, Width, Length);
                         p22s = new RectangleF(Width - 15, Length * (i + 1.2f) + 600, Width + 60, Length);
                         p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f) + 600, Width, Length);
@@ -1652,13 +1658,7 @@ namespace nanovaTest.Calibrate
 
                         Debug.WriteLine(testInfoList[i].VOCName);
 
-                        //p21 = new RectangleF(0, Length * (i + 1) + 600, Width - 30, Length);
-                        //p22 = new RectangleF(Width - 30, Length * (i + 1) + 600, Width + 65, Length);
-                        //p23 = new RectangleF(2 * Width + 35, Length * (i + 1) + 600, Width - 15, Length);
-                        //p24 = new RectangleF(3 * Width + 20, Length * (i + 1) + 600, Width - 10, Length);
-                        //p25 = new RectangleF(4 * Width + 10, Length * (i + 1) + 600, Width - 10, Length);
-                        //p26 = new RectangleF(5 * Width, Length * (i + 1) + 600, Width - 10, Length);
-                        //p27 = new RectangleF(6 * Width - 10, Length * (i + 1) + 600, Width + 35, Length);
+                       
                         p21s = new RectangleF(10, Length * (i + 1.2f) + 600, Width, Length);
                         p22s = new RectangleF(Width - 15, Length * (i + 1.2f) + 600, Width + 60, Length);
                         p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i + 1.2f) + 600, Width, Length);
@@ -1724,13 +1724,6 @@ namespace nanovaTest.Calibrate
                         PointF pfp1 = new PointF(0, 0);
                         PointF pfp2 = new PointF(page.Graphics.ClientSize.Width, 0);
 
-                        //p21 = new RectangleF(0, Length * (i - 3) + 23, Width - 30, Length);
-                        //p22 = new RectangleF(Width - 30, Length * (i - 4), Width + 65, Length);
-                        //p23 = new RectangleF(2 * Width + 35, Length * (i - 4), Width - 15, Length);
-                        //p24 = new RectangleF(3 * Width + 20, Length * (i - 4), Width - 10, Length);
-                        //p25 = new RectangleF(4 * Width + 10, Length * (i - 4), Width - 10, Length);
-                        //p26 = new RectangleF(5 * Width, Length * (i - 4), Width - 10, Length);
-                        //p27 = new RectangleF(6 * Width - 10, Length * (i - 4), Width + 35, Length);
                         p21s = new RectangleF(0 + (0.22f * Width), Length * (i - 3) + 23, Width, Length);
                         p22s = new RectangleF(Width - 20, Length * (i - 3) + 23, Width + 60, Length);
                         p23s = new RectangleF(2 * Width + (0.73f * Width), Length * (i - 3) + 23, Width, Length);
@@ -1763,17 +1756,50 @@ namespace nanovaTest.Calibrate
 
                 //*******************************************
                 //Save the Pdf document
+               // MemoryStream docStream = new MemoryStream();
+               // document.Save(docStream);
+                //document.Close(true);
+
+               
                 MemoryStream docStream = new MemoryStream();
                 document.Save(docStream);
                 document.Close(true);
-
                 StorageFolder applicationFolder = ApplicationData.Current.LocalFolder;
-                StorageFolder calibrateFolder = await applicationFolder.CreateFolderAsync("calibrate",
+                StorageFolder runTestFolder = await applicationFolder.CreateFolderAsync("runTest",
                     CreationCollisionOption.OpenIfExists);
-                StorageFolder pdfFolder = await calibrateFolder.CreateFolderAsync(methodFileName,
+                StorageFolder pdfFolder = await runTestFolder.CreateFolderAsync(methodFileName,
                     CreationCollisionOption.OpenIfExists);
-                StorageFile savePdfFile = await pdfFolder.CreateFileAsync(DateTime.Now.Ticks + ".pdf",
+                StorageFile savePdfFile = await pdfFolder.CreateFileAsync(string.Format("{0}_{1}.pdf",
+                    OperatorName.SelectedValue,
+                    DateTime.Now.ToString("yyyyMMddHHmmss")),
                     CreationCollisionOption.OpenIfExists);
+
+                StorageFile saveFile = await pdfFolder.CreateFileAsync(string.Format("{0}_{1}.png",
+                    OperatorName.SelectedValue,
+                    DateTime.Now.ToString("yyyyMMddHHmmss")),
+                    CreationCollisionOption.OpenIfExists);
+
+                RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+                await renderTargetBitmap.RenderAsync(Basic_Chart, (int)Basic_Chart.ActualWidth, (int)Basic_Chart.ActualHeight);
+                var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+                using (var fileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
+                {
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream);
+
+                    encoder.SetPixelData(
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Ignore,
+                        (uint)renderTargetBitmap.PixelWidth,
+                        (uint)renderTargetBitmap.PixelHeight,
+                        DisplayInformation.GetForCurrentView().LogicalDpi,
+                        DisplayInformation.GetForCurrentView().LogicalDpi,
+                        pixelBuffer.ToArray());
+
+                    await encoder.FlushAsync();
+                }
+
+
                 using (var stream = await savePdfFile.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     Stream st = stream.AsStreamForWrite();
@@ -1783,12 +1809,51 @@ namespace nanovaTest.Calibrate
                 }
                 NotifyPopup notifyPopup = new NotifyPopup(loader.GetString("SaveSuccess"));
                 notifyPopup.Show();
-                Basic_Chart.Height = 700f;
-                TopChartGrid.Height = 700f;
-                Basic_Chart.Behaviors.Add(zoomBehavior);
+                //Basic_Chart.Height = 700f;
+                //TopChartGrid.Height = 700f;
+                //Basic_Chart.Behaviors.Add(zoomBehavior);
                 notifyPopup.Show();
             }
             //updateVOC();
+        }
+
+        async void Performance_Loaded(object sender, RoutedEventArgs e)
+        {
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                SaveImage();
+            }));
+            this.Loaded -= Performance_Loaded;
+
+        }
+
+        private async void SaveImage()
+        {
+            //Rendu du composant Xaml, ici le graphique 'Syncfusion.Chart', sous forme d'image en mémoire.
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+            await renderTargetBitmap.RenderAsync(Basic_Chart, (int)Basic_Chart.ActualWidth, (int)Basic_Chart.ActualHeight);
+            var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+            //var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            var localFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            var saveFile = await localFolder.CreateFileAsync("Chart.png", Windows.Storage.CreationCollisionOption.GenerateUniqueName);
+
+            // Encodage de l'image en mémoire dans le fichier désigné sur le disque
+            using (var fileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
+            {
+                var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream);
+
+                encoder.SetPixelData(
+                    BitmapPixelFormat.Bgra8,
+                    BitmapAlphaMode.Ignore,
+                    (uint)renderTargetBitmap.PixelWidth,
+                    (uint)renderTargetBitmap.PixelHeight,
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+                    pixelBuffer.ToArray());
+
+                await encoder.FlushAsync();
+            }
         }
 
         //update VOC library
