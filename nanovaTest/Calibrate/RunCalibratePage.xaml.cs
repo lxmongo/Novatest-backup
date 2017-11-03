@@ -1531,8 +1531,8 @@ namespace nanovaTest.Calibrate
 
                 //StorageFolder appFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
                 
-                double gridWidth = CustomGrid.ActualWidth;
-                double gridHeight = CustomGrid.ActualHeight;
+               // double gridWidth = CustomGrid.ActualWidth;
+               // double gridHeight = CustomGrid.ActualHeight;
 
                 //Stream saveImage = File.OpenRead("Assets/bin/x86/Debug/AppX/Chart333.png");
                 //PdfBitmap image2 = new PdfBitmap(imageStream);
@@ -1780,7 +1780,7 @@ namespace nanovaTest.Calibrate
                     CreationCollisionOption.OpenIfExists);
 
                 RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
-                await renderTargetBitmap.RenderAsync(Basic_Chart, (int)Basic_Chart.ActualWidth, (int)Basic_Chart.ActualHeight);
+                await renderTargetBitmap.RenderAsync(Basic_Chart, (int)CustomGrid.Width, (int)CustomGrid.Height);
                 var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
 
                 using (var fileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
